@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Namespace" type="file" description="6.4.1 Namespace Declarations">
+  <invalid>
+    <test>
+      <code>
+        Inherits y
+        Implements x
+
+        Event f()
+
+        Dim g() As Integer
+
+        Sub h()
+        End Sub
+
+        Function g() As Integer
+        End Function
+
+        Property h()
+        Get
+        End Get
+        End Property
+
+        Sub New()
+        End Sub
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="20" endCol="16">
+          <DeclarationCollection startLine="1" startCol="1" endLine="20" endCol="16">
+            <InheritsDeclaration startLine="1" startCol="1" endLine="1" endCol="11">
+              <TypeNameCollection startLine="1" startCol="10" endLine="1" endCol="11">
+                <NamedType startLine="1" startCol="10" endLine="1" endCol="11">
+                  <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">y</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </InheritsDeclaration>
+            <ImplementsDeclaration startLine="2" startCol="9" endLine="2" endCol="21">
+              <TypeNameCollection startLine="2" startCol="20" endLine="2" endCol="21">
+                <NamedType startLine="2" startCol="20" endLine="2" endCol="21">
+                  <SimpleName startLine="2" startCol="20" endLine="2" endCol="21" escaped="False">x</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </ImplementsDeclaration>
+            <EventDeclaration startLine="4" startCol="9" endLine="4" endCol="18">
+              <Event line="4" col="9" />
+              <SimpleName startLine="4" startCol="15" endLine="4" endCol="16" escaped="False">f</SimpleName>
+              <ParameterCollection startLine="4" startCol="16" endLine="4" endCol="18">
+                <RightParenthesis line="4" col="17" />
+              </ParameterCollection>
+            </EventDeclaration>
+            <VariableListDeclaration startLine="6" startCol="9" endLine="6" endCol="27">
+              <ModifierCollection startLine="6" startCol="9" endLine="6" endCol="13">
+                <Modifier startLine="6" startCol="9" endLine="6" endCol="13" type="Dim" />
+              </ModifierCollection>
+              <VariableDeclaratorCollection startLine="6" startCol="13" endLine="6" endCol="27">
+                <VariableDeclarator startLine="6" startCol="13" endLine="6" endCol="27">
+                  <VariableNameCollection startLine="6" startCol="13" endLine="6" endCol="17">
+                    <VariableName startLine="6" startCol="13" endLine="6" endCol="17">
+                      <SimpleName startLine="6" startCol="13" endLine="6" endCol="14" escaped="False">g</SimpleName>
+                      <ArrayType startLine="6" startCol="14" endLine="6" endCol="17" rank="1">
+                        <ArgumentCollection startLine="6" startCol="14" endLine="6" endCol="17">
+                          <RightParenthesis line="6" col="15" />
+                        </ArgumentCollection>
+                      </ArrayType>
+                    </VariableName>
+                  </VariableNameCollection>
+                  <As line="6" col="17" />
+                  <IntrinsicType startLine="6" startCol="20" endLine="6" endCol="27" intrinsicType="Integer" />
+                </VariableDeclarator>
+              </VariableDeclaratorCollection>
+            </VariableListDeclaration>
+            <SubDeclaration startLine="8" startCol="9" endLine="9" endCol="16">
+              <Sub line="8" col="9" />
+              <SimpleName startLine="8" startCol="13" endLine="8" endCol="14" escaped="False">h</SimpleName>
+              <ParameterCollection startLine="8" startCol="14" endLine="8" endCol="16">
+                <RightParenthesis line="8" col="15" />
+              </ParameterCollection>
+              <EndBlockDeclaration startLine="9" startCol="9" endLine="9" endCol="16" endType="Sub">
+                <Sub line="9" col="13" />
+              </EndBlockDeclaration>
+            </SubDeclaration>
+            <FunctionDeclaration startLine="11" startCol="9" endLine="12" endCol="21">
+              <Function line="11" col="9" />
+              <SimpleName startLine="11" startCol="18" endLine="11" endCol="19" escaped="False">g</SimpleName>
+              <ParameterCollection startLine="11" startCol="19" endLine="11" endCol="22">
+                <RightParenthesis line="11" col="20" />
+              </ParameterCollection>
+              <As line="11" col="22" />
+              <IntrinsicType startLine="11" startCol="25" endLine="11" endCol="32" intrinsicType="Integer" />
+              <EndBlockDeclaration startLine="12" startCol="9" endLine="12" endCol="21" endType="Function">
+                <Function line="12" col="13" />
+              </EndBlockDeclaration>
+            </FunctionDeclaration>
+            <PropertyDeclaration startLine="14" startCol="9" endLine="17" endCol="21">
+              <Event line="14" col="9" />
+              <SimpleName startLine="14" startCol="18" endLine="14" endCol="19" escaped="False">h</SimpleName>
+              <ParameterCollection startLine="14" startCol="19" endLine="14" endCol="21">
+                <RightParenthesis line="14" col="20" />
+              </ParameterCollection>
+              <DeclarationCollection startLine="15" startCol="9" endLine="16" endCol="18">
+                <GetAccessorDeclaration startLine="15" startCol="9" endLine="16" endCol="16">
+                  <Get line="15" col="9" />
+                  <EndBlockDeclaration startLine="16" startCol="9" endLine="16" endCol="16" endType="Get">
+                    <Get line="16" col="13" />
+                  </EndBlockDeclaration>
+                </GetAccessorDeclaration>
+              </DeclarationCollection>
+              <EndBlockDeclaration startLine="17" startCol="9" endLine="17" endCol="21" endType="Property">
+                <Property line="17" col="13" />
+              </EndBlockDeclaration>
+            </PropertyDeclaration>
+            <ConstructorDeclaration startLine="19" startCol="9" endLine="20" endCol="16">
+              <New line="19" col="9" />
+              <SimpleName startLine="19" startCol="13" endLine="19" endCol="16" escaped="False">New</SimpleName>
+              <ParameterCollection startLine="19" startCol="16" endLine="19" endCol="18">
+                <RightParenthesis line="19" col="17" />
+              </ParameterCollection>
+              <EndBlockDeclaration startLine="20" startCol="9" endLine="20" endCol="16" endType="Sub">
+                <Sub line="20" col="13" />
+              </EndBlockDeclaration>
+            </ConstructorDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidInsideNamespace startLine="1" startCol="1" endLine="1" endCol="11">error 113 (1,1) - (11,1): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="2" startCol="9" endLine="2" endCol="21">error 113 (9,2) - (21,2): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="4" startCol="9" endLine="4" endCol="18">error 113 (9,4) - (18,4): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="6" startCol="9" endLine="6" endCol="27">error 113 (9,6) - (27,6): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="8" startCol="9" endLine="9" endCol="16">error 113 (9,8) - (16,9): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="11" startCol="9" endLine="12" endCol="21">error 113 (9,11) - (21,12): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="14" startCol="9" endLine="17" endCol="21">error 113 (9,14) - (21,17): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="19" startCol="9" endLine="20" endCol="16">error 113 (9,19) - (16,20): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+      </errors>
+    </test>
+    <test>
+      <code>Namespace</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="10">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="10">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="1" endCol="10">
+              <Namespace line="1" col="1" />
+              <SimpleName isBad="True" startLine="1" startCol="10" endLine="1" endCol="10" escaped="False" />
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="10" endLine="1" endCol="10">error 23 (10,1) - (10,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Namespace x.
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <Namespace line="1" col="1" />
+              <QualifiedName startLine="1" startCol="11" endLine="1" endCol="13">
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">x</SimpleName>
+                <Period line="1" col="12" />
+                <SimpleName isBad="True" startLine="1" startCol="13" endLine="1" endCol="15" escaped="False" />
+              </QualifiedName>
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="13" endLine="1" endCol="15">error 23 (13,1) - (15,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Namespace .x
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <Namespace line="1" col="1" />
+              <QualifiedName startLine="1" startCol="11" endLine="1" endCol="13">
+                <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="12" escaped="False" />
+                <Period line="1" col="11" />
+                <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+              </QualifiedName>
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="11" endLine="1" endCol="12">error 23 (11,1) - (12,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Overridable Namespace
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="13">
+                <Modifier startLine="1" startCol="1" endLine="1" endCol="13" type="Overridable" />
+              </ModifierCollection>
+              <Namespace line="1" col="13" />
+              <SimpleName isBad="True" startLine="1" startCol="22" endLine="1" endCol="24" escaped="False" />
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <SpecifiersInvalidOnNamespaceDeclaration startLine="1" startCol="1" endLine="1" endCol="13">error 115 (1,1) - (13,1): Specifiers and attributes are not valid on a Namespace declaration.</SpecifiersInvalidOnNamespaceDeclaration>
+      </errors>
+    </test>
+    <test>
+      <code>
+        &lt;a&gt; Namespace Foo
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="5">
+                <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="5">
+                  <Attribute startLine="1" startCol="2" endLine="1" endCol="3" type="Regular">
+                    <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">a</SimpleName>
+                  </Attribute>
+                  <GreaterThan line="1" col="3" />
+                </AttributeCollection>
+              </AttributeBlockCollection>
+              <Namespace line="1" col="5" />
+              <SimpleName startLine="1" startCol="15" endLine="1" endCol="18" escaped="False">Foo</SimpleName>
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <SpecifiersInvalidOnNamespaceDeclaration startLine="1" startCol="1" endLine="1" endCol="5">error 115 (1,1) - (5,1): Specifiers and attributes are not valid on a Namespace declaration.</SpecifiersInvalidOnNamespaceDeclaration>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Namespace &lt;a&gt; Foo
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <Namespace line="1" col="1" />
+              <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="12" escaped="False" />
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="11" endLine="1" endCol="12">error 23 (11,1) - (12,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Namespace Public Foo
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <Namespace line="1" col="1" />
+              <SimpleName startLine="1" startCol="11" endLine="1" endCol="17" escaped="False">Public</SimpleName>
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="11" endLine="1" endCol="17">error 24 (11,1) - (17,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Namespace Foo
+        Inherits y
+        Implements x
+
+        Event f()
+
+        Dim g() As Integer
+
+        Sub h()
+        End Sub
+
+        Function g() As Integer
+        End Function
+
+        Property h()
+        Get
+        End Get
+        End Property
+
+        Sub New()
+        End Sub
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="22" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="22" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="22" endCol="22">
+              <Namespace line="1" col="1" />
+              <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+              <DeclarationCollection startLine="2" startCol="9" endLine="21" endCol="18">
+                <InheritsDeclaration startLine="2" startCol="9" endLine="2" endCol="19">
+                  <TypeNameCollection startLine="2" startCol="18" endLine="2" endCol="19">
+                    <NamedType startLine="2" startCol="18" endLine="2" endCol="19">
+                      <SimpleName startLine="2" startCol="18" endLine="2" endCol="19" escaped="False">y</SimpleName>
+                    </NamedType>
+                  </TypeNameCollection>
+                </InheritsDeclaration>
+                <ImplementsDeclaration startLine="3" startCol="9" endLine="3" endCol="21">
+                  <TypeNameCollection startLine="3" startCol="20" endLine="3" endCol="21">
+                    <NamedType startLine="3" startCol="20" endLine="3" endCol="21">
+                      <SimpleName startLine="3" startCol="20" endLine="3" endCol="21" escaped="False">x</SimpleName>
+                    </NamedType>
+                  </TypeNameCollection>
+                </ImplementsDeclaration>
+                <EventDeclaration startLine="5" startCol="9" endLine="5" endCol="18">
+                  <Event line="5" col="9" />
+                  <SimpleName startLine="5" startCol="15" endLine="5" endCol="16" escaped="False">f</SimpleName>
+                  <ParameterCollection startLine="5" startCol="16" endLine="5" endCol="18">
+                    <RightParenthesis line="5" col="17" />
+                  </ParameterCollection>
+                </EventDeclaration>
+                <VariableListDeclaration startLine="7" startCol="9" endLine="7" endCol="27">
+                  <ModifierCollection startLine="7" startCol="9" endLine="7" endCol="13">
+                    <Modifier startLine="7" startCol="9" endLine="7" endCol="13" type="Dim" />
+                  </ModifierCollection>
+                  <VariableDeclaratorCollection startLine="7" startCol="13" endLine="7" endCol="27">
+                    <VariableDeclarator startLine="7" startCol="13" endLine="7" endCol="27">
+                      <VariableNameCollection startLine="7" startCol="13" endLine="7" endCol="17">
+                        <VariableName startLine="7" startCol="13" endLine="7" endCol="17">
+                          <SimpleName startLine="7" startCol="13" endLine="7" endCol="14" escaped="False">g</SimpleName>
+                          <ArrayType startLine="7" startCol="14" endLine="7" endCol="17" rank="1">
+                            <ArgumentCollection startLine="7" startCol="14" endLine="7" endCol="17">
+                              <RightParenthesis line="7" col="15" />
+                            </ArgumentCollection>
+                          </ArrayType>
+                        </VariableName>
+                      </VariableNameCollection>
+                      <As line="7" col="17" />
+                      <IntrinsicType startLine="7" startCol="20" endLine="7" endCol="27" intrinsicType="Integer" />
+                    </VariableDeclarator>
+                  </VariableDeclaratorCollection>
+                </VariableListDeclaration>
+                <SubDeclaration startLine="9" startCol="9" endLine="10" endCol="16">
+                  <Sub line="9" col="9" />
+                  <SimpleName startLine="9" startCol="13" endLine="9" endCol="14" escaped="False">h</SimpleName>
+                  <ParameterCollection startLine="9" startCol="14" endLine="9" endCol="16">
+                    <RightParenthesis line="9" col="15" />
+                  </ParameterCollection>
+                  <EndBlockDeclaration startLine="10" startCol="9" endLine="10" endCol="16" endType="Sub">
+                    <Sub line="10" col="13" />
+                  </EndBlockDeclaration>
+                </SubDeclaration>
+                <FunctionDeclaration startLine="12" startCol="9" endLine="13" endCol="21">
+                  <Function line="12" col="9" />
+                  <SimpleName startLine="12" startCol="18" endLine="12" endCol="19" escaped="False">g</SimpleName>
+                  <ParameterCollection startLine="12" startCol="19" endLine="12" endCol="22">
+                    <RightParenthesis line="12" col="20" />
+                  </ParameterCollection>
+                  <As line="12" col="22" />
+                  <IntrinsicType startLine="12" startCol="25" endLine="12" endCol="32" intrinsicType="Integer" />
+                  <EndBlockDeclaration startLine="13" startCol="9" endLine="13" endCol="21" endType="Function">
+                    <Function line="13" col="13" />
+                  </EndBlockDeclaration>
+                </FunctionDeclaration>
+                <PropertyDeclaration startLine="15" startCol="9" endLine="18" endCol="21">
+                  <Event line="15" col="9" />
+                  <SimpleName startLine="15" startCol="18" endLine="15" endCol="19" escaped="False">h</SimpleName>
+                  <ParameterCollection startLine="15" startCol="19" endLine="15" endCol="21">
+                    <RightParenthesis line="15" col="20" />
+                  </ParameterCollection>
+                  <DeclarationCollection startLine="16" startCol="9" endLine="17" endCol="18">
+                    <GetAccessorDeclaration startLine="16" startCol="9" endLine="17" endCol="16">
+                      <Get line="16" col="9" />
+                      <EndBlockDeclaration startLine="17" startCol="9" endLine="17" endCol="16" endType="Get">
+                        <Get line="17" col="13" />
+                      </EndBlockDeclaration>
+                    </GetAccessorDeclaration>
+                  </DeclarationCollection>
+                  <EndBlockDeclaration startLine="18" startCol="9" endLine="18" endCol="21" endType="Property">
+                    <Property line="18" col="13" />
+                  </EndBlockDeclaration>
+                </PropertyDeclaration>
+                <ConstructorDeclaration startLine="20" startCol="9" endLine="21" endCol="16">
+                  <New line="20" col="9" />
+                  <SimpleName startLine="20" startCol="13" endLine="20" endCol="16" escaped="False">New</SimpleName>
+                  <ParameterCollection startLine="20" startCol="16" endLine="20" endCol="18">
+                    <RightParenthesis line="20" col="17" />
+                  </ParameterCollection>
+                  <EndBlockDeclaration startLine="21" startCol="9" endLine="21" endCol="16" endType="Sub">
+                    <Sub line="21" col="13" />
+                  </EndBlockDeclaration>
+                </ConstructorDeclaration>
+              </DeclarationCollection>
+              <EndBlockDeclaration startLine="22" startCol="9" endLine="22" endCol="22" endType="Namespace">
+                <Namespace line="22" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidInsideNamespace startLine="2" startCol="9" endLine="2" endCol="19">error 113 (9,2) - (19,2): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="3" startCol="9" endLine="3" endCol="21">error 113 (9,3) - (21,3): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="5" startCol="9" endLine="5" endCol="18">error 113 (9,5) - (18,5): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="7" startCol="9" endLine="7" endCol="27">error 113 (9,7) - (27,7): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="9" startCol="9" endLine="10" endCol="16">error 113 (9,9) - (16,10): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="12" startCol="9" endLine="13" endCol="21">error 113 (9,12) - (21,13): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="15" startCol="9" endLine="18" endCol="21">error 113 (9,15) - (21,18): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+        <InvalidInsideNamespace startLine="20" startCol="9" endLine="21" endCol="16">error 113 (9,20) - (16,21): Declaration cannot appear within a Namespace declaration.</InvalidInsideNamespace>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Namespace Global
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <Namespace line="1" col="1" />
+              <GlobalNamespaceName startLine="1" startCol="11" endLine="1" endCol="17" />
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidUseOfGlobal startLine="1" startCol="11" endLine="1" endCol="17">error 150 (11,1) - (17,1): 'Global' not allowed in this context; identifier expected.</InvalidUseOfGlobal>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Namespace Global.System
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <Namespace line="1" col="1" />
+              <QualifiedName startLine="1" startCol="11" endLine="1" endCol="24">
+                <GlobalNamespaceName startLine="1" startCol="11" endLine="1" endCol="17" />
+                <Period line="1" col="17" />
+                <SimpleName startLine="1" startCol="18" endLine="1" endCol="24" escaped="False">System</SimpleName>
+              </QualifiedName>
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidUseOfGlobal startLine="1" startCol="11" endLine="1" endCol="17">error 150 (11,1) - (17,1): 'Global' not allowed in this context; identifier expected.</InvalidUseOfGlobal>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>
+        Namespace Foo
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <Namespace line="1" col="1" />
+              <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>
+        Namespace Foo.Bar
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <Namespace line="1" col="1" />
+              <QualifiedName startLine="1" startCol="11" endLine="1" endCol="18">
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+                <Period line="1" col="14" />
+                <SimpleName startLine="1" startCol="15" endLine="1" endCol="18" escaped="False">Bar</SimpleName>
+              </QualifiedName>
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>
+        Namespace Foo
+        Class a
+        End Class
+
+        Enum b
+        a
+        End Enum
+
+        Structure c
+        End Structure
+
+        Interface d
+        End Interface
+
+        Delegate Sub e()
+
+        Module f
+        End Module
+
+        Namespace g
+        End Namespace
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="22" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="22" endCol="22">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="22" endCol="22">
+              <Namespace line="1" col="1" />
+              <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+              <DeclarationCollection startLine="2" startCol="9" endLine="21" endCol="24">
+                <ClassDeclaration startLine="2" startCol="9" endLine="3" endCol="18">
+                  <Class line="2" col="9" />
+                  <SimpleName startLine="2" startCol="15" endLine="2" endCol="16" escaped="False">a</SimpleName>
+                  <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Class">
+                    <Class line="3" col="13" />
+                  </EndBlockDeclaration>
+                </ClassDeclaration>
+                <EnumDeclaration startLine="5" startCol="9" endLine="7" endCol="17">
+                  <Enum line="5" col="9" />
+                  <SimpleName startLine="5" startCol="14" endLine="5" endCol="15" escaped="False">b</SimpleName>
+                  <DeclarationCollection startLine="6" startCol="9" endLine="6" endCol="12">
+                    <EnumValueDeclaration startLine="6" startCol="9" endLine="6" endCol="10">
+                      <SimpleName startLine="6" startCol="9" endLine="6" endCol="10" escaped="False">a</SimpleName>
+                    </EnumValueDeclaration>
+                  </DeclarationCollection>
+                  <EndBlockDeclaration startLine="7" startCol="9" endLine="7" endCol="17" endType="Enum">
+                    <Enum line="7" col="13" />
+                  </EndBlockDeclaration>
+                </EnumDeclaration>
+                <StructureDeclaration startLine="9" startCol="9" endLine="10" endCol="22">
+                  <Structure line="9" col="9" />
+                  <SimpleName startLine="9" startCol="19" endLine="9" endCol="20" escaped="False">c</SimpleName>
+                  <EndBlockDeclaration startLine="10" startCol="9" endLine="10" endCol="22" endType="Structure">
+                    <Structure line="10" col="13" />
+                  </EndBlockDeclaration>
+                </StructureDeclaration>
+                <InterfaceDeclaration startLine="12" startCol="9" endLine="13" endCol="22">
+                  <Interface line="12" col="9" />
+                  <SimpleName startLine="12" startCol="19" endLine="12" endCol="20" escaped="False">d</SimpleName>
+                  <EndBlockDeclaration startLine="13" startCol="9" endLine="13" endCol="22" endType="Interface">
+                    <Interface line="13" col="13" />
+                  </EndBlockDeclaration>
+                </InterfaceDeclaration>
+                <DelegateSubDeclaration startLine="15" startCol="9" endLine="15" endCol="25">
+                  <Delegate line="15" col="9" />
+                  <Sub line="15" col="18" />
+                  <SimpleName startLine="15" startCol="22" endLine="15" endCol="23" escaped="False">e</SimpleName>
+                  <ParameterCollection startLine="15" startCol="23" endLine="15" endCol="25">
+                    <RightParenthesis line="15" col="24" />
+                  </ParameterCollection>
+                </DelegateSubDeclaration>
+                <ModuleDeclaration startLine="17" startCol="9" endLine="18" endCol="19">
+                  <Module line="17" col="9" />
+                  <SimpleName startLine="17" startCol="16" endLine="17" endCol="17" escaped="False">f</SimpleName>
+                  <EndBlockDeclaration startLine="18" startCol="9" endLine="18" endCol="19" endType="Module">
+                    <Module line="18" col="13" />
+                  </EndBlockDeclaration>
+                </ModuleDeclaration>
+                <NamespaceDeclaration startLine="20" startCol="9" endLine="21" endCol="22">
+                  <Namespace line="20" col="9" />
+                  <SimpleName startLine="20" startCol="19" endLine="20" endCol="20" escaped="False">g</SimpleName>
+                  <EndBlockDeclaration startLine="21" startCol="9" endLine="21" endCol="22" endType="Namespace">
+                    <Namespace line="21" col="13" />
+                  </EndBlockDeclaration>
+                </NamespaceDeclaration>
+              </DeclarationCollection>
+              <EndBlockDeclaration startLine="22" startCol="9" endLine="22" endCol="22" endType="Namespace">
+                <Namespace line="22" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+  </valid>
+</scenario>

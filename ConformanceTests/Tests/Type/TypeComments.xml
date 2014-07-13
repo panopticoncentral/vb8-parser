@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="TypeComments" type="declaration" description="Comments after types">
+  <valid>
+    <test>
+      <code>
+        ' A comment
+        ' A comment
+        ' A comment
+      </code>
+      <result>
+        <EmptyDeclaration startLine="1" startCol="1" endLine="3" endCol="20">
+          <Comment startLine="1" startCol="1" endLine="1" endCol="12" isRem="False"> A comment</Comment>
+          <Comment startLine="2" startCol="9" endLine="2" endCol="20" isRem="False"> A comment</Comment>
+          <Comment startLine="3" startCol="9" endLine="3" endCol="20" isRem="False"> A comment</Comment>
+        </EmptyDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Class Test ' A comment
+        Inherits A ' A comment
+        Implements B ' A comment
+        End Class ' A comment
+      </code>
+      <result>
+        <ClassDeclaration startLine="1" startCol="1" endLine="4" endCol="30">
+          <Comment startLine="1" startCol="12" endLine="1" endCol="23" isRem="False"> A comment</Comment>
+          <Class line="1" col="1" />
+          <SimpleName startLine="1" startCol="7" endLine="1" endCol="11" escaped="False">Test</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="35">
+            <InheritsDeclaration startLine="2" startCol="9" endLine="2" endCol="20">
+              <Comment startLine="2" startCol="20" endLine="2" endCol="31" isRem="False"> A comment</Comment>
+              <TypeNameCollection startLine="2" startCol="18" endLine="2" endCol="20">
+                <NamedType startLine="2" startCol="18" endLine="2" endCol="19">
+                  <SimpleName startLine="2" startCol="18" endLine="2" endCol="19" escaped="False">A</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </InheritsDeclaration>
+            <ImplementsDeclaration startLine="3" startCol="9" endLine="3" endCol="22">
+              <Comment startLine="3" startCol="22" endLine="3" endCol="33" isRem="False"> A comment</Comment>
+              <TypeNameCollection startLine="3" startCol="20" endLine="3" endCol="22">
+                <NamedType startLine="3" startCol="20" endLine="3" endCol="21">
+                  <SimpleName startLine="3" startCol="20" endLine="3" endCol="21" escaped="False">B</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </ImplementsDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="19" endType="Class">
+            <Comment startLine="4" startCol="19" endLine="4" endCol="30" isRem="False"> A comment</Comment>
+            <Class line="4" col="13" />
+          </EndBlockDeclaration>
+        </ClassDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Delegate Sub Test() ' A comment
+      </code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="21">
+          <Comment startLine="1" startCol="21" endLine="1" endCol="32" isRem="False"> A comment</Comment>
+          <Delegate line="1" col="1" />
+          <Sub line="1" col="10" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="18" escaped="False">Test</SimpleName>
+          <ParameterCollection startLine="1" startCol="18" endLine="1" endCol="21">
+            <RightParenthesis line="1" col="19" />
+          </ParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Enum Test ' A comment
+        a ' A comment
+        End Enum ' A comment
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="3" endCol="29">
+          <Comment startLine="1" startCol="11" endLine="1" endCol="22" isRem="False"> A comment</Comment>
+          <Enum line="1" col="1" />
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="10" escaped="False">Test</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="24">
+            <EnumValueDeclaration startLine="2" startCol="9" endLine="2" endCol="11">
+              <Comment startLine="2" startCol="11" endLine="2" endCol="22" isRem="False"> A comment</Comment>
+              <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">a</SimpleName>
+            </EnumValueDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Enum">
+            <Comment startLine="3" startCol="18" endLine="3" endCol="29" isRem="False"> A comment</Comment>
+            <Enum line="3" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Interface Test ' A comment
+        Inherits A ' A comment
+        Inherits B ' A comment
+        End Interface ' A comment
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="4" endCol="34">
+          <Comment startLine="1" startCol="16" endLine="1" endCol="27" isRem="False"> A comment</Comment>
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="15" escaped="False">Test</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="33">
+            <InheritsDeclaration startLine="2" startCol="9" endLine="2" endCol="20">
+              <Comment startLine="2" startCol="20" endLine="2" endCol="31" isRem="False"> A comment</Comment>
+              <TypeNameCollection startLine="2" startCol="18" endLine="2" endCol="20">
+                <NamedType startLine="2" startCol="18" endLine="2" endCol="19">
+                  <SimpleName startLine="2" startCol="18" endLine="2" endCol="19" escaped="False">A</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </InheritsDeclaration>
+            <InheritsDeclaration startLine="3" startCol="9" endLine="3" endCol="20">
+              <Comment startLine="3" startCol="20" endLine="3" endCol="31" isRem="False"> A comment</Comment>
+              <TypeNameCollection startLine="3" startCol="18" endLine="3" endCol="20">
+                <NamedType startLine="3" startCol="18" endLine="3" endCol="19">
+                  <SimpleName startLine="3" startCol="18" endLine="3" endCol="19" escaped="False">B</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </InheritsDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="23" endType="Interface">
+            <Comment startLine="4" startCol="23" endLine="4" endCol="34" isRem="False"> A comment</Comment>
+            <Interface line="4" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Module Test ' A comment
+        End Module ' A comment
+      </code>
+      <result>
+        <ModuleDeclaration startLine="1" startCol="1" endLine="2" endCol="31">
+          <Comment startLine="1" startCol="13" endLine="1" endCol="24" isRem="False"> A comment</Comment>
+          <Module line="1" col="1" />
+          <SimpleName startLine="1" startCol="8" endLine="1" endCol="12" escaped="False">Test</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="20" endType="Module">
+            <Comment startLine="2" startCol="20" endLine="2" endCol="31" isRem="False"> A comment</Comment>
+            <Module line="2" col="13" />
+          </EndBlockDeclaration>
+        </ModuleDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Structure Test ' A comment
+        Implements B ' A comment
+        End Structure ' A comment
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="3" endCol="34">
+          <Comment startLine="1" startCol="16" endLine="1" endCol="27" isRem="False"> A comment</Comment>
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="15" escaped="False">Test</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="35">
+            <ImplementsDeclaration startLine="2" startCol="9" endLine="2" endCol="22">
+              <Comment startLine="2" startCol="22" endLine="2" endCol="33" isRem="False"> A comment</Comment>
+              <TypeNameCollection startLine="2" startCol="20" endLine="2" endCol="22">
+                <NamedType startLine="2" startCol="20" endLine="2" endCol="21">
+                  <SimpleName startLine="2" startCol="20" endLine="2" endCol="21" escaped="False">B</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </ImplementsDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="23" endType="Structure">
+            <Comment startLine="3" startCol="23" endLine="3" endCol="34" isRem="False"> A comment</Comment>
+            <Structure line="3" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

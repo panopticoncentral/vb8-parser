@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Import" type="file" description="6.3 Imports Statement">
+  <invalid>
+    <test>
+      <code>Imports</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="8">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="8">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="8">
+              <ImportCollection startLine="1" startCol="8" endLine="1" endCol="8">
+                <NameImport startLine="1" startCol="8" endLine="1" endCol="8">
+                  <NamedType isBad="True" startLine="1" startCol="8" endLine="1" endCol="8">
+                    <SimpleName isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" escaped="False" />
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="8" endLine="1" endCol="8">error 23 (8,1) - (8,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Imports x=</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="11">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="11">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="11">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="11">
+                <AliasImport startLine="1" startCol="9" endLine="1" endCol="11">
+                  <NamedType isBad="True" startLine="1" startCol="11" endLine="1" endCol="11">
+                    <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" escaped="False" />
+                  </NamedType>
+                  <Equals line="1" col="10" />
+                  <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                </AliasImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="11" endLine="1" endCol="11">error 23 (11,1) - (11,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Imports x.</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="11">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="11">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="11">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="11">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="11">
+                  <NamedType startLine="1" startCol="9" endLine="1" endCol="11">
+                    <QualifiedName startLine="1" startCol="9" endLine="1" endCol="11">
+                      <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                      <Period line="1" col="10" />
+                      <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" escaped="False" />
+                    </QualifiedName>
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="11" endLine="1" endCol="11">error 23 (11,1) - (11,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Imports .x</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="11">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="11">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="11">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="11">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="11">
+                  <NamedType startLine="1" startCol="9" endLine="1" endCol="11">
+                    <QualifiedName startLine="1" startCol="9" endLine="1" endCol="11">
+                      <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="10" escaped="False" />
+                      <Period line="1" col="9" />
+                      <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">x</SimpleName>
+                    </QualifiedName>
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="9" endLine="1" endCol="10">error 23 (9,1) - (10,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Imports Option = Option</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="24">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="24">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="24">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="24">
+                <AliasImport startLine="1" startCol="9" endLine="1" endCol="24">
+                  <NamedType startLine="1" startCol="18" endLine="1" endCol="24">
+                    <SimpleName startLine="1" startCol="18" endLine="1" endCol="24" escaped="False">Option</SimpleName>
+                  </NamedType>
+                  <Equals line="1" col="16" />
+                  <SimpleName startLine="1" startCol="9" endLine="1" endCol="15" escaped="False">Option</SimpleName>
+                </AliasImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="9" endLine="1" endCol="15">error 24 (9,1) - (15,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+    <test>
+      <code>Imports Option</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="15">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="15">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="15">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="15">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="15">
+                  <NamedType startLine="1" startCol="9" endLine="1" endCol="15">
+                    <SimpleName startLine="1" startCol="9" endLine="1" endCol="15" escaped="False">Option</SimpleName>
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="9" endLine="1" endCol="15">error 24 (9,1) - (15,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+    <test>
+      <code>Imports x,,y</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="13">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="13">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="13">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="13">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="10">
+                  <NamedType startLine="1" startCol="9" endLine="1" endCol="10">
+                    <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                  </NamedType>
+                </NameImport>
+                <Comma line="1" col="10" />
+                <NameImport startLine="1" startCol="11" endLine="1" endCol="13">
+                  <NamedType isBad="True" startLine="1" startCol="11" endLine="1" endCol="12">
+                    <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="12" escaped="False" />
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="11" endLine="1" endCol="12">error 23 (11,1) - (12,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Imports x,</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="11">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="11">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="11">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="11">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="10">
+                  <NamedType startLine="1" startCol="9" endLine="1" endCol="10">
+                    <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                  </NamedType>
+                </NameImport>
+                <Comma line="1" col="10" />
+                <NameImport startLine="1" startCol="11" endLine="1" endCol="11">
+                  <NamedType isBad="True" startLine="1" startCol="11" endLine="1" endCol="11">
+                    <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" escaped="False" />
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="11" endLine="1" endCol="11">error 23 (11,1) - (11,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Imports ,x</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="11">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="11">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="11">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="11">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="11">
+                  <NamedType isBad="True" startLine="1" startCol="9" endLine="1" endCol="10">
+                    <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="10" escaped="False" />
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="9" endLine="1" endCol="10">error 23 (9,1) - (10,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        &lt;Assembly:a&gt;
+        Imports x
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="18">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="18">
+            <AttributeDeclaration startLine="1" startCol="1" endLine="1" endCol="13">
+              <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="13">
+                <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="13">
+                  <Attribute startLine="1" startCol="2" endLine="1" endCol="12" type="Assembly">
+                    <Colon line="1" col="10" />
+                    <Assembly line="1" col="2" />
+                    <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">a</SimpleName>
+                  </Attribute>
+                  <GreaterThan line="1" col="12" />
+                </AttributeCollection>
+              </AttributeBlockCollection>
+            </AttributeDeclaration>
+            <ImportsDeclaration startLine="2" startCol="9" endLine="2" endCol="18">
+              <ImportCollection startLine="2" startCol="17" endLine="2" endCol="18">
+                <NameImport startLine="2" startCol="17" endLine="2" endCol="18">
+                  <NamedType startLine="2" startCol="17" endLine="2" endCol="18">
+                    <SimpleName startLine="2" startCol="17" endLine="2" endCol="18" escaped="False">x</SimpleName>
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ImportsStatementWrongOrder startLine="2" startCol="9" endLine="2" endCol="18">error 127 (9,2) - (18,2): 'Imports' statements must precede any declarations.</ImportsStatementWrongOrder>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Namespace Foo
+        End Namespace
+
+        Imports x
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="4" endCol="18">
+          <DeclarationCollection startLine="1" startCol="1" endLine="4" endCol="18">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <Namespace line="1" col="1" />
+              <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+            <ImportsDeclaration startLine="4" startCol="9" endLine="4" endCol="18">
+              <ImportCollection startLine="4" startCol="17" endLine="4" endCol="18">
+                <NameImport startLine="4" startCol="17" endLine="4" endCol="18">
+                  <NamedType startLine="4" startCol="17" endLine="4" endCol="18">
+                    <SimpleName startLine="4" startCol="17" endLine="4" endCol="18" escaped="False">x</SimpleName>
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ImportsStatementWrongOrder startLine="4" startCol="9" endLine="4" endCol="18">error 127 (9,4) - (18,4): 'Imports' statements must precede any declarations.</ImportsStatementWrongOrder>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Imports Global</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="15">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="15">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="15">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="15">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="15">
+                  <NamedType startLine="1" startCol="9" endLine="1" endCol="15">
+                    <GlobalNamespaceName startLine="1" startCol="9" endLine="1" endCol="15" />
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidUseOfGlobal startLine="1" startCol="9" endLine="1" endCol="15">error 150 (9,1) - (15,1): 'Global' not allowed in this context; identifier expected.</InvalidUseOfGlobal>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Imports Global.System</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="22">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="22">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="22">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="22">
+                  <NamedType startLine="1" startCol="9" endLine="1" endCol="22">
+                    <QualifiedName startLine="1" startCol="9" endLine="1" endCol="22">
+                      <GlobalNamespaceName startLine="1" startCol="9" endLine="1" endCol="15" />
+                      <Period line="1" col="15" />
+                      <SimpleName startLine="1" startCol="16" endLine="1" endCol="22" escaped="False">System</SimpleName>
+                    </QualifiedName>
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidUseOfGlobal startLine="1" startCol="9" endLine="1" endCol="15">error 150 (9,1) - (15,1): 'Global' not allowed in this context; identifier expected.</InvalidUseOfGlobal>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Imports Global = System</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="24">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="24">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="24">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="24">
+                <AliasImport startLine="1" startCol="9" endLine="1" endCol="24">
+                  <NamedType startLine="1" startCol="18" endLine="1" endCol="24">
+                    <SimpleName startLine="1" startCol="18" endLine="1" endCol="24" escaped="False">System</SimpleName>
+                  </NamedType>
+                  <Equals line="1" col="16" />
+                  <SimpleName startLine="1" startCol="9" endLine="1" endCol="15" escaped="False">Global</SimpleName>
+                </AliasImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="9" endLine="1" endCol="15">error 24 (9,1) - (15,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Imports x = Global</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="19">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="19">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="19">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="19">
+                <AliasImport startLine="1" startCol="9" endLine="1" endCol="19">
+                  <NamedType startLine="1" startCol="13" endLine="1" endCol="19">
+                    <GlobalNamespaceName startLine="1" startCol="13" endLine="1" endCol="19" />
+                  </NamedType>
+                  <Equals line="1" col="11" />
+                  <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                </AliasImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidUseOfGlobal startLine="1" startCol="13" endLine="1" endCol="19">error 150 (13,1) - (19,1): 'Global' not allowed in this context; identifier expected.</InvalidUseOfGlobal>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Imports x = Global.System</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="26">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="26">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="26">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="26">
+                <AliasImport startLine="1" startCol="9" endLine="1" endCol="26">
+                  <NamedType startLine="1" startCol="13" endLine="1" endCol="26">
+                    <QualifiedName startLine="1" startCol="13" endLine="1" endCol="26">
+                      <GlobalNamespaceName startLine="1" startCol="13" endLine="1" endCol="19" />
+                      <Period line="1" col="19" />
+                      <SimpleName startLine="1" startCol="20" endLine="1" endCol="26" escaped="False">System</SimpleName>
+                    </QualifiedName>
+                  </NamedType>
+                  <Equals line="1" col="11" />
+                  <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                </AliasImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidUseOfGlobal startLine="1" startCol="13" endLine="1" endCol="19">error 150 (13,1) - (19,1): 'Global' not allowed in this context; identifier expected.</InvalidUseOfGlobal>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>Imports x.y.z</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="14">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="14">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="14">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="14">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="14">
+                  <NamedType startLine="1" startCol="9" endLine="1" endCol="14">
+                    <QualifiedName startLine="1" startCol="9" endLine="1" endCol="14">
+                      <QualifiedName startLine="1" startCol="9" endLine="1" endCol="12">
+                        <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                        <Period line="1" col="10" />
+                        <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">y</SimpleName>
+                      </QualifiedName>
+                      <Period line="1" col="12" />
+                      <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">z</SimpleName>
+                    </QualifiedName>
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>Imports x, y, z</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="16">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="16">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="16">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="16">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="10">
+                  <NamedType startLine="1" startCol="9" endLine="1" endCol="10">
+                    <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                  </NamedType>
+                </NameImport>
+                <Comma line="1" col="10" />
+                <NameImport startLine="1" startCol="12" endLine="1" endCol="13">
+                  <NamedType startLine="1" startCol="12" endLine="1" endCol="13">
+                    <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">y</SimpleName>
+                  </NamedType>
+                </NameImport>
+                <Comma line="1" col="13" />
+                <NameImport startLine="1" startCol="15" endLine="1" endCol="16">
+                  <NamedType startLine="1" startCol="15" endLine="1" endCol="16">
+                    <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">z</SimpleName>
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>Imports x = y</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="14">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="14">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="14">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="14">
+                <AliasImport startLine="1" startCol="9" endLine="1" endCol="14">
+                  <NamedType startLine="1" startCol="13" endLine="1" endCol="14">
+                    <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">y</SimpleName>
+                  </NamedType>
+                  <Equals line="1" col="11" />
+                  <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                </AliasImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>Imports a, x = y, b</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="20">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="20">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="20">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="20">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="10">
+                  <NamedType startLine="1" startCol="9" endLine="1" endCol="10">
+                    <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">a</SimpleName>
+                  </NamedType>
+                </NameImport>
+                <Comma line="1" col="10" />
+                <AliasImport startLine="1" startCol="12" endLine="1" endCol="17">
+                  <NamedType startLine="1" startCol="16" endLine="1" endCol="17">
+                    <SimpleName startLine="1" startCol="16" endLine="1" endCol="17" escaped="False">y</SimpleName>
+                  </NamedType>
+                  <Equals line="1" col="14" />
+                  <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+                </AliasImport>
+                <Comma line="1" col="17" />
+                <NameImport startLine="1" startCol="19" endLine="1" endCol="20">
+                  <NamedType startLine="1" startCol="19" endLine="1" endCol="20">
+                    <SimpleName startLine="1" startCol="19" endLine="1" endCol="20" escaped="False">b</SimpleName>
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Imports List(Of Integer)</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="25">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="25">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="25">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="25">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="25">
+                  <ConstructedType startLine="1" startCol="9" endLine="1" endCol="25">
+                    <SimpleName startLine="1" startCol="9" endLine="1" endCol="13" escaped="False">List</SimpleName>
+                    <TypeArgumentCollection startLine="1" startCol="13" endLine="1" endCol="25">
+                      <Of line="1" col="14" />
+                      <IntrinsicType startLine="1" startCol="17" endLine="1" endCol="24" intrinsicType="Integer" />
+                      <RightParenthesis line="1" col="24" />
+                    </TypeArgumentCollection>
+                  </ConstructedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Imports IntList=List(Of Integer)</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="33">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="33">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="33">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="33">
+                <AliasImport startLine="1" startCol="9" endLine="1" endCol="33">
+                  <ConstructedType startLine="1" startCol="17" endLine="1" endCol="33">
+                    <SimpleName startLine="1" startCol="17" endLine="1" endCol="21" escaped="False">List</SimpleName>
+                    <TypeArgumentCollection startLine="1" startCol="21" endLine="1" endCol="33">
+                      <Of line="1" col="22" />
+                      <IntrinsicType startLine="1" startCol="25" endLine="1" endCol="32" intrinsicType="Integer" />
+                      <RightParenthesis line="1" col="32" />
+                    </TypeArgumentCollection>
+                  </ConstructedType>
+                  <Equals line="1" col="16" />
+                  <SimpleName startLine="1" startCol="9" endLine="1" endCol="16" escaped="False">IntList</SimpleName>
+                </AliasImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+  </valid>
+</scenario>

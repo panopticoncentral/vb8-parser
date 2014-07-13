@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Parentheses" type="expression" description="11.4.2 Parenthesized Expressions">
+  <invalid>
+    <test>
+      <code>()</code>
+      <result>
+        <ParentheticalExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="2" endLine="1" endCol="3" />
+          <RightParenthesis line="1" col="2" />
+        </ParentheticalExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="2" endLine="1" endCol="3">error 27 (2,1) - (3,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>(x+y</code>
+      <result>
+        <ParentheticalExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="False">
+          <BinaryOperatorExpression startLine="1" startCol="2" endLine="1" endCol="5" isConstant="False" operator="Plus">
+            <SimpleNameExpression startLine="1" startCol="2" endLine="1" endCol="3" isConstant="False">
+              <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">x</SimpleName>
+            </SimpleNameExpression>
+            <Plus line="1" col="3" />
+            <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="5" isConstant="False">
+              <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">y</SimpleName>
+            </SimpleNameExpression>
+          </BinaryOperatorExpression>
+        </ParentheticalExpression>
+      </result>
+      <errors>
+        <ExpectedRightParenthesis startLine="1" startCol="5" endLine="1" endCol="5">error 14 (5,1) - (5,1): Expected ')'.</ExpectedRightParenthesis>
+      </errors>
+    </test>
+    <test>
+      <code>((x+y)</code>
+      <result>
+        <ParentheticalExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False">
+          <ParentheticalExpression startLine="1" startCol="2" endLine="1" endCol="7" isConstant="False">
+            <BinaryOperatorExpression startLine="1" startCol="3" endLine="1" endCol="6" isConstant="False" operator="Plus">
+              <SimpleNameExpression startLine="1" startCol="3" endLine="1" endCol="4" isConstant="False">
+                <SimpleName startLine="1" startCol="3" endLine="1" endCol="4" escaped="False">x</SimpleName>
+              </SimpleNameExpression>
+              <Plus line="1" col="4" />
+              <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </BinaryOperatorExpression>
+            <RightParenthesis line="1" col="6" />
+          </ParentheticalExpression>
+        </ParentheticalExpression>
+      </result>
+      <errors>
+        <ExpectedRightParenthesis startLine="1" startCol="7" endLine="1" endCol="7">error 14 (7,1) - (7,1): Expected ')'.</ExpectedRightParenthesis>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <!-- Bogus, but doesn't cause an error -->
+    <test>
+      <code>x+y)</code>
+      <result>
+        <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="False" operator="Plus">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Plus line="1" col="2" />
+          <SimpleNameExpression startLine="1" startCol="3" endLine="1" endCol="4" isConstant="False">
+            <SimpleName startLine="1" startCol="3" endLine="1" endCol="4" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </BinaryOperatorExpression>
+      </result>
+    </test>
+    <test>
+      <code>(x)</code>
+      <result>
+        <ParentheticalExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="2" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="3" />
+        </ParentheticalExpression>
+      </result>
+    </test>
+    <test>
+      <code>(x+y)</code>
+      <result>
+        <ParentheticalExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False">
+          <BinaryOperatorExpression startLine="1" startCol="2" endLine="1" endCol="5" isConstant="False" operator="Plus">
+            <SimpleNameExpression startLine="1" startCol="2" endLine="1" endCol="3" isConstant="False">
+              <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">x</SimpleName>
+            </SimpleNameExpression>
+            <Plus line="1" col="3" />
+            <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="5" isConstant="False">
+              <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">y</SimpleName>
+            </SimpleNameExpression>
+          </BinaryOperatorExpression>
+          <RightParenthesis line="1" col="5" />
+        </ParentheticalExpression>
+      </result>
+    </test>
+    <test>
+      <code>((x+y))</code>
+      <result>
+        <ParentheticalExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False">
+          <ParentheticalExpression startLine="1" startCol="2" endLine="1" endCol="7" isConstant="False">
+            <BinaryOperatorExpression startLine="1" startCol="3" endLine="1" endCol="6" isConstant="False" operator="Plus">
+              <SimpleNameExpression startLine="1" startCol="3" endLine="1" endCol="4" isConstant="False">
+                <SimpleName startLine="1" startCol="3" endLine="1" endCol="4" escaped="False">x</SimpleName>
+              </SimpleNameExpression>
+              <Plus line="1" col="4" />
+              <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </BinaryOperatorExpression>
+            <RightParenthesis line="1" col="6" />
+          </ParentheticalExpression>
+          <RightParenthesis line="1" col="7" />
+        </ParentheticalExpression>
+      </result>
+    </test>
+  </valid>
+</scenario>

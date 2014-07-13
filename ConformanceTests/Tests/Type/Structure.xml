@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Structure" type="declaration" description="7.6 Structures">
+  <invalid>
+    <test>
+      <code>Structure</code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="1" endCol="10">
+          <Structure line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="10" endLine="1" endCol="10" escaped="False" />
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="10" endLine="1" endCol="10">error 23 (10,1) - (10,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Overridable Structure
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="13">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="13" type="Overridable" />
+          </ModifierCollection>
+          <Structure line="1" col="13" />
+          <SimpleName isBad="True" startLine="1" startCol="22" endLine="1" endCol="24" escaped="False" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="13">error 94 (1,1) - (13,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Structure &lt;a&gt; Foo
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="12" escaped="False" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="11" endLine="1" endCol="12">error 23 (11,1) - (12,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Structure Public Foo
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="17" escaped="False">Public</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="11" endLine="1" endCol="17">error 24 (11,1) - (17,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Structure Foo
+        Inherits x
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="3" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="21">
+            <InheritsDeclaration startLine="2" startCol="9" endLine="2" endCol="19">
+              <TypeNameCollection startLine="2" startCol="18" endLine="2" endCol="19">
+                <NamedType startLine="2" startCol="18" endLine="2" endCol="19">
+                  <SimpleName startLine="2" startCol="18" endLine="2" endCol="19" escaped="False">x</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </InheritsDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="22" endType="Structure">
+            <Structure line="3" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <InvalidInsideStructure startLine="2" startCol="9" endLine="2" endCol="19">error 109 (9,2) - (19,2): Declaration cannot appear within a Structure declaration.</InvalidInsideStructure>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Structure Foo
+        Implements
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="3" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="21">
+            <ImplementsDeclaration startLine="2" startCol="9" endLine="2" endCol="19">
+              <TypeNameCollection startLine="2" startCol="19" endLine="2" endCol="19">
+                <NamedType isBad="True" startLine="2" startCol="19" endLine="2" endCol="19">
+                  <SimpleName isBad="True" startLine="2" startCol="19" endLine="2" endCol="19" escaped="False" />
+                </NamedType>
+              </TypeNameCollection>
+            </ImplementsDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="22" endType="Structure">
+            <Structure line="3" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="2" startCol="19" endLine="2" endCol="21">error 22 (19,2) - (21,2): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Structure Foo
+        Implements x,,y
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="3" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="26">
+            <ImplementsDeclaration startLine="2" startCol="9" endLine="2" endCol="24">
+              <TypeNameCollection startLine="2" startCol="20" endLine="2" endCol="24">
+                <NamedType startLine="2" startCol="20" endLine="2" endCol="21">
+                  <SimpleName startLine="2" startCol="20" endLine="2" endCol="21" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="2" col="21" />
+                <Comma line="2" col="22" />
+                <NamedType isBad="True" startLine="2" startCol="22" endLine="2" endCol="22">
+                  <SimpleName isBad="True" startLine="2" startCol="22" endLine="2" endCol="22" escaped="False" />
+                </NamedType>
+                <NamedType startLine="2" startCol="23" endLine="2" endCol="24">
+                  <SimpleName startLine="2" startCol="23" endLine="2" endCol="24" escaped="False">y</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </ImplementsDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="22" endType="Structure">
+            <Structure line="3" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="2" startCol="22" endLine="2" endCol="23">error 22 (22,2) - (23,2): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Structure Foo
+        Module x
+        End Module
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="4" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="21">
+            <ModuleDeclaration startLine="2" startCol="9" endLine="3" endCol="19">
+              <Module line="2" col="9" />
+              <SimpleName startLine="2" startCol="16" endLine="2" endCol="17" escaped="False">x</SimpleName>
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="19" endType="Module">
+                <Module line="3" col="13" />
+              </EndBlockDeclaration>
+            </ModuleDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="22" endType="Structure">
+            <Structure line="4" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <InvalidInsideStructure startLine="2" startCol="9" endLine="3" endCol="19">error 109 (9,2) - (19,3): Declaration cannot appear within a Structure declaration.</InvalidInsideStructure>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Structure Foo(Of
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="17">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="17" endLine="1" endCol="17">
+              <SimpleName isBad="True" startLine="1" startCol="17" endLine="1" endCol="19" escaped="False" />
+            </TypeParameter>
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="17" endLine="1" endCol="19">error 23 (17,1) - (19,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Structure Foo(Of)
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="18">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="17" endLine="1" endCol="17">
+              <SimpleName isBad="True" startLine="1" startCol="17" endLine="1" endCol="18" escaped="False" />
+            </TypeParameter>
+            <RightParenthesis line="1" col="17" />
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="17" endLine="1" endCol="18">error 23 (17,1) - (18,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Structure Foo(Of T As)
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="23">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="18" endLine="1" endCol="22">
+              <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">T</SimpleName>
+              <As line="1" col="20" />
+              <TypeConstraintCollection startLine="1" startCol="22" endLine="1" endCol="22">
+                <NamedType isBad="True" startLine="1" startCol="22" endLine="1" endCol="22">
+                  <SimpleName isBad="True" startLine="1" startCol="22" endLine="1" endCol="22" escaped="False" />
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+            <RightParenthesis line="1" col="22" />
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="22" endLine="1" endCol="23">error 22 (22,1) - (23,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Structure Foo(Of T As {)
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="25">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="18" endLine="1" endCol="25">
+              <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">T</SimpleName>
+              <As line="1" col="20" />
+              <TypeConstraintCollection startLine="1" startCol="23" endLine="1" endCol="25">
+                <NamedType isBad="True" startLine="1" startCol="24" endLine="1" endCol="24">
+                  <SimpleName isBad="True" startLine="1" startCol="24" endLine="1" endCol="24" escaped="False" />
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="24" endLine="1" endCol="25">error 22 (24,1) - (25,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Structure Foo(Of T As {x, )
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="28">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="18" endLine="1" endCol="28">
+              <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">T</SimpleName>
+              <As line="1" col="20" />
+              <TypeConstraintCollection startLine="1" startCol="23" endLine="1" endCol="28">
+                <NamedType startLine="1" startCol="24" endLine="1" endCol="25">
+                  <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="1" col="25" />
+                <NamedType isBad="True" startLine="1" startCol="27" endLine="1" endCol="27">
+                  <SimpleName isBad="True" startLine="1" startCol="27" endLine="1" endCol="27" escaped="False" />
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="27" endLine="1" endCol="28">error 22 (27,1) - (28,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Structure Foo(Of T As {x, y)
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="29">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="18" endLine="1" endCol="28">
+              <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">T</SimpleName>
+              <As line="1" col="20" />
+              <TypeConstraintCollection startLine="1" startCol="23" endLine="1" endCol="28">
+                <NamedType startLine="1" startCol="24" endLine="1" endCol="25">
+                  <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="1" col="25" />
+                <NamedType startLine="1" startCol="27" endLine="1" endCol="28">
+                  <SimpleName startLine="1" startCol="27" endLine="1" endCol="28" escaped="False">y</SimpleName>
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+            <RightParenthesis line="1" col="28" />
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+      <errors>
+        <ExpectedRightCurlyBrace startLine="1" startCol="28" endLine="1" endCol="29">error 17 (28,1) - (29,1): Expected '}'.</ExpectedRightCurlyBrace>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>
+        Public Private Protected Friend Shadows Structure Foo
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="41">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+            <Modifier startLine="1" startCol="8" endLine="1" endCol="16" type="Private" />
+            <Modifier startLine="1" startCol="16" endLine="1" endCol="26" type="Protected" />
+            <Modifier startLine="1" startCol="26" endLine="1" endCol="33" type="Friend" />
+            <Modifier startLine="1" startCol="33" endLine="1" endCol="41" type="Shadows" />
+          </ModifierCollection>
+          <Structure line="1" col="41" />
+          <SimpleName startLine="1" startCol="51" endLine="1" endCol="54" escaped="False">Foo</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Partial Structure Foo
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="9">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="9" type="Partial" />
+          </ModifierCollection>
+          <Structure line="1" col="9" />
+          <SimpleName startLine="1" startCol="19" endLine="1" endCol="22" escaped="False">Foo</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Structure Foo
+        Implements x, y
+        Implements z
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="4" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="23">
+            <ImplementsDeclaration startLine="2" startCol="9" endLine="2" endCol="24">
+              <TypeNameCollection startLine="2" startCol="20" endLine="2" endCol="24">
+                <NamedType startLine="2" startCol="20" endLine="2" endCol="21">
+                  <SimpleName startLine="2" startCol="20" endLine="2" endCol="21" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="2" col="21" />
+                <NamedType startLine="2" startCol="23" endLine="2" endCol="24">
+                  <SimpleName startLine="2" startCol="23" endLine="2" endCol="24" escaped="False">y</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </ImplementsDeclaration>
+            <ImplementsDeclaration startLine="3" startCol="9" endLine="3" endCol="21">
+              <TypeNameCollection startLine="3" startCol="20" endLine="3" endCol="21">
+                <NamedType startLine="3" startCol="20" endLine="3" endCol="21">
+                  <SimpleName startLine="3" startCol="20" endLine="3" endCol="21" escaped="False">z</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </ImplementsDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="22" endType="Structure">
+            <Structure line="4" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        &lt;a&gt; Structure Foo
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="5">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="3" type="Regular">
+                <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="3" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <Structure line="1" col="5" />
+          <SimpleName startLine="1" startCol="15" endLine="1" endCol="18" escaped="False">Foo</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Structure Foo
+        Class a
+        End Class
+
+        Enum b
+        a
+        End Enum
+
+        Structure c
+        End Structure
+
+        Interface d
+        End Interface
+
+        Delegate Sub e()
+
+        Event f()
+
+        Dim g() As Integer
+
+        Sub h()
+        End Sub
+
+        Function g() As Integer
+        End Function
+
+        Property h()
+        Get
+        End Get
+        End Property
+
+        Sub New()
+        End Sub
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="34" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="33" endCol="18">
+            <ClassDeclaration startLine="2" startCol="9" endLine="3" endCol="18">
+              <Class line="2" col="9" />
+              <SimpleName startLine="2" startCol="15" endLine="2" endCol="16" escaped="False">a</SimpleName>
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Class">
+                <Class line="3" col="13" />
+              </EndBlockDeclaration>
+            </ClassDeclaration>
+            <EnumDeclaration startLine="5" startCol="9" endLine="7" endCol="17">
+              <Enum line="5" col="9" />
+              <SimpleName startLine="5" startCol="14" endLine="5" endCol="15" escaped="False">b</SimpleName>
+              <DeclarationCollection startLine="6" startCol="9" endLine="6" endCol="12">
+                <EnumValueDeclaration startLine="6" startCol="9" endLine="6" endCol="10">
+                  <SimpleName startLine="6" startCol="9" endLine="6" endCol="10" escaped="False">a</SimpleName>
+                </EnumValueDeclaration>
+              </DeclarationCollection>
+              <EndBlockDeclaration startLine="7" startCol="9" endLine="7" endCol="17" endType="Enum">
+                <Enum line="7" col="13" />
+              </EndBlockDeclaration>
+            </EnumDeclaration>
+            <StructureDeclaration startLine="9" startCol="9" endLine="10" endCol="22">
+              <Structure line="9" col="9" />
+              <SimpleName startLine="9" startCol="19" endLine="9" endCol="20" escaped="False">c</SimpleName>
+              <EndBlockDeclaration startLine="10" startCol="9" endLine="10" endCol="22" endType="Structure">
+                <Structure line="10" col="13" />
+              </EndBlockDeclaration>
+            </StructureDeclaration>
+            <InterfaceDeclaration startLine="12" startCol="9" endLine="13" endCol="22">
+              <Interface line="12" col="9" />
+              <SimpleName startLine="12" startCol="19" endLine="12" endCol="20" escaped="False">d</SimpleName>
+              <EndBlockDeclaration startLine="13" startCol="9" endLine="13" endCol="22" endType="Interface">
+                <Interface line="13" col="13" />
+              </EndBlockDeclaration>
+            </InterfaceDeclaration>
+            <DelegateSubDeclaration startLine="15" startCol="9" endLine="15" endCol="25">
+              <Delegate line="15" col="9" />
+              <Sub line="15" col="18" />
+              <SimpleName startLine="15" startCol="22" endLine="15" endCol="23" escaped="False">e</SimpleName>
+              <ParameterCollection startLine="15" startCol="23" endLine="15" endCol="25">
+                <RightParenthesis line="15" col="24" />
+              </ParameterCollection>
+            </DelegateSubDeclaration>
+            <EventDeclaration startLine="17" startCol="9" endLine="17" endCol="18">
+              <Event line="17" col="9" />
+              <SimpleName startLine="17" startCol="15" endLine="17" endCol="16" escaped="False">f</SimpleName>
+              <ParameterCollection startLine="17" startCol="16" endLine="17" endCol="18">
+                <RightParenthesis line="17" col="17" />
+              </ParameterCollection>
+            </EventDeclaration>
+            <VariableListDeclaration startLine="19" startCol="9" endLine="19" endCol="27">
+              <ModifierCollection startLine="19" startCol="9" endLine="19" endCol="13">
+                <Modifier startLine="19" startCol="9" endLine="19" endCol="13" type="Dim" />
+              </ModifierCollection>
+              <VariableDeclaratorCollection startLine="19" startCol="13" endLine="19" endCol="27">
+                <VariableDeclarator startLine="19" startCol="13" endLine="19" endCol="27">
+                  <VariableNameCollection startLine="19" startCol="13" endLine="19" endCol="17">
+                    <VariableName startLine="19" startCol="13" endLine="19" endCol="17">
+                      <SimpleName startLine="19" startCol="13" endLine="19" endCol="14" escaped="False">g</SimpleName>
+                      <ArrayType startLine="19" startCol="14" endLine="19" endCol="17" rank="1">
+                        <ArgumentCollection startLine="19" startCol="14" endLine="19" endCol="17">
+                          <RightParenthesis line="19" col="15" />
+                        </ArgumentCollection>
+                      </ArrayType>
+                    </VariableName>
+                  </VariableNameCollection>
+                  <As line="19" col="17" />
+                  <IntrinsicType startLine="19" startCol="20" endLine="19" endCol="27" intrinsicType="Integer" />
+                </VariableDeclarator>
+              </VariableDeclaratorCollection>
+            </VariableListDeclaration>
+            <SubDeclaration startLine="21" startCol="9" endLine="22" endCol="16">
+              <Sub line="21" col="9" />
+              <SimpleName startLine="21" startCol="13" endLine="21" endCol="14" escaped="False">h</SimpleName>
+              <ParameterCollection startLine="21" startCol="14" endLine="21" endCol="16">
+                <RightParenthesis line="21" col="15" />
+              </ParameterCollection>
+              <EndBlockDeclaration startLine="22" startCol="9" endLine="22" endCol="16" endType="Sub">
+                <Sub line="22" col="13" />
+              </EndBlockDeclaration>
+            </SubDeclaration>
+            <FunctionDeclaration startLine="24" startCol="9" endLine="25" endCol="21">
+              <Function line="24" col="9" />
+              <SimpleName startLine="24" startCol="18" endLine="24" endCol="19" escaped="False">g</SimpleName>
+              <ParameterCollection startLine="24" startCol="19" endLine="24" endCol="22">
+                <RightParenthesis line="24" col="20" />
+              </ParameterCollection>
+              <As line="24" col="22" />
+              <IntrinsicType startLine="24" startCol="25" endLine="24" endCol="32" intrinsicType="Integer" />
+              <EndBlockDeclaration startLine="25" startCol="9" endLine="25" endCol="21" endType="Function">
+                <Function line="25" col="13" />
+              </EndBlockDeclaration>
+            </FunctionDeclaration>
+            <PropertyDeclaration startLine="27" startCol="9" endLine="30" endCol="21">
+              <Event line="27" col="9" />
+              <SimpleName startLine="27" startCol="18" endLine="27" endCol="19" escaped="False">h</SimpleName>
+              <ParameterCollection startLine="27" startCol="19" endLine="27" endCol="21">
+                <RightParenthesis line="27" col="20" />
+              </ParameterCollection>
+              <DeclarationCollection startLine="28" startCol="9" endLine="29" endCol="18">
+                <GetAccessorDeclaration startLine="28" startCol="9" endLine="29" endCol="16">
+                  <Get line="28" col="9" />
+                  <EndBlockDeclaration startLine="29" startCol="9" endLine="29" endCol="16" endType="Get">
+                    <Get line="29" col="13" />
+                  </EndBlockDeclaration>
+                </GetAccessorDeclaration>
+              </DeclarationCollection>
+              <EndBlockDeclaration startLine="30" startCol="9" endLine="30" endCol="21" endType="Property">
+                <Property line="30" col="13" />
+              </EndBlockDeclaration>
+            </PropertyDeclaration>
+            <ConstructorDeclaration startLine="32" startCol="9" endLine="33" endCol="16">
+              <New line="32" col="9" />
+              <SimpleName startLine="32" startCol="13" endLine="32" endCol="16" escaped="False">New</SimpleName>
+              <ParameterCollection startLine="32" startCol="16" endLine="32" endCol="18">
+                <RightParenthesis line="32" col="17" />
+              </ParameterCollection>
+              <EndBlockDeclaration startLine="33" startCol="9" endLine="33" endCol="16" endType="Sub">
+                <Sub line="33" col="13" />
+              </EndBlockDeclaration>
+            </ConstructorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="34" startCol="9" endLine="34" endCol="22" endType="Structure">
+            <Structure line="34" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Structure Foo(Of T As {x, y})
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="30">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="18" endLine="1" endCol="29">
+              <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">T</SimpleName>
+              <As line="1" col="20" />
+              <TypeConstraintCollection startLine="1" startCol="23" endLine="1" endCol="29">
+                <NamedType startLine="1" startCol="24" endLine="1" endCol="25">
+                  <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="1" col="25" />
+                <NamedType startLine="1" startCol="27" endLine="1" endCol="28">
+                  <SimpleName startLine="1" startCol="27" endLine="1" endCol="28" escaped="False">y</SimpleName>
+                </NamedType>
+                <RightCurlyBrace line="1" col="28" />
+              </TypeConstraintCollection>
+            </TypeParameter>
+            <RightParenthesis line="1" col="29" />
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Structure">
+            <Structure line="2" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Structure Foo
+        Operator +()
+        End Operator
+        End Structure
+      </code>
+      <result>
+        <StructureDeclaration startLine="1" startCol="1" endLine="4" endCol="22">
+          <Structure line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="23">
+            <OperatorDeclaration startLine="2" startCol="9" endLine="3" endCol="21">
+              <Operator line="2" col="9" />
+              <Plus line="2" col="18" />
+              <ParameterCollection startLine="2" startCol="19" endLine="2" endCol="21">
+                <RightParenthesis line="2" col="20" />
+              </ParameterCollection>
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="21" endType="Operator">
+                <Operator line="3" col="13" />
+              </EndBlockDeclaration>
+            </OperatorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="22" endType="Structure">
+            <Structure line="4" col="13" />
+          </EndBlockDeclaration>
+        </StructureDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

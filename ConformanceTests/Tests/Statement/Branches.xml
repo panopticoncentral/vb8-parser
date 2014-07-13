@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Branches" type="statement" description="10.11 Branch Statements">
+  <invalid>
+    <test>
+      <code>GoTo</code>
+      <result>
+        <GotoStatement startLine="1" startCol="1" endLine="1" endCol="5" isLineNumber="False">
+          <SimpleName isBad="True" startLine="1" startCol="5" endLine="1" endCol="5" escaped="False" />
+        </GotoStatement>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="5" endLine="1" endCol="5">error 23 (5,1) - (5,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Exit</code>
+      <result>
+        <ExitStatement startLine="1" startCol="1" endLine="1" endCol="5" exitType="None" />
+      </result>
+      <errors>
+        <ExpectedExitKind startLine="1" startCol="5" endLine="1" endCol="5">error 32 (5,1) - (5,1): Exit must be followed by Do, For, While, Select, Sub, Function, Property or Try.</ExpectedExitKind>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Continue</code>
+      <result>
+        <ContinueStatement startLine="1" startCol="1" endLine="1" endCol="9" continueType="None" />
+      </result>
+      <errors>
+        <ExpectedContinueKind startLine="1" startCol="9" endLine="1" endCol="9">error 161 (9,1) - (9,1): Continue must be followed by Do, For, or While.</ExpectedContinueKind>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>GoTo 10</code>
+      <result>
+        <GotoStatement startLine="1" startCol="1" endLine="1" endCol="8" isLineNumber="True">
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="8" escaped="False">10</SimpleName>
+        </GotoStatement>
+      </result>
+    </test>
+    <test>
+      <code>GoTo Foo</code>
+      <result>
+        <GotoStatement startLine="1" startCol="1" endLine="1" endCol="9" isLineNumber="False">
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="9" escaped="False">Foo</SimpleName>
+        </GotoStatement>
+      </result>
+    </test>
+    <test>
+      <code>Exit Do</code>
+      <result>
+        <ExitStatement startLine="1" startCol="1" endLine="1" endCol="8" exitType="Do">
+          <Do line="1" col="6" />
+        </ExitStatement>
+      </result>
+    </test>
+    <test>
+      <code>Exit For</code>
+      <result>
+        <ExitStatement startLine="1" startCol="1" endLine="1" endCol="9" exitType="For">
+          <For line="1" col="6" />
+        </ExitStatement>
+      </result>
+    </test>
+    <test>
+      <code>Exit While</code>
+      <result>
+        <ExitStatement startLine="1" startCol="1" endLine="1" endCol="11" exitType="While">
+          <While line="1" col="6" />
+        </ExitStatement>
+      </result>
+    </test>
+    <test>
+      <code>Exit Select</code>
+      <result>
+        <ExitStatement startLine="1" startCol="1" endLine="1" endCol="12" exitType="Select">
+          <Select line="1" col="6" />
+        </ExitStatement>
+      </result>
+    </test>
+    <test>
+      <code>Exit Sub</code>
+      <result>
+        <ExitStatement startLine="1" startCol="1" endLine="1" endCol="9" exitType="Sub">
+          <Sub line="1" col="6" />
+        </ExitStatement>
+      </result>
+    </test>
+    <test>
+      <code>Exit Function</code>
+      <result>
+        <ExitStatement startLine="1" startCol="1" endLine="1" endCol="14" exitType="Function">
+          <Function line="1" col="6" />
+        </ExitStatement>
+      </result>
+    </test>
+    <test>
+      <code>Exit Property</code>
+      <result>
+        <ExitStatement startLine="1" startCol="1" endLine="1" endCol="14" exitType="Property">
+          <Property line="1" col="6" />
+        </ExitStatement>
+      </result>
+    </test>
+    <test>
+      <code>Exit Try</code>
+      <result>
+        <ExitStatement startLine="1" startCol="1" endLine="1" endCol="9" exitType="Try">
+          <Try line="1" col="6" />
+        </ExitStatement>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Continue Do</code>
+      <result>
+        <ContinueStatement startLine="1" startCol="1" endLine="1" endCol="12" continueType="Do">
+          <Do line="1" col="10" />
+        </ContinueStatement>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Continue For</code>
+      <result>
+        <ContinueStatement startLine="1" startCol="1" endLine="1" endCol="13" continueType="For">
+          <For line="1" col="10" />
+        </ContinueStatement>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Continue While</code>
+      <result>
+        <ContinueStatement startLine="1" startCol="1" endLine="1" endCol="15" continueType="While">
+          <While line="1" col="10" />
+        </ContinueStatement>
+      </result>
+    </test>
+    <test>
+      <code>Stop</code>
+      <result>
+        <StopStatement startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>End</code>
+      <result>
+        <EndStatement startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>Return</code>
+      <result>
+        <ReturnStatement startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>Return 10</code>
+      <result>
+        <ReturnStatement startLine="1" startCol="1" endLine="1" endCol="10">
+          <IntegerLiteralExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+        </ReturnStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

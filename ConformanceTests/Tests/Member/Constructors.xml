@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Constructors" type="declaration" description="9.3 Constructors">
+  <invalid>
+    <test>
+      <code>Sub New : End Sub</code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="1" endCol="18">
+          <New line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">New</SimpleName>
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="14">
+            <Colon line="1" col="9" />
+          </StatementCollection>
+          <EndBlockDeclaration startLine="1" startCol="11" endLine="1" endCol="18" endType="Sub">
+            <Sub line="1" col="15" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+      <errors>
+        <MethodBodyNotAtLineStart startLine="1" startCol="9" endLine="1" endCol="10">error 99 (9,1) - (10,1): First statement of a method body cannot be on the same line as the method declaration.</MethodBodyNotAtLineStart>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Public &lt;a&gt; Sub New
+        End Sub
+      </code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="8" endLine="1" endCol="12">
+          <AttributeBlockCollection startLine="1" startCol="8" endLine="1" endCol="12">
+            <AttributeCollection startLine="1" startCol="8" endLine="1" endCol="12">
+              <Attribute startLine="1" startCol="9" endLine="1" endCol="10" type="Regular">
+                <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="10" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+      <errors>
+        <IncorrectAttributeType startLine="1" startCol="9" endLine="1" endCol="10">error 92 (9,1) - (10,1): Attribute of this type is not allowed here.</IncorrectAttributeType>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Sub New(
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <New line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">New</SimpleName>
+          <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="9">
+            <Parameter startLine="1" startCol="9" endLine="1" endCol="9">
+              <VariableName startLine="1" startCol="9" endLine="1" endCol="9">
+                <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="11" escaped="False" />
+              </VariableName>
+            </Parameter>
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="9" endLine="1" endCol="11">error 23 (9,1) - (11,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Sub New)
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <New line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">New</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="8" endLine="1" endCol="9">error 39 (8,1) - (9,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Sub Public New
+        End Sub
+      </code>
+      <result>
+        <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <Sub line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="11" escaped="False">Public</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </SubDeclaration>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="5" endLine="1" endCol="11">error 24 (5,1) - (11,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Sub New As Integer
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <New line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">New</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="9" endLine="1" endCol="11">error 39 (9,1) - (11,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Function New As Integer
+        End Function
+      </code>
+      <result>
+        <FunctionDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Function line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">New</SimpleName>
+          <As line="1" col="14" />
+          <IntrinsicType startLine="1" startCol="17" endLine="1" endCol="24" intrinsicType="Integer" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Function">
+            <Function line="2" col="13" />
+          </EndBlockDeclaration>
+        </FunctionDeclaration>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="10" endLine="1" endCol="13">error 24 (10,1) - (13,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Shadows Sub New()
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="9">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="9" type="Shadows" />
+          </ModifierCollection>
+          <New line="1" col="9" />
+          <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">New</SimpleName>
+          <ParameterCollection startLine="1" startCol="16" endLine="1" endCol="18">
+            <RightParenthesis line="1" col="17" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="9">error 94 (1,1) - (9,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Overridable Sub New()
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="13">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="13" type="Overridable" />
+          </ModifierCollection>
+          <New line="1" col="13" />
+          <SimpleName startLine="1" startCol="17" endLine="1" endCol="20" escaped="False">New</SimpleName>
+          <ParameterCollection startLine="1" startCol="20" endLine="1" endCol="22">
+            <RightParenthesis line="1" col="21" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="13">error 94 (1,1) - (13,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        NotOverridable Sub New()
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="16">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="16" type="NotOverridable" />
+          </ModifierCollection>
+          <New line="1" col="16" />
+          <SimpleName startLine="1" startCol="20" endLine="1" endCol="23" escaped="False">New</SimpleName>
+          <ParameterCollection startLine="1" startCol="23" endLine="1" endCol="25">
+            <RightParenthesis line="1" col="24" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="16">error 94 (1,1) - (16,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        MustOverride Sub New()
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="1" endCol="23">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="14">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="14" type="MustOverride" />
+          </ModifierCollection>
+          <New line="1" col="14" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">New</SimpleName>
+          <ParameterCollection startLine="1" startCol="21" endLine="1" endCol="23">
+            <RightParenthesis line="1" col="22" />
+          </ParameterCollection>
+        </ConstructorDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="14">error 94 (1,1) - (14,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Overrides Sub New()
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="11">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="11" type="Overrides" />
+          </ModifierCollection>
+          <New line="1" col="11" />
+          <SimpleName startLine="1" startCol="15" endLine="1" endCol="18" escaped="False">New</SimpleName>
+          <ParameterCollection startLine="1" startCol="18" endLine="1" endCol="20">
+            <RightParenthesis line="1" col="19" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="11">error 94 (1,1) - (11,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Overloads Sub New()
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="11">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="11" type="Overloads" />
+          </ModifierCollection>
+          <New line="1" col="11" />
+          <SimpleName startLine="1" startCol="15" endLine="1" endCol="18" escaped="False">New</SimpleName>
+          <ParameterCollection startLine="1" startCol="18" endLine="1" endCol="20">
+            <RightParenthesis line="1" col="19" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="11">error 94 (1,1) - (11,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Sub New(Of T)()
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <New line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">New</SimpleName>
+          <ParameterCollection startLine="1" startCol="14" endLine="1" endCol="16">
+            <RightParenthesis line="1" col="15" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+      <errors>
+        <ConstructorsCantBeGeneric startLine="1" startCol="8" endLine="1" endCol="14">error 158 (8,1) - (14,1): Constructors cannot be generic.</ConstructorsCantBeGeneric>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>
+        Sub New()
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <New line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">New</SimpleName>
+          <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="10">
+            <RightParenthesis line="1" col="9" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Public Private Protected Friend Shared Sub New()
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="40">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+            <Modifier startLine="1" startCol="8" endLine="1" endCol="16" type="Private" />
+            <Modifier startLine="1" startCol="16" endLine="1" endCol="26" type="Protected" />
+            <Modifier startLine="1" startCol="26" endLine="1" endCol="33" type="Friend" />
+            <Modifier startLine="1" startCol="33" endLine="1" endCol="40" type="Shared" />
+          </ModifierCollection>
+          <New line="1" col="40" />
+          <SimpleName startLine="1" startCol="44" endLine="1" endCol="47" escaped="False">New</SimpleName>
+          <ParameterCollection startLine="1" startCol="47" endLine="1" endCol="49">
+            <RightParenthesis line="1" col="48" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        &lt;a&gt; Sub New()
+        End Sub
+      </code>
+      <result>
+        <ConstructorDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="5">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="3" type="Regular">
+                <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="3" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <New line="1" col="5" />
+          <SimpleName startLine="1" startCol="9" endLine="1" endCol="12" escaped="False">New</SimpleName>
+          <ParameterCollection startLine="1" startCol="12" endLine="1" endCol="14">
+            <RightParenthesis line="1" col="13" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </ConstructorDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

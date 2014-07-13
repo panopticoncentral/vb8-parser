@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Arrays" type="statement" description="10.12 Array-Handling Statements">
+  <invalid>
+    <test>
+      <code>ReDim</code>
+      <result>
+        <ReDimStatement startLine="1" startCol="1" endLine="1" endCol="6">
+          <ExpressionCollection startLine="1" startCol="6" endLine="1" endCol="6">
+            <SyntaxError isBad="True" startLine="1" startCol="6" endLine="1" endCol="6" />
+          </ExpressionCollection>
+        </ReDimStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="6" endLine="1" endCol="6">error 27 (6,1) - (6,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>ReDim Preserve</code>
+      <result>
+        <ReDimStatement startLine="1" startCol="1" endLine="1" endCol="15">
+          <Preserve line="1" col="7" />
+          <ExpressionCollection startLine="1" startCol="15" endLine="1" endCol="15">
+            <SyntaxError isBad="True" startLine="1" startCol="15" endLine="1" endCol="15" />
+          </ExpressionCollection>
+        </ReDimStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="15" endLine="1" endCol="15">error 27 (15,1) - (15,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Erase</code>
+      <result>
+        <EraseStatement startLine="1" startCol="1" endLine="1" endCol="6">
+          <ExpressionCollection startLine="1" startCol="6" endLine="1" endCol="6">
+            <SyntaxError isBad="True" startLine="1" startCol="6" endLine="1" endCol="6" />
+          </ExpressionCollection>
+        </EraseStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="6" endLine="1" endCol="6">error 27 (6,1) - (6,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>ReDim x(10), y(10, 20)</code>
+      <result>
+        <ReDimStatement startLine="1" startCol="1" endLine="1" endCol="23">
+          <ExpressionCollection startLine="1" startCol="7" endLine="1" endCol="23">
+            <CallOrIndexExpression startLine="1" startCol="7" endLine="1" endCol="12" isConstant="False">
+              <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+                <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="1" startCol="8" endLine="1" endCol="12">
+                <Argument startLine="1" startCol="9" endLine="1" endCol="11">
+                  <IntegerLiteralExpression startLine="1" startCol="9" endLine="1" endCol="11" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+                </Argument>
+                <RightParenthesis line="1" col="11" />
+              </ArgumentCollection>
+            </CallOrIndexExpression>
+            <Comma line="1" col="12" />
+            <CallOrIndexExpression startLine="1" startCol="14" endLine="1" endCol="23" isConstant="False">
+              <SimpleNameExpression startLine="1" startCol="14" endLine="1" endCol="15" isConstant="False">
+                <SimpleName startLine="1" startCol="14" endLine="1" endCol="15" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="1" startCol="15" endLine="1" endCol="23">
+                <Argument startLine="1" startCol="16" endLine="1" endCol="18">
+                  <IntegerLiteralExpression startLine="1" startCol="16" endLine="1" endCol="18" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+                </Argument>
+                <Comma line="1" col="18" />
+                <Argument startLine="1" startCol="20" endLine="1" endCol="22">
+                  <IntegerLiteralExpression startLine="1" startCol="20" endLine="1" endCol="22" isConstant="True" base="Decimal">20</IntegerLiteralExpression>
+                </Argument>
+                <RightParenthesis line="1" col="22" />
+              </ArgumentCollection>
+            </CallOrIndexExpression>
+          </ExpressionCollection>
+        </ReDimStatement>
+      </result>
+    </test>
+    <test>
+      <code>ReDim Preserve x(10), y(10, 20)</code>
+      <result>
+        <ReDimStatement startLine="1" startCol="1" endLine="1" endCol="32">
+          <Preserve line="1" col="7" />
+          <ExpressionCollection startLine="1" startCol="16" endLine="1" endCol="32">
+            <CallOrIndexExpression startLine="1" startCol="16" endLine="1" endCol="21" isConstant="False">
+              <SimpleNameExpression startLine="1" startCol="16" endLine="1" endCol="17" isConstant="False">
+                <SimpleName startLine="1" startCol="16" endLine="1" endCol="17" escaped="False">x</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="1" startCol="17" endLine="1" endCol="21">
+                <Argument startLine="1" startCol="18" endLine="1" endCol="20">
+                  <IntegerLiteralExpression startLine="1" startCol="18" endLine="1" endCol="20" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+                </Argument>
+                <RightParenthesis line="1" col="20" />
+              </ArgumentCollection>
+            </CallOrIndexExpression>
+            <Comma line="1" col="21" />
+            <CallOrIndexExpression startLine="1" startCol="23" endLine="1" endCol="32" isConstant="False">
+              <SimpleNameExpression startLine="1" startCol="23" endLine="1" endCol="24" isConstant="False">
+                <SimpleName startLine="1" startCol="23" endLine="1" endCol="24" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="1" startCol="24" endLine="1" endCol="32">
+                <Argument startLine="1" startCol="25" endLine="1" endCol="27">
+                  <IntegerLiteralExpression startLine="1" startCol="25" endLine="1" endCol="27" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+                </Argument>
+                <Comma line="1" col="27" />
+                <Argument startLine="1" startCol="29" endLine="1" endCol="31">
+                  <IntegerLiteralExpression startLine="1" startCol="29" endLine="1" endCol="31" isConstant="True" base="Decimal">20</IntegerLiteralExpression>
+                </Argument>
+                <RightParenthesis line="1" col="31" />
+              </ArgumentCollection>
+            </CallOrIndexExpression>
+          </ExpressionCollection>
+        </ReDimStatement>
+      </result>
+    </test>
+    <test>
+      <code>Erase a, b, c</code>
+      <result>
+        <EraseStatement startLine="1" startCol="1" endLine="1" endCol="14">
+          <ExpressionCollection startLine="1" startCol="7" endLine="1" endCol="14">
+            <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+              <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">a</SimpleName>
+            </SimpleNameExpression>
+            <Comma line="1" col="8" />
+            <SimpleNameExpression startLine="1" startCol="10" endLine="1" endCol="11" isConstant="False">
+              <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">b</SimpleName>
+            </SimpleNameExpression>
+            <Comma line="1" col="11" />
+            <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="14" isConstant="False">
+              <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">c</SimpleName>
+            </SimpleNameExpression>
+          </ExpressionCollection>
+        </EraseStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

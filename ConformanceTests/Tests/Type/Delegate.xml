@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Delegate" type="declaration" description="7.10 Delegates">
+  <invalid>
+    <test>
+      <code>Delegate</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="9">
+          <Delegate line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedSubOrFunction startLine="1" startCol="9" endLine="1" endCol="9">error 104 (9,1) - (9,1): 'Sub' or 'Function' expected.</ExpectedSubOrFunction>
+      </errors>
+    </test>
+    <test>
+      <code>Delegate Foo</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="13">
+          <Delegate line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedSubOrFunction startLine="1" startCol="10" endLine="1" endCol="13">error 104 (10,1) - (13,1): 'Sub' or 'Function' expected.</ExpectedSubOrFunction>
+      </errors>
+    </test>
+    <test>
+      <code>Overridable Delegate Sub Foo()</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="31">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="13">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="13" type="Overridable" />
+          </ModifierCollection>
+          <Delegate line="1" col="13" />
+          <Sub line="1" col="22" />
+          <SimpleName startLine="1" startCol="26" endLine="1" endCol="29" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="29" endLine="1" endCol="31">
+            <RightParenthesis line="1" col="30" />
+          </ParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="13">error 94 (1,1) - (13,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>Delegate &lt;a&gt; Sub Foo()</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="23">
+          <Delegate line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="10" endLine="1" endCol="11" escaped="False" />
+          <ParameterCollection startLine="1" startCol="21" endLine="1" endCol="23">
+            <RightParenthesis line="1" col="22" />
+          </ParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedSubOrFunction startLine="1" startCol="10" endLine="1" endCol="11">error 104 (10,1) - (11,1): 'Sub' or 'Function' expected.</ExpectedSubOrFunction>
+      </errors>
+    </test>
+    <test>
+      <code>Delegate Public Sub Foo()</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="26">
+          <Delegate line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="16" escaped="False">Public</SimpleName>
+          <ParameterCollection startLine="1" startCol="24" endLine="1" endCol="26">
+            <RightParenthesis line="1" col="25" />
+          </ParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedSubOrFunction startLine="1" startCol="10" endLine="1" endCol="16">error 104 (10,1) - (16,1): 'Sub' or 'Function' expected.</ExpectedSubOrFunction>
+      </errors>
+    </test>
+    <test>
+      <code>Delegate Public Sub</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="20">
+          <Delegate line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="16" escaped="False">Public</SimpleName>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedSubOrFunction startLine="1" startCol="10" endLine="1" endCol="16">error 104 (10,1) - (16,1): 'Sub' or 'Function' expected.</ExpectedSubOrFunction>
+      </errors>
+    </test>
+    <test>
+      <code>Delegate Public Function</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="25">
+          <Delegate line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="16" escaped="False">Public</SimpleName>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedSubOrFunction startLine="1" startCol="10" endLine="1" endCol="16">error 104 (10,1) - (16,1): 'Sub' or 'Function' expected.</ExpectedSubOrFunction>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Delegate Sub Foo(Of</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="20">
+          <Delegate line="1" col="1" />
+          <Sub line="1" col="10" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="17" endLine="1" endCol="20">
+            <Of line="1" col="18" />
+            <TypeParameter startLine="1" startCol="20" endLine="1" endCol="20">
+              <SimpleName isBad="True" startLine="1" startCol="20" endLine="1" endCol="20" escaped="False" />
+            </TypeParameter>
+          </TypeParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="20" endLine="1" endCol="20">error 23 (20,1) - (20,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Delegate Sub Foo(Of)</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="21">
+          <Delegate line="1" col="1" />
+          <Sub line="1" col="10" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="17" endLine="1" endCol="21">
+            <Of line="1" col="18" />
+            <TypeParameter startLine="1" startCol="20" endLine="1" endCol="20">
+              <SimpleName isBad="True" startLine="1" startCol="20" endLine="1" endCol="21" escaped="False" />
+            </TypeParameter>
+            <RightParenthesis line="1" col="20" />
+          </TypeParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="20" endLine="1" endCol="21">error 23 (20,1) - (21,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Delegate Sub Foo(Of T As)</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="26">
+          <Delegate line="1" col="1" />
+          <Sub line="1" col="10" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="17" endLine="1" endCol="26">
+            <Of line="1" col="18" />
+            <TypeParameter startLine="1" startCol="21" endLine="1" endCol="25">
+              <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">T</SimpleName>
+              <As line="1" col="23" />
+              <TypeConstraintCollection startLine="1" startCol="25" endLine="1" endCol="25">
+                <NamedType isBad="True" startLine="1" startCol="25" endLine="1" endCol="25">
+                  <SimpleName isBad="True" startLine="1" startCol="25" endLine="1" endCol="25" escaped="False" />
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+            <RightParenthesis line="1" col="25" />
+          </TypeParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="25" endLine="1" endCol="26">error 22 (25,1) - (26,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Delegate Sub Foo(Of T As {)</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="28">
+          <Delegate line="1" col="1" />
+          <Sub line="1" col="10" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="17" endLine="1" endCol="28">
+            <Of line="1" col="18" />
+            <TypeParameter startLine="1" startCol="21" endLine="1" endCol="28">
+              <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">T</SimpleName>
+              <As line="1" col="23" />
+              <TypeConstraintCollection startLine="1" startCol="26" endLine="1" endCol="28">
+                <NamedType isBad="True" startLine="1" startCol="27" endLine="1" endCol="27">
+                  <SimpleName isBad="True" startLine="1" startCol="27" endLine="1" endCol="27" escaped="False" />
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+          </TypeParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="27" endLine="1" endCol="28">error 22 (27,1) - (28,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Delegate Sub Foo(Of T As {x, )</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="31">
+          <Delegate line="1" col="1" />
+          <Sub line="1" col="10" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="17" endLine="1" endCol="31">
+            <Of line="1" col="18" />
+            <TypeParameter startLine="1" startCol="21" endLine="1" endCol="31">
+              <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">T</SimpleName>
+              <As line="1" col="23" />
+              <TypeConstraintCollection startLine="1" startCol="26" endLine="1" endCol="31">
+                <NamedType startLine="1" startCol="27" endLine="1" endCol="28">
+                  <SimpleName startLine="1" startCol="27" endLine="1" endCol="28" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="1" col="28" />
+                <NamedType isBad="True" startLine="1" startCol="30" endLine="1" endCol="30">
+                  <SimpleName isBad="True" startLine="1" startCol="30" endLine="1" endCol="30" escaped="False" />
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+          </TypeParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="30" endLine="1" endCol="31">error 22 (30,1) - (31,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Delegate Sub Foo(Of T As {x, y)</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="32">
+          <Delegate line="1" col="1" />
+          <Sub line="1" col="10" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="17" endLine="1" endCol="32">
+            <Of line="1" col="18" />
+            <TypeParameter startLine="1" startCol="21" endLine="1" endCol="31">
+              <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">T</SimpleName>
+              <As line="1" col="23" />
+              <TypeConstraintCollection startLine="1" startCol="26" endLine="1" endCol="31">
+                <NamedType startLine="1" startCol="27" endLine="1" endCol="28">
+                  <SimpleName startLine="1" startCol="27" endLine="1" endCol="28" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="1" col="28" />
+                <NamedType startLine="1" startCol="30" endLine="1" endCol="31">
+                  <SimpleName startLine="1" startCol="30" endLine="1" endCol="31" escaped="False">y</SimpleName>
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+            <RightParenthesis line="1" col="31" />
+          </TypeParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedRightCurlyBrace startLine="1" startCol="31" endLine="1" endCol="32">error 17 (31,1) - (32,1): Expected '}'.</ExpectedRightCurlyBrace>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Delegate Sub Foo(Of T)(</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="24">
+          <Delegate line="1" col="1" />
+          <Sub line="1" col="10" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="17" endLine="1" endCol="23">
+            <Of line="1" col="18" />
+            <TypeParameter startLine="1" startCol="21" endLine="1" endCol="22">
+              <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">T</SimpleName>
+            </TypeParameter>
+            <RightParenthesis line="1" col="22" />
+          </TypeParameterCollection>
+          <ParameterCollection startLine="1" startCol="23" endLine="1" endCol="24">
+            <Parameter startLine="1" startCol="24" endLine="1" endCol="24">
+              <VariableName startLine="1" startCol="24" endLine="1" endCol="24">
+                <SimpleName isBad="True" startLine="1" startCol="24" endLine="1" endCol="24" escaped="False" />
+              </VariableName>
+            </Parameter>
+          </ParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="24" endLine="1" endCol="24">error 23 (24,1) - (24,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>Public Private Protected Friend Shadows Delegate Sub Foo</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="57">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="41">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+            <Modifier startLine="1" startCol="8" endLine="1" endCol="16" type="Private" />
+            <Modifier startLine="1" startCol="16" endLine="1" endCol="26" type="Protected" />
+            <Modifier startLine="1" startCol="26" endLine="1" endCol="33" type="Friend" />
+            <Modifier startLine="1" startCol="33" endLine="1" endCol="41" type="Shadows" />
+          </ModifierCollection>
+          <Delegate line="1" col="41" />
+          <Sub line="1" col="50" />
+          <SimpleName startLine="1" startCol="54" endLine="1" endCol="57" escaped="False">Foo</SimpleName>
+        </DelegateSubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>&lt;a&gt; Delegate Sub Foo</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="21">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="5">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="3" type="Regular">
+                <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="3" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <Delegate line="1" col="5" />
+          <Sub line="1" col="14" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+        </DelegateSubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Delegate Function Foo() As Integer</code>
+      <result>
+        <DelegateFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="35">
+          <Delegate line="1" col="1" />
+          <Function line="1" col="10" />
+          <SimpleName startLine="1" startCol="19" endLine="1" endCol="22" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="22" endLine="1" endCol="25">
+            <RightParenthesis line="1" col="23" />
+          </ParameterCollection>
+          <As line="1" col="25" />
+          <IntrinsicType startLine="1" startCol="28" endLine="1" endCol="35" intrinsicType="Integer" />
+        </DelegateFunctionDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Delegate Sub Foo(Of T As {a, b})()</code>
+      <result>
+        <DelegateSubDeclaration startLine="1" startCol="1" endLine="1" endCol="35">
+          <Delegate line="1" col="1" />
+          <Sub line="1" col="10" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="17" endLine="1" endCol="33">
+            <Of line="1" col="18" />
+            <TypeParameter startLine="1" startCol="21" endLine="1" endCol="32">
+              <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">T</SimpleName>
+              <As line="1" col="23" />
+              <TypeConstraintCollection startLine="1" startCol="26" endLine="1" endCol="32">
+                <NamedType startLine="1" startCol="27" endLine="1" endCol="28">
+                  <SimpleName startLine="1" startCol="27" endLine="1" endCol="28" escaped="False">a</SimpleName>
+                </NamedType>
+                <Comma line="1" col="28" />
+                <NamedType startLine="1" startCol="30" endLine="1" endCol="31">
+                  <SimpleName startLine="1" startCol="30" endLine="1" endCol="31" escaped="False">b</SimpleName>
+                </NamedType>
+                <RightCurlyBrace line="1" col="31" />
+              </TypeConstraintCollection>
+            </TypeParameter>
+            <RightParenthesis line="1" col="32" />
+          </TypeParameterCollection>
+          <ParameterCollection startLine="1" startCol="33" endLine="1" endCol="35">
+            <RightParenthesis line="1" col="34" />
+          </ParameterCollection>
+        </DelegateSubDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Delegate Function Foo(Of T As {a, b})() As T</code>
+      <result>
+        <DelegateFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="45">
+          <Delegate line="1" col="1" />
+          <Function line="1" col="10" />
+          <SimpleName startLine="1" startCol="19" endLine="1" endCol="22" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="38" endLine="1" endCol="41">
+            <RightParenthesis line="1" col="39" />
+          </ParameterCollection>
+          <As line="1" col="41" />
+          <NamedType startLine="1" startCol="44" endLine="1" endCol="45">
+            <SimpleName startLine="1" startCol="44" endLine="1" endCol="45" escaped="False">T</SimpleName>
+          </NamedType>
+        </DelegateFunctionDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

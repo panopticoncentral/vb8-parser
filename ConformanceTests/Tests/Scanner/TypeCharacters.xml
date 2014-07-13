@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="TypeCharacters" type="token" description="2.2.1 Type Characters">
+  <invalid>
+    <test>
+      <code>%</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="2" errorNumber="4">error 4 (1,1) - (2,1): Invalid character.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>@</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="2" errorNumber="4">error 4 (1,1) - (2,1): Invalid character.</LexicalError>
+      </result>
+    </test>
+  </invalid>
+  <test>
+    <code>$</code>
+    <result>
+      <LexicalError startLine="1" startCol="1" endLine="1" endCol="2" errorNumber="4">error 4 (1,1) - (2,1): Invalid character.</LexicalError>
+    </result>
+  </test>
+  <test>
+    <code>[abc]$</code>
+    <result>
+      <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">abc</Identifier>
+      <LexicalError startLine="1" startCol="6" endLine="1" endCol="7" errorNumber="4">error 4 (6,1) - (7,1): Invalid character.</LexicalError>
+    </result>
+  </test>
+  <test>
+    <code>[abc$]</code>
+    <result>
+      <LexicalError startLine="1" startCol="1" endLine="1" endCol="7" errorNumber="1">error 1 (1,1) - (7,1): Invalid escaped identifier.</LexicalError>
+    </result>
+  </test>
+  <valid>
+    <!-- The following three tests scan OK but is invalid -->
+    <test>
+      <code>&amp;</code>
+      <result>
+        <Ampersand startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>!</code>
+      <result>
+        <Exclamation startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>#</code>
+      <result>
+        <Pound startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>abc%</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="False" typeChar="%">abc</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>abc&amp;</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="False" typeChar="&amp;">abc</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>abc@</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="False" typeChar="@">abc</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>abc!</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="False" typeChar="!">abc</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>abc#</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="False" typeChar="#">abc</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>abc$</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="False" typeChar="$">abc</Identifier>
+      </result>
+    </test>
+  </valid>
+</scenario>

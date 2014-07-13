@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Loops" type="statement" description="10.9 Loop Statements">
+  <invalid>
+    <test>
+      <code>While</code>
+      <result>
+        <WhileBlockStatement startLine="1" startCol="1" endLine="1" endCol="6">
+          <SyntaxError isBad="True" startLine="1" startCol="6" endLine="1" endCol="6" />
+        </WhileBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="6" endLine="1" endCol="6">error 27 (6,1) - (6,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>While : End While</code>
+      <result>
+        <WhileBlockStatement startLine="1" startCol="1" endLine="1" endCol="18">
+          <SyntaxError isBad="True" startLine="1" startCol="7" endLine="1" endCol="8" />
+          <StatementCollection startLine="1" startCol="9" endLine="1" endCol="12">
+            <Colon line="1" col="7" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="9" endLine="1" endCol="18" endType="While">
+            <While line="1" col="13" />
+          </EndBlockStatement>
+        </WhileBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="7" endLine="1" endCol="8">error 27 (7,1) - (8,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Do</code>
+      <result>
+        <DoBlockStatement startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+      <errors>
+        <ExpectedLoop startLine="1" startCol="1" endLine="1" endCol="3">error 40 (1,1) - (3,1): 'Do' must end with a matching 'Loop'.</ExpectedLoop>
+      </errors>
+    </test>
+    <test>
+      <code>Do While : Loop</code>
+      <result>
+        <DoBlockStatement startLine="1" startCol="1" endLine="1" endCol="16" isWhile="True">
+          <While line="1" col="4" />
+          <SyntaxError isBad="True" startLine="1" startCol="10" endLine="1" endCol="11" />
+          <StatementCollection startLine="1" startCol="12" endLine="1" endCol="16">
+            <Colon line="1" col="10" />
+          </StatementCollection>
+          <LoopStatement startLine="1" startCol="12" endLine="1" endCol="16" />
+        </DoBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="10" endLine="1" endCol="11">error 27 (10,1) - (11,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Do : Loop Until</code>
+      <result>
+        <DoBlockStatement startLine="1" startCol="1" endLine="1" endCol="16">
+          <StatementCollection startLine="1" startCol="6" endLine="1" endCol="10">
+            <Colon line="1" col="4" />
+          </StatementCollection>
+          <LoopStatement startLine="1" startCol="6" endLine="1" endCol="16" isWhile="False">
+            <Until line="1" col="11" />
+            <SyntaxError isBad="True" startLine="1" startCol="16" endLine="1" endCol="16" />
+          </LoopStatement>
+        </DoBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="16" endLine="1" endCol="16">error 27 (16,1) - (16,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Do While x : Loop Until y</code>
+      <result>
+        <DoBlockStatement startLine="1" startCol="1" endLine="1" endCol="26" isWhile="True">
+          <While line="1" col="4" />
+          <SimpleNameExpression startLine="1" startCol="10" endLine="1" endCol="12" isConstant="False">
+            <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="14" endLine="1" endCol="18">
+            <Colon line="1" col="12" />
+          </StatementCollection>
+          <LoopStatement startLine="1" startCol="14" endLine="1" endCol="26" isWhile="False">
+            <Until line="1" col="19" />
+            <SimpleNameExpression startLine="1" startCol="25" endLine="1" endCol="26" isConstant="False">
+              <SimpleName startLine="1" startCol="25" endLine="1" endCol="26" escaped="False">y</SimpleName>
+            </SimpleNameExpression>
+          </LoopStatement>
+        </DoBlockStatement>
+      </result>
+      <errors>
+        <LoopDoubleCondition startLine="1" startCol="25" endLine="1" endCol="26">error 58 (25,1) - (26,1): 'Loop' cannot have a condition if matching 'Do' has one.</LoopDoubleCondition>
+      </errors>
+    </test>
+    <test>
+      <code>For</code>
+      <result>
+        <ForBlockStatement startLine="1" startCol="1" endLine="1" endCol="4">
+          <SyntaxError isBad="True" startLine="1" startCol="4" endLine="1" endCol="4" />
+        </ForBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="4" endLine="1" endCol="4">error 27 (4,1) - (4,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>For x = : Next</code>
+      <result>
+        <ForBlockStatement startLine="1" startCol="1" endLine="1" endCol="15">
+          <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Equals line="1" col="7" />
+          <SyntaxError isBad="True" startLine="1" startCol="9" endLine="1" endCol="10" />
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="15">
+            <Colon line="1" col="9" />
+          </StatementCollection>
+          <NextStatement startLine="1" startCol="11" endLine="1" endCol="15" />
+        </ForBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="9" endLine="1" endCol="10">error 27 (9,1) - (10,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>For x = 1 : Next</code>
+      <result>
+        <ForBlockStatement startLine="1" startCol="1" endLine="1" endCol="17">
+          <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Equals line="1" col="7" />
+          <IntegerLiteralExpression startLine="1" startCol="9" endLine="1" endCol="10" isConstant="True" base="Decimal">1</IntegerLiteralExpression>
+          <StatementCollection startLine="1" startCol="13" endLine="1" endCol="17">
+            <Colon line="1" col="11" />
+          </StatementCollection>
+          <NextStatement startLine="1" startCol="13" endLine="1" endCol="17" />
+        </ForBlockStatement>
+      </result>
+      <errors>
+        <SyntaxError startLine="1" startCol="11" endLine="1" endCol="12">error 11 (11,1) - (12,1): Syntax error.</SyntaxError>
+      </errors>
+    </test>
+    <test>
+      <code>For x = 1 To : Next</code>
+      <result>
+        <ForBlockStatement startLine="1" startCol="1" endLine="1" endCol="20">
+          <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Equals line="1" col="7" />
+          <IntegerLiteralExpression startLine="1" startCol="9" endLine="1" endCol="10" isConstant="True" base="Decimal">1</IntegerLiteralExpression>
+          <To line="1" col="11" />
+          <SyntaxError isBad="True" startLine="1" startCol="14" endLine="1" endCol="15" />
+          <StatementCollection startLine="1" startCol="16" endLine="1" endCol="20">
+            <Colon line="1" col="14" />
+          </StatementCollection>
+          <NextStatement startLine="1" startCol="16" endLine="1" endCol="20" />
+        </ForBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="14" endLine="1" endCol="15">error 27 (14,1) - (15,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>For x = 1 To 10 Step : Next</code>
+      <result>
+        <ForBlockStatement startLine="1" startCol="1" endLine="1" endCol="28">
+          <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Equals line="1" col="7" />
+          <IntegerLiteralExpression startLine="1" startCol="9" endLine="1" endCol="10" isConstant="True" base="Decimal">1</IntegerLiteralExpression>
+          <To line="1" col="11" />
+          <IntegerLiteralExpression startLine="1" startCol="14" endLine="1" endCol="16" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+          <Step line="1" col="17" />
+          <SyntaxError isBad="True" startLine="1" startCol="22" endLine="1" endCol="23" />
+          <StatementCollection startLine="1" startCol="24" endLine="1" endCol="28">
+            <Colon line="1" col="22" />
+          </StatementCollection>
+          <NextStatement startLine="1" startCol="24" endLine="1" endCol="28" />
+        </ForBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="22" endLine="1" endCol="23">error 27 (22,1) - (23,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>For x As = 1 To 10 : Next</code>
+      <result>
+        <ForBlockStatement startLine="1" startCol="1" endLine="1" endCol="26">
+          <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="10">
+            <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+              <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+              </VariableName>
+            </VariableNameCollection>
+            <As line="1" col="7" />
+            <NamedType isBad="True" startLine="1" startCol="10" endLine="1" endCol="10">
+              <SimpleName isBad="True" startLine="1" startCol="10" endLine="1" endCol="10" escaped="False" />
+            </NamedType>
+          </VariableDeclarator>
+          <Equals line="1" col="10" />
+          <IntegerLiteralExpression startLine="1" startCol="12" endLine="1" endCol="13" isConstant="True" base="Decimal">1</IntegerLiteralExpression>
+          <To line="1" col="14" />
+          <IntegerLiteralExpression startLine="1" startCol="17" endLine="1" endCol="19" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+          <StatementCollection startLine="1" startCol="22" endLine="1" endCol="26">
+            <Colon line="1" col="20" />
+          </StatementCollection>
+          <NextStatement startLine="1" startCol="22" endLine="1" endCol="26" />
+        </ForBlockStatement>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="10" endLine="1" endCol="11">error 22 (10,1) - (11,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>For Each</code>
+      <result>
+        <ForEachBlockStatement startLine="1" startCol="1" endLine="1" endCol="9">
+          <Each line="1" col="5" />
+          <SyntaxError isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" />
+        </ForEachBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="9" endLine="1" endCol="9">error 27 (9,1) - (9,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>For Each x In : Next</code>
+      <result>
+        <ForEachBlockStatement startLine="1" startCol="1" endLine="1" endCol="21">
+          <Each line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="10" endLine="1" endCol="12" isConstant="False">
+            <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <In line="1" col="12" />
+          <SyntaxError isBad="True" startLine="1" startCol="15" endLine="1" endCol="16" />
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="21">
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <NextStatement startLine="1" startCol="17" endLine="1" endCol="21" />
+        </ForEachBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="15" endLine="1" endCol="16">error 27 (15,1) - (16,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>For Each x As In y : Next</code>
+      <result>
+        <ForEachBlockStatement startLine="1" startCol="1" endLine="1" endCol="26">
+          <Each line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="10" endLine="1" endCol="12" isConstant="False">
+            <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <VariableDeclarator startLine="1" startCol="10" endLine="1" endCol="15">
+            <VariableNameCollection startLine="1" startCol="10" endLine="1" endCol="12">
+              <VariableName startLine="1" startCol="10" endLine="1" endCol="12">
+                <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">x</SimpleName>
+              </VariableName>
+            </VariableNameCollection>
+            <As line="1" col="12" />
+            <NamedType isBad="True" startLine="1" startCol="15" endLine="1" endCol="15">
+              <SimpleName isBad="True" startLine="1" startCol="15" endLine="1" endCol="15" escaped="False" />
+            </NamedType>
+          </VariableDeclarator>
+          <In line="1" col="15" />
+          <SimpleNameExpression startLine="1" startCol="18" endLine="1" endCol="20" isConstant="False">
+            <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="22" endLine="1" endCol="26">
+            <Colon line="1" col="20" />
+          </StatementCollection>
+          <NextStatement startLine="1" startCol="22" endLine="1" endCol="26" />
+        </ForEachBlockStatement>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="15" endLine="1" endCol="17">error 22 (15,1) - (17,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>While x : y : End While</code>
+      <result>
+        <WhileBlockStatement startLine="1" startCol="1" endLine="1" endCol="24">
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="14">
+            <Colon line="1" col="9" />
+            <CallStatement startLine="1" startCol="11" endLine="1" endCol="13">
+              <SimpleNameExpression startLine="1" startCol="11" endLine="1" endCol="13" isConstant="False">
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="13" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="15" endLine="1" endCol="24" endType="While">
+            <While line="1" col="19" />
+          </EndBlockStatement>
+        </WhileBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Do While x : y : Loop</code>
+      <result>
+        <DoBlockStatement startLine="1" startCol="1" endLine="1" endCol="22" isWhile="True">
+          <While line="1" col="4" />
+          <SimpleNameExpression startLine="1" startCol="10" endLine="1" endCol="12" isConstant="False">
+            <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="14" endLine="1" endCol="17">
+            <Colon line="1" col="12" />
+            <CallStatement startLine="1" startCol="14" endLine="1" endCol="16">
+              <SimpleNameExpression startLine="1" startCol="14" endLine="1" endCol="16" isConstant="False">
+                <SimpleName startLine="1" startCol="14" endLine="1" endCol="15" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="16" />
+          </StatementCollection>
+          <LoopStatement startLine="1" startCol="18" endLine="1" endCol="22" />
+        </DoBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Do Until x : y : Loop</code>
+      <result>
+        <DoBlockStatement startLine="1" startCol="1" endLine="1" endCol="22" isWhile="False">
+          <Until line="1" col="4" />
+          <SimpleNameExpression startLine="1" startCol="10" endLine="1" endCol="12" isConstant="False">
+            <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="14" endLine="1" endCol="17">
+            <Colon line="1" col="12" />
+            <CallStatement startLine="1" startCol="14" endLine="1" endCol="16">
+              <SimpleNameExpression startLine="1" startCol="14" endLine="1" endCol="16" isConstant="False">
+                <SimpleName startLine="1" startCol="14" endLine="1" endCol="15" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="16" />
+          </StatementCollection>
+          <LoopStatement startLine="1" startCol="18" endLine="1" endCol="22" />
+        </DoBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Do : y : Loop While x</code>
+      <result>
+        <DoBlockStatement startLine="1" startCol="1" endLine="1" endCol="22">
+          <StatementCollection startLine="1" startCol="6" endLine="1" endCol="9">
+            <Colon line="1" col="4" />
+            <CallStatement startLine="1" startCol="6" endLine="1" endCol="8">
+              <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="8" isConstant="False">
+                <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="8" />
+          </StatementCollection>
+          <LoopStatement startLine="1" startCol="10" endLine="1" endCol="22" isWhile="True">
+            <While line="1" col="15" />
+            <SimpleNameExpression startLine="1" startCol="21" endLine="1" endCol="22" isConstant="False">
+              <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">x</SimpleName>
+            </SimpleNameExpression>
+          </LoopStatement>
+        </DoBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Do : y : Loop Until x</code>
+      <result>
+        <DoBlockStatement startLine="1" startCol="1" endLine="1" endCol="22">
+          <StatementCollection startLine="1" startCol="6" endLine="1" endCol="9">
+            <Colon line="1" col="4" />
+            <CallStatement startLine="1" startCol="6" endLine="1" endCol="8">
+              <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="8" isConstant="False">
+                <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="8" />
+          </StatementCollection>
+          <LoopStatement startLine="1" startCol="10" endLine="1" endCol="22" isWhile="False">
+            <Until line="1" col="15" />
+            <SimpleNameExpression startLine="1" startCol="21" endLine="1" endCol="22" isConstant="False">
+              <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">x</SimpleName>
+            </SimpleNameExpression>
+          </LoopStatement>
+        </DoBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>For x = 1 To 10 Step 20 : y : Next x</code>
+      <result>
+        <ForBlockStatement startLine="1" startCol="1" endLine="1" endCol="37">
+          <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Equals line="1" col="7" />
+          <IntegerLiteralExpression startLine="1" startCol="9" endLine="1" endCol="10" isConstant="True" base="Decimal">1</IntegerLiteralExpression>
+          <To line="1" col="11" />
+          <IntegerLiteralExpression startLine="1" startCol="14" endLine="1" endCol="16" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+          <Step line="1" col="17" />
+          <IntegerLiteralExpression startLine="1" startCol="22" endLine="1" endCol="24" isConstant="True" base="Decimal">20</IntegerLiteralExpression>
+          <StatementCollection startLine="1" startCol="27" endLine="1" endCol="30">
+            <Colon line="1" col="25" />
+            <CallStatement startLine="1" startCol="27" endLine="1" endCol="29">
+              <SimpleNameExpression startLine="1" startCol="27" endLine="1" endCol="29" isConstant="False">
+                <SimpleName startLine="1" startCol="27" endLine="1" endCol="28" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="29" />
+          </StatementCollection>
+          <NextStatement startLine="1" startCol="31" endLine="1" endCol="37">
+            <ExpressionCollection startLine="1" startCol="36" endLine="1" endCol="37">
+              <SimpleNameExpression startLine="1" startCol="36" endLine="1" endCol="37" isConstant="False">
+                <SimpleName startLine="1" startCol="36" endLine="1" endCol="37" escaped="False">x</SimpleName>
+              </SimpleNameExpression>
+            </ExpressionCollection>
+          </NextStatement>
+        </ForBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>For x As Integer = 1 To 10 Step 20 : y : Next x</code>
+      <result>
+        <ForBlockStatement startLine="1" startCol="1" endLine="1" endCol="48">
+          <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="18">
+            <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+              <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+              </VariableName>
+            </VariableNameCollection>
+            <As line="1" col="7" />
+            <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+          </VariableDeclarator>
+          <Equals line="1" col="18" />
+          <IntegerLiteralExpression startLine="1" startCol="20" endLine="1" endCol="21" isConstant="True" base="Decimal">1</IntegerLiteralExpression>
+          <To line="1" col="22" />
+          <IntegerLiteralExpression startLine="1" startCol="25" endLine="1" endCol="27" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+          <Step line="1" col="28" />
+          <IntegerLiteralExpression startLine="1" startCol="33" endLine="1" endCol="35" isConstant="True" base="Decimal">20</IntegerLiteralExpression>
+          <StatementCollection startLine="1" startCol="38" endLine="1" endCol="41">
+            <Colon line="1" col="36" />
+            <CallStatement startLine="1" startCol="38" endLine="1" endCol="40">
+              <SimpleNameExpression startLine="1" startCol="38" endLine="1" endCol="40" isConstant="False">
+                <SimpleName startLine="1" startCol="38" endLine="1" endCol="39" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="40" />
+          </StatementCollection>
+          <NextStatement startLine="1" startCol="42" endLine="1" endCol="48">
+            <ExpressionCollection startLine="1" startCol="47" endLine="1" endCol="48">
+              <SimpleNameExpression startLine="1" startCol="47" endLine="1" endCol="48" isConstant="False">
+                <SimpleName startLine="1" startCol="47" endLine="1" endCol="48" escaped="False">x</SimpleName>
+              </SimpleNameExpression>
+            </ExpressionCollection>
+          </NextStatement>
+        </ForBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>For Each x In y : z : Next</code>
+      <result>
+        <ForEachBlockStatement startLine="1" startCol="1" endLine="1" endCol="27">
+          <Each line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="10" endLine="1" endCol="12" isConstant="False">
+            <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <In line="1" col="12" />
+          <SimpleNameExpression startLine="1" startCol="15" endLine="1" endCol="17" isConstant="False">
+            <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="19" endLine="1" endCol="22">
+            <Colon line="1" col="17" />
+            <CallStatement startLine="1" startCol="19" endLine="1" endCol="21">
+              <SimpleNameExpression startLine="1" startCol="19" endLine="1" endCol="21" isConstant="False">
+                <SimpleName startLine="1" startCol="19" endLine="1" endCol="20" escaped="False">z</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="21" />
+          </StatementCollection>
+          <NextStatement startLine="1" startCol="23" endLine="1" endCol="27" />
+        </ForEachBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>For Each x As Integer In y : z : Next</code>
+      <result>
+        <ForEachBlockStatement startLine="1" startCol="1" endLine="1" endCol="38">
+          <Each line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="10" endLine="1" endCol="12" isConstant="False">
+            <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <VariableDeclarator startLine="1" startCol="10" endLine="1" endCol="23">
+            <VariableNameCollection startLine="1" startCol="10" endLine="1" endCol="12">
+              <VariableName startLine="1" startCol="10" endLine="1" endCol="12">
+                <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">x</SimpleName>
+              </VariableName>
+            </VariableNameCollection>
+            <As line="1" col="12" />
+            <IntrinsicType startLine="1" startCol="15" endLine="1" endCol="22" intrinsicType="Integer" />
+          </VariableDeclarator>
+          <In line="1" col="23" />
+          <SimpleNameExpression startLine="1" startCol="26" endLine="1" endCol="28" isConstant="False">
+            <SimpleName startLine="1" startCol="26" endLine="1" endCol="27" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="30" endLine="1" endCol="33">
+            <Colon line="1" col="28" />
+            <CallStatement startLine="1" startCol="30" endLine="1" endCol="32">
+              <SimpleNameExpression startLine="1" startCol="30" endLine="1" endCol="32" isConstant="False">
+                <SimpleName startLine="1" startCol="30" endLine="1" endCol="31" escaped="False">z</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="32" />
+          </StatementCollection>
+          <NextStatement startLine="1" startCol="34" endLine="1" endCol="38" />
+        </ForEachBlockStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

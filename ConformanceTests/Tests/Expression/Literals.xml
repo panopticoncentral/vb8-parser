@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Literals" type="expression" description="11.4.1 Literal Expressions">
+  <invalid>
+    <test>
+      <code>#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="2">error 27 (1,1) - (2,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>##</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="2">error 27 (1,1) - (2,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>#10#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+      <errors>
+        <InvalidDateLiteral startLine="1" startCol="1" endLine="1" endCol="5">error 7 (1,1) - (5,1): Invalid date literal.</InvalidDateLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>#10/10#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+      <errors>
+        <InvalidDateLiteral startLine="1" startCol="1" endLine="1" endCol="8">error 7 (1,1) - (8,1): Invalid date literal.</InvalidDateLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>#10/10/00#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="11" />
+      </result>
+      <errors>
+        <InvalidDateLiteral startLine="1" startCol="1" endLine="1" endCol="11">error 7 (1,1) - (11,1): Invalid date literal.</InvalidDateLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>#-10/-10/-2000#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="2">error 27 (1,1) - (2,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>#10-10#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+      <errors>
+        <InvalidDateLiteral startLine="1" startCol="1" endLine="1" endCol="8">error 7 (1,1) - (8,1): Invalid date literal.</InvalidDateLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>#-10-10-2000#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="2">error 27 (1,1) - (2,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>#10-20/2000#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="13" />
+      </result>
+      <errors>
+        <InvalidDateLiteral startLine="1" startCol="1" endLine="1" endCol="13">error 7 (1,1) - (13,1): Invalid date literal.</InvalidDateLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>#10/20-2000#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="13" />
+      </result>
+      <errors>
+        <InvalidDateLiteral startLine="1" startCol="1" endLine="1" endCol="13">error 7 (1,1) - (13,1): Invalid date literal.</InvalidDateLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>#500/500/10000#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="16" />
+      </result>
+      <errors>
+        <InvalidDateLiteral startLine="1" startCol="1" endLine="1" endCol="16">error 7 (1,1) - (16,1): Invalid date literal.</InvalidDateLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>#23:10:10am#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="13" />
+      </result>
+      <errors>
+        <InvalidDateLiteral startLine="1" startCol="1" endLine="1" endCol="13">error 7 (1,1) - (13,1): Invalid date literal.</InvalidDateLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>#10:10:10 foo#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="15" />
+      </result>
+      <errors>
+        <InvalidDateLiteral startLine="1" startCol="1" endLine="1" endCol="15">error 7 (1,1) - (15,1): Invalid date literal.</InvalidDateLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>#40:40:40#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="11" />
+      </result>
+      <errors>
+        <InvalidDateLiteral startLine="1" startCol="1" endLine="1" endCol="11">error 7 (1,1) - (11,1): Invalid date literal.</InvalidDateLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>#10:10AM 10/10/2000#</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="21" />
+      </result>
+      <errors>
+        <InvalidDateLiteral startLine="1" startCol="1" endLine="1" endCol="21">error 7 (1,1) - (21,1): Invalid date literal.</InvalidDateLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>&amp;HZ</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+      <errors>
+        <InvalidIntegerLiteral startLine="1" startCol="1" endLine="1" endCol="3">error 9 (1,1) - (3,1): Invalid integer literal.</InvalidIntegerLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>&amp;O9</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+      <errors>
+        <InvalidIntegerLiteral startLine="1" startCol="1" endLine="1" endCol="3">error 9 (1,1) - (3,1): Invalid integer literal.</InvalidIntegerLiteral>
+      </errors>
+    </test>
+    <!-- Invalid string literals -->
+    <test>
+      <code>"abc</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+      <errors>
+        <InvalidStringLiteral startLine="1" startCol="1" endLine="1" endCol="5">error 6 (1,1) - (5,1): Invalid string literal.</InvalidStringLiteral>
+      </errors>
+    </test>
+    <!-- Bad characters -->
+    <test>
+      <code>""c</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+      <errors>
+        <InvalidCharacterLiteral startLine="1" startCol="1" endLine="1" endCol="4">error 5 (1,1) - (4,1): Invalid character literal.</InvalidCharacterLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>"""c</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+      <errors>
+        <InvalidStringLiteral startLine="1" startCol="1" endLine="1" endCol="5">error 6 (1,1) - (5,1): Invalid string literal.</InvalidStringLiteral>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>#10/10/2000#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="13" isConstant="True">10/10/2000</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10-10-2000#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="13" isConstant="True">10/10/2000</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10:10#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="True">10:10:00 AM</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="True">10:10:10 AM</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10AM#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="13" isConstant="True">10:10:10 AM</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 AM#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="14" isConstant="True">10:10:10 AM</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 am#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="14" isConstant="True">10:10:10 AM</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 Am#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="14" isConstant="True">10:10:10 AM</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10PM#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="13" isConstant="True">10:10:10 PM</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 PM#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="14" isConstant="True">10:10:10 PM</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 pm#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="14" isConstant="True">10:10:10 PM</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 Pm#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="14" isConstant="True">10:10:10 PM</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#23:10:10#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="True">11:10:10 PM</DateLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>#10/10/2000 10:10AM#</code>
+      <result>
+        <DateLiteralExpression startLine="1" startCol="1" endLine="1" endCol="21" isConstant="True">10/10/2000 10:10:00 AM</DateLiteralExpression>
+      </result>
+    </test>
+    <!-- Integer literals with type characters -->
+    <test>
+      <code>10@</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="True" typeChar="@">10</DecimalLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10#</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="True" typeChar="#">10</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10!</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="True" typeChar="!">10</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10F</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="True" typeChar="F">10</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10R</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="True" typeChar="R">10</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10D</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="True" typeChar="D">10</DecimalLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10f</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="True" typeChar="F">10</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10r</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="True" typeChar="R">10</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10d</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="True" typeChar="D">10</DecimalLiteralExpression>
+      </result>
+    </test>
+    <!-- Digits on both sides of the point -->
+    <test>
+      <code>10.10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="True">10.1</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10E10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="True">101000000000</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10e10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="True">101000000000</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10E+10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="True">101000000000</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10E-10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="True">1.01E-09</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <!-- No leading digits -->
+    <test>
+      <code>.10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="True">0.1</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>.10E10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True">1000000000</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>.10e10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True">1000000000</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>.10E+10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="True">1000000000</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>.10E-10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="True">1E-11</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <!-- No trailing digits -->
+    <test>
+      <code>10E10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="True">100000000000</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10e10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="True">100000000000</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10E+10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True">100000000000</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10E-10</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True">1E-09</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <!-- Type characters -->
+    <test>
+      <code>10.10@</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True" typeChar="@">10.10</DecimalLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10#</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True" typeChar="#">10.1</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10!</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True" typeChar="!">10.1000003814697</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10F</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True" typeChar="F">10.1000003814697</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10R</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True" typeChar="R">10.1</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10D</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True" typeChar="D">10.10</DecimalLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10f</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True" typeChar="F">10.1000003814697</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10r</code>
+      <result>
+        <FloatingPointLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True" typeChar="R">10.1</FloatingPointLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10d</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="True" typeChar="D">10.10</DecimalLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10E10@</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="True" typeChar="@">101000000000</DecimalLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10E+10@</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="True" typeChar="@">101000000000</DecimalLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10E-10@</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="True" typeChar="@">0.000000001010</DecimalLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10E10D</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="True" typeChar="D">101000000000</DecimalLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10E+10D</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="True" typeChar="D">101000000000</DecimalLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>10.10E-10D</code>
+      <result>
+        <DecimalLiteralExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="True" typeChar="D">0.000000001010</DecimalLiteralExpression>
+      </result>
+    </test>
+    <!-- Integer literals -->
+    <test>
+      <code>0123456789</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="True" base="Decimal">123456789</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>1S</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="True" typeChar="S" base="Decimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>1I</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="True" typeChar="I" base="Decimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>1L</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="True" typeChar="L" base="Decimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>1s</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="True" typeChar="S" base="Decimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>1i</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="True" typeChar="I" base="Decimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>1l</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="True" typeChar="L" base="Decimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>1%</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="True" typeChar="%" base="Decimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>1&amp;</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="True" typeChar="&amp;" base="Decimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>0123456789A</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="True" base="Decimal">123456789</IntegerLiteralExpression>
+      </result>
+    </test>
+    <!-- Hex literals -->
+    <test>
+      <code>&amp;H0123456789ABCDEF</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="19" isConstant="True" base="Hexadecimal">81985529216486895</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;h0123456789abcdef</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="19" isConstant="True" base="Hexadecimal">81985529216486895</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;H1S</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="S" base="Hexadecimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;H1I</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="I" base="Hexadecimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;H1L</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="L" base="Hexadecimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;H1s</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="S" base="Hexadecimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;H1i</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="I" base="Hexadecimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;H1l</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="L" base="Hexadecimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;H1%</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="%" base="Hexadecimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;H1&amp;</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="&amp;" base="Hexadecimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <!-- Octal literals -->
+    <test>
+      <code>&amp;O01234567</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="True" base="Octal">342391</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;o01234567</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="True" base="Octal">342391</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;O1S</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="S" base="Octal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;O1I</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="I" base="Octal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;O1L</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="L" base="Octal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;O1s</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="S" base="Octal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;O1i</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="I" base="Octal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;O1l</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="L" base="Octal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;O1%</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="%" base="Octal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>&amp;O1&amp;</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True" typeChar="&amp;" base="Octal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <!-- Valid even though is bogus -->
+    <test>
+      <code>abc"</code>
+      <result>
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="4" escaped="False">abc</SimpleName>
+        </SimpleNameExpression>
+      </result>
+    </test>
+    <!-- Valid even though is bogus -->
+    <test>
+      <code>"abc"def"</code>
+      <result>
+        <StringLiteralExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="True">abc</StringLiteralExpression>
+      </result>
+    </test>
+    <!-- Good strings -->
+    <!-- Second string is left double-quote -->
+    <!-- Third string is right double-quote -->
+    <!-- Fourth string is left then right double-quote -->
+    <test>
+      <code>"abc"</code>
+      <result>
+        <StringLiteralExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="True">abc</StringLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>“abc“</code>
+      <result>
+        <StringLiteralExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="True">abc</StringLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>”abc”</code>
+      <result>
+        <StringLiteralExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="True">abc</StringLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>“abc”</code>
+      <result>
+        <StringLiteralExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="True">abc</StringLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>"abc""def"</code>
+      <result>
+        <StringLiteralExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="True">abc"def</StringLiteralExpression>
+      </result>
+    </test>
+    <!-- Good characters -->
+    <!-- Second string is left double-quote -->
+    <!-- Third string is right double-quote -->
+    <!-- Fourth string is left then right double-quote -->
+    <test>
+      <code>"a"c</code>
+      <result>
+        <CharacterLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True">a</CharacterLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>"a"C</code>
+      <result>
+        <CharacterLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True">a</CharacterLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>“a“c</code>
+      <result>
+        <CharacterLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True">a</CharacterLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>”a”c</code>
+      <result>
+        <CharacterLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True">a</CharacterLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>“a”c</code>
+      <result>
+        <CharacterLiteralExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="True">a</CharacterLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>""""c</code>
+      <result>
+        <CharacterLiteralExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="True">"</CharacterLiteralExpression>
+      </result>
+    </test>
+  </valid>
+</scenario>

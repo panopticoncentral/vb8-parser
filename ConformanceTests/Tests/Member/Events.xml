@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Events" type="declaration" description="9.4 Events">
+  <invalid>
+    <test>
+      <code>Event</code>
+      <result>
+        <EventDeclaration startLine="1" startCol="1" endLine="1" endCol="6">
+          <Event line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="6" endLine="1" endCol="6" escaped="False" />
+        </EventDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="6" endLine="1" endCol="6">error 23 (6,1) - (6,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Event x(</code>
+      <result>
+        <EventDeclaration startLine="1" startCol="1" endLine="1" endCol="9">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="9">
+            <Parameter startLine="1" startCol="9" endLine="1" endCol="9">
+              <VariableName startLine="1" startCol="9" endLine="1" endCol="9">
+                <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+              </VariableName>
+            </Parameter>
+          </ParameterCollection>
+        </EventDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="9" endLine="1" endCol="9">error 23 (9,1) - (9,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Event x)</code>
+      <result>
+        <EventDeclaration startLine="1" startCol="1" endLine="1" endCol="8">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+        </EventDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="8" endLine="1" endCol="9">error 39 (8,1) - (9,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>Overridable Event x</code>
+      <result>
+        <EventDeclaration startLine="1" startCol="1" endLine="1" endCol="20">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="13">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="13" type="Overridable" />
+          </ModifierCollection>
+          <Event line="1" col="13" />
+          <SimpleName startLine="1" startCol="19" endLine="1" endCol="20" escaped="False">x</SimpleName>
+        </EventDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="13">error 94 (1,1) - (13,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>Public &lt;a&gt; Event x</code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="8" endLine="1" endCol="12">
+          <AttributeBlockCollection startLine="1" startCol="8" endLine="1" endCol="12">
+            <AttributeCollection startLine="1" startCol="8" endLine="1" endCol="12">
+              <Attribute startLine="1" startCol="9" endLine="1" endCol="10" type="Regular">
+                <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="10" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+      <errors>
+        <IncorrectAttributeType startLine="1" startCol="9" endLine="1" endCol="10">error 92 (9,1) - (10,1): Attribute of this type is not allowed here.</IncorrectAttributeType>
+      </errors>
+    </test>
+    <test>
+      <code>Event x As</code>
+      <result>
+        <EventDeclaration startLine="1" startCol="1" endLine="1" endCol="11">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          <As line="1" col="9" />
+          <NamedType isBad="True" startLine="1" startCol="11" endLine="1" endCol="11">
+            <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" escaped="False" />
+          </NamedType>
+        </EventDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="11" endLine="1" endCol="11">error 22 (11,1) - (11,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="7.1">
+      <code>
+        Custom Event x As Y
+        End Event
+      </code>
+      <result>
+        <VariableListDeclaration startLine="1" startCol="1" endLine="1" endCol="20">
+          <VariableDeclaratorCollection startLine="1" startCol="1" endLine="1" endCol="20">
+            <VariableDeclarator startLine="1" startCol="1" endLine="1" endCol="20">
+              <VariableNameCollection startLine="1" startCol="1" endLine="1" endCol="16">
+                <VariableName startLine="1" startCol="1" endLine="1" endCol="8">
+                  <SimpleName startLine="1" startCol="1" endLine="1" endCol="7" escaped="False">Custom</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="16" />
+              <NamedType startLine="1" startCol="19" endLine="1" endCol="20">
+                <SimpleName startLine="1" startCol="19" endLine="1" endCol="20" escaped="False">Y</SimpleName>
+              </NamedType>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </VariableListDeclaration>
+      </result>
+      <errors>
+        <ExpectedModifier startLine="1" startCol="1" endLine="1" endCol="7">error 38 (1,1) - (7,1): Expected one of 'Dim', 'Const', 'Public', 'Private', 'Protected', 'Friend', 'Shadows', 'ReadOnly' or 'Shared'.</ExpectedModifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="1" endCol="13">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName isBad="True" startLine="1" startCol="13" endLine="1" endCol="13" escaped="False" />
+          <NamedType isBad="True" startLine="1" startCol="13" endLine="1" endCol="13">
+            <SimpleName isBad="True" startLine="1" startCol="13" endLine="1" endCol="13" escaped="False" />
+          </NamedType>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="13" endLine="1" endCol="13">error 23 (13,1) - (13,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="2" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName isBad="True" startLine="1" startCol="13" endLine="1" endCol="15" escaped="False" />
+          <NamedType isBad="True" startLine="1" startCol="13" endLine="1" endCol="13">
+            <SimpleName isBad="True" startLine="1" startCol="13" endLine="1" endCol="13" escaped="False" />
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="18" endType="Event">
+            <Event line="2" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="13" endLine="1" endCol="15">error 23 (13,1) - (15,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo As
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="2" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType isBad="True" startLine="1" startCol="20" endLine="1" endCol="20">
+            <SimpleName isBad="True" startLine="1" startCol="20" endLine="1" endCol="20" escaped="False" />
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="18" endType="Event">
+            <Event line="2" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="20" endLine="1" endCol="22">error 22 (20,1) - (22,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Public &lt;a&gt; Custom Event foo
+        End Event
+      </code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="8" endLine="1" endCol="12">
+          <AttributeBlockCollection startLine="1" startCol="8" endLine="1" endCol="12">
+            <AttributeCollection startLine="1" startCol="8" endLine="1" endCol="12">
+              <Attribute startLine="1" startCol="9" endLine="1" endCol="10" type="Regular">
+                <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="10" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+      <errors>
+        <IncorrectAttributeType startLine="1" startCol="9" endLine="1" endCol="10">error 92 (9,1) - (10,1): Attribute of this type is not allowed here.</IncorrectAttributeType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Public Custom Event Foo As &lt;a&gt; Bar
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="2" endCol="18">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="8">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+          </ModifierCollection>
+          <Custom line="1" col="8" />
+          <Event line="1" col="15" />
+          <SimpleName startLine="1" startCol="21" endLine="1" endCol="24" escaped="False">Foo</SimpleName>
+          <As line="1" col="25" />
+          <NamedType isBad="True" startLine="1" startCol="28" endLine="1" endCol="28">
+            <SimpleName isBad="True" startLine="1" startCol="28" endLine="1" endCol="28" escaped="False" />
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="18" endType="Event">
+            <Event line="2" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="28" endLine="1" endCol="29">error 22 (28,1) - (29,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Public Custom Event Foo As Bar &lt;a&gt;
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="2" endCol="18">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="8">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+          </ModifierCollection>
+          <Custom line="1" col="8" />
+          <Event line="1" col="15" />
+          <SimpleName startLine="1" startCol="21" endLine="1" endCol="24" escaped="False">Foo</SimpleName>
+          <As line="1" col="25" />
+          <NamedType startLine="1" startCol="28" endLine="1" endCol="31">
+            <SimpleName startLine="1" startCol="28" endLine="1" endCol="31" escaped="False">Bar</SimpleName>
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="18" endType="Event">
+            <Event line="2" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="32" endLine="1" endCol="33">error 39 (32,1) - (33,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event foo(x As Integer)
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="2" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">foo</SimpleName>
+          <ArrayType startLine="1" startCol="17" endLine="1" endCol="31" rank="1">
+            <NamedType isBad="True" startLine="1" startCol="17" endLine="1" endCol="17">
+              <SimpleName isBad="True" startLine="1" startCol="17" endLine="1" endCol="17" escaped="False" />
+            </NamedType>
+            <ArgumentCollection startLine="1" startCol="17" endLine="1" endCol="31">
+              <Argument startLine="1" startCol="18" endLine="1" endCol="20">
+                <SimpleNameExpression startLine="1" startCol="18" endLine="1" endCol="20" isConstant="False">
+                  <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">x</SimpleName>
+                </SimpleNameExpression>
+              </Argument>
+              <RightParenthesis line="1" col="30" />
+            </ArgumentCollection>
+          </ArrayType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="18" endType="Event">
+            <Event line="2" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedAs startLine="1" startCol="17" endLine="1" endCol="18">error 16 (17,1) - (18,1): Expected 'As'.</ExpectedAs>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Public Foo
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="2" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="20" escaped="False">Public</SimpleName>
+          <NamedType isBad="True" startLine="1" startCol="24" endLine="1" endCol="24">
+            <SimpleName isBad="True" startLine="1" startCol="24" endLine="1" endCol="24" escaped="False" />
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="18" endType="Event">
+            <Event line="2" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="14" endLine="1" endCol="20">error 24 (14,1) - (20,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        AddHandler
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="21">
+            <AddHandlerAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="19" />
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndAddHandler startLine="3" startCol="9" endLine="3" endCol="18">error 164 (9,3) - (18,3): 'AddHandler' must end with a matching 'End AddHandler'.</ExpectedEndAddHandler>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        AddHandler(
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="22">
+            <AddHandlerAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="20">
+              <ParameterCollection startLine="2" startCol="19" endLine="2" endCol="20">
+                <Parameter startLine="2" startCol="20" endLine="2" endCol="20">
+                  <VariableName startLine="2" startCol="20" endLine="2" endCol="20">
+                    <SimpleName isBad="True" startLine="2" startCol="20" endLine="2" endCol="22" escaped="False" />
+                  </VariableName>
+                </Parameter>
+              </ParameterCollection>
+            </AddHandlerAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="2" startCol="20" endLine="2" endCol="22">error 23 (20,2) - (22,2): Expected identifier.</ExpectedIdentifier>
+        <ExpectedEndAddHandler startLine="3" startCol="9" endLine="3" endCol="18">error 164 (9,3) - (18,3): 'AddHandler' must end with a matching 'End AddHandler'.</ExpectedEndAddHandler>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        AddHandler)
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="22">
+            <AddHandlerAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="20" />
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="2" startCol="19" endLine="2" endCol="20">error 39 (19,2) - (20,2): End of statement expected.</ExpectedEndOfStatement>
+        <ExpectedEndAddHandler startLine="3" startCol="9" endLine="3" endCol="18">error 164 (9,3) - (18,3): 'AddHandler' must end with a matching 'End AddHandler'.</ExpectedEndAddHandler>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        AddHandler() : End AddHandler
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="40">
+            <AddHandlerAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="38">
+              <ParameterCollection startLine="2" startCol="19" endLine="2" endCol="22">
+                <RightParenthesis line="2" col="20" />
+              </ParameterCollection>
+              <StatementCollection startLine="2" startCol="24" endLine="2" endCol="27">
+                <Colon line="2" col="22" />
+              </StatementCollection>
+              <EndBlockDeclaration startLine="2" startCol="24" endLine="2" endCol="38" endType="AddHandler">
+                <AddHandler line="2" col="28" />
+              </EndBlockDeclaration>
+            </AddHandlerAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <MethodBodyNotAtLineStart startLine="2" startCol="22" endLine="2" endCol="23">error 99 (22,2) - (23,2): First statement of a method body cannot be on the same line as the method declaration.</MethodBodyNotAtLineStart>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        AddHandler
+        End
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="4" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="14">
+            <AddHandlerAccessorDeclaration startLine="2" startCol="9" endLine="3" endCol="12">
+              <StatementCollection startLine="3" startCol="9" endLine="3" endCol="14">
+                <EndStatement startLine="3" startCol="9" endLine="3" endCol="12" />
+              </StatementCollection>
+            </AddHandlerAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="18" endType="Event">
+            <Event line="4" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndAddHandler startLine="4" startCol="9" endLine="4" endCol="18">error 164 (9,4) - (18,4): 'AddHandler' must end with a matching 'End AddHandler'.</ExpectedEndAddHandler>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        RemoveHandler
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="24">
+            <RemoveHandlerAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="22" />
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndRemoveHandler startLine="3" startCol="9" endLine="3" endCol="18">error 165 (9,3) - (18,3): 'RemoveHandler' must end with a matching 'End RemoveHandler'.</ExpectedEndRemoveHandler>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        RemoveHandler(
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="25">
+            <RemoveHandlerAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="23">
+              <ParameterCollection startLine="2" startCol="22" endLine="2" endCol="23">
+                <Parameter startLine="2" startCol="23" endLine="2" endCol="23">
+                  <VariableName startLine="2" startCol="23" endLine="2" endCol="23">
+                    <SimpleName isBad="True" startLine="2" startCol="23" endLine="2" endCol="25" escaped="False" />
+                  </VariableName>
+                </Parameter>
+              </ParameterCollection>
+            </RemoveHandlerAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="2" startCol="23" endLine="2" endCol="25">error 23 (23,2) - (25,2): Expected identifier.</ExpectedIdentifier>
+        <ExpectedEndRemoveHandler startLine="3" startCol="9" endLine="3" endCol="18">error 165 (9,3) - (18,3): 'RemoveHandler' must end with a matching 'End RemoveHandler'.</ExpectedEndRemoveHandler>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        RemoveHandler)
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="25">
+            <RemoveHandlerAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="23" />
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="2" startCol="22" endLine="2" endCol="23">error 39 (22,2) - (23,2): End of statement expected.</ExpectedEndOfStatement>
+        <ExpectedEndRemoveHandler startLine="3" startCol="9" endLine="3" endCol="18">error 165 (9,3) - (18,3): 'RemoveHandler' must end with a matching 'End RemoveHandler'.</ExpectedEndRemoveHandler>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        RemoveHandler() : End RemoveHandler
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="46">
+            <RemoveHandlerAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="44">
+              <ParameterCollection startLine="2" startCol="22" endLine="2" endCol="25">
+                <RightParenthesis line="2" col="23" />
+              </ParameterCollection>
+              <StatementCollection startLine="2" startCol="27" endLine="2" endCol="30">
+                <Colon line="2" col="25" />
+              </StatementCollection>
+              <EndBlockDeclaration startLine="2" startCol="27" endLine="2" endCol="44" endType="RemoveHandler">
+                <RemoveHandler line="2" col="31" />
+              </EndBlockDeclaration>
+            </RemoveHandlerAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <MethodBodyNotAtLineStart startLine="2" startCol="25" endLine="2" endCol="26">error 99 (25,2) - (26,2): First statement of a method body cannot be on the same line as the method declaration.</MethodBodyNotAtLineStart>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        RemoveHandler
+        End
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="4" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="14">
+            <RemoveHandlerAccessorDeclaration startLine="2" startCol="9" endLine="3" endCol="12">
+              <StatementCollection startLine="3" startCol="9" endLine="3" endCol="14">
+                <EndStatement startLine="3" startCol="9" endLine="3" endCol="12" />
+              </StatementCollection>
+            </RemoveHandlerAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="18" endType="Event">
+            <Event line="4" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndRemoveHandler startLine="4" startCol="9" endLine="4" endCol="18">error 165 (9,4) - (18,4): 'RemoveHandler' must end with a matching 'End RemoveHandler'.</ExpectedEndRemoveHandler>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        RaiseEvent
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="21">
+            <RaiseEventAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="19" />
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndRaiseEvent startLine="3" startCol="9" endLine="3" endCol="18">error 166 (9,3) - (18,3): 'RaiseEvent' must end with a matching 'End RaiseEvent'.</ExpectedEndRaiseEvent>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        RaiseEvent(
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="22">
+            <RaiseEventAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="20">
+              <ParameterCollection startLine="2" startCol="19" endLine="2" endCol="20">
+                <Parameter startLine="2" startCol="20" endLine="2" endCol="20">
+                  <VariableName startLine="2" startCol="20" endLine="2" endCol="20">
+                    <SimpleName isBad="True" startLine="2" startCol="20" endLine="2" endCol="22" escaped="False" />
+                  </VariableName>
+                </Parameter>
+              </ParameterCollection>
+            </RaiseEventAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="2" startCol="20" endLine="2" endCol="22">error 23 (20,2) - (22,2): Expected identifier.</ExpectedIdentifier>
+        <ExpectedEndRaiseEvent startLine="3" startCol="9" endLine="3" endCol="18">error 166 (9,3) - (18,3): 'RaiseEvent' must end with a matching 'End RaiseEvent'.</ExpectedEndRaiseEvent>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        RaiseEvent)
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="22">
+            <RaiseEventAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="20" />
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="2" startCol="19" endLine="2" endCol="20">error 39 (19,2) - (20,2): End of statement expected.</ExpectedEndOfStatement>
+        <ExpectedEndRaiseEvent startLine="3" startCol="9" endLine="3" endCol="18">error 166 (9,3) - (18,3): 'RaiseEvent' must end with a matching 'End RaiseEvent'.</ExpectedEndRaiseEvent>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        RaiseEvent() : End RaiseEvent
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="3" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="40">
+            <RaiseEventAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="38">
+              <ParameterCollection startLine="2" startCol="19" endLine="2" endCol="22">
+                <RightParenthesis line="2" col="20" />
+              </ParameterCollection>
+              <StatementCollection startLine="2" startCol="24" endLine="2" endCol="27">
+                <Colon line="2" col="22" />
+              </StatementCollection>
+              <EndBlockDeclaration startLine="2" startCol="24" endLine="2" endCol="38" endType="RaiseEvent">
+                <RaiseEvent line="2" col="28" />
+              </EndBlockDeclaration>
+            </RaiseEventAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Event">
+            <Event line="3" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <MethodBodyNotAtLineStart startLine="2" startCol="22" endLine="2" endCol="23">error 99 (22,2) - (23,2): First statement of a method body cannot be on the same line as the method declaration.</MethodBodyNotAtLineStart>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Custom Event Foo as Y
+        RaiseEvent
+        End
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="4" endCol="18">
+          <Custom line="1" col="1" />
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <As line="1" col="18" />
+          <NamedType startLine="1" startCol="21" endLine="1" endCol="22">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">Y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="14">
+            <RaiseEventAccessorDeclaration startLine="2" startCol="9" endLine="3" endCol="12">
+              <StatementCollection startLine="3" startCol="9" endLine="3" endCol="14">
+                <EndStatement startLine="3" startCol="9" endLine="3" endCol="12" />
+              </StatementCollection>
+            </RaiseEventAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="18" endType="Event">
+            <Event line="4" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndRaiseEvent startLine="4" startCol="9" endLine="4" endCol="18">error 166 (9,4) - (18,4): 'RaiseEvent' must end with a matching 'End RaiseEvent'.</ExpectedEndRaiseEvent>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>Event x As y</code>
+      <result>
+        <EventDeclaration startLine="1" startCol="1" endLine="1" endCol="13">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          <As line="1" col="9" />
+          <NamedType startLine="1" startCol="12" endLine="1" endCol="13">
+            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">y</SimpleName>
+          </NamedType>
+        </EventDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Event x(ByVal y As z)</code>
+      <result>
+        <EventDeclaration startLine="1" startCol="1" endLine="1" endCol="22">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="22">
+            <Parameter startLine="1" startCol="9" endLine="1" endCol="21">
+              <ModifierCollection startLine="1" startCol="9" endLine="1" endCol="15">
+                <Modifier startLine="1" startCol="9" endLine="1" endCol="15" type="ByVal" />
+              </ModifierCollection>
+              <VariableName startLine="1" startCol="15" endLine="1" endCol="17">
+                <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">y</SimpleName>
+              </VariableName>
+              <As line="1" col="17" />
+              <NamedType startLine="1" startCol="20" endLine="1" endCol="21">
+                <SimpleName startLine="1" startCol="20" endLine="1" endCol="21" escaped="False">z</SimpleName>
+              </NamedType>
+            </Parameter>
+            <RightParenthesis line="1" col="21" />
+          </ParameterCollection>
+        </EventDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Public Private Protected Friend Shadows Shared Event x As y</code>
+      <result>
+        <EventDeclaration startLine="1" startCol="1" endLine="1" endCol="60">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="48">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+            <Modifier startLine="1" startCol="8" endLine="1" endCol="16" type="Private" />
+            <Modifier startLine="1" startCol="16" endLine="1" endCol="26" type="Protected" />
+            <Modifier startLine="1" startCol="26" endLine="1" endCol="33" type="Friend" />
+            <Modifier startLine="1" startCol="33" endLine="1" endCol="41" type="Shadows" />
+            <Modifier startLine="1" startCol="41" endLine="1" endCol="48" type="Shared" />
+          </ModifierCollection>
+          <Event line="1" col="48" />
+          <SimpleName startLine="1" startCol="54" endLine="1" endCol="55" escaped="False">x</SimpleName>
+          <As line="1" col="56" />
+          <NamedType startLine="1" startCol="59" endLine="1" endCol="60">
+            <SimpleName startLine="1" startCol="59" endLine="1" endCol="60" escaped="False">y</SimpleName>
+          </NamedType>
+        </EventDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Public Custom Event x As y
+        AddHandler(a As b)
+        End AddHandler
+        RemoveHandler(a As b)
+        End RemoveHandler
+        RaiseEvent(a As b)
+        End RaiseEvent
+        End Event
+      </code>
+      <result>
+        <CustomEventDeclaration startLine="1" startCol="1" endLine="8" endCol="18">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="8">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+          </ModifierCollection>
+          <Custom line="1" col="8" />
+          <Event line="1" col="15" />
+          <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">x</SimpleName>
+          <As line="1" col="23" />
+          <NamedType startLine="1" startCol="26" endLine="1" endCol="27">
+            <SimpleName startLine="1" startCol="26" endLine="1" endCol="27" escaped="False">y</SimpleName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="7" endCol="25">
+            <AddHandlerAccessorDeclaration startLine="2" startCol="9" endLine="3" endCol="23">
+              <ParameterCollection startLine="2" startCol="19" endLine="2" endCol="27">
+                <Parameter startLine="2" startCol="20" endLine="2" endCol="26">
+                  <VariableName startLine="2" startCol="20" endLine="2" endCol="22">
+                    <SimpleName startLine="2" startCol="20" endLine="2" endCol="21" escaped="False">a</SimpleName>
+                  </VariableName>
+                  <As line="2" col="22" />
+                  <NamedType startLine="2" startCol="25" endLine="2" endCol="26">
+                    <SimpleName startLine="2" startCol="25" endLine="2" endCol="26" escaped="False">b</SimpleName>
+                  </NamedType>
+                </Parameter>
+                <RightParenthesis line="2" col="26" />
+              </ParameterCollection>
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="23" endType="AddHandler">
+                <AddHandler line="3" col="13" />
+              </EndBlockDeclaration>
+            </AddHandlerAccessorDeclaration>
+            <RemoveHandlerAccessorDeclaration startLine="4" startCol="9" endLine="5" endCol="26">
+              <ParameterCollection startLine="4" startCol="22" endLine="4" endCol="30">
+                <Parameter startLine="4" startCol="23" endLine="4" endCol="29">
+                  <VariableName startLine="4" startCol="23" endLine="4" endCol="25">
+                    <SimpleName startLine="4" startCol="23" endLine="4" endCol="24" escaped="False">a</SimpleName>
+                  </VariableName>
+                  <As line="4" col="25" />
+                  <NamedType startLine="4" startCol="28" endLine="4" endCol="29">
+                    <SimpleName startLine="4" startCol="28" endLine="4" endCol="29" escaped="False">b</SimpleName>
+                  </NamedType>
+                </Parameter>
+                <RightParenthesis line="4" col="29" />
+              </ParameterCollection>
+              <EndBlockDeclaration startLine="5" startCol="9" endLine="5" endCol="26" endType="RemoveHandler">
+                <RemoveHandler line="5" col="13" />
+              </EndBlockDeclaration>
+            </RemoveHandlerAccessorDeclaration>
+            <RaiseEventAccessorDeclaration startLine="6" startCol="9" endLine="7" endCol="23">
+              <ParameterCollection startLine="6" startCol="19" endLine="6" endCol="27">
+                <Parameter startLine="6" startCol="20" endLine="6" endCol="26">
+                  <VariableName startLine="6" startCol="20" endLine="6" endCol="22">
+                    <SimpleName startLine="6" startCol="20" endLine="6" endCol="21" escaped="False">a</SimpleName>
+                  </VariableName>
+                  <As line="6" col="22" />
+                  <NamedType startLine="6" startCol="25" endLine="6" endCol="26">
+                    <SimpleName startLine="6" startCol="25" endLine="6" endCol="26" escaped="False">b</SimpleName>
+                  </NamedType>
+                </Parameter>
+                <RightParenthesis line="6" col="26" />
+              </ParameterCollection>
+              <EndBlockDeclaration startLine="7" startCol="9" endLine="7" endCol="23" endType="RaiseEvent">
+                <RaiseEvent line="7" col="13" />
+              </EndBlockDeclaration>
+            </RaiseEventAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="8" startCol="9" endLine="8" endCol="18" endType="Event">
+            <Event line="8" col="13" />
+          </EndBlockDeclaration>
+        </CustomEventDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

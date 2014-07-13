@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Option" type="file" description="6.2 Compilation Options">
+  <invalid>
+    <test>
+      <code>Option</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="7">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="7">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="7" type="SyntaxError" />
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidOptionType startLine="1" startCol="1" endLine="1" endCol="7">error 125 (1,1) - (7,1): 'Option' must be followed by 'Compare', 'Explicit', or 'Strict'.</InvalidOptionType>
+      </errors>
+    </test>
+    <test>
+      <code>Option Compare</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="15">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="15">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="15" type="SyntaxError" />
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidOptionCompareType startLine="1" startCol="1" endLine="1" endCol="15">error 124 (1,1) - (15,1): 'Option Compare' must be followed by 'Text' or 'Binary'.</InvalidOptionCompareType>
+      </errors>
+    </test>
+    <test>
+      <code>Option On</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="10">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="10">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="10" type="SyntaxError" />
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidOptionType startLine="1" startCol="1" endLine="1" endCol="8">error 125 (1,1) - (8,1): 'Option' must be followed by 'Compare', 'Explicit', or 'Strict'.</InvalidOptionType>
+      </errors>
+    </test>
+    <test>
+      <code>Option Off</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="11">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="11">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="11" type="SyntaxError" />
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidOptionType startLine="1" startCol="1" endLine="1" endCol="8">error 125 (1,1) - (8,1): 'Option' must be followed by 'Compare', 'Explicit', or 'Strict'.</InvalidOptionType>
+      </errors>
+    </test>
+    <test>
+      <code>Option Binary</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="14">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="14">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="14" type="SyntaxError" />
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidOptionType startLine="1" startCol="1" endLine="1" endCol="8">error 125 (1,1) - (8,1): 'Option' must be followed by 'Compare', 'Explicit', or 'Strict'.</InvalidOptionType>
+      </errors>
+    </test>
+    <test>
+      <code>Option Text</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="12">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="12">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="12" type="SyntaxError" />
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <InvalidOptionType startLine="1" startCol="1" endLine="1" endCol="8">error 125 (1,1) - (8,1): 'Option' must be followed by 'Compare', 'Explicit', or 'Strict'.</InvalidOptionType>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Imports x
+        Option Compare Text
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="28">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="28">
+            <ImportsDeclaration startLine="1" startCol="1" endLine="1" endCol="10">
+              <ImportCollection startLine="1" startCol="9" endLine="1" endCol="10">
+                <NameImport startLine="1" startCol="9" endLine="1" endCol="10">
+                  <NamedType startLine="1" startCol="9" endLine="1" endCol="10">
+                    <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="28" type="CompareText">
+              <Compare line="2" col="16" />
+              <Text line="2" col="24" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <OptionStatementWrongOrder startLine="2" startCol="9" endLine="2" endCol="28">error 126 (9,2) - (28,2): 'Option' statements must precede any declarations or 'Imports' statements.</OptionStatementWrongOrder>
+      </errors>
+    </test>
+    <test>
+      <code>
+        &lt;Assembly:x&gt;
+        Option Compare Text
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="28">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="28">
+            <AttributeDeclaration startLine="1" startCol="1" endLine="1" endCol="13">
+              <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="13">
+                <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="13">
+                  <Attribute startLine="1" startCol="2" endLine="1" endCol="12" type="Assembly">
+                    <Colon line="1" col="10" />
+                    <Assembly line="1" col="2" />
+                    <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">x</SimpleName>
+                  </Attribute>
+                  <GreaterThan line="1" col="12" />
+                </AttributeCollection>
+              </AttributeBlockCollection>
+            </AttributeDeclaration>
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="28" type="CompareText">
+              <Compare line="2" col="16" />
+              <Text line="2" col="24" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <OptionStatementWrongOrder startLine="2" startCol="9" endLine="2" endCol="28">error 126 (9,2) - (28,2): 'Option' statements must precede any declarations or 'Imports' statements.</OptionStatementWrongOrder>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Namespace Foo
+        End Namespace
+
+        Option Compare Text
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="4" endCol="28">
+          <DeclarationCollection startLine="1" startCol="1" endLine="4" endCol="28">
+            <NamespaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+              <Namespace line="1" col="1" />
+              <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+              <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Namespace">
+                <Namespace line="2" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+            <OptionDeclaration startLine="4" startCol="9" endLine="4" endCol="28" type="CompareText">
+              <Compare line="4" col="16" />
+              <Text line="4" col="24" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <OptionStatementWrongOrder startLine="4" startCol="9" endLine="4" endCol="28">error 126 (9,4) - (28,4): 'Option' statements must precede any declarations or 'Imports' statements.</OptionStatementWrongOrder>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>Option Explicit</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="16">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="16">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="16" type="Explicit">
+              <Explicit line="1" col="8" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>Option Explicit On</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="19">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="19">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="19" type="ExplicitOn">
+              <Explicit line="1" col="8" />
+              <On line="1" col="17" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>Option Explicit Off</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="20">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="20">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="20" type="ExplicitOff">
+              <Explicit line="1" col="8" />
+              <Off line="1" col="17" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>Option Strict</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="14">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="14">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="14" type="Strict">
+              <Strict line="1" col="8" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>Option Strict On</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="17">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="17">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="17" type="StrictOn">
+              <Strict line="1" col="8" />
+              <On line="1" col="15" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>Option Strict Off</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="18">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="18">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="18" type="StrictOff">
+              <Strict line="1" col="8" />
+              <Off line="1" col="15" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>Option Compare Binary</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="22">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="22" type="CompareBinary">
+              <Compare line="1" col="8" />
+              <Binary line="1" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>Option Compare Text</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="20">
+          <DeclarationCollection startLine="1" startCol="1" endLine="1" endCol="20">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="20" type="CompareText">
+              <Compare line="1" col="8" />
+              <Text line="1" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>
+        Option Compare Text
+        Imports x
+        &lt;Assembly:x&gt;
+        Namespace Foo
+        End Namespace
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="5" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="5" endCol="22">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="20" type="CompareText">
+              <Compare line="1" col="8" />
+              <Text line="1" col="16" />
+            </OptionDeclaration>
+            <ImportsDeclaration startLine="2" startCol="9" endLine="2" endCol="18">
+              <ImportCollection startLine="2" startCol="17" endLine="2" endCol="18">
+                <NameImport startLine="2" startCol="17" endLine="2" endCol="18">
+                  <NamedType startLine="2" startCol="17" endLine="2" endCol="18">
+                    <SimpleName startLine="2" startCol="17" endLine="2" endCol="18" escaped="False">x</SimpleName>
+                  </NamedType>
+                </NameImport>
+              </ImportCollection>
+            </ImportsDeclaration>
+            <AttributeDeclaration startLine="3" startCol="9" endLine="3" endCol="21">
+              <AttributeBlockCollection startLine="3" startCol="9" endLine="3" endCol="21">
+                <AttributeCollection startLine="3" startCol="9" endLine="3" endCol="21">
+                  <Attribute startLine="3" startCol="10" endLine="3" endCol="20" type="Assembly">
+                    <Colon line="3" col="18" />
+                    <Assembly line="3" col="10" />
+                    <SimpleName startLine="3" startCol="19" endLine="3" endCol="20" escaped="False">x</SimpleName>
+                  </Attribute>
+                  <GreaterThan line="3" col="20" />
+                </AttributeCollection>
+              </AttributeBlockCollection>
+            </AttributeDeclaration>
+            <NamespaceDeclaration startLine="4" startCol="9" endLine="5" endCol="22">
+              <Namespace line="4" col="9" />
+              <SimpleName startLine="4" startCol="19" endLine="4" endCol="22" escaped="False">Foo</SimpleName>
+              <EndBlockDeclaration startLine="5" startCol="9" endLine="5" endCol="22" endType="Namespace">
+                <Namespace line="5" col="13" />
+              </EndBlockDeclaration>
+            </NamespaceDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+  </valid>
+</scenario>

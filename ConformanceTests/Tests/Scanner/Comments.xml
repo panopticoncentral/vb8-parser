@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Comments" type="token" description="2.1.4 Comments">
+  <valid>
+    <test>
+      <code>a ' b</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</Identifier>
+        <Comment startLine="1" startCol="3" endLine="1" endCol="6" isRem="False"> b</Comment>
+      </result>
+    </test>
+    <test>
+      <code>a rem b</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</Identifier>
+        <Comment startLine="1" startCol="3" endLine="1" endCol="8" isRem="True"> b</Comment>
+      </result>
+    </test>
+    <test>
+      <code>rem c</code>
+      <result>
+        <Comment startLine="1" startCol="1" endLine="1" endCol="6" isRem="True"> c</Comment>
+      </result>
+    </test>
+    <test>
+      <code>a [rem] b</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</Identifier>
+        <Identifier startLine="1" startCol="3" endLine="1" endCol="8" escaped="True">rem</Identifier>
+        <Identifier startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">b</Identifier>
+      </result>
+    </test>
+  </valid>
+</scenario>

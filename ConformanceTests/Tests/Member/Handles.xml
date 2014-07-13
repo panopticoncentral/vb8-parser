@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Handles" type="declaration" description="9.2.6 Event Handling">
+  <invalid>
+    <test>
+      <code>
+        Sub Foo Handles x.y Implements a.b
+        End Sub
+      </code>
+      <result>
+        <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <Sub line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+          <NameCollection startLine="1" startCol="9" endLine="1" endCol="21">
+            <QualifiedName startLine="1" startCol="17" endLine="1" endCol="21">
+              <SimpleName startLine="1" startCol="17" endLine="1" endCol="18" escaped="False">x</SimpleName>
+              <Period line="1" col="18" />
+              <SimpleName startLine="1" startCol="19" endLine="1" endCol="20" escaped="False">y</SimpleName>
+            </QualifiedName>
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </SubDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="21" endLine="1" endCol="31">error 39 (21,1) - (31,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Sub Foo Handles x
+        End Sub
+      </code>
+      <result>
+        <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <Sub line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+          <NameCollection startLine="1" startCol="9" endLine="1" endCol="18">
+            <SimpleName startLine="1" startCol="17" endLine="1" endCol="18" escaped="False">x</SimpleName>
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </SubDeclaration>
+      </result>
+      <errors>
+        <ExpectedPeriod startLine="1" startCol="18" endLine="1" endCol="20">error 18 (18,1) - (20,1): Expected '.'.</ExpectedPeriod>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Sub Foo Handles MyBase
+        End Sub
+      </code>
+      <result>
+        <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <Sub line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+          <NameCollection startLine="1" startCol="9" endLine="1" endCol="23">
+            <MyBaseName startLine="1" startCol="17" endLine="1" endCol="23" />
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </SubDeclaration>
+      </result>
+      <errors>
+        <ExpectedPeriod startLine="1" startCol="23" endLine="1" endCol="25">error 18 (23,1) - (25,1): Expected '.'.</ExpectedPeriod>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Function Foo Handles x.y Implements a.b
+        End Function
+      </code>
+      <result>
+        <FunctionDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Function line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <NameCollection startLine="1" startCol="14" endLine="1" endCol="26">
+            <QualifiedName startLine="1" startCol="22" endLine="1" endCol="26">
+              <SimpleName startLine="1" startCol="22" endLine="1" endCol="23" escaped="False">x</SimpleName>
+              <Period line="1" col="23" />
+              <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">y</SimpleName>
+            </QualifiedName>
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Function">
+            <Function line="2" col="13" />
+          </EndBlockDeclaration>
+        </FunctionDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="26" endLine="1" endCol="36">error 39 (26,1) - (36,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Function Foo Handles x
+        End Function
+      </code>
+      <result>
+        <FunctionDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Function line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <NameCollection startLine="1" startCol="14" endLine="1" endCol="23">
+            <SimpleName startLine="1" startCol="22" endLine="1" endCol="23" escaped="False">x</SimpleName>
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Function">
+            <Function line="2" col="13" />
+          </EndBlockDeclaration>
+        </FunctionDeclaration>
+      </result>
+      <errors>
+        <ExpectedPeriod startLine="1" startCol="23" endLine="1" endCol="25">error 18 (23,1) - (25,1): Expected '.'.</ExpectedPeriod>
+      </errors>
+    </test>
+    <test version="7.1">
+      <code>
+        Sub Foo Handles Me.Foo
+        End Sub
+      </code>
+      <result>
+        <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <Sub line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+          <NameCollection startLine="1" startCol="9" endLine="1" endCol="23">
+            <QualifiedName startLine="1" startCol="17" endLine="1" endCol="23">
+              <SimpleName startLine="1" startCol="17" endLine="1" endCol="19" escaped="False">Me</SimpleName>
+              <Period line="1" col="19" />
+              <SimpleName startLine="1" startCol="20" endLine="1" endCol="23" escaped="False">Foo</SimpleName>
+            </QualifiedName>
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </SubDeclaration>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="17" endLine="1" endCol="19">error 24 (17,1) - (19,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>
+        Sub Foo() Handles x.y
+        End Sub
+      </code>
+      <result>
+        <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <Sub line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="11">
+            <RightParenthesis line="1" col="9" />
+          </ParameterCollection>
+          <NameCollection startLine="1" startCol="11" endLine="1" endCol="22">
+            <QualifiedName startLine="1" startCol="19" endLine="1" endCol="22">
+              <SimpleName startLine="1" startCol="19" endLine="1" endCol="20" escaped="False">x</SimpleName>
+              <Period line="1" col="20" />
+              <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">y</SimpleName>
+            </QualifiedName>
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </SubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Sub Foo() Handles MyBase.y
+        End Sub
+      </code>
+      <result>
+        <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <Sub line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="11">
+            <RightParenthesis line="1" col="9" />
+          </ParameterCollection>
+          <NameCollection startLine="1" startCol="11" endLine="1" endCol="27">
+            <QualifiedName startLine="1" startCol="19" endLine="1" endCol="27">
+              <MyBaseName startLine="1" startCol="19" endLine="1" endCol="25" />
+              <Period line="1" col="25" />
+              <SimpleName startLine="1" startCol="26" endLine="1" endCol="27" escaped="False">y</SimpleName>
+            </QualifiedName>
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </SubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Sub Foo Handles x.y.z
+        End Sub
+      </code>
+      <result>
+        <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <Sub line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+          <NameCollection startLine="1" startCol="9" endLine="1" endCol="22">
+            <QualifiedName startLine="1" startCol="17" endLine="1" endCol="22">
+              <QualifiedName startLine="1" startCol="17" endLine="1" endCol="20">
+                <SimpleName startLine="1" startCol="17" endLine="1" endCol="18" escaped="False">x</SimpleName>
+                <Period line="1" col="18" />
+                <SimpleName startLine="1" startCol="19" endLine="1" endCol="20" escaped="False">y</SimpleName>
+              </QualifiedName>
+              <Period line="1" col="20" />
+              <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">z</SimpleName>
+            </QualifiedName>
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </SubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Function Foo() Handles x.y
+        End Function
+      </code>
+      <result>
+        <FunctionDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Function line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="13" endLine="1" endCol="16">
+            <RightParenthesis line="1" col="14" />
+          </ParameterCollection>
+          <NameCollection startLine="1" startCol="16" endLine="1" endCol="27">
+            <QualifiedName startLine="1" startCol="24" endLine="1" endCol="27">
+              <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">x</SimpleName>
+              <Period line="1" col="25" />
+              <SimpleName startLine="1" startCol="26" endLine="1" endCol="27" escaped="False">y</SimpleName>
+            </QualifiedName>
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Function">
+            <Function line="2" col="13" />
+          </EndBlockDeclaration>
+        </FunctionDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Function Foo Handles x.y.z
+        End Function
+      </code>
+      <result>
+        <FunctionDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Function line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <NameCollection startLine="1" startCol="14" endLine="1" endCol="27">
+            <QualifiedName startLine="1" startCol="22" endLine="1" endCol="27">
+              <QualifiedName startLine="1" startCol="22" endLine="1" endCol="25">
+                <SimpleName startLine="1" startCol="22" endLine="1" endCol="23" escaped="False">x</SimpleName>
+                <Period line="1" col="23" />
+                <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">y</SimpleName>
+              </QualifiedName>
+              <Period line="1" col="25" />
+              <SimpleName startLine="1" startCol="26" endLine="1" endCol="27" escaped="False">z</SimpleName>
+            </QualifiedName>
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Function">
+            <Function line="2" col="13" />
+          </EndBlockDeclaration>
+        </FunctionDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Sub Foo Handles Me.Bar
+        End Sub
+      </code>
+      <result>
+        <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="16">
+          <Sub line="1" col="1" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+          <NameCollection startLine="1" startCol="9" endLine="1" endCol="23">
+            <QualifiedName startLine="1" startCol="17" endLine="1" endCol="23">
+              <MeName startLine="1" startCol="17" endLine="1" endCol="19" />
+              <Period line="1" col="19" />
+              <SimpleName startLine="1" startCol="20" endLine="1" endCol="23" escaped="False">Bar</SimpleName>
+            </QualifiedName>
+          </NameCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="16" endType="Sub">
+            <Sub line="2" col="13" />
+          </EndBlockDeclaration>
+        </SubDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

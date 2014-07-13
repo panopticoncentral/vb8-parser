@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="StatementComments" type="statement" description="Comments after statements">
+  <valid>
+    <test>
+      <code>
+        ' A comment
+        ' A commment
+        ' A comment
+      </code>
+      <result>
+        <EmptyStatement startLine="1" startCol="9" endLine="3" endCol="20">
+          <Comment startLine="1" startCol="9" endLine="1" endCol="20" isRem="False"> A comment</Comment>
+          <Comment startLine="2" startCol="9" endLine="2" endCol="21" isRem="False"> A commment</Comment>
+          <Comment startLine="3" startCol="9" endLine="3" endCol="20" isRem="False"> A comment</Comment>
+        </EmptyStatement>
+      </result>
+    </test>
+    <test>
+      <code>Redim x(10) ' A comment</code>
+      <result>
+        <ReDimStatement startLine="1" startCol="1" endLine="1" endCol="13">
+          <Comment startLine="1" startCol="13" endLine="1" endCol="24" isRem="False"> A comment</Comment>
+          <ExpressionCollection startLine="1" startCol="7" endLine="1" endCol="13">
+            <CallOrIndexExpression startLine="1" startCol="7" endLine="1" endCol="13" isConstant="False">
+              <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+                <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="1" startCol="8" endLine="1" endCol="13">
+                <Argument startLine="1" startCol="9" endLine="1" endCol="11">
+                  <IntegerLiteralExpression startLine="1" startCol="9" endLine="1" endCol="11" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+                </Argument>
+                <RightParenthesis line="1" col="11" />
+              </ArgumentCollection>
+            </CallOrIndexExpression>
+          </ExpressionCollection>
+        </ReDimStatement>
+      </result>
+    </test>
+    <test>
+      <code>Erase a ' A comment</code>
+      <result>
+        <EraseStatement startLine="1" startCol="1" endLine="1" endCol="9">
+          <Comment startLine="1" startCol="9" endLine="1" endCol="20" isRem="False"> A comment</Comment>
+          <ExpressionCollection startLine="1" startCol="7" endLine="1" endCol="9">
+            <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="False">
+              <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">a</SimpleName>
+            </SimpleNameExpression>
+          </ExpressionCollection>
+        </EraseStatement>
+      </result>
+    </test>
+    <test>
+      <code>x = 5 ' A comment</code>
+      <result>
+        <AssignmentStatement startLine="1" startCol="1" endLine="1" endCol="7">
+          <Comment startLine="1" startCol="7" endLine="1" endCol="18" isRem="False"> A comment</Comment>
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Equals line="1" col="3" />
+          <IntegerLiteralExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="True" base="Decimal">5</IntegerLiteralExpression>
+        </AssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>a: ' A comment </code>
+      <result>
+        <LabelStatement startLine="1" startCol="1" endLine="1" endCol="2" isLineNumber="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</SimpleName>
+        </LabelStatement>
+      </result>
+    </test>
+    <test>
+      <code>GoTo a ' A comment</code>
+      <result>
+        <GotoStatement startLine="1" startCol="1" endLine="1" endCol="8" isLineNumber="False">
+          <Comment startLine="1" startCol="8" endLine="1" endCol="19" isRem="False"> A comment</Comment>
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">a</SimpleName>
+        </GotoStatement>
+      </result>
+    </test>
+    <test>
+      <code>Exit For ' A comment</code>
+      <result>
+        <ExitStatement startLine="1" startCol="1" endLine="1" endCol="10" exitType="For">
+          <Comment startLine="1" startCol="10" endLine="1" endCol="21" isRem="False"> A comment</Comment>
+          <For line="1" col="6" />
+        </ExitStatement>
+      </result>
+    </test>
+    <test>
+      <code>Stop ' A comment</code>
+      <result>
+        <StopStatement startLine="1" startCol="1" endLine="1" endCol="6">
+          <Comment startLine="1" startCol="6" endLine="1" endCol="17" isRem="False"> A comment</Comment>
+        </StopStatement>
+      </result>
+    </test>
+    <test>
+      <code>End ' A comment</code>
+      <result>
+        <EndStatement startLine="1" startCol="1" endLine="1" endCol="5">
+          <Comment startLine="1" startCol="5" endLine="1" endCol="16" isRem="False"> A comment</Comment>
+        </EndStatement>
+      </result>
+    </test>
+    <test>
+      <code>Return a ' A comment</code>
+      <result>
+        <ReturnStatement startLine="1" startCol="1" endLine="1" endCol="10">
+          <Comment startLine="1" startCol="10" endLine="1" endCol="21" isRem="False"> A comment</Comment>
+          <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">a</SimpleName>
+          </SimpleNameExpression>
+        </ReturnStatement>
+      </result>
+    </test>
+    <test>
+      <code>If x Then y Else z ' A comment</code>
+      <result>
+        <LineIfBlockStatement startLine="1" startCol="1" endLine="1" endCol="31">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="6" />
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="12">
+            <CallStatement startLine="1" startCol="11" endLine="1" endCol="13">
+              <SimpleNameExpression startLine="1" startCol="11" endLine="1" endCol="13" isConstant="False">
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+          </StatementCollection>
+          <Else line="1" col="13" />
+          <StatementCollection startLine="1" startCol="18" endLine="1" endCol="19">
+            <CallStatement startLine="1" startCol="18" endLine="1" endCol="20">
+              <Comment startLine="1" startCol="20" endLine="1" endCol="31" isRem="False"> A comment</Comment>
+              <SimpleNameExpression startLine="1" startCol="18" endLine="1" endCol="20" isConstant="False">
+                <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">z</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+          </StatementCollection>
+        </LineIfBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        If x Then ' A comment
+        End If ' A comment
+      </code>
+      <result>
+        <IfBlockStatement startLine="1" startCol="9" endLine="2" endCol="27">
+          <Comment startLine="1" startCol="19" endLine="1" endCol="30" isRem="False"> A comment</Comment>
+          <SimpleNameExpression startLine="1" startCol="12" endLine="1" endCol="14" isConstant="False">
+            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="14" />
+          <EndBlockStatement startLine="2" startCol="9" endLine="2" endCol="16" endType="If">
+            <Comment startLine="2" startCol="16" endLine="2" endCol="27" isRem="False"> A comment</Comment>
+            <If line="2" col="13" />
+          </EndBlockStatement>
+        </IfBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        Select Case x ' A comment
+        Case 10 ' A comment
+        Case Else ' A comment
+        End Select ' A comment
+      </code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="9" endLine="4" endCol="31">
+          <Comment startLine="1" startCol="23" endLine="1" endCol="34" isRem="False"> A comment</Comment>
+          <Case line="1" col="16" />
+          <SimpleNameExpression startLine="1" startCol="21" endLine="1" endCol="23" isConstant="False">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="2" startCol="9" endLine="3" endCol="9">
+            <CaseBlockStatement startLine="2" startCol="9" endLine="3" endCol="9">
+              <CaseStatement startLine="2" startCol="9" endLine="2" endCol="17">
+                <Comment startLine="2" startCol="17" endLine="2" endCol="28" isRem="False"> A comment</Comment>
+                <CaseClauseCollection startLine="2" startCol="14" endLine="2" endCol="17">
+                  <RangeCaseClause startLine="2" startCol="14" endLine="2" endCol="17">
+                    <IntegerLiteralExpression startLine="2" startCol="14" endLine="2" endCol="16" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+                  </RangeCaseClause>
+                </CaseClauseCollection>
+              </CaseStatement>
+            </CaseBlockStatement>
+          </StatementCollection>
+          <CaseElseBlockStatement startLine="3" startCol="9" endLine="4" endCol="9">
+            <CaseElseStatement startLine="3" startCol="9" endLine="3" endCol="19">
+              <Comment startLine="3" startCol="19" endLine="3" endCol="30" isRem="False"> A comment</Comment>
+              <Else line="3" col="14" />
+            </CaseElseStatement>
+          </CaseElseBlockStatement>
+          <EndBlockStatement startLine="4" startCol="9" endLine="4" endCol="20" endType="Select">
+            <Comment startLine="4" startCol="20" endLine="4" endCol="31" isRem="False"> A comment</Comment>
+            <Select line="4" col="13" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>AddHandler x, y ' A comment</code>
+      <result>
+        <AddHandlerStatement startLine="1" startCol="1" endLine="1" endCol="17">
+          <Comment startLine="1" startCol="17" endLine="1" endCol="28" isRem="False"> A comment</Comment>
+          <SimpleNameExpression startLine="1" startCol="12" endLine="1" endCol="13" isConstant="False">
+            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="13" />
+          <SimpleNameExpression startLine="1" startCol="15" endLine="1" endCol="17" isConstant="False">
+            <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </AddHandlerStatement>
+      </result>
+    </test>
+    <test>
+      <code>RemoveHandler x, y ' A comment</code>
+      <result>
+        <RemoveHandlerStatement startLine="1" startCol="1" endLine="1" endCol="20">
+          <Comment startLine="1" startCol="20" endLine="1" endCol="31" isRem="False"> A comment</Comment>
+          <SimpleNameExpression startLine="1" startCol="15" endLine="1" endCol="16" isConstant="False">
+            <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="16" />
+          <SimpleNameExpression startLine="1" startCol="18" endLine="1" endCol="20" isConstant="False">
+            <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </RemoveHandlerStatement>
+      </result>
+    </test>
+    <test>
+      <code>RaiseEvent x() ' A comment</code>
+      <result>
+        <RaiseEventStatement startLine="1" startCol="1" endLine="1" endCol="16">
+          <Comment startLine="1" startCol="16" endLine="1" endCol="27" isRem="False"> A comment</Comment>
+          <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          <ArgumentCollection startLine="1" startCol="13" endLine="1" endCol="16">
+            <RightParenthesis line="1" col="14" />
+          </ArgumentCollection>
+        </RaiseEventStatement>
+      </result>
+    </test>
+    <test>
+      <code>On Error GoTo 10 ' A comment</code>
+      <result>
+        <OnErrorStatement startLine="1" startCol="1" endLine="1" endCol="18" onErrorType="Label">
+          <Comment startLine="1" startCol="18" endLine="1" endCol="29" isRem="False"> A comment</Comment>
+          <Error line="1" col="4" />
+          <GoTo line="1" col="10" />
+          <SimpleName startLine="1" startCol="15" endLine="1" endCol="17" escaped="False">10</SimpleName>
+        </OnErrorStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        Try ' A comment
+        b()
+        Catch ex As Exception ' A comment
+        c()
+        Finally ' A comment
+        d()
+        End Try ' A comment
+      </code>
+      <result>
+        <TryBlockStatement startLine="1" startCol="9" endLine="7" endCol="28">
+          <Comment startLine="1" startCol="13" endLine="1" endCol="24" isRem="False"> A comment</Comment>
+          <StatementCollection startLine="2" startCol="9" endLine="2" endCol="14">
+            <CallStatement startLine="2" startCol="9" endLine="2" endCol="12">
+              <SimpleNameExpression startLine="2" startCol="9" endLine="2" endCol="10" isConstant="False">
+                <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">b</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="2" startCol="10" endLine="2" endCol="12">
+                <RightParenthesis line="2" col="11" />
+              </ArgumentCollection>
+            </CallStatement>
+          </StatementCollection>
+          <StatementCollection startLine="3" startCol="9" endLine="5" endCol="9">
+            <CatchBlockStatement startLine="3" startCol="9" endLine="5" endCol="9">
+              <CatchStatement startLine="3" startCol="9" endLine="3" endCol="31">
+                <Comment startLine="3" startCol="31" endLine="3" endCol="42" isRem="False"> A comment</Comment>
+                <SimpleName startLine="3" startCol="15" endLine="3" endCol="17" escaped="False">ex</SimpleName>
+                <As line="3" col="18" />
+                <NamedType startLine="3" startCol="21" endLine="3" endCol="30">
+                  <SimpleName startLine="3" startCol="21" endLine="3" endCol="30" escaped="False">Exception</SimpleName>
+                </NamedType>
+              </CatchStatement>
+              <StatementCollection startLine="4" startCol="9" endLine="4" endCol="14">
+                <CallStatement startLine="4" startCol="9" endLine="4" endCol="12">
+                  <SimpleNameExpression startLine="4" startCol="9" endLine="4" endCol="10" isConstant="False">
+                    <SimpleName startLine="4" startCol="9" endLine="4" endCol="10" escaped="False">c</SimpleName>
+                  </SimpleNameExpression>
+                  <ArgumentCollection startLine="4" startCol="10" endLine="4" endCol="12">
+                    <RightParenthesis line="4" col="11" />
+                  </ArgumentCollection>
+                </CallStatement>
+              </StatementCollection>
+            </CatchBlockStatement>
+          </StatementCollection>
+          <FinallyBlockStatement startLine="5" startCol="9" endLine="7" endCol="9">
+            <FinallyStatement startLine="5" startCol="9" endLine="5" endCol="17">
+              <Comment startLine="5" startCol="17" endLine="5" endCol="28" isRem="False"> A comment</Comment>
+            </FinallyStatement>
+            <StatementCollection startLine="6" startCol="9" endLine="6" endCol="14">
+              <CallStatement startLine="6" startCol="9" endLine="6" endCol="12">
+                <SimpleNameExpression startLine="6" startCol="9" endLine="6" endCol="10" isConstant="False">
+                  <SimpleName startLine="6" startCol="9" endLine="6" endCol="10" escaped="False">d</SimpleName>
+                </SimpleNameExpression>
+                <ArgumentCollection startLine="6" startCol="10" endLine="6" endCol="12">
+                  <RightParenthesis line="6" col="11" />
+                </ArgumentCollection>
+              </CallStatement>
+            </StatementCollection>
+          </FinallyBlockStatement>
+          <EndBlockStatement startLine="7" startCol="9" endLine="7" endCol="17" endType="Try">
+            <Comment startLine="7" startCol="17" endLine="7" endCol="28" isRem="False"> A comment</Comment>
+            <Try line="7" col="13" />
+          </EndBlockStatement>
+        </TryBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        With x ' A comment
+        c()
+        End With ' A comment
+      </code>
+      <result>
+        <WithBlockStatement startLine="1" startCol="9" endLine="3" endCol="29">
+          <Comment startLine="1" startCol="16" endLine="1" endCol="27" isRem="False"> A comment</Comment>
+          <SimpleNameExpression startLine="1" startCol="14" endLine="1" endCol="16" isConstant="False">
+            <SimpleName startLine="1" startCol="14" endLine="1" endCol="15" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="2" startCol="9" endLine="2" endCol="14">
+            <CallStatement startLine="2" startCol="9" endLine="2" endCol="12">
+              <SimpleNameExpression startLine="2" startCol="9" endLine="2" endCol="10" isConstant="False">
+                <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">c</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="2" startCol="10" endLine="2" endCol="12">
+                <RightParenthesis line="2" col="11" />
+              </ArgumentCollection>
+            </CallStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="3" startCol="9" endLine="3" endCol="18" endType="With">
+            <Comment startLine="3" startCol="18" endLine="3" endCol="29" isRem="False"> A comment</Comment>
+            <With line="3" col="13" />
+          </EndBlockStatement>
+        </WithBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        SyncLock a ' A comment
+        c()
+        End SyncLock ' A comment
+      </code>
+      <result>
+        <SyncLockBlockStatement startLine="1" startCol="9" endLine="3" endCol="33">
+          <Comment startLine="1" startCol="20" endLine="1" endCol="31" isRem="False"> A comment</Comment>
+          <SimpleNameExpression startLine="1" startCol="18" endLine="1" endCol="20" isConstant="False">
+            <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">a</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="2" startCol="9" endLine="2" endCol="14">
+            <CallStatement startLine="2" startCol="9" endLine="2" endCol="12">
+              <SimpleNameExpression startLine="2" startCol="9" endLine="2" endCol="10" isConstant="False">
+                <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">c</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="2" startCol="10" endLine="2" endCol="12">
+                <RightParenthesis line="2" col="11" />
+              </ArgumentCollection>
+            </CallStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="3" startCol="9" endLine="3" endCol="22" endType="SyncLock">
+            <Comment startLine="3" startCol="22" endLine="3" endCol="33" isRem="False"> A comment</Comment>
+            <SyncLock line="3" col="13" />
+          </EndBlockStatement>
+        </SyncLockBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Call x() ' A comment</code>
+      <result>
+        <CallStatement startLine="1" startCol="1" endLine="1" endCol="10">
+          <Comment startLine="1" startCol="10" endLine="1" endCol="21" isRem="False"> A comment</Comment>
+          <Call line="1" col="1" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <ArgumentCollection startLine="1" startCol="7" endLine="1" endCol="10">
+            <RightParenthesis line="1" col="8" />
+          </ArgumentCollection>
+        </CallStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x As Integer ' A comment</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="18">
+          <Comment startLine="1" startCol="18" endLine="1" endCol="29" isRem="False"> A comment</Comment>
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="18">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="18">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        For x = 1 To 10 ' A comment
+        a()
+        Next ' A comment
+      </code>
+      <result>
+        <ForBlockStatement startLine="1" startCol="9" endLine="3" endCol="25">
+          <Comment startLine="1" startCol="25" endLine="1" endCol="36" isRem="False"> A comment</Comment>
+          <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Equals line="1" col="15" />
+          <IntegerLiteralExpression startLine="1" startCol="17" endLine="1" endCol="18" isConstant="True" base="Decimal">1</IntegerLiteralExpression>
+          <To line="1" col="19" />
+          <IntegerLiteralExpression startLine="1" startCol="22" endLine="1" endCol="24" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+          <StatementCollection startLine="2" startCol="9" endLine="2" endCol="14">
+            <CallStatement startLine="2" startCol="9" endLine="2" endCol="12">
+              <SimpleNameExpression startLine="2" startCol="9" endLine="2" endCol="10" isConstant="False">
+                <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="2" startCol="10" endLine="2" endCol="12">
+                <RightParenthesis line="2" col="11" />
+              </ArgumentCollection>
+            </CallStatement>
+          </StatementCollection>
+          <NextStatement startLine="3" startCol="9" endLine="3" endCol="14">
+            <Comment startLine="3" startCol="14" endLine="3" endCol="25" isRem="False"> A comment</Comment>
+          </NextStatement>
+        </ForBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        For Each x In y ' A comment
+        a()
+        Next ' A comment
+      </code>
+      <result>
+        <ForEachBlockStatement startLine="1" startCol="9" endLine="3" endCol="25">
+          <Comment startLine="1" startCol="25" endLine="1" endCol="36" isRem="False"> A comment</Comment>
+          <Each line="1" col="13" />
+          <SimpleNameExpression startLine="1" startCol="18" endLine="1" endCol="20" isConstant="False">
+            <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <In line="1" col="20" />
+          <SimpleNameExpression startLine="1" startCol="23" endLine="1" endCol="25" isConstant="False">
+            <SimpleName startLine="1" startCol="23" endLine="1" endCol="24" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="2" startCol="9" endLine="2" endCol="14">
+            <CallStatement startLine="2" startCol="9" endLine="2" endCol="12">
+              <SimpleNameExpression startLine="2" startCol="9" endLine="2" endCol="10" isConstant="False">
+                <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="2" startCol="10" endLine="2" endCol="12">
+                <RightParenthesis line="2" col="11" />
+              </ArgumentCollection>
+            </CallStatement>
+          </StatementCollection>
+          <NextStatement startLine="3" startCol="9" endLine="3" endCol="14">
+            <Comment startLine="3" startCol="14" endLine="3" endCol="25" isRem="False"> A comment</Comment>
+          </NextStatement>
+        </ForEachBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        Do ' A comment
+        a()
+        Loop While b() ' A comment
+      </code>
+      <result>
+        <DoBlockStatement startLine="1" startCol="9" endLine="3" endCol="35">
+          <Comment startLine="1" startCol="12" endLine="1" endCol="23" isRem="False"> A comment</Comment>
+          <StatementCollection startLine="2" startCol="9" endLine="2" endCol="14">
+            <CallStatement startLine="2" startCol="9" endLine="2" endCol="12">
+              <SimpleNameExpression startLine="2" startCol="9" endLine="2" endCol="10" isConstant="False">
+                <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="2" startCol="10" endLine="2" endCol="12">
+                <RightParenthesis line="2" col="11" />
+              </ArgumentCollection>
+            </CallStatement>
+          </StatementCollection>
+          <LoopStatement startLine="3" startCol="9" endLine="3" endCol="24" isWhile="True">
+            <Comment startLine="3" startCol="24" endLine="3" endCol="35" isRem="False"> A comment</Comment>
+            <While line="3" col="14" />
+            <CallOrIndexExpression startLine="3" startCol="20" endLine="3" endCol="24" isConstant="False">
+              <SimpleNameExpression startLine="3" startCol="20" endLine="3" endCol="21" isConstant="False">
+                <SimpleName startLine="3" startCol="20" endLine="3" endCol="21" escaped="False">b</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="3" startCol="21" endLine="3" endCol="24">
+                <RightParenthesis line="3" col="22" />
+              </ArgumentCollection>
+            </CallOrIndexExpression>
+          </LoopStatement>
+        </DoBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        While x ' A comment
+        a()
+        End While ' A comment
+      </code>
+      <result>
+        <WhileBlockStatement startLine="1" startCol="9" endLine="3" endCol="30">
+          <Comment startLine="1" startCol="17" endLine="1" endCol="28" isRem="False"> A comment</Comment>
+          <SimpleNameExpression startLine="1" startCol="15" endLine="1" endCol="17" isConstant="False">
+            <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="2" startCol="9" endLine="2" endCol="14">
+            <CallStatement startLine="2" startCol="9" endLine="2" endCol="12">
+              <SimpleNameExpression startLine="2" startCol="9" endLine="2" endCol="10" isConstant="False">
+                <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="2" startCol="10" endLine="2" endCol="12">
+                <RightParenthesis line="2" col="11" />
+              </ArgumentCollection>
+            </CallStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="3" startCol="9" endLine="3" endCol="19" endType="While">
+            <Comment startLine="3" startCol="19" endLine="3" endCol="30" isRem="False"> A comment</Comment>
+            <While line="3" col="13" />
+          </EndBlockStatement>
+        </WhileBlockStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="LineContinuations" type="token" description="2.1.2 Line Continuation">
+  <valid>
+    <test>
+      <code>a _
+        b</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</Identifier>
+        <Identifier startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">b</Identifier>
+      </result>
+    </test>
+    <!-- The following are invalid but produce valid scans -->
+    <test>
+      <code>a_ b</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="3" escaped="False">a_</Identifier>
+        <Identifier startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">b</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>a _b</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</Identifier>
+        <Identifier startLine="1" startCol="3" endLine="1" endCol="5" escaped="False">_b</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>'Comments cannot be continued _
+        from here</code>
+      <result>
+        <Comment startLine="1" startCol="1" endLine="1" endCol="32" isRem="False">Comments cannot be continued _</Comment>
+        <LineTerminator startLine="1" startCol="32" endLine="1" endCol="34" />
+        <Identifier startLine="2" startCol="9" endLine="2" endCol="13" escaped="False">from</Identifier>
+        <Identifier startLine="2" startCol="14" endLine="2" endCol="18" escaped="False">here</Identifier>
+      </result>
+    </test>
+  </valid>
+  <invalid>
+  <test>
+    <code>a _ b</code>
+    <result>
+      <Identifier startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</Identifier>
+      <LexicalError startLine="1" startCol="3" endLine="1" endCol="4" errorNumber="2">error 2 (3,1) - (4,1): Invalid identifier.</LexicalError>
+      <Identifier startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">b</Identifier>
+    </result>
+  </test>
+  </invalid>
+</scenario>

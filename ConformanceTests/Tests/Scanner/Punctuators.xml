@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Punctuators" type="token" description="2.5 Separators &amp; 2.6 Operator Characters">
+  <valid>
+    <test>
+      <code>(</code>
+      <result>
+        <LeftParenthesis startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>)</code>
+      <result>
+        <RightParenthesis startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>{</code>
+      <result>
+        <LeftCurlyBrace startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>}</code>
+      <result>
+        <RightCurlyBrace startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>!</code>
+      <result>
+        <Exclamation startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>#</code>
+      <result>
+        <Pound startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>,</code>
+      <result>
+        <Comma startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>.</code>
+      <result>
+        <Period startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>:</code>
+      <result>
+        <Colon startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>:=</code>
+      <result>
+        <ColonEquals startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>&amp;</code>
+      <result>
+        <Ampersand startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>&amp;=</code>
+      <result>
+        <AmpersandEquals startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>*</code>
+      <result>
+        <Star startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>*=</code>
+      <result>
+        <StarEquals startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>+</code>
+      <result>
+        <Plus startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>+=</code>
+      <result>
+        <PlusEquals startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>-</code>
+      <result>
+        <Minus startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>-=</code>
+      <result>
+        <MinusEquals startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>/</code>
+      <result>
+        <ForwardSlash startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>/=</code>
+      <result>
+        <ForwardSlashEquals startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>\</code>
+      <result>
+        <BackwardSlash startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>\=</code>
+      <result>
+        <BackwardSlashEquals startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>^</code>
+      <result>
+        <Caret startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>^=</code>
+      <result>
+        <CaretEquals startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>&lt;</code>
+      <result>
+        <LessThan startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>&lt;=</code>
+      <result>
+        <LessThanEquals startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>=</code>
+      <result>
+        <Equals startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>&lt;&gt;</code>
+      <result>
+        <NotEquals startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>&gt;</code>
+      <result>
+        <GreaterThan startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>&gt;=</code>
+      <result>
+        <GreaterThanEquals startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>&lt;&lt;</code>
+      <result>
+        <LessThanLessThan startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>&lt;&lt;=</code>
+      <result>
+        <LessThanLessThanEquals startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>&gt;&gt;</code>
+      <result>
+        <GreaterThanGreaterThan startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>&gt;&gt;=</code>
+      <result>
+        <GreaterThanGreaterThanEquals startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+  </valid>
+  <invalid>
+    <!-- Common characters that are not valid punctuators and aren't used elsewhere. -->
+    <!-- (We will test type characters here) -->
+    <test>
+      <code>~</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="2" errorNumber="4">error 4 (1,1) - (2,1): Invalid character.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>`</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="2" errorNumber="4">error 4 (1,1) - (2,1): Invalid character.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>@</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="2" errorNumber="4">error 4 (1,1) - (2,1): Invalid character.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>$</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="2" errorNumber="4">error 4 (1,1) - (2,1): Invalid character.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>%</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="2" errorNumber="4">error 4 (1,1) - (2,1): Invalid character.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>|</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="2" errorNumber="4">error 4 (1,1) - (2,1): Invalid character.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>;</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="2" errorNumber="4">error 4 (1,1) - (2,1): Invalid character.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>?</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="2" errorNumber="4">error 4 (1,1) - (2,1): Invalid character.</LexicalError>
+      </result>
+    </test>
+  </invalid>
+</scenario>

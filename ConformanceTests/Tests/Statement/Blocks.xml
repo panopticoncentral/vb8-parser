@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Blocks" type="statement" description="10.1 Blocks">
+  <invalid>
+    <test>
+      <code>100 b</code>
+      <result>
+        <LabelStatement startLine="1" startCol="1" endLine="1" endCol="5" isLineNumber="True">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="4" escaped="False">100</SimpleName>
+        </LabelStatement>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="5" endLine="1" endCol="6">error 39 (5,1) - (6,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>100#: b</code>
+      <result />
+      <errors>
+        <SyntaxError startLine="1" startCol="1" endLine="1" endCol="5">error 11 (1,1) - (5,1): Syntax error.</SyntaxError>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <!-- Test label vs non-label -->
+    <test>
+      <code>a: b</code>
+      <result>
+        <LabelStatement startLine="1" startCol="1" endLine="1" endCol="2" isLineNumber="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</SimpleName>
+        </LabelStatement>
+      </result>
+    </test>
+    <test>
+      <code>100: b</code>
+      <result>
+        <LabelStatement startLine="1" startCol="1" endLine="1" endCol="4" isLineNumber="True">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="4" escaped="False">100</SimpleName>
+        </LabelStatement>
+      </result>
+    </test>
+    <test>
+      <code>a(): b</code>
+      <result>
+        <CallStatement startLine="1" startCol="1" endLine="1" endCol="4">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</SimpleName>
+          </SimpleNameExpression>
+          <ArgumentCollection startLine="1" startCol="2" endLine="1" endCol="4">
+            <RightParenthesis line="1" col="3" />
+          </ArgumentCollection>
+        </CallStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

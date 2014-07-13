@@ -1,0 +1,290 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EBA54974-7325-4B62-8EFC-8B0AAB9B5856}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>Binocular.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>ConformanceTests</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>On</OptionStrict>
+    <RootNamespace>ConformanceTests</RootNamespace>
+    <StartupObject>ConformanceTests.MainForm</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>ConformanceTests.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>ConformanceTests.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\Parser\Parser.vbproj">
+      <Name>Parser</Name>
+      <Project>{57A0B340-BDA4-4DE3-B449-52B8C51D84B8}</Project>
+      <Package>{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Binocular.ico" />
+    <Content Include="License.txt" />
+    <EmbeddedResource Include="Tests\Member\Operators.xml">
+      <SubType>
+      </SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Expression\SimpleNames.xml" />
+    <EmbeddedResource Include="Tests\Expression\TypeExpressions.xml" />
+    <EmbeddedResource Include="Tests\Preprocessor\ExternalChecksum.xml" />
+    <EmbeddedResource Include="Tests\Type\Enumerations.xml" />
+    <Compile Include="MainForm.Designer.vb">
+      <DependentUpon>MainForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="TestHarness.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Attribute.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Expression\AddressOf.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Expression\CallOrIndex.xml" />
+    <EmbeddedResource Include="Tests\Expression\Casts.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Expression\Instances.xml" />
+    <EmbeddedResource Include="Tests\Expression\Literals.xml" />
+    <EmbeddedResource Include="Tests\Expression\MemberAccess.xml" />
+    <EmbeddedResource Include="Tests\Expression\New.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Expression\OperatorExpressions.xml">
+      <SubType>
+      </SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Expression\Parenthesis.xml" />
+    <EmbeddedResource Include="Tests\File\AssemblyAttribute.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\File\FileComments.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\File\Import.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\File\Namespace.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\File\Option.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Member\Constructors.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Member\Events.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Member\ExternalMethods.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Member\Fields.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Member\Handles.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Member\Implements.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Member\MemberComments.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Member\Parameters.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Member\Properties.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Member\RegularMethods.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Preprocessor\ConditionalCompilation.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Preprocessor\ConditionalConstant.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Preprocessor\ExternalSource.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Preprocessor\PreprocessorComments.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Preprocessor\Region.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Scanner\Comments.xml" />
+    <EmbeddedResource Include="Tests\Scanner\DateLiterals.xml" />
+    <EmbeddedResource Include="Tests\Scanner\FloatingPointLiterals.xml" />
+    <EmbeddedResource Include="Tests\Scanner\Identifiers.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Scanner\IntegerLiterals.xml" />
+    <EmbeddedResource Include="Tests\Scanner\Keywords.xml" />
+    <EmbeddedResource Include="Tests\Scanner\LineContinuations.xml" />
+    <EmbeddedResource Include="Tests\Scanner\LineTerminators.xml" />
+    <EmbeddedResource Include="Tests\Scanner\Punctuators.xml" />
+    <EmbeddedResource Include="Tests\Scanner\StringLiterals.xml" />
+    <EmbeddedResource Include="Tests\Scanner\TypeCharacters.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\Arrays.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\Assignments.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\Blocks.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\Branches.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\Conditionals.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\EventHandlers.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\Exceptions.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\ExpressionBlocks.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\Invocations.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\Locals.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\Loops.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Statement\StatementComments.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Type\Class.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Type\Delegate.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Type\Interface.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Type\Modules.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Type\Structure.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\Type\TypeComments.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\TypeName.xml">
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.Targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

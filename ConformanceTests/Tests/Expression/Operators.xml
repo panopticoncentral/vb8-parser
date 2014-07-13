@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Operators" type="expression" description="11.12 Operator Expressions">
+  <!-- Invalid use of operators -->
+  <test>
+    <code>x*</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False" operator="Multiply">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Star line="1" col="2" />
+        <SyntaxError isBad="True" startLine="1" startCol="3" endLine="1" endCol="3" />
+      </BinaryOperatorExpression>
+    </result>
+    <errors>
+      <ExpectedExpression startLine="1" startCol="3" endLine="1" endCol="3">error 27 (3,1) - (3,1): Expected expression.</ExpectedExpression>
+    </errors>
+  </test>
+  <test>
+    <code>*x</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False" operator="Multiply">
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="2" />
+        <Star line="1" col="1" />
+        <SimpleNameExpression startLine="1" startCol="2" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+    <errors>
+      <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="2">error 27 (1,1) - (2,1): Expected expression.</ExpectedExpression>
+    </errors>
+  </test>
+  <test>
+    <code>x=</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False" operator="Equals">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Equals line="1" col="2" />
+        <SyntaxError isBad="True" startLine="1" startCol="3" endLine="1" endCol="3" />
+      </BinaryOperatorExpression>
+    </result>
+    <errors>
+      <ExpectedExpression startLine="1" startCol="3" endLine="1" endCol="3">error 27 (3,1) - (3,1): Expected expression.</ExpectedExpression>
+    </errors>
+  </test>
+  <test>
+    <code>=x</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False" operator="Equals">
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="2" />
+        <Equals line="1" col="1" />
+        <SimpleNameExpression startLine="1" startCol="2" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+    <errors>
+      <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="2">error 27 (1,1) - (2,1): Expected expression.</ExpectedExpression>
+    </errors>
+  </test>
+  <test>
+    <code>x+</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False" operator="Plus">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Plus line="1" col="2" />
+        <SyntaxError isBad="True" startLine="1" startCol="3" endLine="1" endCol="3" />
+      </BinaryOperatorExpression>
+    </result>
+    <errors>
+      <ExpectedExpression startLine="1" startCol="3" endLine="1" endCol="3">error 27 (3,1) - (3,1): Expected expression.</ExpectedExpression>
+    </errors>
+  </test>
+  <!-- Valid use of operators -->
+  <test>
+    <code>+x</code>
+    <result>
+      <UnaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+        <Plus line="1" col="1" />
+        <SimpleNameExpression startLine="1" startCol="2" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+      </UnaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>+1</code>
+    <result>
+      <UnaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="True">
+        <Plus line="1" col="1" />
+        <IntegerLiteralExpression startLine="1" startCol="2" endLine="1" endCol="3" isConstant="True" base="Decimal">1</IntegerLiteralExpression>
+      </UnaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>-x</code>
+    <result>
+      <UnaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+        <Minus line="1" col="1" />
+        <SimpleNameExpression startLine="1" startCol="2" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+      </UnaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>-1</code>
+    <result>
+      <UnaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="True">
+        <Minus line="1" col="1" />
+        <IntegerLiteralExpression startLine="1" startCol="2" endLine="1" endCol="3" isConstant="True" base="Decimal">1</IntegerLiteralExpression>
+      </UnaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x + y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" operator="Plus">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Plus line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>1 + 2</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="True" operator="Plus">
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="True" base="Decimal">1</IntegerLiteralExpression>
+        <Plus line="1" col="3" />
+        <IntegerLiteralExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="True" base="Decimal">2</IntegerLiteralExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x - y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" operator="Minus">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Minus line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x * y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" operator="Multiply">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Star line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x / y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" operator="Divide">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <ForwardSlash line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x \ y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" operator="IntegralDivide">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <BackwardSlash line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x Mod y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" operator="Modulus">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Mod line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+          <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x ^ y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" operator="Power">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Caret line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x = y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" operator="Equals">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Equals line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x &lt;&gt; y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" operator="NotEquals">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <NotEquals line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x &lt; y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" operator="LessThan">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <LessThan line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x &gt; y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" operator="GreaterThan">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <GreaterThan line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x &lt;= y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" operator="LessThanEquals">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <LessThanEquals line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x &gt;= y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" operator="GreaterThanEquals">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <GreaterThanEquals line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x Like y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False" operator="Like">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Like line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="9" isConstant="False">
+          <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x &amp; y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" operator="Concatenate">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Ampersand line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>Not x</code>
+    <result>
+      <UnaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False">
+        <Not line="1" col="1" />
+        <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+      </UnaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x And y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" operator="And">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <And line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+          <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x Or y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" operator="Or">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Or line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x Xor y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" operator="Xor">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <Xor line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+          <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x AndAlso y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="12" isConstant="False" operator="AndAlso">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <AndAlso line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="11" endLine="1" endCol="12" isConstant="False">
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x OrElse y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="False" operator="OrElse">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <OrElse line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="10" endLine="1" endCol="11" isConstant="False">
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x &lt;&lt; y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" operator="ShiftLeft">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <LessThanLessThan line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+  <test>
+    <code>x &gt;&gt; y</code>
+    <result>
+      <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" operator="ShiftRight">
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </SimpleNameExpression>
+        <GreaterThanGreaterThan line="1" col="3" />
+        <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+        </SimpleNameExpression>
+      </BinaryOperatorExpression>
+    </result>
+  </test>
+</scenario>

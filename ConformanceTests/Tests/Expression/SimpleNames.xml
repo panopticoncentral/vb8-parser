@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="SimpleNames" type="expression" description="11.4.4 Simple Name Expressions">
+  <invalid>
+    <test>
+      <code>option</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="7">error 27 (1,1) - (7,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <!-- Bogus but doesn't cause errors. -->
+    <test>
+      <code>1abc</code>
+      <result>
+        <IntegerLiteralExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="True" base="Decimal">1</IntegerLiteralExpression>
+      </result>
+    </test>
+    <test>
+      <code>_abc</code>
+      <result>
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">_abc</SimpleName>
+        </SimpleNameExpression>
+      </result>
+    </test>
+    <test>
+      <code>[_abc]</code>
+      <result>
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">_abc</SimpleName>
+        </SimpleNameExpression>
+      </result>
+    </test>
+    <test>
+      <code>a1b0c</code>
+      <result>
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="6" escaped="False">a1b0c</SimpleName>
+        </SimpleNameExpression>
+      </result>
+    </test>
+    <test>
+      <code>[a1b0c]</code>
+      <result>
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">a1b0c</SimpleName>
+        </SimpleNameExpression>
+      </result>
+    </test>
+    <test>
+      <code>abc_</code>
+      <result>
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">abc_</SimpleName>
+        </SimpleNameExpression>
+      </result>
+    </test>
+    <test>
+      <code>[abc_]</code>
+      <result>
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">abc_</SimpleName>
+        </SimpleNameExpression>
+      </result>
+    </test>
+    <test>
+      <code>[option]</code>
+      <result>
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">option</SimpleName>
+        </SimpleNameExpression>
+      </result>
+    </test>
+  </valid>    
+</scenario>

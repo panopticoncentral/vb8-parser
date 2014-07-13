@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Region" type="file" description="3.3 Region Directives">
+  <invalid>
+    <test>
+      <code>
+        #Region
+        Option Strict
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedStringLiteral startLine="1" startCol="8" endLine="1" endCol="10">error 105 (8,1) - (10,1): String constant expected.</ExpectedStringLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #Region "foo" a
+        Option Strict
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="15" endLine="1" endCol="16">error 39 (15,1) - (16,1): End of statement expected.</ExpectedEndOfStatement>
+        <ExpectedEndRegion startLine="2" startCol="22" endLine="2" endCol="22">error 138 (22,2) - (22,2): '#Region' must end with a matching '#End Region'.</ExpectedEndRegion>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #Region "foo"
+        Option Strict
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedEndRegion startLine="2" startCol="22" endLine="2" endCol="22">error 138 (22,2) - (22,2): '#Region' must end with a matching '#End Region'.</ExpectedEndRegion>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Option Strict
+        #End Region
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="20">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="20">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="14" type="Strict">
+              <Strict line="1" col="8" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <EndRegionWithoutRegion startLine="2" startCol="9" endLine="2" endCol="20">error 137 (9,2) - (20,2): '#End Region' must be preceded by a matching '#Region'.</EndRegionWithoutRegion>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Class Test
+        Sub Foo()
+        #Region "Foo"
+        #End Region
+        End Sub
+        End Class
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="6" endCol="18">
+          <DeclarationCollection startLine="1" startCol="1" endLine="6" endCol="18">
+            <ClassDeclaration startLine="1" startCol="1" endLine="6" endCol="18">
+              <Class line="1" col="1" />
+              <SimpleName startLine="1" startCol="7" endLine="1" endCol="11" escaped="False">Test</SimpleName>
+              <DeclarationCollection startLine="2" startCol="9" endLine="5" endCol="18">
+                <SubDeclaration startLine="2" startCol="9" endLine="5" endCol="16">
+                  <Sub line="2" col="9" />
+                  <SimpleName startLine="2" startCol="13" endLine="2" endCol="16" escaped="False">Foo</SimpleName>
+                  <ParameterCollection startLine="2" startCol="16" endLine="2" endCol="18">
+                    <RightParenthesis line="2" col="17" />
+                  </ParameterCollection>
+                  <EndBlockDeclaration startLine="5" startCol="9" endLine="5" endCol="16" endType="Sub">
+                    <Sub line="5" col="13" />
+                  </EndBlockDeclaration>
+                </SubDeclaration>
+              </DeclarationCollection>
+              <EndBlockDeclaration startLine="6" startCol="9" endLine="6" endCol="18" endType="Class">
+                <Class line="6" col="13" />
+              </EndBlockDeclaration>
+            </ClassDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <RegionInsideMethod startLine="3" startCol="9" endLine="3" endCol="22">error 139 (9,3) - (22,3): '#Region' and '#End Region' statements are not valid within method bodies.</RegionInsideMethod>
+        <RegionInsideMethod startLine="4" startCol="9" endLine="4" endCol="20">error 139 (9,4) - (20,4): '#Region' and '#End Region' statements are not valid within method bodies.</RegionInsideMethod>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>
+        #Region"foo"
+        Option Strict
+        #End Region
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="3" endCol="20">
+          <DeclarationCollection startLine="1" startCol="1" endLine="3" endCol="20">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+  </valid>
+</scenario>

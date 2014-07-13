@@ -1,0 +1,2016 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Keywords" type="token" description="2.3 Keywords">
+  <valid>
+    <test>
+      <code>AddHandler</code>
+      <result>
+        <AddHandler startLine="1" startCol="1" endLine="1" endCol="11" />
+      </result>
+    </test>
+    <test>
+      <code>AddressOf</code>
+      <result>
+        <AddressOf startLine="1" startCol="1" endLine="1" endCol="10" />
+      </result>
+    </test>
+    <test>
+      <code>Alias</code>
+      <result>
+        <Alias startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>And</code>
+      <result>
+        <And startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>AndAlso</code>
+      <result>
+        <AndAlso startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Ansi</code>
+      <result>
+        <Ansi startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Ansi</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">Ansi</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>As</code>
+      <result>
+        <As startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Assembly</code>
+      <result>
+        <Assembly startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Assembly</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="False">Assembly</Identifier>
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Auto</code>
+      <result>
+        <Auto startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Auto</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">Auto</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>Boolean</code>
+      <result>
+        <Boolean startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>ByRef</code>
+      <result>
+        <ByRef startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>Byte</code>
+      <result>
+        <Byte startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>ByVal</code>
+      <result>
+        <ByVal startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>Call</code>
+      <result>
+        <Call startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Case</code>
+      <result>
+        <Case startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Catch</code>
+      <result>
+        <Catch startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>CBool</code>
+      <result>
+        <CBool startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>CByte</code>
+      <result>
+        <CByte startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>CChar</code>
+      <result>
+        <CChar startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>CDate</code>
+      <result>
+        <CDate startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>CDec</code>
+      <result>
+        <CDec startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>CDbl</code>
+      <result>
+        <CDbl startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Char</code>
+      <result>
+        <Char startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>CInt</code>
+      <result>
+        <CInt startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Class</code>
+      <result>
+        <Class startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>CLng</code>
+      <result>
+        <CLng startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>CObj</code>
+      <result>
+        <CObj startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Const</code>
+      <result>
+        <Const startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Continue</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="False">Continue</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Continue</code>
+      <result>
+        <Continue startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>CSByte</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="False">CSByte</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>CSByte</code>
+      <result>
+        <CSByte startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>CShort</code>
+      <result>
+        <CShort startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>CSng</code>
+      <result>
+        <CSng startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>CStr</code>
+      <result>
+        <CStr startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>CType</code>
+      <result>
+        <CType startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>CUInt</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="False">CUInt</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>CUInt</code>
+      <result>
+        <CUInt startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>CULng</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="False">CULng</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>CULng</code>
+      <result>
+        <CULng startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>CUShort</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="False">CUShort</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>CUShort</code>
+      <result>
+        <CUShort startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>Date</code>
+      <result>
+        <Date startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Decimal</code>
+      <result>
+        <Decimal startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>Declare</code>
+      <result>
+        <Declare startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>Default</code>
+      <result>
+        <Default startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>Delegate</code>
+      <result>
+        <Delegate startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test>
+      <code>Dim</code>
+      <result>
+        <Dim startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>DirectCast</code>
+      <result>
+        <DirectCast startLine="1" startCol="1" endLine="1" endCol="11" />
+      </result>
+    </test>
+    <test>
+      <code>Do</code>
+      <result>
+        <Do startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>Double</code>
+      <result>
+        <Double startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>Each</code>
+      <result>
+        <Each startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Else</code>
+      <result>
+        <Else startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>ElseIf</code>
+      <result>
+        <ElseIf startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>End</code>
+      <result>
+        <End startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>EndIf</code>
+      <result>
+        <EndIf startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>Enum</code>
+      <result>
+        <Enum startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Erase</code>
+      <result>
+        <Erase startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>Error</code>
+      <result>
+        <Error startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>Event</code>
+      <result>
+        <Event startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>Exit</code>
+      <result>
+        <Exit startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>False</code>
+      <result>
+        <False startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>Finally</code>
+      <result>
+        <Finally startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>For</code>
+      <result>
+        <For startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>Friend</code>
+      <result>
+        <Friend startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>Function</code>
+      <result>
+        <Function startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test>
+      <code>Get</code>
+      <result>
+        <Get startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>GetType</code>
+      <result>
+        <GetType startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Global</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="False">Global</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Global</code>
+      <result>
+        <Global startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>GoSub</code>
+      <result>
+        <GoSub startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>GoTo</code>
+      <result>
+        <GoTo startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Handles</code>
+      <result>
+        <Handles startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>If</code>
+      <result>
+        <If startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>Implements</code>
+      <result>
+        <Implements startLine="1" startCol="1" endLine="1" endCol="11" />
+      </result>
+    </test>
+    <test>
+      <code>Imports</code>
+      <result>
+        <Imports startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>In</code>
+      <result>
+        <In startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>Inherits</code>
+      <result>
+        <Inherits startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test>
+      <code>Integer</code>
+      <result>
+        <Integer startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>Interface</code>
+      <result>
+        <Interface startLine="1" startCol="1" endLine="1" endCol="10" />
+      </result>
+    </test>
+    <test>
+      <code>Is</code>
+      <result>
+        <Is startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>IsNot</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="False">IsNot</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>IsNot</code>
+      <result>
+        <IsNot startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>Let</code>
+      <result>
+        <Let startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>Lib</code>
+      <result>
+        <Lib startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>Like</code>
+      <result>
+        <Like startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Long</code>
+      <result>
+        <Long startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Loop</code>
+      <result>
+        <Loop startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Me</code>
+      <result>
+        <Me startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>Mod</code>
+      <result>
+        <Mod startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>Module</code>
+      <result>
+        <Module startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>MustInherit</code>
+      <result>
+        <MustInherit startLine="1" startCol="1" endLine="1" endCol="12" />
+      </result>
+    </test>
+    <test>
+      <code>MustOverride</code>
+      <result>
+        <MustOverride startLine="1" startCol="1" endLine="1" endCol="13" />
+      </result>
+    </test>
+    <test>
+      <code>MyBase</code>
+      <result>
+        <MyBase startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>MyClass</code>
+      <result>
+        <MyClass startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>Namespace</code>
+      <result>
+        <Namespace startLine="1" startCol="1" endLine="1" endCol="10" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Narrowing</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="False">Narrowing</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Narrowing</code>
+      <result>
+        <Narrowing startLine="1" startCol="1" endLine="1" endCol="10" />
+      </result>
+    </test>
+    <test>
+      <code>New</code>
+      <result>
+        <New startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>Next</code>
+      <result>
+        <Next startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Not</code>
+      <result>
+        <Not startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>Nothing</code>
+      <result>
+        <Nothing startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>NotInheritable</code>
+      <result>
+        <NotInheritable startLine="1" startCol="1" endLine="1" endCol="15" />
+      </result>
+    </test>
+    <test>
+      <code>NotOverridable</code>
+      <result>
+        <NotOverridable startLine="1" startCol="1" endLine="1" endCol="15" />
+      </result>
+    </test>
+    <test>
+      <code>Object</code>
+      <result>
+        <Object startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Of</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="3" escaped="False">Of</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Of</code>
+      <result>
+        <Of startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>On</code>
+      <result>
+        <On startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Operator</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="False">Operator</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Operator</code>
+      <result>
+        <Operator startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test>
+      <code>Option</code>
+      <result>
+        <Option startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>Optional</code>
+      <result>
+        <Optional startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test>
+      <code>Or</code>
+      <result>
+        <Or startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>OrElse</code>
+      <result>
+        <OrElse startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>Overloads</code>
+      <result>
+        <Overloads startLine="1" startCol="1" endLine="1" endCol="10" />
+      </result>
+    </test>
+    <test>
+      <code>Overridable</code>
+      <result>
+        <Overridable startLine="1" startCol="1" endLine="1" endCol="12" />
+      </result>
+    </test>
+    <test>
+      <code>Overrides</code>
+      <result>
+        <Overrides startLine="1" startCol="1" endLine="1" endCol="10" />
+      </result>
+    </test>
+    <test>
+      <code>ParamArray</code>
+      <result>
+        <ParamArray startLine="1" startCol="1" endLine="1" endCol="11" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Partial</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="False">Partial</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Partial</code>
+      <result>
+        <Partial startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Preserve</code>
+      <result>
+        <Preserve startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Preserve</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="False">Preserve</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>Private</code>
+      <result>
+        <Private startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>Property</code>
+      <result>
+        <Property startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test>
+      <code>Protected</code>
+      <result>
+        <Protected startLine="1" startCol="1" endLine="1" endCol="10" />
+      </result>
+    </test>
+    <test>
+      <code>Public</code>
+      <result>
+        <Public startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>RaiseEvent</code>
+      <result>
+        <RaiseEvent startLine="1" startCol="1" endLine="1" endCol="11" />
+      </result>
+    </test>
+    <test>
+      <code>ReadOnly</code>
+      <result>
+        <ReadOnly startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test>
+      <code>ReDim</code>
+      <result>
+        <ReDim startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>RemoveHandler</code>
+      <result>
+        <RemoveHandler startLine="1" startCol="1" endLine="1" endCol="14" />
+      </result>
+    </test>
+    <test>
+      <code>Resume</code>
+      <result>
+        <Resume startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>Return</code>
+      <result>
+        <Return startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>SByte</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="False">SByte</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>SByte</code>
+      <result>
+        <SByte startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>Select</code>
+      <result>
+        <Select startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>Set</code>
+      <result>
+        <Set startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>Shadows</code>
+      <result>
+        <Shadows startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>Shared</code>
+      <result>
+        <Shared startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>Short</code>
+      <result>
+        <Short startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>Single</code>
+      <result>
+        <Single startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>Static</code>
+      <result>
+        <Static startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>Step</code>
+      <result>
+        <Step startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Stop</code>
+      <result>
+        <Stop startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>String</code>
+      <result>
+        <String startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>Structure</code>
+      <result>
+        <Structure startLine="1" startCol="1" endLine="1" endCol="10" />
+      </result>
+    </test>
+    <test>
+      <code>Sub</code>
+      <result>
+        <Sub startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test>
+      <code>SyncLock</code>
+      <result>
+        <SyncLock startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test>
+      <code>Then</code>
+      <result>
+        <Then startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Throw</code>
+      <result>
+        <Throw startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>To</code>
+      <result>
+        <To startLine="1" startCol="1" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>True</code>
+      <result>
+        <True startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>Try</code>
+      <result>
+        <Try startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>TryCast</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="False">TryCast</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>TryCast</code>
+      <result>
+        <TryCast startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>TypeOf</code>
+      <result>
+        <TypeOf startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>UInteger</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="False">UInteger</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>UInteger</code>
+      <result>
+        <UInteger startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>ULong</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="False">ULong</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>ULong</code>
+      <result>
+        <ULong startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>UShort</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="False">UShort</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>UShort</code>
+      <result>
+        <UShort startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Using</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="False">Using</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Using</code>
+      <result>
+        <Using startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Unicode</code>
+      <result>
+        <Unicode startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Unicode</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="False">Unicode</Identifier>
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Until</code>
+      <result>
+        <Until startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Until</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="False">Until</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>Variant</code>
+      <result>
+        <Variant startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+    </test>
+    <test>
+      <code>Wend</code>
+      <result>
+        <Wend startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>When</code>
+      <result>
+        <When startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>While</code>
+      <result>
+        <While startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test version="7.1">
+      <code>Widening</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="False">Widening</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Widening</code>
+      <result>
+        <Widening startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+    </test>
+    <test>
+      <code>With</code>
+      <result>
+        <With startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+    </test>
+    <test>
+      <code>WithEvents</code>
+      <result>
+        <WithEvents startLine="1" startCol="1" endLine="1" endCol="11" />
+      </result>
+    </test>
+    <test>
+      <code>WriteOnly</code>
+      <result>
+        <WriteOnly startLine="1" startCol="1" endLine="1" endCol="10" />
+      </result>
+    </test>
+    <test>
+      <code>Xor</code>
+      <result>
+        <Xor startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+    </test>
+    <!-- All the keywords, escaped -->
+    <test>
+      <code>[AddHandler]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="13" escaped="True">AddHandler</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[AddressOf]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="12" escaped="True">AddressOf</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Alias]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">Alias</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[And]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">And</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[AndAlso]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">AndAlso</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Ansi]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Ansi</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[As]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="True">As</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Assembly]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">Assembly</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Auto]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Auto</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Boolean]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Boolean</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[ByRef]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">ByRef</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Byte]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Byte</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[ByVal]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">ByVal</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Call]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Call</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Case]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Case</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Catch]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">Catch</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CBool]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">CBool</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CByte]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">CByte</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CChar]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">CChar</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CDate]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">CDate</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CDec]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">CDec</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CDbl]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">CDbl</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Char]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Char</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CInt]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">CInt</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Class]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">Class</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CLng]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">CLng</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CObj]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">CObj</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Const]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">Const</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[Continue]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">Continue</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[CSByte]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">CSByte</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CShort]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">CShort</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CSng]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">CSng</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CStr]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">CStr</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[CType]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">CType</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[CUInt]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">CUInt</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[CULng]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">CULng</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[CUShort]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">CUShort</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Date]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Date</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Decimal]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Decimal</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Declare]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Declare</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Default]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Default</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Delegate]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">Delegate</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Dim]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">Dim</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[DirectCast]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="13" escaped="True">DirectCast</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Do]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="True">Do</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Double]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Double</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Each]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Each</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Else]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Else</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[ElseIf]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">ElseIf</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[End]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">End</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[EndIf]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">EndIf</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Enum]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Enum</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Erase]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">Erase</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Error]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">Error</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Event]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">Event</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Exit]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Exit</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[False]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">False</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Finally]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Finally</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[For]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">For</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Friend]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Friend</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Function]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">Function</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Get]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">Get</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[GetType]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">GetType</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[Global]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Global</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[GoSub]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">GoSub</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[GoTo]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">GoTo</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Handles]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Handles</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[If]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="True">If</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Implements]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="13" escaped="True">Implements</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Imports]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Imports</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[In]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="True">In</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Inherits]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">Inherits</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Integer]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Integer</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Interface]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="12" escaped="True">Interface</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Is]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="True">Is</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[IsNot]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">IsNot</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Let]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">Let</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Lib]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">Lib</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Like]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Like</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Long]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Long</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Loop]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Loop</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Me]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="True">Me</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Mod]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">Mod</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Module]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Module</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[MustInherit]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="14" escaped="True">MustInherit</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[MustOverride]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="15" escaped="True">MustOverride</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[MyBase]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">MyBase</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[MyClass]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">MyClass</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Namespace]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="12" escaped="True">Namespace</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[Narrowing]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="12" escaped="True">Narrowing</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[New]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">New</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Next]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Next</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Not]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">Not</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Nothing]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Nothing</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[NotInheritable]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="17" escaped="True">NotInheritable</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[NotOverridable]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="17" escaped="True">NotOverridable</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Object]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Object</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[Of]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="True">Of</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[On]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="True">On</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[Operator]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">Operator</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Option]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Option</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Optional]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">Optional</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Or]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="True">Or</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[OrElse]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">OrElse</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Overloads]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="12" escaped="True">Overloads</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Overridable]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="14" escaped="True">Overridable</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Overrides]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="12" escaped="True">Overrides</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[ParamArray]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="13" escaped="True">ParamArray</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[Partial]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Partial</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Preserve]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">Preserve</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Private]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Private</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Property]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">Property</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Protected]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="12" escaped="True">Protected</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Public]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Public</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[RaiseEvent]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="13" escaped="True">RaiseEvent</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[ReadOnly]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">ReadOnly</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[ReDim]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">ReDim</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[RemoveHandler]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="16" escaped="True">RemoveHandler</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Resume]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Resume</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Return]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Return</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[SByte]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">SByte</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Select]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Select</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Set]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">Set</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Shadows]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Shadows</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Shared]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Shared</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Short]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">Short</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Single]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Single</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Static]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">Static</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Step]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Step</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Stop]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Stop</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[String]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">String</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Structure]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="12" escaped="True">Structure</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Sub]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">Sub</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[SyncLock]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">SyncLock</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Then]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Then</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Throw]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">Throw</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[To]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="True">To</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[True]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">True</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Try]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">Try</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[TryCast]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">TryCast</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[TypeOf]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">TypeOf</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[UInteger]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">UInteger</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[ULong]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">ULong</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[UShort]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">UShort</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Unicode]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Unicode</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Until]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">Until</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Variant]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="10" escaped="True">Variant</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Wend]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">Wend</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[When]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">When</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[While]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">While</Identifier>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>[Widening]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="11" escaped="True">Widening</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[With]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">With</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[WithEvents]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="13" escaped="True">WithEvents</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[WriteOnly]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="12" escaped="True">WriteOnly</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[Xor]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="True">Xor</Identifier>
+      </result>
+    </test>
+  </valid>
+</scenario>

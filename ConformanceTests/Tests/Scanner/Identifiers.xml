@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Identifiers" type="token" description="2.2 Identifiers">
+  <invalid>
+    <test>
+      <code>[1abc]</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="7" errorNumber="1">error 1 (1,1) - (7,1): Invalid escaped identifier.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>[_]</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="3" errorNumber="2">error 2 (1,1) - (3,1): Invalid identifier.</LexicalError>
+        <LexicalError startLine="1" startCol="3" endLine="1" endCol="4" errorNumber="4">error 4 (3,1) - (4,1): Invalid character.</LexicalError>
+      </result>
+    </test>
+  </invalid>
+  <valid>
+    <!-- The following three identifiers are not valid but scan OK -->
+    <test>
+      <code>1abc</code>
+      <result>
+        <IntegerLiteral startLine="1" startCol="1" endLine="1" endCol="2" base="Decimal">1</IntegerLiteral>
+        <Identifier startLine="1" startCol="2" endLine="1" endCol="5" escaped="False">abc</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>_</code>
+      <result />
+    </test>
+    <test>
+      <code>option</code>
+      <result>
+        <Option startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+    </test>
+    <test>
+      <code>_abc</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">_abc</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[_abc]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">_abc</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>a1b0c</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="6" escaped="False">a1b0c</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[a1b0c]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="8" escaped="True">a1b0c</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>abc_</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">abc_</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[abc_]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="7" escaped="True">abc_</Identifier>
+      </result>
+    </test>
+    <test>
+      <code>[option]</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="9" escaped="True">option</Identifier>
+      </result>
+    </test>
+  </valid>
+</scenario>

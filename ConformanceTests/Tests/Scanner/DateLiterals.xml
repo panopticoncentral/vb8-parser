@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="DateLiterals" type="token" description="2.4.6 Date Literals">
+  <invalid>
+    <test>
+      <code>#10#</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="5" errorNumber="7">error 7 (1,1) - (5,1): Invalid date literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>#10/10#</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="8" errorNumber="7">error 7 (1,1) - (8,1): Invalid date literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>#10/10/00#</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="11" errorNumber="7">error 7 (1,1) - (11,1): Invalid date literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>#10-10#</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="8" errorNumber="7">error 7 (1,1) - (8,1): Invalid date literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>#10-20/2000#</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="13" errorNumber="7">error 7 (1,1) - (13,1): Invalid date literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>#10/20-2000#</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="13" errorNumber="7">error 7 (1,1) - (13,1): Invalid date literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>#500/500/10000#</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="16" errorNumber="7">error 7 (1,1) - (16,1): Invalid date literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>#23:10:10am#</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="13" errorNumber="7">error 7 (1,1) - (13,1): Invalid date literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 foo#</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="15" errorNumber="7">error 7 (1,1) - (15,1): Invalid date literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>#40:40:40#</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="11" errorNumber="7">error 7 (1,1) - (11,1): Invalid date literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>#10:10AM 10/10/2000#</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="21" errorNumber="7">error 7 (1,1) - (21,1): Invalid date literal.</LexicalError>
+      </result>
+    </test>
+  </invalid>
+  <valid>
+    <!-- The following four tests scan valid but are invalid -->
+    <test>
+      <code>#</code>
+      <result>
+        <Pound startLine="1" startCol="1" endLine="1" endCol="2" />
+      </result>
+    </test>
+    <test>
+      <code>##</code>
+      <result>
+        <Pound startLine="1" startCol="1" endLine="1" endCol="2" />
+        <Pound startLine="1" startCol="2" endLine="1" endCol="3" />
+      </result>
+    </test>
+    <test>
+      <code>#-10/-10/-2000#</code>
+      <result>
+        <Pound startLine="1" startCol="1" endLine="1" endCol="2" />
+        <Minus startLine="1" startCol="2" endLine="1" endCol="3" />
+        <IntegerLiteral startLine="1" startCol="3" endLine="1" endCol="5" base="Decimal">10</IntegerLiteral>
+        <ForwardSlash startLine="1" startCol="5" endLine="1" endCol="6" />
+        <Minus startLine="1" startCol="6" endLine="1" endCol="7" />
+        <IntegerLiteral startLine="1" startCol="7" endLine="1" endCol="9" base="Decimal">10</IntegerLiteral>
+        <ForwardSlash startLine="1" startCol="9" endLine="1" endCol="10" />
+        <Minus startLine="1" startCol="10" endLine="1" endCol="11" />
+        <FloatingPointLiteral startLine="1" startCol="11" endLine="1" endCol="16" typeChar="#">2000</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#-10-10-2000#</code>
+      <result>
+        <Pound startLine="1" startCol="1" endLine="1" endCol="2" />
+        <Minus startLine="1" startCol="2" endLine="1" endCol="3" />
+        <IntegerLiteral startLine="1" startCol="3" endLine="1" endCol="5" base="Decimal">10</IntegerLiteral>
+        <Minus startLine="1" startCol="5" endLine="1" endCol="6" />
+        <IntegerLiteral startLine="1" startCol="6" endLine="1" endCol="8" base="Decimal">10</IntegerLiteral>
+        <Minus startLine="1" startCol="8" endLine="1" endCol="9" />
+        <FloatingPointLiteral startLine="1" startCol="9" endLine="1" endCol="14" typeChar="#">2000</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10/10/2000#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="13">10/10/2000</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10-10-2000#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="13">10/10/2000</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10:10#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="8">10:10:00 AM</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="11">10:10:10 AM</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10AM#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="13">10:10:10 AM</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 AM#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="14">10:10:10 AM</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 am#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="14">10:10:10 AM</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 Am#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="14">10:10:10 AM</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10PM#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="13">10:10:10 PM</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 PM#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="14">10:10:10 PM</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 pm#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="14">10:10:10 PM</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10:10:10 Pm#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="14">10:10:10 PM</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#23:10:10#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="11">11:10:10 PM</DateLiteral>
+      </result>
+    </test>
+    <test>
+      <code>#10/10/2000 10:10AM#</code>
+      <result>
+        <DateLiteral startLine="1" startCol="1" endLine="1" endCol="21">10/10/2000 10:10:00 AM</DateLiteral>
+      </result>
+    </test>
+  </valid>
+</scenario>

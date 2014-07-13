@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Exceptions" type="statement" description="10.10 Exception-Handling Statements">
+  <invalid>
+    <test>
+      <code>Try</code>
+      <result>
+        <TryBlockStatement startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+      <errors>
+        <ExpectedEndTry startLine="1" startCol="1" endLine="1" endCol="4">error 46 (1,1) - (4,1): 'Try' must end with a matching 'End Try'.</ExpectedEndTry>
+      </errors>
+    </test>
+    <test>
+      <code>Try : Catch Ex As : End Try</code>
+      <result>
+        <TryBlockStatement startLine="1" startCol="1" endLine="1" endCol="28">
+          <StatementCollection startLine="1" startCol="7" endLine="1" endCol="12">
+            <Colon line="1" col="5" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="7" endLine="1" endCol="21">
+            <CatchBlockStatement startLine="1" startCol="7" endLine="1" endCol="21">
+              <CatchStatement startLine="1" startCol="7" endLine="1" endCol="19">
+                <SimpleName startLine="1" startCol="13" endLine="1" endCol="15" escaped="False">Ex</SimpleName>
+                <As line="1" col="16" />
+                <NamedType isBad="True" startLine="1" startCol="19" endLine="1" endCol="19">
+                  <SimpleName isBad="True" startLine="1" startCol="19" endLine="1" endCol="19" escaped="False" />
+                </NamedType>
+              </CatchStatement>
+              <StatementCollection startLine="1" startCol="21" endLine="1" endCol="24">
+                <Colon line="1" col="19" />
+              </StatementCollection>
+            </CatchBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="21" endLine="1" endCol="28" endType="Try">
+            <Try line="1" col="25" />
+          </EndBlockStatement>
+        </TryBlockStatement>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="19" endLine="1" endCol="20">error 22 (19,1) - (20,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>Try : Catch Ex When : End Try</code>
+      <result>
+        <TryBlockStatement startLine="1" startCol="1" endLine="1" endCol="30">
+          <StatementCollection startLine="1" startCol="7" endLine="1" endCol="12">
+            <Colon line="1" col="5" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="7" endLine="1" endCol="23">
+            <CatchBlockStatement startLine="1" startCol="7" endLine="1" endCol="23">
+              <CatchStatement startLine="1" startCol="7" endLine="1" endCol="21">
+                <SimpleName startLine="1" startCol="13" endLine="1" endCol="15" escaped="False">Ex</SimpleName>
+                <When line="1" col="16" />
+                <SyntaxError isBad="True" startLine="1" startCol="21" endLine="1" endCol="22" />
+              </CatchStatement>
+              <StatementCollection startLine="1" startCol="23" endLine="1" endCol="26">
+                <Colon line="1" col="21" />
+              </StatementCollection>
+            </CatchBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="23" endLine="1" endCol="30" endType="Try">
+            <Try line="1" col="27" />
+          </EndBlockStatement>
+        </TryBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="21" endLine="1" endCol="22">error 27 (21,1) - (22,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Error</code>
+      <result>
+        <ErrorStatement startLine="1" startCol="1" endLine="1" endCol="6">
+          <SyntaxError isBad="True" startLine="1" startCol="6" endLine="1" endCol="6" />
+        </ErrorStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="6" endLine="1" endCol="6">error 27 (6,1) - (6,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>On</code>
+      <result>
+        <OnErrorStatement startLine="1" startCol="1" endLine="1" endCol="3" onErrorType="Bad" />
+      </result>
+      <errors>
+        <ExpectedError startLine="1" startCol="3" endLine="1" endCol="3">error 35 (3,1) - (3,1): Expected 'Error'.</ExpectedError>
+      </errors>
+    </test>
+    <test>
+      <code>On Error</code>
+      <result>
+        <OnErrorStatement startLine="1" startCol="1" endLine="1" endCol="9" onErrorType="Bad">
+          <Error line="1" col="4" />
+        </OnErrorStatement>
+      </result>
+      <errors>
+        <ExpectedResumeOrGoto startLine="1" startCol="9" endLine="1" endCol="9">error 34 (9,1) - (9,1): Expected 'Resume' or 'GoTo'.</ExpectedResumeOrGoto>
+      </errors>
+    </test>
+    <test>
+      <code>On Error GoTo</code>
+      <result>
+        <OnErrorStatement startLine="1" startCol="1" endLine="1" endCol="14" onErrorType="Label">
+          <Error line="1" col="4" />
+          <GoTo line="1" col="10" />
+          <SimpleName isBad="True" startLine="1" startCol="14" endLine="1" endCol="14" escaped="False" />
+        </OnErrorStatement>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="14" endLine="1" endCol="14">error 23 (14,1) - (14,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>On Error Resume</code>
+      <result>
+        <OnErrorStatement startLine="1" startCol="1" endLine="1" endCol="16" onErrorType="Next">
+          <Error line="1" col="4" />
+          <Resume line="1" col="10" />
+        </OnErrorStatement>
+      </result>
+      <errors>
+        <ExpectedNext startLine="1" startCol="16" endLine="1" endCol="16">error 33 (16,1) - (16,1): Expected 'Next'.</ExpectedNext>
+      </errors>
+    </test>
+    <test>
+      <code>Resume "abc"</code>
+      <result>
+        <ResumeStatement startLine="1" startCol="1" endLine="1" endCol="8" resumeType="None" />
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="8" endLine="1" endCol="13">error 23 (8,1) - (13,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <!-- Syntactically, this is cool even though semantically it's not -->
+    <test>
+      <code>Try : End Try</code>
+      <result>
+        <TryBlockStatement startLine="1" startCol="1" endLine="1" endCol="14">
+          <StatementCollection startLine="1" startCol="7" endLine="1" endCol="10">
+            <Colon line="1" col="5" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="7" endLine="1" endCol="14" endType="Try">
+            <Try line="1" col="11" />
+          </EndBlockStatement>
+        </TryBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Try : Catch : End Try</code>
+      <result>
+        <TryBlockStatement startLine="1" startCol="1" endLine="1" endCol="22">
+          <StatementCollection startLine="1" startCol="7" endLine="1" endCol="12">
+            <Colon line="1" col="5" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="7" endLine="1" endCol="15">
+            <CatchBlockStatement startLine="1" startCol="7" endLine="1" endCol="15">
+              <CatchStatement startLine="1" startCol="7" endLine="1" endCol="13" />
+              <StatementCollection startLine="1" startCol="15" endLine="1" endCol="18">
+                <Colon line="1" col="13" />
+              </StatementCollection>
+            </CatchBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="15" endLine="1" endCol="22" endType="Try">
+            <Try line="1" col="19" />
+          </EndBlockStatement>
+        </TryBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Try : a : Finally : b : End Try</code>
+      <result>
+        <TryBlockStatement startLine="1" startCol="1" endLine="1" endCol="32">
+          <StatementCollection startLine="1" startCol="7" endLine="1" endCol="10">
+            <Colon line="1" col="5" />
+            <CallStatement startLine="1" startCol="7" endLine="1" endCol="9">
+              <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="False">
+                <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="9" />
+          </StatementCollection>
+          <FinallyBlockStatement startLine="1" startCol="11" endLine="1" endCol="25">
+            <FinallyStatement startLine="1" startCol="11" endLine="1" endCol="19" />
+            <StatementCollection startLine="1" startCol="21" endLine="1" endCol="24">
+              <Colon line="1" col="19" />
+              <CallStatement startLine="1" startCol="21" endLine="1" endCol="23">
+                <SimpleNameExpression startLine="1" startCol="21" endLine="1" endCol="23" isConstant="False">
+                  <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">b</SimpleName>
+                </SimpleNameExpression>
+              </CallStatement>
+              <Colon line="1" col="23" />
+            </StatementCollection>
+          </FinallyBlockStatement>
+          <EndBlockStatement startLine="1" startCol="25" endLine="1" endCol="32" endType="Try">
+            <Try line="1" col="29" />
+          </EndBlockStatement>
+        </TryBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Try : a : Catch Ex As Exception : b : End Try</code>
+      <result>
+        <TryBlockStatement startLine="1" startCol="1" endLine="1" endCol="46">
+          <StatementCollection startLine="1" startCol="7" endLine="1" endCol="10">
+            <Colon line="1" col="5" />
+            <CallStatement startLine="1" startCol="7" endLine="1" endCol="9">
+              <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="False">
+                <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="9" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="39">
+            <CatchBlockStatement startLine="1" startCol="11" endLine="1" endCol="39">
+              <CatchStatement startLine="1" startCol="11" endLine="1" endCol="33">
+                <SimpleName startLine="1" startCol="17" endLine="1" endCol="19" escaped="False">Ex</SimpleName>
+                <As line="1" col="20" />
+                <NamedType startLine="1" startCol="23" endLine="1" endCol="32">
+                  <SimpleName startLine="1" startCol="23" endLine="1" endCol="32" escaped="False">Exception</SimpleName>
+                </NamedType>
+              </CatchStatement>
+              <StatementCollection startLine="1" startCol="35" endLine="1" endCol="38">
+                <Colon line="1" col="33" />
+                <CallStatement startLine="1" startCol="35" endLine="1" endCol="37">
+                  <SimpleNameExpression startLine="1" startCol="35" endLine="1" endCol="37" isConstant="False">
+                    <SimpleName startLine="1" startCol="35" endLine="1" endCol="36" escaped="False">b</SimpleName>
+                  </SimpleNameExpression>
+                </CallStatement>
+                <Colon line="1" col="37" />
+              </StatementCollection>
+            </CatchBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="39" endLine="1" endCol="46" endType="Try">
+            <Try line="1" col="43" />
+          </EndBlockStatement>
+        </TryBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Try : a : Catch Ex As Exception When y = 3 : b : Finally : c : End Try</code>
+      <result>
+        <TryBlockStatement startLine="1" startCol="1" endLine="1" endCol="71">
+          <StatementCollection startLine="1" startCol="7" endLine="1" endCol="10">
+            <Colon line="1" col="5" />
+            <CallStatement startLine="1" startCol="7" endLine="1" endCol="9">
+              <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="False">
+                <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="9" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="50">
+            <CatchBlockStatement startLine="1" startCol="11" endLine="1" endCol="50">
+              <CatchStatement startLine="1" startCol="11" endLine="1" endCol="44">
+                <SimpleName startLine="1" startCol="17" endLine="1" endCol="19" escaped="False">Ex</SimpleName>
+                <As line="1" col="20" />
+                <NamedType startLine="1" startCol="23" endLine="1" endCol="32">
+                  <SimpleName startLine="1" startCol="23" endLine="1" endCol="32" escaped="False">Exception</SimpleName>
+                </NamedType>
+                <When line="1" col="33" />
+                <BinaryOperatorExpression startLine="1" startCol="38" endLine="1" endCol="43" isConstant="False" operator="Equals">
+                  <SimpleNameExpression startLine="1" startCol="38" endLine="1" endCol="40" isConstant="False">
+                    <SimpleName startLine="1" startCol="38" endLine="1" endCol="39" escaped="False">y</SimpleName>
+                  </SimpleNameExpression>
+                  <Equals line="1" col="40" />
+                  <IntegerLiteralExpression startLine="1" startCol="42" endLine="1" endCol="43" isConstant="True" base="Decimal">3</IntegerLiteralExpression>
+                </BinaryOperatorExpression>
+              </CatchStatement>
+              <StatementCollection startLine="1" startCol="46" endLine="1" endCol="49">
+                <Colon line="1" col="44" />
+                <CallStatement startLine="1" startCol="46" endLine="1" endCol="48">
+                  <SimpleNameExpression startLine="1" startCol="46" endLine="1" endCol="48" isConstant="False">
+                    <SimpleName startLine="1" startCol="46" endLine="1" endCol="47" escaped="False">b</SimpleName>
+                  </SimpleNameExpression>
+                </CallStatement>
+                <Colon line="1" col="48" />
+              </StatementCollection>
+            </CatchBlockStatement>
+          </StatementCollection>
+          <FinallyBlockStatement startLine="1" startCol="50" endLine="1" endCol="64">
+            <FinallyStatement startLine="1" startCol="50" endLine="1" endCol="58" />
+            <StatementCollection startLine="1" startCol="60" endLine="1" endCol="63">
+              <Colon line="1" col="58" />
+              <CallStatement startLine="1" startCol="60" endLine="1" endCol="62">
+                <SimpleNameExpression startLine="1" startCol="60" endLine="1" endCol="62" isConstant="False">
+                  <SimpleName startLine="1" startCol="60" endLine="1" endCol="61" escaped="False">c</SimpleName>
+                </SimpleNameExpression>
+              </CallStatement>
+              <Colon line="1" col="62" />
+            </StatementCollection>
+          </FinallyBlockStatement>
+          <EndBlockStatement startLine="1" startCol="64" endLine="1" endCol="71" endType="Try">
+            <Try line="1" col="68" />
+          </EndBlockStatement>
+        </TryBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Throw</code>
+      <result>
+        <ThrowStatement startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+    </test>
+    <test>
+      <code>Throw x</code>
+      <result>
+        <ThrowStatement startLine="1" startCol="1" endLine="1" endCol="8">
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+        </ThrowStatement>
+      </result>
+    </test>
+    <test>
+      <code>Error x</code>
+      <result>
+        <ErrorStatement startLine="1" startCol="1" endLine="1" endCol="8">
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+        </ErrorStatement>
+      </result>
+    </test>
+    <test>
+      <code>On Error Goto 0</code>
+      <result>
+        <OnErrorStatement startLine="1" startCol="1" endLine="1" endCol="16" onErrorType="Zero">
+          <Error line="1" col="4" />
+          <GoTo line="1" col="10" />
+          <Zero line="1" col="15" />
+        </OnErrorStatement>
+      </result>
+    </test>
+    <test>
+      <code>On Error Goto -1</code>
+      <result>
+        <OnErrorStatement startLine="1" startCol="1" endLine="1" endCol="17" onErrorType="MinusOne">
+          <Error line="1" col="4" />
+          <GoTo line="1" col="10" />
+          <Minus line="1" col="15" />
+          <One line="1" col="16" />
+        </OnErrorStatement>
+      </result>
+    </test>
+    <test>
+      <code>On Error Goto Foo</code>
+      <result>
+        <OnErrorStatement startLine="1" startCol="1" endLine="1" endCol="18" onErrorType="Label">
+          <Error line="1" col="4" />
+          <GoTo line="1" col="10" />
+          <SimpleName startLine="1" startCol="15" endLine="1" endCol="18" escaped="False">Foo</SimpleName>
+        </OnErrorStatement>
+      </result>
+    </test>
+    <test>
+      <code>On Error Resume Next</code>
+      <result>
+        <OnErrorStatement startLine="1" startCol="1" endLine="1" endCol="21" onErrorType="Next">
+          <Error line="1" col="4" />
+          <Resume line="1" col="10" />
+          <Next line="1" col="17" />
+        </OnErrorStatement>
+      </result>
+    </test>
+    <test>
+      <code>Resume</code>
+      <result>
+        <ResumeStatement startLine="1" startCol="1" endLine="1" endCol="7" resumeType="None" />
+      </result>
+    </test>
+    <test>
+      <code>Resume Next</code>
+      <result>
+        <ResumeStatement startLine="1" startCol="1" endLine="1" endCol="12" resumeType="Next">
+          <Next line="1" col="8" />
+        </ResumeStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="TypeExpressions" type="expression" description="11.5 Type Expressions">
+  <!-- This covers 11.5.1, 11.5.2 and 11.5.3 -->
+  <invalid>
+    <test>
+      <code>GetType</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False">
+          <NamedType isBad="True" startLine="1" startCol="8" endLine="1" endCol="8">
+            <SimpleName isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" escaped="False" />
+          </NamedType>
+        </GetTypeExpression>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="8" endLine="1" endCol="8">error 13 (8,1) - (8,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test>
+      <code>GetType(</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <LeftParenthesis line="1" col="8" />
+          <NamedType isBad="True" startLine="1" startCol="9" endLine="1" endCol="9">
+            <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+          </NamedType>
+        </GetTypeExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="9" endLine="1" endCol="9">error 22 (9,1) - (9,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>GetType)</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <NamedType isBad="True" startLine="1" startCol="8" endLine="1" endCol="8">
+            <SimpleName isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" escaped="False" />
+          </NamedType>
+          <RightParenthesis line="1" col="8" />
+        </GetTypeExpression>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="8" endLine="1" endCol="9">error 13 (8,1) - (9,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test>
+      <code>GetType()</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False">
+          <LeftParenthesis line="1" col="8" />
+          <NamedType isBad="True" startLine="1" startCol="9" endLine="1" endCol="9">
+            <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+          </NamedType>
+          <RightParenthesis line="1" col="9" />
+        </GetTypeExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="9" endLine="1" endCol="10">error 22 (9,1) - (10,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>GetType(Nothing)</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <LeftParenthesis line="1" col="8" />
+          <NamedType isBad="True" startLine="1" startCol="9" endLine="1" endCol="9">
+            <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+          </NamedType>
+        </GetTypeExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="9" endLine="1" endCol="16">error 22 (9,1) - (16,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>GetType(10)</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <LeftParenthesis line="1" col="8" />
+          <NamedType isBad="True" startLine="1" startCol="9" endLine="1" endCol="9">
+            <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+          </NamedType>
+        </GetTypeExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="9" endLine="1" endCol="11">error 22 (9,1) - (11,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>GetType(IDictionary(Of Integer,))</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="34" isConstant="False">
+          <LeftParenthesis line="1" col="8" />
+          <ConstructedType startLine="1" startCol="9" endLine="1" endCol="33">
+            <SimpleName startLine="1" startCol="9" endLine="1" endCol="20" escaped="False">IDictionary</SimpleName>
+            <TypeArgumentCollection startLine="1" startCol="20" endLine="1" endCol="33">
+              <Of line="1" col="21" />
+              <IntrinsicType startLine="1" startCol="24" endLine="1" endCol="31" intrinsicType="Integer" />
+              <Comma line="1" col="31" />
+              <NamedType isBad="True" startLine="1" startCol="32" endLine="1" endCol="32">
+                <SimpleName isBad="True" startLine="1" startCol="32" endLine="1" endCol="32" escaped="False" />
+              </NamedType>
+              <RightParenthesis line="1" col="32" />
+            </TypeArgumentCollection>
+          </ConstructedType>
+          <RightParenthesis line="1" col="33" />
+        </GetTypeExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="32" endLine="1" endCol="33">error 22 (32,1) - (33,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>GetType(IDictionary(Of ,Integer))</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="34" isConstant="False">
+          <LeftParenthesis line="1" col="8" />
+          <ConstructedType startLine="1" startCol="9" endLine="1" endCol="33">
+            <SimpleName startLine="1" startCol="9" endLine="1" endCol="20" escaped="False">IDictionary</SimpleName>
+            <TypeArgumentCollection startLine="1" startCol="20" endLine="1" endCol="33">
+              <Of line="1" col="21" />
+              <Comma line="1" col="24" />
+              <RightParenthesis line="1" col="32" />
+            </TypeArgumentCollection>
+          </ConstructedType>
+          <RightParenthesis line="1" col="33" />
+        </GetTypeExpression>
+      </result>
+      <errors>
+        <ArgumentSyntax startLine="1" startCol="25" endLine="1" endCol="32">error 28 (25,1) - (32,1): Comma, ')', or a valid expression continuation expected.</ArgumentSyntax>
+      </errors>
+    </test>
+    <test>
+      <code>Is</code>
+      <result>
+        <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False" operator="Is">
+          <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="3" />
+          <Is line="1" col="1" />
+          <SyntaxError isBad="True" startLine="1" startCol="3" endLine="1" endCol="3" />
+        </BinaryOperatorExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="3">error 27 (1,1) - (3,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>IsNot</code>
+      <result>
+        <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" operator="IsNot">
+          <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="6" />
+          <IsNot line="1" col="1" />
+          <SyntaxError isBad="True" startLine="1" startCol="6" endLine="1" endCol="6" />
+        </BinaryOperatorExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="6">error 27 (1,1) - (6,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>x Is</code>
+      <result>
+        <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="False" operator="Is">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Is line="1" col="3" />
+          <SyntaxError isBad="True" startLine="1" startCol="5" endLine="1" endCol="5" />
+        </BinaryOperatorExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="5" endLine="1" endCol="5">error 27 (5,1) - (5,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>x IsNot</code>
+      <result>
+        <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" operator="IsNot">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <IsNot line="1" col="3" />
+          <SyntaxError isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" />
+        </BinaryOperatorExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="8" endLine="1" endCol="8">error 27 (8,1) - (8,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Is y</code>
+      <result>
+        <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="False" operator="Is">
+          <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="3" />
+          <Is line="1" col="1" />
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="5" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </BinaryOperatorExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="3">error 27 (1,1) - (3,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>IsNot y</code>
+      <result>
+        <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" operator="IsNot">
+          <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="6" />
+          <IsNot line="1" col="1" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </BinaryOperatorExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="6">error 27 (1,1) - (6,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>TypeOf</code>
+      <result>
+        <TypeOfExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="7" endLine="1" endCol="7" />
+          <NamedType isBad="True" startLine="1" startCol="7" endLine="1" endCol="7">
+            <SimpleName isBad="True" startLine="1" startCol="7" endLine="1" endCol="7" escaped="False" />
+          </NamedType>
+        </TypeOfExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="7" endLine="1" endCol="7">error 27 (7,1) - (7,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>TypeOf Is</code>
+      <result>
+        <TypeOfExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="8" endLine="1" endCol="10" />
+          <Is line="1" col="8" />
+          <NamedType isBad="True" startLine="1" startCol="10" endLine="1" endCol="10">
+            <SimpleName isBad="True" startLine="1" startCol="10" endLine="1" endCol="10" escaped="False" />
+          </NamedType>
+        </TypeOfExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="8" endLine="1" endCol="10">error 27 (8,1) - (10,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>TypeOf x Is</code>
+      <result>
+        <TypeOfExpression startLine="1" startCol="1" endLine="1" endCol="12" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Is line="1" col="10" />
+          <NamedType isBad="True" startLine="1" startCol="12" endLine="1" endCol="12">
+            <SimpleName isBad="True" startLine="1" startCol="12" endLine="1" endCol="12" escaped="False" />
+          </NamedType>
+        </TypeOfExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="12" endLine="1" endCol="12">error 22 (12,1) - (12,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>TypeOf x Is 10</code>
+      <result>
+        <TypeOfExpression startLine="1" startCol="1" endLine="1" endCol="13" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Is line="1" col="10" />
+          <NamedType isBad="True" startLine="1" startCol="13" endLine="1" endCol="13">
+            <SimpleName isBad="True" startLine="1" startCol="13" endLine="1" endCol="13" escaped="False" />
+          </NamedType>
+        </TypeOfExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="13" endLine="1" endCol="15">error 22 (13,1) - (15,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>TypeOf x Is Nothing</code>
+      <result>
+        <TypeOfExpression startLine="1" startCol="1" endLine="1" endCol="13" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Is line="1" col="10" />
+          <NamedType isBad="True" startLine="1" startCol="13" endLine="1" endCol="13">
+            <SimpleName isBad="True" startLine="1" startCol="13" endLine="1" endCol="13" escaped="False" />
+          </NamedType>
+        </TypeOfExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="13" endLine="1" endCol="20">error 22 (13,1) - (20,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>TypeOf Integer Is Integer</code>
+      <result>
+        <TypeOfExpression startLine="1" startCol="1" endLine="1" endCol="26" isConstant="False">
+          <TypeReferenceExpression startLine="1" startCol="8" endLine="1" endCol="15" isConstant="False">
+            <IntrinsicType startLine="1" startCol="8" endLine="1" endCol="15" intrinsicType="Integer" />
+          </TypeReferenceExpression>
+          <Is line="1" col="16" />
+          <IntrinsicType startLine="1" startCol="19" endLine="1" endCol="26" intrinsicType="Integer" />
+        </TypeOfExpression>
+      </result>
+      <errors>
+        <ExpectedPeriod startLine="1" startCol="16" endLine="1" endCol="18">error 18 (16,1) - (18,1): Expected '.'.</ExpectedPeriod>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>GetType(x)</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="False">
+          <LeftParenthesis line="1" col="8" />
+          <NamedType startLine="1" startCol="9" endLine="1" endCol="10">
+            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+          </NamedType>
+          <RightParenthesis line="1" col="10" />
+        </GetTypeExpression>
+      </result>
+    </test>
+    <test>
+      <code>GetType(Integer)</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="17" isConstant="False">
+          <LeftParenthesis line="1" col="8" />
+          <IntrinsicType startLine="1" startCol="9" endLine="1" endCol="16" intrinsicType="Integer" />
+          <RightParenthesis line="1" col="16" />
+        </GetTypeExpression>
+      </result>
+    </test>
+    <test>
+      <code>GetType(System.Int32)</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="22" isConstant="False">
+          <LeftParenthesis line="1" col="8" />
+          <NamedType startLine="1" startCol="9" endLine="1" endCol="21">
+            <QualifiedName startLine="1" startCol="9" endLine="1" endCol="21">
+              <SimpleName startLine="1" startCol="9" endLine="1" endCol="15" escaped="False">System</SimpleName>
+              <Period line="1" col="15" />
+              <SimpleName startLine="1" startCol="16" endLine="1" endCol="21" escaped="False">Int32</SimpleName>
+            </QualifiedName>
+          </NamedType>
+          <RightParenthesis line="1" col="21" />
+        </GetTypeExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>GetType(IEnumerable(Of Integer))</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="33" isConstant="False">
+          <LeftParenthesis line="1" col="8" />
+          <ConstructedType startLine="1" startCol="9" endLine="1" endCol="32">
+            <SimpleName startLine="1" startCol="9" endLine="1" endCol="20" escaped="False">IEnumerable</SimpleName>
+            <TypeArgumentCollection startLine="1" startCol="20" endLine="1" endCol="32">
+              <Of line="1" col="21" />
+              <IntrinsicType startLine="1" startCol="24" endLine="1" endCol="31" intrinsicType="Integer" />
+              <RightParenthesis line="1" col="31" />
+            </TypeArgumentCollection>
+          </ConstructedType>
+          <RightParenthesis line="1" col="32" />
+        </GetTypeExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>GetType(IDictionary(Of ,))</code>
+      <result>
+        <GetTypeExpression startLine="1" startCol="1" endLine="1" endCol="27" isConstant="False">
+          <LeftParenthesis line="1" col="8" />
+          <ConstructedType startLine="1" startCol="9" endLine="1" endCol="26">
+            <SimpleName startLine="1" startCol="9" endLine="1" endCol="20" escaped="False">IDictionary</SimpleName>
+            <TypeArgumentCollection startLine="1" startCol="20" endLine="1" endCol="26">
+              <Of line="1" col="21" />
+              <Comma line="1" col="24" />
+              <RightParenthesis line="1" col="25" />
+            </TypeArgumentCollection>
+          </ConstructedType>
+          <RightParenthesis line="1" col="26" />
+        </GetTypeExpression>
+      </result>
+    </test>
+    <!-- Invalid TypeOf...Is -->
+    <test>
+      <code>TypeOf x Is y</code>
+      <result>
+        <TypeOfExpression startLine="1" startCol="1" endLine="1" endCol="14" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Is line="1" col="10" />
+          <NamedType startLine="1" startCol="13" endLine="1" endCol="14">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">y</SimpleName>
+          </NamedType>
+        </TypeOfExpression>
+      </result>
+    </test>
+    <test>
+      <code>TypeOf x Is Integer</code>
+      <result>
+        <TypeOfExpression startLine="1" startCol="1" endLine="1" endCol="20" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Is line="1" col="10" />
+          <IntrinsicType startLine="1" startCol="13" endLine="1" endCol="20" intrinsicType="Integer" />
+        </TypeOfExpression>
+      </result>
+    </test>
+    <test>
+      <code>TypeOf x Is System.Int32</code>
+      <result>
+        <TypeOfExpression startLine="1" startCol="1" endLine="1" endCol="25" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Is line="1" col="10" />
+          <NamedType startLine="1" startCol="13" endLine="1" endCol="25">
+            <QualifiedName startLine="1" startCol="13" endLine="1" endCol="25">
+              <SimpleName startLine="1" startCol="13" endLine="1" endCol="19" escaped="False">System</SimpleName>
+              <Period line="1" col="19" />
+              <SimpleName startLine="1" startCol="20" endLine="1" endCol="25" escaped="False">Int32</SimpleName>
+            </QualifiedName>
+          </NamedType>
+        </TypeOfExpression>
+      </result>
+    </test>
+    <test>
+      <code>x Is y</code>
+      <result>
+        <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" operator="Is">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Is line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </BinaryOperatorExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>x IsNot y</code>
+      <result>
+        <BinaryOperatorExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False" operator="IsNot">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <IsNot line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="9" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </BinaryOperatorExpression>
+      </result>
+    </test>
+  </valid>    
+</scenario>

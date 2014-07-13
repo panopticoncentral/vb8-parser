@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Invocations" type="statement" description="10.7 Invocation Statements">
+  <!-- We've already tested most of this in expressions -->
+  <invalid>
+    <test>
+      <code>Call</code>
+      <result>
+        <CallStatement startLine="1" startCol="1" endLine="1" endCol="5">
+          <Call line="1" col="1" />
+          <SyntaxError isBad="True" startLine="1" startCol="5" endLine="1" endCol="5" />
+        </CallStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="5" endLine="1" endCol="5">error 27 (5,1) - (5,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>Call x()</code>
+      <result>
+        <CallStatement startLine="1" startCol="1" endLine="1" endCol="9">
+          <Call line="1" col="1" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <ArgumentCollection startLine="1" startCol="7" endLine="1" endCol="9">
+            <RightParenthesis line="1" col="8" />
+          </ArgumentCollection>
+        </CallStatement>
+      </result>
+    </test>
+    <test>
+      <code>x()</code>
+      <result>
+        <CallStatement startLine="1" startCol="1" endLine="1" endCol="4">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <ArgumentCollection startLine="1" startCol="2" endLine="1" endCol="4">
+            <RightParenthesis line="1" col="3" />
+          </ArgumentCollection>
+        </CallStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

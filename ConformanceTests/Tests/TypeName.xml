@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="TypeName" type="typename" description="7 Types &amp; 7.4 Primitive Types &amp; 7.9 Arrays">
+  <invalid>
+    <test>
+      <code>x.</code>
+      <result>
+        <NamedType startLine="1" startCol="1" endLine="1" endCol="3">
+          <QualifiedName startLine="1" startCol="1" endLine="1" endCol="3">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+            <Period line="1" col="2" />
+            <SimpleName isBad="True" startLine="1" startCol="3" endLine="1" endCol="3" escaped="False" />
+          </QualifiedName>
+        </NamedType>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="3" endLine="1" endCol="3">error 23 (3,1) - (3,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>.x</code>
+      <result>
+        <NamedType isBad="True" startLine="1" startCol="1" endLine="1" endCol="1">
+          <SimpleName isBad="True" startLine="1" startCol="1" endLine="1" endCol="1" escaped="False" />
+        </NamedType>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="1" endLine="1" endCol="2">error 22 (1,1) - (2,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>x(</code>
+      <result>
+        <ArrayType startLine="1" startCol="1" endLine="1" endCol="3" rank="1">
+          <NamedType startLine="1" startCol="1" endLine="1" endCol="2">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="2" endLine="1" endCol="3">
+            <Argument startLine="1" startCol="3" endLine="1" endCol="3">
+              <SyntaxError isBad="True" startLine="1" startCol="3" endLine="1" endCol="3" />
+            </Argument>
+          </ArgumentCollection>
+        </ArrayType>
+      </result>
+      <errors>
+        <NoExplicitArraySizes startLine="1" startCol="3" endLine="1" endCol="3">error 26 (3,1) - (3,1): Array bounds cannot appear in type specifiers.</NoExplicitArraySizes>
+      </errors>
+    </test>
+    <test>
+      <code>x(10,)</code>
+      <result>
+        <ArrayType startLine="1" startCol="1" endLine="1" endCol="7" rank="2">
+          <NamedType startLine="1" startCol="1" endLine="1" endCol="2">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="2" endLine="1" endCol="7">
+            <Argument startLine="1" startCol="3" endLine="1" endCol="5">
+              <IntegerLiteralExpression startLine="1" startCol="3" endLine="1" endCol="5" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+            </Argument>
+            <Comma line="1" col="5" />
+            <Argument startLine="1" startCol="6" endLine="1" endCol="6">
+              <SyntaxError isBad="True" startLine="1" startCol="6" endLine="1" endCol="7" />
+            </Argument>
+            <RightParenthesis line="1" col="6" />
+          </ArgumentCollection>
+        </ArrayType>
+      </result>
+      <errors>
+        <NoExplicitArraySizes startLine="1" startCol="3" endLine="1" endCol="5">error 26 (3,1) - (5,1): Array bounds cannot appear in type specifiers.</NoExplicitArraySizes>
+      </errors>
+    </test>
+    <test>
+      <code>x(,10)</code>
+      <result>
+        <ArrayType startLine="1" startCol="1" endLine="1" endCol="4" rank="2">
+          <NamedType startLine="1" startCol="1" endLine="1" endCol="2">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="2" endLine="1" endCol="4">
+            <Comma line="1" col="3" />
+          </ArgumentCollection>
+        </ArrayType>
+      </result>
+      <errors>
+        <ExpectedRightParenthesis startLine="1" startCol="4" endLine="1" endCol="6">error 14 (4,1) - (6,1): Expected ')'.</ExpectedRightParenthesis>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Global</code>
+      <result>
+        <NamedType startLine="1" startCol="1" endLine="1" endCol="7">
+          <GlobalNamespaceName startLine="1" startCol="1" endLine="1" endCol="7" />
+        </NamedType>
+      </result>
+      <errors>
+        <ExpectedPeriod startLine="1" startCol="7" endLine="1" endCol="7">error 18 (7,1) - (7,1): Expected '.'.</ExpectedPeriod>
+      </errors>
+    </test>
+    <test version="7.1">
+      <code>List(Of Integer)</code>
+      <result>
+        <ArrayType startLine="1" startCol="1" endLine="1" endCol="17" rank="1">
+          <NamedType startLine="1" startCol="1" endLine="1" endCol="5">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">List</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="5" endLine="1" endCol="17">
+            <Argument startLine="1" startCol="6" endLine="1" endCol="16">
+              <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="9" isConstant="False">
+                <SimpleName startLine="1" startCol="6" endLine="1" endCol="8" escaped="False">Of</SimpleName>
+              </SimpleNameExpression>
+            </Argument>
+            <RightParenthesis line="1" col="16" />
+          </ArgumentCollection>
+        </ArrayType>
+      </result>
+      <errors>
+        <NoExplicitArraySizes startLine="1" startCol="6" endLine="1" endCol="8">error 26 (6,1) - (8,1): Array bounds cannot appear in type specifiers.</NoExplicitArraySizes>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>List(Of</code>
+      <result>
+        <ConstructedType startLine="1" startCol="1" endLine="1" endCol="8">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">List</SimpleName>
+          <TypeArgumentCollection startLine="1" startCol="5" endLine="1" endCol="8">
+            <Of line="1" col="6" />
+            <NamedType isBad="True" startLine="1" startCol="8" endLine="1" endCol="8">
+              <SimpleName isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" escaped="False" />
+            </NamedType>
+          </TypeArgumentCollection>
+        </ConstructedType>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="8" endLine="1" endCol="8">error 22 (8,1) - (8,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>List(Of)</code>
+      <result>
+        <ConstructedType startLine="1" startCol="1" endLine="1" endCol="9">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">List</SimpleName>
+          <TypeArgumentCollection startLine="1" startCol="5" endLine="1" endCol="9">
+            <Of line="1" col="6" />
+            <NamedType isBad="True" startLine="1" startCol="8" endLine="1" endCol="8">
+              <SimpleName isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" escaped="False" />
+            </NamedType>
+            <RightParenthesis line="1" col="8" />
+          </TypeArgumentCollection>
+        </ConstructedType>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="8" endLine="1" endCol="9">error 22 (8,1) - (9,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>List(Of Integer,</code>
+      <result>
+        <ConstructedType startLine="1" startCol="1" endLine="1" endCol="17">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">List</SimpleName>
+          <TypeArgumentCollection startLine="1" startCol="5" endLine="1" endCol="17">
+            <Of line="1" col="6" />
+            <IntrinsicType startLine="1" startCol="9" endLine="1" endCol="16" intrinsicType="Integer" />
+            <Comma line="1" col="16" />
+            <NamedType isBad="True" startLine="1" startCol="17" endLine="1" endCol="17">
+              <SimpleName isBad="True" startLine="1" startCol="17" endLine="1" endCol="17" escaped="False" />
+            </NamedType>
+          </TypeArgumentCollection>
+        </ConstructedType>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="17" endLine="1" endCol="17">error 22 (17,1) - (17,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>List(Of Integer,)</code>
+      <result>
+        <ConstructedType startLine="1" startCol="1" endLine="1" endCol="18">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">List</SimpleName>
+          <TypeArgumentCollection startLine="1" startCol="5" endLine="1" endCol="18">
+            <Of line="1" col="6" />
+            <IntrinsicType startLine="1" startCol="9" endLine="1" endCol="16" intrinsicType="Integer" />
+            <Comma line="1" col="16" />
+            <NamedType isBad="True" startLine="1" startCol="17" endLine="1" endCol="17">
+              <SimpleName isBad="True" startLine="1" startCol="17" endLine="1" endCol="17" escaped="False" />
+            </NamedType>
+            <RightParenthesis line="1" col="17" />
+          </TypeArgumentCollection>
+        </ConstructedType>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="17" endLine="1" endCol="18">error 22 (17,1) - (18,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <!-- The following test is invalid but parses -->
+    <test>
+      <code>x)</code>
+      <result>
+        <NamedType startLine="1" startCol="1" endLine="1" endCol="2">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </NamedType>
+      </result>
+    </test>
+    <test>
+      <code>x</code>
+      <result>
+        <NamedType startLine="1" startCol="1" endLine="1" endCol="2">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+        </NamedType>
+      </result>
+    </test>
+    <test>
+      <code>x.y.z</code>
+      <result>
+        <NamedType startLine="1" startCol="1" endLine="1" endCol="6">
+          <QualifiedName startLine="1" startCol="1" endLine="1" endCol="6">
+            <QualifiedName startLine="1" startCol="1" endLine="1" endCol="4">
+              <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+              <Period line="1" col="2" />
+              <SimpleName startLine="1" startCol="3" endLine="1" endCol="4" escaped="False">y</SimpleName>
+            </QualifiedName>
+            <Period line="1" col="4" />
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">z</SimpleName>
+          </QualifiedName>
+        </NamedType>
+      </result>
+    </test>
+    <test>
+      <code>Object</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="7" intrinsicType="Object" />
+      </result>
+    </test>
+    <test>
+      <code>Boolean</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="8" intrinsicType="Boolean" />
+      </result>
+    </test>
+    <test>
+      <code>Date</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="5" intrinsicType="Date" />
+      </result>
+    </test>
+    <test>
+      <code>Char</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="5" intrinsicType="Char" />
+      </result>
+    </test>
+    <test>
+      <code>String</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="7" intrinsicType="String" />
+      </result>
+    </test>
+    <test>
+      <code>Decimal</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="8" intrinsicType="Decimal" />
+      </result>
+    </test>
+    <test version="8.0">
+      <code>SByte</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="6" intrinsicType="SByte" />
+      </result>
+    </test>
+    <test>
+      <code>Byte</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="5" intrinsicType="Byte" />
+      </result>
+    </test>
+    <test>
+      <code>Short</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="6" intrinsicType="Short" />
+      </result>
+    </test>
+    <test version="8.0">
+      <code>UShort</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="7" intrinsicType="UShort" />
+      </result>
+    </test>
+    <test>
+      <code>Integer</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="8" intrinsicType="Integer" />
+      </result>
+    </test>
+    <test version="8.0">
+      <code>UInteger</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="9" intrinsicType="UInteger" />
+      </result>
+    </test>
+    <test>
+      <code>Long</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="5" intrinsicType="Long" />
+      </result>
+    </test>
+    <test version="8.0">
+      <code>ULong</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="6" intrinsicType="ULong" />
+      </result>
+    </test>
+    <test>
+      <code>Single</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="7" intrinsicType="Single" />
+      </result>
+    </test>
+    <test>
+      <code>Double</code>
+      <result>
+        <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="7" intrinsicType="Double" />
+      </result>
+    </test>
+    <test>
+      <code>x()</code>
+      <result>
+        <ArrayType startLine="1" startCol="1" endLine="1" endCol="4" rank="1">
+          <NamedType startLine="1" startCol="1" endLine="1" endCol="2">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="2" endLine="1" endCol="4">
+            <RightParenthesis line="1" col="3" />
+          </ArgumentCollection>
+        </ArrayType>
+      </result>
+    </test>
+    <test>
+      <code>x(,,,)</code>
+      <result>
+        <ArrayType startLine="1" startCol="1" endLine="1" endCol="7" rank="4">
+          <NamedType startLine="1" startCol="1" endLine="1" endCol="2">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="2" endLine="1" endCol="7">
+            <Comma line="1" col="3" />
+            <Comma line="1" col="4" />
+            <Comma line="1" col="5" />
+            <RightParenthesis line="1" col="6" />
+          </ArgumentCollection>
+        </ArrayType>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Global.System.Console</code>
+      <result>
+        <NamedType startLine="1" startCol="1" endLine="1" endCol="22">
+          <QualifiedName startLine="1" startCol="1" endLine="1" endCol="22">
+            <QualifiedName startLine="1" startCol="1" endLine="1" endCol="14">
+              <GlobalNamespaceName startLine="1" startCol="1" endLine="1" endCol="7" />
+              <Period line="1" col="7" />
+              <SimpleName startLine="1" startCol="8" endLine="1" endCol="14" escaped="False">System</SimpleName>
+            </QualifiedName>
+            <Period line="1" col="14" />
+            <SimpleName startLine="1" startCol="15" endLine="1" endCol="22" escaped="False">Console</SimpleName>
+          </QualifiedName>
+        </NamedType>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>List(Of Integer, Long)</code>
+      <result>
+        <ConstructedType startLine="1" startCol="1" endLine="1" endCol="23">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="5" escaped="False">List</SimpleName>
+          <TypeArgumentCollection startLine="1" startCol="5" endLine="1" endCol="23">
+            <Of line="1" col="6" />
+            <IntrinsicType startLine="1" startCol="9" endLine="1" endCol="16" intrinsicType="Integer" />
+            <Comma line="1" col="16" />
+            <IntrinsicType startLine="1" startCol="18" endLine="1" endCol="22" intrinsicType="Long" />
+            <RightParenthesis line="1" col="22" />
+          </TypeArgumentCollection>
+        </ConstructedType>
+      </result>
+    </test>
+  </valid>
+</scenario>

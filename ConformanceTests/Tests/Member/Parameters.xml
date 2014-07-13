@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Parameters" type="declaration" description="9.2.5 Method Parameters">
+  <invalid>
+    <test>
+        <code>
+            Sub Foo(ByVal &lt;a&gt; x As Integer)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="32">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="31">
+                        <ModifierCollection startLine="1" startCol="9" endLine="1" endCol="15">
+                            <Modifier startLine="1" startCol="9" endLine="1" endCol="15" type="ByVal" />
+                        </ModifierCollection>
+                        <VariableName startLine="1" startCol="15" endLine="1" endCol="15">
+                            <SimpleName isBad="True" startLine="1" startCol="15" endLine="1" endCol="16" escaped="False" />
+                        </VariableName>
+                        <As line="1" col="21" />
+                        <IntrinsicType startLine="1" startCol="24" endLine="1" endCol="31" intrinsicType="Integer" />
+                    </Parameter>
+                    <RightParenthesis line="1" col="31" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+        <errors>
+            <ExpectedIdentifier startLine="1" startCol="15" endLine="1" endCol="16">error 23 (15,1) - (16,1): Expected identifier.</ExpectedIdentifier>
+        </errors>
+    </test>
+    <test>
+        <code>
+            Sub Foo(Public x As Integer)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="29">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="28">
+                        <VariableName startLine="1" startCol="9" endLine="1" endCol="16">
+                            <SimpleName startLine="1" startCol="9" endLine="1" endCol="15" escaped="False">Public</SimpleName>
+                        </VariableName>
+                        <As line="1" col="18" />
+                        <IntrinsicType startLine="1" startCol="21" endLine="1" endCol="28" intrinsicType="Integer" />
+                    </Parameter>
+                    <RightParenthesis line="1" col="28" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+        <errors>
+            <InvalidUseOfKeyword startLine="1" startCol="9" endLine="1" endCol="15">error 24 (9,1) - (15,1): Invalid use of keyword.</InvalidUseOfKeyword>
+        </errors>
+    </test>
+    <test>
+        <code>
+            Sub Foo(x As)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="14">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="13">
+                        <VariableName startLine="1" startCol="9" endLine="1" endCol="11">
+                            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                        </VariableName>
+                        <As line="1" col="11" />
+                        <NamedType isBad="True" startLine="1" startCol="13" endLine="1" endCol="13">
+                            <SimpleName isBad="True" startLine="1" startCol="13" endLine="1" endCol="13" escaped="False" />
+                        </NamedType>
+                    </Parameter>
+                    <RightParenthesis line="1" col="13" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+        <errors>
+            <ExpectedType startLine="1" startCol="13" endLine="1" endCol="14">error 22 (13,1) - (14,1): Type expected.</ExpectedType>
+        </errors>
+    </test>
+    <test>
+        <code>
+            Sub Foo(x As = 5)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="18">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="17">
+                        <VariableName startLine="1" startCol="9" endLine="1" endCol="11">
+                            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                        </VariableName>
+                        <As line="1" col="11" />
+                        <NamedType isBad="True" startLine="1" startCol="14" endLine="1" endCol="14">
+                            <SimpleName isBad="True" startLine="1" startCol="14" endLine="1" endCol="14" escaped="False" />
+                        </NamedType>
+                        <Equals line="1" col="14" />
+                        <ExpressionInitializer startLine="1" startCol="16" endLine="1" endCol="17">
+                            <IntegerLiteralExpression startLine="1" startCol="16" endLine="1" endCol="17" isConstant="True" base="Decimal">5</IntegerLiteralExpression>
+                        </ExpressionInitializer>
+                    </Parameter>
+                    <RightParenthesis line="1" col="17" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+        <errors>
+            <ExpectedType startLine="1" startCol="14" endLine="1" endCol="15">error 22 (14,1) - (15,1): Type expected.</ExpectedType>
+        </errors>
+    </test>
+    <test>
+        <code>
+            Sub Foo(x As Integer =)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="24">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="23">
+                        <VariableName startLine="1" startCol="9" endLine="1" endCol="11">
+                            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                        </VariableName>
+                        <As line="1" col="11" />
+                        <IntrinsicType startLine="1" startCol="14" endLine="1" endCol="21" intrinsicType="Integer" />
+                        <Equals line="1" col="22" />
+                        <ExpressionInitializer startLine="1" startCol="23" endLine="1" endCol="24">
+                            <SyntaxError isBad="True" startLine="1" startCol="23" endLine="1" endCol="24" />
+                        </ExpressionInitializer>
+                    </Parameter>
+                    <RightParenthesis line="1" col="23" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+        <errors>
+            <ExpectedExpression startLine="1" startCol="23" endLine="1" endCol="24">error 27 (23,1) - (24,1): Expected expression.</ExpectedExpression>
+        </errors>
+    </test>
+    <test>
+        <code>
+            Sub Foo(x As Integer,)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="23">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="21">
+                        <VariableName startLine="1" startCol="9" endLine="1" endCol="11">
+                            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                        </VariableName>
+                        <As line="1" col="11" />
+                        <IntrinsicType startLine="1" startCol="14" endLine="1" endCol="21" intrinsicType="Integer" />
+                    </Parameter>
+                    <Comma line="1" col="21" />
+                    <Parameter startLine="1" startCol="22" endLine="1" endCol="22">
+                        <VariableName startLine="1" startCol="22" endLine="1" endCol="22">
+                            <SimpleName isBad="True" startLine="1" startCol="22" endLine="1" endCol="23" escaped="False" />
+                        </VariableName>
+                    </Parameter>
+                    <RightParenthesis line="1" col="22" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+        <errors>
+            <ExpectedIdentifier startLine="1" startCol="22" endLine="1" endCol="23">error 23 (22,1) - (23,1): Expected identifier.</ExpectedIdentifier>
+        </errors>
+    </test>
+    <test>
+        <code>
+            Sub Foo(x As Integer,,y As Integer)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="36">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="21">
+                        <VariableName startLine="1" startCol="9" endLine="1" endCol="11">
+                            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                        </VariableName>
+                        <As line="1" col="11" />
+                        <IntrinsicType startLine="1" startCol="14" endLine="1" endCol="21" intrinsicType="Integer" />
+                    </Parameter>
+                    <Comma line="1" col="21" />
+                    <Comma line="1" col="22" />
+                    <Parameter startLine="1" startCol="22" endLine="1" endCol="22">
+                        <VariableName startLine="1" startCol="22" endLine="1" endCol="22">
+                            <SimpleName isBad="True" startLine="1" startCol="22" endLine="1" endCol="23" escaped="False" />
+                        </VariableName>
+                    </Parameter>
+                    <Parameter startLine="1" startCol="23" endLine="1" endCol="35">
+                        <VariableName startLine="1" startCol="23" endLine="1" endCol="25">
+                            <SimpleName startLine="1" startCol="23" endLine="1" endCol="24" escaped="False">y</SimpleName>
+                        </VariableName>
+                        <As line="1" col="25" />
+                        <IntrinsicType startLine="1" startCol="28" endLine="1" endCol="35" intrinsicType="Integer" />
+                    </Parameter>
+                    <RightParenthesis line="1" col="35" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+        <errors>
+            <ExpectedIdentifier startLine="1" startCol="22" endLine="1" endCol="23">error 23 (22,1) - (23,1): Expected identifier.</ExpectedIdentifier>
+        </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+        <code>
+            Sub Foo(x As Integer, y As Integer)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="36">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="21">
+                        <VariableName startLine="1" startCol="9" endLine="1" endCol="11">
+                            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                        </VariableName>
+                        <As line="1" col="11" />
+                        <IntrinsicType startLine="1" startCol="14" endLine="1" endCol="21" intrinsicType="Integer" />
+                    </Parameter>
+                    <Comma line="1" col="21" />
+                    <Parameter startLine="1" startCol="23" endLine="1" endCol="35">
+                        <VariableName startLine="1" startCol="23" endLine="1" endCol="25">
+                            <SimpleName startLine="1" startCol="23" endLine="1" endCol="24" escaped="False">y</SimpleName>
+                        </VariableName>
+                        <As line="1" col="25" />
+                        <IntrinsicType startLine="1" startCol="28" endLine="1" endCol="35" intrinsicType="Integer" />
+                    </Parameter>
+                    <RightParenthesis line="1" col="35" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+    </test>
+    <test>
+        <code>
+            Sub Foo(x, y, z)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="17">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="10">
+                        <VariableName startLine="1" startCol="9" endLine="1" endCol="10">
+                            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+                        </VariableName>
+                    </Parameter>
+                    <Comma line="1" col="10" />
+                    <Parameter startLine="1" startCol="12" endLine="1" endCol="13">
+                        <VariableName startLine="1" startCol="12" endLine="1" endCol="13">
+                            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">y</SimpleName>
+                        </VariableName>
+                    </Parameter>
+                    <Comma line="1" col="13" />
+                    <Parameter startLine="1" startCol="15" endLine="1" endCol="16">
+                        <VariableName startLine="1" startCol="15" endLine="1" endCol="16">
+                            <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">z</SimpleName>
+                        </VariableName>
+                    </Parameter>
+                    <RightParenthesis line="1" col="16" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+    </test>
+    <test>
+        <code>
+            Sub Foo(ByVal ByRef Optional Paramarray x As Integer)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="54">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="53">
+                        <ModifierCollection startLine="1" startCol="9" endLine="1" endCol="41">
+                            <Modifier startLine="1" startCol="9" endLine="1" endCol="15" type="ByVal" />
+                            <Modifier startLine="1" startCol="15" endLine="1" endCol="21" type="ByRef" />
+                            <Modifier startLine="1" startCol="21" endLine="1" endCol="30" type="Optional" />
+                            <Modifier startLine="1" startCol="30" endLine="1" endCol="41" type="ParamArray" />
+                        </ModifierCollection>
+                        <VariableName startLine="1" startCol="41" endLine="1" endCol="43">
+                            <SimpleName startLine="1" startCol="41" endLine="1" endCol="42" escaped="False">x</SimpleName>
+                        </VariableName>
+                        <As line="1" col="43" />
+                        <IntrinsicType startLine="1" startCol="46" endLine="1" endCol="53" intrinsicType="Integer" />
+                    </Parameter>
+                    <RightParenthesis line="1" col="53" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+    </test>
+    <test>
+        <code>
+            Sub Foo(&lt;a&gt; x As Integer, &lt;b&gt; y As Integer)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="44">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="25">
+                        <AttributeBlockCollection startLine="1" startCol="9" endLine="1" endCol="13">
+                            <AttributeCollection startLine="1" startCol="9" endLine="1" endCol="13">
+                                <Attribute startLine="1" startCol="10" endLine="1" endCol="11" type="Regular">
+                                    <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">a</SimpleName>
+                                </Attribute>
+                                <GreaterThan line="1" col="11" />
+                            </AttributeCollection>
+                        </AttributeBlockCollection>
+                        <VariableName startLine="1" startCol="13" endLine="1" endCol="15">
+                            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">x</SimpleName>
+                        </VariableName>
+                        <As line="1" col="15" />
+                        <IntrinsicType startLine="1" startCol="18" endLine="1" endCol="25" intrinsicType="Integer" />
+                    </Parameter>
+                    <Comma line="1" col="25" />
+                    <Parameter startLine="1" startCol="27" endLine="1" endCol="43">
+                        <AttributeBlockCollection startLine="1" startCol="27" endLine="1" endCol="31">
+                            <AttributeCollection startLine="1" startCol="27" endLine="1" endCol="31">
+                                <Attribute startLine="1" startCol="28" endLine="1" endCol="29" type="Regular">
+                                    <SimpleName startLine="1" startCol="28" endLine="1" endCol="29" escaped="False">b</SimpleName>
+                                </Attribute>
+                                <GreaterThan line="1" col="29" />
+                            </AttributeCollection>
+                        </AttributeBlockCollection>
+                        <VariableName startLine="1" startCol="31" endLine="1" endCol="33">
+                            <SimpleName startLine="1" startCol="31" endLine="1" endCol="32" escaped="False">y</SimpleName>
+                        </VariableName>
+                        <As line="1" col="33" />
+                        <IntrinsicType startLine="1" startCol="36" endLine="1" endCol="43" intrinsicType="Integer" />
+                    </Parameter>
+                    <RightParenthesis line="1" col="43" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+    </test>
+    <test>
+        <code>
+            Sub Foo(Optional x As Integer = 5)
+            End Sub
+        </code>
+        <result>
+            <SubDeclaration startLine="1" startCol="1" endLine="2" endCol="20">
+                <Sub line="1" col="1" />
+                <SimpleName startLine="1" startCol="5" endLine="1" endCol="8" escaped="False">Foo</SimpleName>
+                <ParameterCollection startLine="1" startCol="8" endLine="1" endCol="35">
+                    <Parameter startLine="1" startCol="9" endLine="1" endCol="34">
+                        <ModifierCollection startLine="1" startCol="9" endLine="1" endCol="18">
+                            <Modifier startLine="1" startCol="9" endLine="1" endCol="18" type="Optional" />
+                        </ModifierCollection>
+                        <VariableName startLine="1" startCol="18" endLine="1" endCol="20">
+                            <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">x</SimpleName>
+                        </VariableName>
+                        <As line="1" col="20" />
+                        <IntrinsicType startLine="1" startCol="23" endLine="1" endCol="30" intrinsicType="Integer" />
+                        <Equals line="1" col="31" />
+                        <ExpressionInitializer startLine="1" startCol="33" endLine="1" endCol="34">
+                            <IntegerLiteralExpression startLine="1" startCol="33" endLine="1" endCol="34" isConstant="True" base="Decimal">5</IntegerLiteralExpression>
+                        </ExpressionInitializer>
+                    </Parameter>
+                    <RightParenthesis line="1" col="34" />
+                </ParameterCollection>
+                <EndBlockDeclaration startLine="2" startCol="13" endLine="2" endCol="20" endType="Sub">
+                    <Sub line="2" col="17" />
+                </EndBlockDeclaration>
+            </SubDeclaration>
+        </result>
+    </test>
+  </valid>
+</scenario>

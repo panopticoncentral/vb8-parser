@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Casts" type="expression" description="11.11 Cast Expressions">
+  <invalid>
+    <test>
+      <code>DirectCast</code>
+      <result>
+        <DirectCastExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" />
+          <NamedType isBad="True" startLine="1" startCol="11" endLine="1" endCol="11">
+            <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" escaped="False" />
+          </NamedType>
+        </DirectCastExpression>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="11" endLine="1" endCol="11">error 13 (11,1) - (11,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test>
+      <code>DirectCast(</code>
+      <result>
+        <DirectCastExpression startLine="1" startCol="1" endLine="1" endCol="12" isConstant="False">
+          <LeftParenthesis line="1" col="11" />
+          <SyntaxError isBad="True" startLine="1" startCol="12" endLine="1" endCol="12" />
+          <NamedType isBad="True" startLine="1" startCol="12" endLine="1" endCol="12">
+            <SimpleName isBad="True" startLine="1" startCol="12" endLine="1" endCol="12" escaped="False" />
+          </NamedType>
+        </DirectCastExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="12" endLine="1" endCol="12">error 27 (12,1) - (12,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>DirectCast)</code>
+      <result>
+        <DirectCastExpression startLine="1" startCol="1" endLine="1" endCol="12" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="11" endLine="1" endCol="12" />
+          <NamedType isBad="True" startLine="1" startCol="11" endLine="1" endCol="11">
+            <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" escaped="False" />
+          </NamedType>
+          <RightParenthesis line="1" col="11" />
+        </DirectCastExpression>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="11" endLine="1" endCol="12">error 13 (11,1) - (12,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test>
+      <code>DirectCast()</code>
+      <result>
+        <DirectCastExpression startLine="1" startCol="1" endLine="1" endCol="13" isConstant="False">
+          <LeftParenthesis line="1" col="11" />
+          <SyntaxError isBad="True" startLine="1" startCol="12" endLine="1" endCol="13" />
+          <NamedType isBad="True" startLine="1" startCol="12" endLine="1" endCol="12">
+            <SimpleName isBad="True" startLine="1" startCol="12" endLine="1" endCol="12" escaped="False" />
+          </NamedType>
+          <RightParenthesis line="1" col="12" />
+        </DirectCastExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="12" endLine="1" endCol="13">error 27 (12,1) - (13,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>DirectCast(,)</code>
+      <result>
+        <DirectCastExpression startLine="1" startCol="1" endLine="1" endCol="14" isConstant="False">
+          <LeftParenthesis line="1" col="11" />
+          <SyntaxError isBad="True" startLine="1" startCol="12" endLine="1" endCol="13" />
+          <Comma line="1" col="12" />
+          <NamedType isBad="True" startLine="1" startCol="13" endLine="1" endCol="13">
+            <SimpleName isBad="True" startLine="1" startCol="13" endLine="1" endCol="13" escaped="False" />
+          </NamedType>
+          <RightParenthesis line="1" col="13" />
+        </DirectCastExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="12" endLine="1" endCol="13">error 27 (12,1) - (13,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>DirectCast(x,)</code>
+      <result>
+        <DirectCastExpression startLine="1" startCol="1" endLine="1" endCol="15" isConstant="False">
+          <LeftParenthesis line="1" col="11" />
+          <SimpleNameExpression startLine="1" startCol="12" endLine="1" endCol="13" isConstant="False">
+            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="13" />
+          <NamedType isBad="True" startLine="1" startCol="14" endLine="1" endCol="14">
+            <SimpleName isBad="True" startLine="1" startCol="14" endLine="1" endCol="14" escaped="False" />
+          </NamedType>
+          <RightParenthesis line="1" col="14" />
+        </DirectCastExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="14" endLine="1" endCol="15">error 22 (14,1) - (15,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>DirectCast(,y)</code>
+      <result>
+        <DirectCastExpression startLine="1" startCol="1" endLine="1" endCol="15" isConstant="False">
+          <LeftParenthesis line="1" col="11" />
+          <SyntaxError isBad="True" startLine="1" startCol="12" endLine="1" endCol="13" />
+          <Comma line="1" col="12" />
+          <NamedType startLine="1" startCol="13" endLine="1" endCol="14">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">y</SimpleName>
+          </NamedType>
+          <RightParenthesis line="1" col="14" />
+        </DirectCastExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="12" endLine="1" endCol="13">error 27 (12,1) - (13,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>TryCast</code>
+      <result>
+        <TryCastExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" />
+          <NamedType isBad="True" startLine="1" startCol="8" endLine="1" endCol="8">
+            <SimpleName isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" escaped="False" />
+          </NamedType>
+        </TryCastExpression>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="8" endLine="1" endCol="8">error 13 (8,1) - (8,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>TryCast(</code>
+      <result>
+        <TryCastExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" />
+          <NamedType isBad="True" startLine="1" startCol="9" endLine="1" endCol="9">
+            <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+          </NamedType>
+        </TryCastExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="9" endLine="1" endCol="9">error 27 (9,1) - (9,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>TryCast)</code>
+      <result>
+        <TryCastExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="8" endLine="1" endCol="9" />
+          <NamedType isBad="True" startLine="1" startCol="8" endLine="1" endCol="8">
+            <SimpleName isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" escaped="False" />
+          </NamedType>
+        </TryCastExpression>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="8" endLine="1" endCol="9">error 13 (8,1) - (9,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>TryCast()</code>
+      <result>
+        <TryCastExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="9" endLine="1" endCol="10" />
+          <NamedType isBad="True" startLine="1" startCol="9" endLine="1" endCol="9">
+            <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+          </NamedType>
+        </TryCastExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="9" endLine="1" endCol="10">error 27 (9,1) - (10,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>TryCast(,)</code>
+      <result>
+        <TryCastExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="9" endLine="1" endCol="10" />
+          <NamedType isBad="True" startLine="1" startCol="10" endLine="1" endCol="10">
+            <SimpleName isBad="True" startLine="1" startCol="10" endLine="1" endCol="10" escaped="False" />
+          </NamedType>
+        </TryCastExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="9" endLine="1" endCol="10">error 27 (9,1) - (10,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>TryCast(x,)</code>
+      <result>
+        <TryCastExpression startLine="1" startCol="1" endLine="1" endCol="12" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="9" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <NamedType isBad="True" startLine="1" startCol="11" endLine="1" endCol="11">
+            <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" escaped="False" />
+          </NamedType>
+        </TryCastExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="11" endLine="1" endCol="12">error 22 (11,1) - (12,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>TryCast(,y)</code>
+      <result>
+        <TryCastExpression startLine="1" startCol="1" endLine="1" endCol="12" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="9" endLine="1" endCol="10" />
+          <NamedType startLine="1" startCol="10" endLine="1" endCol="11">
+            <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">y</SimpleName>
+          </NamedType>
+        </TryCastExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="9" endLine="1" endCol="10">error 27 (9,1) - (10,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>CType</code>
+      <result>
+        <CTypeExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="6" endLine="1" endCol="6" />
+          <NamedType isBad="True" startLine="1" startCol="6" endLine="1" endCol="6">
+            <SimpleName isBad="True" startLine="1" startCol="6" endLine="1" endCol="6" escaped="False" />
+          </NamedType>
+        </CTypeExpression>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="6" endLine="1" endCol="6">error 13 (6,1) - (6,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test>
+      <code>CType(</code>
+      <result>
+        <CTypeExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False">
+          <LeftParenthesis line="1" col="6" />
+          <SyntaxError isBad="True" startLine="1" startCol="7" endLine="1" endCol="7" />
+          <NamedType isBad="True" startLine="1" startCol="7" endLine="1" endCol="7">
+            <SimpleName isBad="True" startLine="1" startCol="7" endLine="1" endCol="7" escaped="False" />
+          </NamedType>
+        </CTypeExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="7" endLine="1" endCol="7">error 27 (7,1) - (7,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>CType)</code>
+      <result>
+        <CTypeExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="6" endLine="1" endCol="7" />
+          <NamedType isBad="True" startLine="1" startCol="6" endLine="1" endCol="6">
+            <SimpleName isBad="True" startLine="1" startCol="6" endLine="1" endCol="6" escaped="False" />
+          </NamedType>
+          <RightParenthesis line="1" col="6" />
+        </CTypeExpression>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="6" endLine="1" endCol="7">error 13 (6,1) - (7,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test>
+      <code>CType()</code>
+      <result>
+        <CTypeExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False">
+          <LeftParenthesis line="1" col="6" />
+          <SyntaxError isBad="True" startLine="1" startCol="7" endLine="1" endCol="8" />
+          <NamedType isBad="True" startLine="1" startCol="7" endLine="1" endCol="7">
+            <SimpleName isBad="True" startLine="1" startCol="7" endLine="1" endCol="7" escaped="False" />
+          </NamedType>
+          <RightParenthesis line="1" col="7" />
+        </CTypeExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="7" endLine="1" endCol="8">error 27 (7,1) - (8,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>CType(,)</code>
+      <result>
+        <CTypeExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <LeftParenthesis line="1" col="6" />
+          <SyntaxError isBad="True" startLine="1" startCol="7" endLine="1" endCol="8" />
+          <Comma line="1" col="7" />
+          <NamedType isBad="True" startLine="1" startCol="8" endLine="1" endCol="8">
+            <SimpleName isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" escaped="False" />
+          </NamedType>
+          <RightParenthesis line="1" col="8" />
+        </CTypeExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="7" endLine="1" endCol="8">error 27 (7,1) - (8,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>CType(x,)</code>
+      <result>
+        <CTypeExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False">
+          <LeftParenthesis line="1" col="6" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="8" />
+          <NamedType isBad="True" startLine="1" startCol="9" endLine="1" endCol="9">
+            <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+          </NamedType>
+          <RightParenthesis line="1" col="9" />
+        </CTypeExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="9" endLine="1" endCol="10">error 22 (9,1) - (10,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>CType(,y)</code>
+      <result>
+        <CTypeExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False">
+          <LeftParenthesis line="1" col="6" />
+          <SyntaxError isBad="True" startLine="1" startCol="7" endLine="1" endCol="8" />
+          <Comma line="1" col="7" />
+          <NamedType startLine="1" startCol="8" endLine="1" endCol="9">
+            <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">y</SimpleName>
+          </NamedType>
+          <RightParenthesis line="1" col="9" />
+        </CTypeExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="7" endLine="1" endCol="8">error 27 (7,1) - (8,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <!-- CBool is a stand-in for the rest of the operators -->
+    <test>
+      <code>CBool</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False" intrinsicType="Boolean">
+          <SyntaxError isBad="True" startLine="1" startCol="6" endLine="1" endCol="6" />
+        </IntrinsicCastExpression>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="6" endLine="1" endCol="6">error 13 (6,1) - (6,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test>
+      <code>CBool(</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" intrinsicType="Boolean">
+          <LeftParenthesis line="1" col="6" />
+          <SyntaxError isBad="True" startLine="1" startCol="7" endLine="1" endCol="7" />
+        </IntrinsicCastExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="7" endLine="1" endCol="7">error 27 (7,1) - (7,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>CBool)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" intrinsicType="Boolean">
+          <SyntaxError isBad="True" startLine="1" startCol="6" endLine="1" endCol="7" />
+          <RightParenthesis line="1" col="6" />
+        </IntrinsicCastExpression>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="6" endLine="1" endCol="7">error 13 (6,1) - (7,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test>
+      <code>CBool()</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" intrinsicType="Boolean">
+          <LeftParenthesis line="1" col="6" />
+          <SyntaxError isBad="True" startLine="1" startCol="7" endLine="1" endCol="8" />
+          <RightParenthesis line="1" col="7" />
+        </IntrinsicCastExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="7" endLine="1" endCol="8">error 27 (7,1) - (8,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>DirectCast(x, y)</code>
+      <result>
+        <DirectCastExpression startLine="1" startCol="1" endLine="1" endCol="17" isConstant="False">
+          <LeftParenthesis line="1" col="11" />
+          <SimpleNameExpression startLine="1" startCol="12" endLine="1" endCol="13" isConstant="False">
+            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="13" />
+          <NamedType startLine="1" startCol="15" endLine="1" endCol="16">
+            <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">y</SimpleName>
+          </NamedType>
+          <RightParenthesis line="1" col="16" />
+        </DirectCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>DirectCast(x, Integer)</code>
+      <result>
+        <DirectCastExpression startLine="1" startCol="1" endLine="1" endCol="23" isConstant="False">
+          <LeftParenthesis line="1" col="11" />
+          <SimpleNameExpression startLine="1" startCol="12" endLine="1" endCol="13" isConstant="False">
+            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="13" />
+          <IntrinsicType startLine="1" startCol="15" endLine="1" endCol="22" intrinsicType="Integer" />
+          <RightParenthesis line="1" col="22" />
+        </DirectCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>DirectCast(x, Integer())</code>
+      <result>
+        <DirectCastExpression startLine="1" startCol="1" endLine="1" endCol="25" isConstant="False">
+          <LeftParenthesis line="1" col="11" />
+          <SimpleNameExpression startLine="1" startCol="12" endLine="1" endCol="13" isConstant="False">
+            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="13" />
+          <ArrayType startLine="1" startCol="15" endLine="1" endCol="24" rank="1">
+            <IntrinsicType startLine="1" startCol="15" endLine="1" endCol="22" intrinsicType="Integer" />
+            <ArgumentCollection startLine="1" startCol="22" endLine="1" endCol="24">
+              <RightParenthesis line="1" col="23" />
+            </ArgumentCollection>
+          </ArrayType>
+          <RightParenthesis line="1" col="24" />
+        </DirectCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CType(x, y)</code>
+      <result>
+        <CTypeExpression startLine="1" startCol="1" endLine="1" endCol="12" isConstant="False">
+          <LeftParenthesis line="1" col="6" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="8" />
+          <NamedType startLine="1" startCol="10" endLine="1" endCol="11">
+            <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">y</SimpleName>
+          </NamedType>
+          <RightParenthesis line="1" col="11" />
+        </CTypeExpression>
+      </result>
+    </test>
+    <test>
+      <code>CType(x, Integer)</code>
+      <result>
+        <CTypeExpression startLine="1" startCol="1" endLine="1" endCol="18" isConstant="False">
+          <LeftParenthesis line="1" col="6" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="8" />
+          <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+          <RightParenthesis line="1" col="17" />
+        </CTypeExpression>
+      </result>
+    </test>
+    <test>
+      <code>CType(x, Integer())</code>
+      <result>
+        <CTypeExpression startLine="1" startCol="1" endLine="1" endCol="20" isConstant="False">
+          <LeftParenthesis line="1" col="6" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="8" />
+          <ArrayType startLine="1" startCol="10" endLine="1" endCol="19" rank="1">
+            <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+            <ArgumentCollection startLine="1" startCol="17" endLine="1" endCol="19">
+              <RightParenthesis line="1" col="18" />
+            </ArgumentCollection>
+          </ArrayType>
+          <RightParenthesis line="1" col="19" />
+        </CTypeExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>TryCast(x, y)</code>
+      <result>
+        <TryCastExpression startLine="1" startCol="1" endLine="1" endCol="14" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="9" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <NamedType startLine="1" startCol="12" endLine="1" endCol="13">
+            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">y</SimpleName>
+          </NamedType>
+        </TryCastExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>TryCast(x, Integer)</code>
+      <result>
+        <TryCastExpression startLine="1" startCol="1" endLine="1" endCol="20" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="9" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <IntrinsicType startLine="1" startCol="12" endLine="1" endCol="19" intrinsicType="Integer" />
+        </TryCastExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>TryCast(x, Integer())</code>
+      <result>
+        <TryCastExpression startLine="1" startCol="1" endLine="1" endCol="22" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="9" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <ArrayType startLine="1" startCol="12" endLine="1" endCol="21" rank="1">
+            <IntrinsicType startLine="1" startCol="12" endLine="1" endCol="19" intrinsicType="Integer" />
+            <ArgumentCollection startLine="1" startCol="19" endLine="1" endCol="21">
+              <RightParenthesis line="1" col="20" />
+            </ArgumentCollection>
+          </ArrayType>
+        </TryCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CBool(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False" intrinsicType="Boolean">
+          <LeftParenthesis line="1" col="6" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="8" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CByte(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False" intrinsicType="Byte">
+          <LeftParenthesis line="1" col="6" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="8" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CChar(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False" intrinsicType="Char">
+          <LeftParenthesis line="1" col="6" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="8" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CDate(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False" intrinsicType="Date">
+          <LeftParenthesis line="1" col="6" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="8" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CDec(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" intrinsicType="Decimal">
+          <LeftParenthesis line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="7" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CDbl(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" intrinsicType="Double">
+          <LeftParenthesis line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="7" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CInt(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" intrinsicType="Integer">
+          <LeftParenthesis line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="7" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CLng(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" intrinsicType="Long">
+          <LeftParenthesis line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="7" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CObj(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" intrinsicType="Object">
+          <LeftParenthesis line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="7" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CShort(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False" intrinsicType="Short">
+          <LeftParenthesis line="1" col="7" />
+          <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="9" isConstant="False">
+            <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="9" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CSng(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" intrinsicType="Single">
+          <LeftParenthesis line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="7" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test>
+      <code>CStr(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" intrinsicType="String">
+          <LeftParenthesis line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="7" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>CSByte(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False" intrinsicType="SByte">
+          <LeftParenthesis line="1" col="7" />
+          <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="9" isConstant="False">
+            <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="9" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>CUShort(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="False" intrinsicType="UShort">
+          <LeftParenthesis line="1" col="8" />
+          <SimpleNameExpression startLine="1" startCol="9" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="10" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>CUInt(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False" intrinsicType="UInteger">
+          <LeftParenthesis line="1" col="6" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="8" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>CULng(x)</code>
+      <result>
+        <IntrinsicCastExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False" intrinsicType="ULong">
+          <LeftParenthesis line="1" col="6" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <RightParenthesis line="1" col="8" />
+        </IntrinsicCastExpression>
+      </result>
+    </test>
+  </valid>
+</scenario>

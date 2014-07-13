@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="ExternalSource" type="file" description="3.2 External Source Directives">
+  <invalid>
+    <test>
+      <code>
+        #ExternalSource
+        Option Strict
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="16" endLine="1" endCol="18">error 13 (16,1) - (18,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #ExternalSource "abc", 10
+        Option Strict
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="17" endLine="1" endCol="22">error 13 (17,1) - (22,1): Expected '('.</ExpectedLeftParenthesis>
+        <ExpectedEndExternalSource startLine="2" startCol="22" endLine="2" endCol="22">error 136 (22,2) - (22,2): '#ExternalSource' must end with a matching '#End ExternalSource'.</ExpectedEndExternalSource>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #ExternalSource(
+        Option Strict
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedStringLiteral startLine="1" startCol="17" endLine="1" endCol="19">error 105 (17,1) - (19,1): String constant expected.</ExpectedStringLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #ExternalSource("foo"
+        Option Strict
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedComma startLine="1" startCol="22" endLine="1" endCol="24">error 12 (22,1) - (24,1): Expected ','.</ExpectedComma>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #ExternalSource("foo",
+        Option Strict
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedIntegerLiteral startLine="1" startCol="23" endLine="1" endCol="25">error 132 (23,1) - (25,1): Expected integer literal.</ExpectedIntegerLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #ExternalSource("foo",10
+        Option Strict
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedRightParenthesis startLine="1" startCol="25" endLine="1" endCol="27">error 14 (25,1) - (27,1): Expected ')'.</ExpectedRightParenthesis>
+        <ExpectedEndExternalSource startLine="2" startCol="22" endLine="2" endCol="22">error 136 (22,2) - (22,2): '#ExternalSource' must end with a matching '#End ExternalSource'.</ExpectedEndExternalSource>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #ExternalSource("foo",10) a
+        Option Strict
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="27" endLine="1" endCol="28">error 39 (27,1) - (28,1): End of statement expected.</ExpectedEndOfStatement>
+        <ExpectedEndExternalSource startLine="2" startCol="22" endLine="2" endCol="22">error 136 (22,2) - (22,2): '#ExternalSource' must end with a matching '#End ExternalSource'.</ExpectedEndExternalSource>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #ExternalSource("foo",10)
+        Option Strict
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="22">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="22">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedEndExternalSource startLine="2" startCol="22" endLine="2" endCol="22">error 136 (22,2) - (22,2): '#ExternalSource' must end with a matching '#End ExternalSource'.</ExpectedEndExternalSource>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Option Strict
+        #End ExternalSource
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="28">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="28">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="14" type="Strict">
+              <Strict line="1" col="8" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <EndExternalSourceWithoutExternalSource startLine="2" startCol="9" endLine="2" endCol="28">error 135 (9,2) - (28,2): '#End ExternalSource' must be preceded by a matching '#ExternalSource'.</EndExternalSourceWithoutExternalSource>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Option Strict
+        #End
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="2" endCol="13">
+          <DeclarationCollection startLine="1" startCol="1" endLine="2" endCol="13">
+            <OptionDeclaration startLine="1" startCol="1" endLine="1" endCol="14" type="Strict">
+              <Strict line="1" col="8" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <ExpectedEndKind startLine="2" startCol="13" endLine="2" endCol="13">error 134 (13,2) - (13,2): 'ExternalSource', 'Region' or 'If' expected.</ExpectedEndKind>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #ExternalSource("foo",10)
+        #ExternalSource("bar",20)
+        Option Strict
+        #End ExternalSource
+        #End ExternalSource
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="5" endCol="28">
+          <DeclarationCollection startLine="1" startCol="1" endLine="5" endCol="28">
+            <OptionDeclaration startLine="3" startCol="9" endLine="3" endCol="22" type="Strict">
+              <Strict line="3" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+      <errors>
+        <NestedExternalSourceStatement startLine="2" startCol="9" endLine="2" endCol="34">error 133 (9,2) - (34,2): '#ExternalSource' statements cannot be nested.</NestedExternalSourceStatement>
+        <EndExternalSourceWithoutExternalSource startLine="5" startCol="9" endLine="5" endCol="28">error 135 (9,5) - (28,5): '#End ExternalSource' must be preceded by a matching '#ExternalSource'.</EndExternalSourceWithoutExternalSource>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>
+        #ExternalSource("foo.vb",10)
+        Option Strict
+        #End ExternalSource
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="3" endCol="28">
+          <DeclarationCollection startLine="1" startCol="1" endLine="3" endCol="28">
+            <OptionDeclaration startLine="2" startCol="9" endLine="2" endCol="22" type="Strict">
+              <Strict line="2" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+  </valid>
+</scenario>

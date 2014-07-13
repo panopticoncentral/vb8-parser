@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Assignments" type="statement" description="10.6 Assignment Statements">
+  <invalid>
+    <test>
+      <code>x =</code>
+      <result>
+        <AssignmentStatement startLine="1" startCol="1" endLine="1" endCol="4">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Equals line="1" col="3" />
+          <SyntaxError isBad="True" startLine="1" startCol="4" endLine="1" endCol="4" />
+        </AssignmentStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="4" endLine="1" endCol="4">error 27 (4,1) - (4,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>= x</code>
+      <result />
+      <errors>
+        <SyntaxError startLine="1" startCol="1" endLine="1" endCol="2">error 11 (1,1) - (2,1): Syntax error.</SyntaxError>
+      </errors>
+    </test>
+    <test>
+      <code>x *=</code>
+      <result>
+        <CompoundAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="5">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StarEquals line="1" col="3" />
+          <SyntaxError isBad="True" startLine="1" startCol="5" endLine="1" endCol="5" />
+        </CompoundAssignmentStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="5" endLine="1" endCol="5">error 27 (5,1) - (5,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>*= x</code>
+      <result />
+      <errors>
+        <SyntaxError startLine="1" startCol="1" endLine="1" endCol="3">error 11 (1,1) - (3,1): Syntax error.</SyntaxError>
+      </errors>
+    </test>
+    <test>
+      <code>x &lt;= y</code>
+      <result>
+        <CallStatement startLine="1" startCol="1" endLine="1" endCol="3">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+        </CallStatement>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="3" endLine="1" endCol="5">error 39 (3,1) - (5,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>x %= y</code>
+      <result>
+        <CallStatement startLine="1" startCol="1" endLine="1" endCol="3">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+        </CallStatement>
+      </result>
+      <errors>
+        <InvalidCharacter startLine="1" startCol="3" endLine="1" endCol="4">error 4 (3,1) - (4,1): Invalid character.</InvalidCharacter>
+      </errors>
+    </test>
+    <test>
+      <code>Mid(10) = 10</code>
+      <result>
+        <MidAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="13" hasTypeCharacter="False">
+          <LeftParenthesis line="1" col="4" />
+          <IntegerLiteralExpression startLine="1" startCol="5" endLine="1" endCol="7" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+          <SyntaxError isBad="True" startLine="1" startCol="7" endLine="1" endCol="8" />
+          <RightParenthesis line="1" col="7" />
+          <Equals line="1" col="9" />
+          <IntegerLiteralExpression startLine="1" startCol="11" endLine="1" endCol="13" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+        </MidAssignmentStatement>
+      </result>
+      <errors>
+        <ExpectedComma startLine="1" startCol="7" endLine="1" endCol="8">error 12 (7,1) - (8,1): Expected ','.</ExpectedComma>
+      </errors>
+    </test>
+    <test>
+      <code>Mid(s, 10, 20, 30) = "abc"</code>
+      <result>
+        <MidAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="27" hasTypeCharacter="False">
+          <LeftParenthesis line="1" col="4" />
+          <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">s</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="6" />
+          <IntegerLiteralExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+          <Comma line="1" col="10" />
+          <IntegerLiteralExpression startLine="1" startCol="12" endLine="1" endCol="14" isConstant="True" base="Decimal">20</IntegerLiteralExpression>
+          <SyntaxError isBad="True" startLine="1" startCol="14" endLine="1" endCol="15" />
+        </MidAssignmentStatement>
+      </result>
+      <errors>
+        <ExpectedRightParenthesis startLine="1" startCol="14" endLine="1" endCol="15">error 14 (14,1) - (15,1): Expected ')'.</ExpectedRightParenthesis>
+      </errors>
+    </test>
+    <test>
+      <code>Mid() = 10</code>
+      <result>
+        <MidAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="11" hasTypeCharacter="False">
+          <LeftParenthesis line="1" col="4" />
+          <SyntaxError isBad="True" startLine="1" startCol="5" endLine="1" endCol="6" />
+          <SyntaxError isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" />
+          <SyntaxError isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" />
+        </MidAssignmentStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="5" endLine="1" endCol="6">error 27 (5,1) - (6,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Mid(s, 10) =</code>
+      <result>
+        <MidAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="13" hasTypeCharacter="False">
+          <LeftParenthesis line="1" col="4" />
+          <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">s</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="6" />
+          <IntegerLiteralExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+          <RightParenthesis line="1" col="10" />
+          <Equals line="1" col="12" />
+          <SyntaxError isBad="True" startLine="1" startCol="13" endLine="1" endCol="13" />
+        </MidAssignmentStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="13" endLine="1" endCol="13">error 27 (13,1) - (13,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>x = y</code>
+      <result>
+        <AssignmentStatement startLine="1" startCol="1" endLine="1" endCol="6">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Equals line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </AssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>x ^= y</code>
+      <result>
+        <CompoundAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="7">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <CaretEquals line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </CompoundAssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>x *= y</code>
+      <result>
+        <CompoundAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="7">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StarEquals line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </CompoundAssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>x /= y</code>
+      <result>
+        <CompoundAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="7">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <ForwardSlashEquals line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </CompoundAssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>x \= y</code>
+      <result>
+        <CompoundAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="7">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <BackwardSlashEquals line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </CompoundAssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>x += y</code>
+      <result>
+        <CompoundAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="7">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <PlusEquals line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </CompoundAssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>x -= y</code>
+      <result>
+        <CompoundAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="7">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <MinusEquals line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </CompoundAssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>x &amp;= y</code>
+      <result>
+        <CompoundAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="7">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <AmpersandEquals line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </CompoundAssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>x &lt;&lt;= y</code>
+      <result>
+        <CompoundAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="8">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <LessThanLessThanEquals line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </CompoundAssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>x &gt;&gt;= y</code>
+      <result>
+        <CompoundAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="8">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <GreaterThanGreaterThanEquals line="1" col="3" />
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </CompoundAssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>Mid = 10</code>
+      <result>
+        <AssignmentStatement startLine="1" startCol="1" endLine="1" endCol="9">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="4" escaped="False">Mid</SimpleName>
+          </SimpleNameExpression>
+          <Equals line="1" col="5" />
+          <IntegerLiteralExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+        </AssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>Mid%(s, 10) = "abc"</code>
+      <result>
+        <AssignmentStatement startLine="1" startCol="1" endLine="1" endCol="20">
+          <CallOrIndexExpression startLine="1" startCol="1" endLine="1" endCol="13" isConstant="False">
+            <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="False">
+              <SimpleName startLine="1" startCol="1" endLine="1" endCol="5" typeChar="%" escaped="False">Mid</SimpleName>
+            </SimpleNameExpression>
+            <ArgumentCollection startLine="1" startCol="5" endLine="1" endCol="13">
+              <Argument startLine="1" startCol="6" endLine="1" endCol="7">
+                <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+                  <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">s</SimpleName>
+                </SimpleNameExpression>
+              </Argument>
+              <Comma line="1" col="7" />
+              <Argument startLine="1" startCol="9" endLine="1" endCol="11">
+                <IntegerLiteralExpression startLine="1" startCol="9" endLine="1" endCol="11" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </Argument>
+              <RightParenthesis line="1" col="11" />
+            </ArgumentCollection>
+          </CallOrIndexExpression>
+          <Equals line="1" col="13" />
+          <StringLiteralExpression startLine="1" startCol="15" endLine="1" endCol="20" isConstant="True">abc</StringLiteralExpression>
+        </AssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>Mid(s, 10) = "abc"</code>
+      <result>
+        <MidAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="19" hasTypeCharacter="False">
+          <LeftParenthesis line="1" col="4" />
+          <SimpleNameExpression startLine="1" startCol="5" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">s</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="6" />
+          <IntegerLiteralExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+          <RightParenthesis line="1" col="10" />
+          <Equals line="1" col="12" />
+          <StringLiteralExpression startLine="1" startCol="14" endLine="1" endCol="19" isConstant="True">abc</StringLiteralExpression>
+        </MidAssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>Mid$(s, 10) = "abc"</code>
+      <result>
+        <MidAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="20" hasTypeCharacter="True">
+          <LeftParenthesis line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">s</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="7" />
+          <IntegerLiteralExpression startLine="1" startCol="9" endLine="1" endCol="11" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+          <RightParenthesis line="1" col="11" />
+          <Equals line="1" col="13" />
+          <StringLiteralExpression startLine="1" startCol="15" endLine="1" endCol="20" isConstant="True">abc</StringLiteralExpression>
+        </MidAssignmentStatement>
+      </result>
+    </test>
+    <test>
+      <code>Mid$(s, 10, 20) = "abc"</code>
+      <result>
+        <MidAssignmentStatement startLine="1" startCol="1" endLine="1" endCol="24" hasTypeCharacter="True">
+          <LeftParenthesis line="1" col="5" />
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">s</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="7" />
+          <IntegerLiteralExpression startLine="1" startCol="9" endLine="1" endCol="11" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+          <Comma line="1" col="11" />
+          <IntegerLiteralExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="True" base="Decimal">20</IntegerLiteralExpression>
+          <RightParenthesis line="1" col="15" />
+          <Equals line="1" col="17" />
+          <StringLiteralExpression startLine="1" startCol="19" endLine="1" endCol="24" isConstant="True">abc</StringLiteralExpression>
+        </MidAssignmentStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

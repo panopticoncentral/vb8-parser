@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Conditionals" type="statement" description="10.8 Conditional Statements">
+  <invalid>
+    <test>
+      <code>If</code>
+      <result>
+        <IfBlockStatement startLine="1" startCol="1" endLine="1" endCol="3">
+          <SyntaxError isBad="True" startLine="1" startCol="3" endLine="1" endCol="3" />
+        </IfBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="3" endLine="1" endCol="3">error 27 (3,1) - (3,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>If : End If</code>
+      <result>
+        <IfBlockStatement startLine="1" startCol="1" endLine="1" endCol="12">
+          <SyntaxError isBad="True" startLine="1" startCol="4" endLine="1" endCol="5" />
+          <StatementCollection startLine="1" startCol="6" endLine="1" endCol="9">
+            <Colon line="1" col="4" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="6" endLine="1" endCol="12" endType="If">
+            <If line="1" col="10" />
+          </EndBlockStatement>
+        </IfBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="4" endLine="1" endCol="5">error 27 (4,1) - (5,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>If Then : End If</code>
+      <result>
+        <IfBlockStatement startLine="1" startCol="1" endLine="1" endCol="17">
+          <SyntaxError isBad="True" startLine="1" startCol="4" endLine="1" endCol="8" />
+          <Then line="1" col="4" />
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="14">
+            <Colon line="1" col="9" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="11" endLine="1" endCol="17" endType="If">
+            <If line="1" col="15" />
+          </EndBlockStatement>
+        </IfBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="4" endLine="1" endCol="8">error 27 (4,1) - (8,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>If x Then : ElseIf : End If</code>
+      <result>
+        <IfBlockStatement startLine="1" startCol="1" endLine="1" endCol="28">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="6" />
+          <StatementCollection startLine="1" startCol="13" endLine="1" endCol="19">
+            <Colon line="1" col="11" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="13" endLine="1" endCol="22">
+            <ElseIfBlockStatement startLine="1" startCol="13" endLine="1" endCol="22">
+              <ElseIfStatement startLine="1" startCol="13" endLine="1" endCol="20">
+                <SyntaxError isBad="True" startLine="1" startCol="20" endLine="1" endCol="21" />
+              </ElseIfStatement>
+              <StatementCollection startLine="1" startCol="22" endLine="1" endCol="25">
+                <Colon line="1" col="20" />
+              </StatementCollection>
+            </ElseIfBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="22" endLine="1" endCol="28" endType="If">
+            <If line="1" col="26" />
+          </EndBlockStatement>
+        </IfBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="20" endLine="1" endCol="21">error 27 (20,1) - (21,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>If Then x</code>
+      <result>
+        <LineIfBlockStatement startLine="1" startCol="1" endLine="1" endCol="10">
+          <SyntaxError isBad="True" startLine="1" startCol="4" endLine="1" endCol="8" />
+          <Then line="1" col="4" />
+          <StatementCollection startLine="1" startCol="9" endLine="1" endCol="10">
+            <CallStatement startLine="1" startCol="9" endLine="1" endCol="10">
+              <SimpleNameExpression startLine="1" startCol="9" endLine="1" endCol="10" isConstant="False">
+                <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">x</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+          </StatementCollection>
+        </LineIfBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="4" endLine="1" endCol="8">error 27 (4,1) - (8,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>If x Then : y : Else : z : Else : a : End If</code>
+      <result>
+        <IfBlockStatement startLine="1" startCol="1" endLine="1" endCol="45">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="6" />
+          <StatementCollection startLine="1" startCol="13" endLine="1" endCol="16">
+            <Colon line="1" col="11" />
+            <CallStatement startLine="1" startCol="13" endLine="1" endCol="15">
+              <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+                <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <ElseBlockStatement startLine="1" startCol="17" endLine="1" endCol="39">
+            <ElseStatement startLine="1" startCol="17" endLine="1" endCol="22" />
+            <StatementCollection startLine="1" startCol="24" endLine="1" endCol="38">
+              <Colon line="1" col="22" />
+              <CallStatement startLine="1" startCol="24" endLine="1" endCol="26">
+                <SimpleNameExpression startLine="1" startCol="24" endLine="1" endCol="26" isConstant="False">
+                  <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">z</SimpleName>
+                </SimpleNameExpression>
+              </CallStatement>
+              <Colon line="1" col="26" />
+              <ElseStatement startLine="1" startCol="28" endLine="1" endCol="33" />
+              <Colon line="1" col="33" />
+              <CallStatement startLine="1" startCol="35" endLine="1" endCol="37">
+                <SimpleNameExpression startLine="1" startCol="35" endLine="1" endCol="37" isConstant="False">
+                  <SimpleName startLine="1" startCol="35" endLine="1" endCol="36" escaped="False">a</SimpleName>
+                </SimpleNameExpression>
+              </CallStatement>
+              <Colon line="1" col="37" />
+            </StatementCollection>
+          </ElseBlockStatement>
+          <EndBlockStatement startLine="1" startCol="39" endLine="1" endCol="45" endType="If">
+            <If line="1" col="43" />
+          </EndBlockStatement>
+        </IfBlockStatement>
+      </result>
+      <errors>
+        <ElseAfterElse startLine="1" startCol="28" endLine="1" endCol="33">error 89 (28,1) - (33,1): 'Else' can only appear once in an 'If' statement.</ElseAfterElse>
+      </errors>
+    </test>
+    <test>
+      <code>If x Then : y : Else : z : ElseIf a Then : End If</code>
+      <result>
+        <IfBlockStatement startLine="1" startCol="1" endLine="1" endCol="50">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="6" />
+          <StatementCollection startLine="1" startCol="13" endLine="1" endCol="16">
+            <Colon line="1" col="11" />
+            <CallStatement startLine="1" startCol="13" endLine="1" endCol="15">
+              <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+                <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <ElseBlockStatement startLine="1" startCol="17" endLine="1" endCol="44">
+            <ElseStatement startLine="1" startCol="17" endLine="1" endCol="22" />
+            <StatementCollection startLine="1" startCol="24" endLine="1" endCol="43">
+              <Colon line="1" col="22" />
+              <CallStatement startLine="1" startCol="24" endLine="1" endCol="26">
+                <SimpleNameExpression startLine="1" startCol="24" endLine="1" endCol="26" isConstant="False">
+                  <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">z</SimpleName>
+                </SimpleNameExpression>
+              </CallStatement>
+              <Colon line="1" col="26" />
+              <ElseIfStatement startLine="1" startCol="28" endLine="1" endCol="42">
+                <SimpleNameExpression startLine="1" startCol="35" endLine="1" endCol="37" isConstant="False">
+                  <SimpleName startLine="1" startCol="35" endLine="1" endCol="36" escaped="False">a</SimpleName>
+                </SimpleNameExpression>
+                <Then line="1" col="37" />
+              </ElseIfStatement>
+              <Colon line="1" col="42" />
+            </StatementCollection>
+          </ElseBlockStatement>
+          <EndBlockStatement startLine="1" startCol="44" endLine="1" endCol="50" endType="If">
+            <If line="1" col="48" />
+          </EndBlockStatement>
+        </IfBlockStatement>
+      </result>
+      <errors>
+        <ElseIfAfterElse startLine="1" startCol="28" endLine="1" endCol="42">error 87 (28,1) - (42,1): 'ElseIf' cannot appear after 'Else' within an 'If' statement.</ElseIfAfterElse>
+      </errors>
+    </test>
+    <test>
+      <code>Select : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="20">
+          <SyntaxError isBad="True" startLine="1" startCol="8" endLine="1" endCol="9" />
+          <StatementCollection startLine="1" startCol="10" endLine="1" endCol="13">
+            <Colon line="1" col="8" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="10" endLine="1" endCol="20" endType="Select">
+            <Select line="1" col="14" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="8" endLine="1" endCol="9">error 27 (8,1) - (9,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Select Case x : y : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="31">
+          <Case line="1" col="8" />
+          <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="20">
+            <Colon line="1" col="15" />
+            <CallStatement startLine="1" startCol="17" endLine="1" endCol="19">
+              <SimpleNameExpression startLine="1" startCol="17" endLine="1" endCol="19" isConstant="False">
+                <SimpleName startLine="1" startCol="17" endLine="1" endCol="18" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="19" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="21" endLine="1" endCol="31" endType="Select">
+            <Select line="1" col="25" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+      <errors>
+        <ExpectedCase startLine="1" startCol="17" endLine="1" endCol="20">error 86 (17,1) - (20,1): Statements and labels are not valid between 'Select Case' and first 'Case'.</ExpectedCase>
+      </errors>
+    </test>
+    <test>
+      <code>Select Case x : Case y To : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="39">
+          <Case line="1" col="8" />
+          <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="21">
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="29">
+            <CaseBlockStatement startLine="1" startCol="17" endLine="1" endCol="29">
+              <CaseStatement startLine="1" startCol="17" endLine="1" endCol="27">
+                <CaseClauseCollection startLine="1" startCol="22" endLine="1" endCol="27">
+                  <RangeCaseClause startLine="1" startCol="22" endLine="1" endCol="27">
+                    <BinaryOperatorExpression startLine="1" startCol="22" endLine="1" endCol="28" isConstant="False" operator="To">
+                      <SimpleNameExpression startLine="1" startCol="22" endLine="1" endCol="24" isConstant="False">
+                        <SimpleName startLine="1" startCol="22" endLine="1" endCol="23" escaped="False">y</SimpleName>
+                      </SimpleNameExpression>
+                      <To line="1" col="24" />
+                      <SyntaxError isBad="True" startLine="1" startCol="27" endLine="1" endCol="28" />
+                    </BinaryOperatorExpression>
+                  </RangeCaseClause>
+                </CaseClauseCollection>
+              </CaseStatement>
+              <StatementCollection startLine="1" startCol="29" endLine="1" endCol="32">
+                <Colon line="1" col="27" />
+              </StatementCollection>
+            </CaseBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="29" endLine="1" endCol="39" endType="Select">
+            <Select line="1" col="33" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="27" endLine="1" endCol="28">error 27 (27,1) - (28,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Select Case x : Case Is + y : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="41">
+          <Case line="1" col="8" />
+          <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="21">
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="31">
+            <CaseBlockStatement startLine="1" startCol="17" endLine="1" endCol="31">
+              <CaseStatement startLine="1" startCol="17" endLine="1" endCol="29">
+                <CaseClauseCollection startLine="1" startCol="22" endLine="1" endCol="29" />
+              </CaseStatement>
+              <StatementCollection startLine="1" startCol="31" endLine="1" endCol="34">
+                <Colon line="1" col="29" />
+              </StatementCollection>
+            </CaseBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="31" endLine="1" endCol="41" endType="Select">
+            <Select line="1" col="35" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+      <errors>
+        <ExpectedRelationalOperator startLine="1" startCol="25" endLine="1" endCol="26">error 130 (25,1) - (26,1): Expected relational operator.</ExpectedRelationalOperator>
+      </errors>
+    </test>
+    <test>
+      <code>Select Case x : Case Else : Case Else : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="51">
+          <Case line="1" col="8" />
+          <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="21">
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <CaseElseBlockStatement startLine="1" startCol="17" endLine="1" endCol="41">
+            <CaseElseStatement startLine="1" startCol="17" endLine="1" endCol="27">
+              <Else line="1" col="22" />
+            </CaseElseStatement>
+            <StatementCollection startLine="1" startCol="29" endLine="1" endCol="40">
+              <Colon line="1" col="27" />
+              <CaseElseStatement startLine="1" startCol="29" endLine="1" endCol="39">
+                <Else line="1" col="34" />
+              </CaseElseStatement>
+              <Colon line="1" col="39" />
+            </StatementCollection>
+          </CaseElseBlockStatement>
+          <EndBlockStatement startLine="1" startCol="41" endLine="1" endCol="51" endType="Select">
+            <Select line="1" col="45" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+      <errors>
+        <CaseElseAfterCaseElse startLine="1" startCol="29" endLine="1" endCol="39">error 73 (29,1) - (39,1): 'Case Else' can only appear once in a 'Select' statement.</CaseElseAfterCaseElse>
+      </errors>
+    </test>
+    <test>
+      <code>Select Case x : Case Else : Case 10 : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="49">
+          <Case line="1" col="8" />
+          <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="21">
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <CaseElseBlockStatement startLine="1" startCol="17" endLine="1" endCol="39">
+            <CaseElseStatement startLine="1" startCol="17" endLine="1" endCol="27">
+              <Else line="1" col="22" />
+            </CaseElseStatement>
+            <StatementCollection startLine="1" startCol="29" endLine="1" endCol="38">
+              <Colon line="1" col="27" />
+              <CaseStatement startLine="1" startCol="29" endLine="1" endCol="37">
+                <CaseClauseCollection startLine="1" startCol="34" endLine="1" endCol="37">
+                  <RangeCaseClause startLine="1" startCol="34" endLine="1" endCol="37">
+                    <IntegerLiteralExpression startLine="1" startCol="34" endLine="1" endCol="36" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+                  </RangeCaseClause>
+                </CaseClauseCollection>
+              </CaseStatement>
+              <Colon line="1" col="37" />
+            </StatementCollection>
+          </CaseElseBlockStatement>
+          <EndBlockStatement startLine="1" startCol="39" endLine="1" endCol="49" endType="Select">
+            <Select line="1" col="43" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+      <errors>
+        <CaseAfterCaseElse startLine="1" startCol="29" endLine="1" endCol="37">error 72 (29,1) - (37,1): 'Case' cannot appear after 'Case Else' within a 'Select' statement.</CaseAfterCaseElse>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>If x Then : y : End If</code>
+      <result>
+        <IfBlockStatement startLine="1" startCol="1" endLine="1" endCol="23">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="6" />
+          <StatementCollection startLine="1" startCol="13" endLine="1" endCol="16">
+            <Colon line="1" col="11" />
+            <CallStatement startLine="1" startCol="13" endLine="1" endCol="15">
+              <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+                <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="17" endLine="1" endCol="23" endType="If">
+            <If line="1" col="21" />
+          </EndBlockStatement>
+        </IfBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>If x : y : End If</code>
+      <result>
+        <IfBlockStatement startLine="1" startCol="1" endLine="1" endCol="18">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="8" endLine="1" endCol="11">
+            <Colon line="1" col="6" />
+            <CallStatement startLine="1" startCol="8" endLine="1" endCol="10">
+              <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="False">
+                <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="10" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="12" endLine="1" endCol="18" endType="If">
+            <If line="1" col="16" />
+          </EndBlockStatement>
+        </IfBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>If x Then : y : ElseIf z Then : a : Else : b : End If</code>
+      <result>
+        <IfBlockStatement startLine="1" startCol="1" endLine="1" endCol="54">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="6" />
+          <StatementCollection startLine="1" startCol="13" endLine="1" endCol="16">
+            <Colon line="1" col="11" />
+            <CallStatement startLine="1" startCol="13" endLine="1" endCol="15">
+              <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+                <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="37">
+            <ElseIfBlockStatement startLine="1" startCol="17" endLine="1" endCol="37">
+              <ElseIfStatement startLine="1" startCol="17" endLine="1" endCol="31">
+                <SimpleNameExpression startLine="1" startCol="24" endLine="1" endCol="26" isConstant="False">
+                  <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">z</SimpleName>
+                </SimpleNameExpression>
+                <Then line="1" col="26" />
+              </ElseIfStatement>
+              <StatementCollection startLine="1" startCol="33" endLine="1" endCol="36">
+                <Colon line="1" col="31" />
+                <CallStatement startLine="1" startCol="33" endLine="1" endCol="35">
+                  <SimpleNameExpression startLine="1" startCol="33" endLine="1" endCol="35" isConstant="False">
+                    <SimpleName startLine="1" startCol="33" endLine="1" endCol="34" escaped="False">a</SimpleName>
+                  </SimpleNameExpression>
+                </CallStatement>
+                <Colon line="1" col="35" />
+              </StatementCollection>
+            </ElseIfBlockStatement>
+          </StatementCollection>
+          <ElseBlockStatement startLine="1" startCol="37" endLine="1" endCol="48">
+            <ElseStatement startLine="1" startCol="37" endLine="1" endCol="42" />
+            <StatementCollection startLine="1" startCol="44" endLine="1" endCol="47">
+              <Colon line="1" col="42" />
+              <CallStatement startLine="1" startCol="44" endLine="1" endCol="46">
+                <SimpleNameExpression startLine="1" startCol="44" endLine="1" endCol="46" isConstant="False">
+                  <SimpleName startLine="1" startCol="44" endLine="1" endCol="45" escaped="False">b</SimpleName>
+                </SimpleNameExpression>
+              </CallStatement>
+              <Colon line="1" col="46" />
+            </StatementCollection>
+          </ElseBlockStatement>
+          <EndBlockStatement startLine="1" startCol="48" endLine="1" endCol="54" endType="If">
+            <If line="1" col="52" />
+          </EndBlockStatement>
+        </IfBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>If x Then y</code>
+      <result>
+        <LineIfBlockStatement startLine="1" startCol="1" endLine="1" endCol="12">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="6" />
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="12">
+            <CallStatement startLine="1" startCol="11" endLine="1" endCol="12">
+              <SimpleNameExpression startLine="1" startCol="11" endLine="1" endCol="12" isConstant="False">
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+          </StatementCollection>
+        </LineIfBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>If x Then y : z</code>
+      <result>
+        <LineIfBlockStatement startLine="1" startCol="1" endLine="1" endCol="16">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="6" />
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="14">
+            <CallStatement startLine="1" startCol="11" endLine="1" endCol="13">
+              <SimpleNameExpression startLine="1" startCol="11" endLine="1" endCol="13" isConstant="False">
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="13" />
+            <CallStatement startLine="1" startCol="15" endLine="1" endCol="16">
+              <SimpleNameExpression startLine="1" startCol="15" endLine="1" endCol="16" isConstant="False">
+                <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">z</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+          </StatementCollection>
+        </LineIfBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>If x Then y : z Else a : b</code>
+      <result>
+        <LineIfBlockStatement startLine="1" startCol="1" endLine="1" endCol="27">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="6" />
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="14">
+            <CallStatement startLine="1" startCol="11" endLine="1" endCol="13">
+              <SimpleNameExpression startLine="1" startCol="11" endLine="1" endCol="13" isConstant="False">
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="13" />
+            <CallStatement startLine="1" startCol="15" endLine="1" endCol="17">
+              <SimpleNameExpression startLine="1" startCol="15" endLine="1" endCol="17" isConstant="False">
+                <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">z</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+          </StatementCollection>
+          <Else line="1" col="17" />
+          <StatementCollection startLine="1" startCol="22" endLine="1" endCol="25">
+            <CallStatement startLine="1" startCol="22" endLine="1" endCol="24">
+              <SimpleNameExpression startLine="1" startCol="22" endLine="1" endCol="24" isConstant="False">
+                <SimpleName startLine="1" startCol="22" endLine="1" endCol="23" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+            <Colon line="1" col="24" />
+            <CallStatement startLine="1" startCol="26" endLine="1" endCol="27">
+              <SimpleNameExpression startLine="1" startCol="26" endLine="1" endCol="27" isConstant="False">
+                <SimpleName startLine="1" startCol="26" endLine="1" endCol="27" escaped="False">b</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+          </StatementCollection>
+        </LineIfBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>If x Then y Else</code>
+      <result>
+        <LineIfBlockStatement startLine="1" startCol="1" endLine="1" endCol="17">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="6" />
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="12">
+            <CallStatement startLine="1" startCol="11" endLine="1" endCol="13">
+              <SimpleNameExpression startLine="1" startCol="11" endLine="1" endCol="13" isConstant="False">
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+          </StatementCollection>
+          <Else line="1" col="13" />
+        </LineIfBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>If x Then Else y</code>
+      <result>
+        <LineIfBlockStatement startLine="1" startCol="1" endLine="1" endCol="17">
+          <SimpleNameExpression startLine="1" startCol="4" endLine="1" endCol="6" isConstant="False">
+            <SimpleName startLine="1" startCol="4" endLine="1" endCol="5" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Then line="1" col="6" />
+          <Else line="1" col="11" />
+          <StatementCollection startLine="1" startCol="16" endLine="1" endCol="17">
+            <CallStatement startLine="1" startCol="16" endLine="1" endCol="17">
+              <SimpleNameExpression startLine="1" startCol="16" endLine="1" endCol="17" isConstant="False">
+                <SimpleName startLine="1" startCol="16" endLine="1" endCol="17" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </CallStatement>
+          </StatementCollection>
+        </LineIfBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Select Case x : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="27">
+          <Case line="1" col="8" />
+          <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="20">
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="17" endLine="1" endCol="27" endType="Select">
+            <Select line="1" col="21" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        Select Case x
+        End Select
+      </code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="9" endLine="2" endCol="19">
+          <Case line="1" col="16" />
+          <SimpleNameExpression startLine="1" startCol="21" endLine="1" endCol="22" isConstant="False">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <EndBlockStatement startLine="2" startCol="9" endLine="2" endCol="19" endType="Select">
+            <Select line="2" col="13" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        Select Case x
+        Case y
+        End Select
+      </code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="9" endLine="3" endCol="19">
+          <Case line="1" col="16" />
+          <SimpleNameExpression startLine="1" startCol="21" endLine="1" endCol="22" isConstant="False">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="2" startCol="9" endLine="3" endCol="9">
+            <CaseBlockStatement startLine="2" startCol="9" endLine="3" endCol="9">
+              <CaseStatement startLine="2" startCol="9" endLine="2" endCol="15">
+                <CaseClauseCollection startLine="2" startCol="14" endLine="2" endCol="15">
+                  <RangeCaseClause startLine="2" startCol="14" endLine="2" endCol="15">
+                    <SimpleNameExpression startLine="2" startCol="14" endLine="2" endCol="15" isConstant="False">
+                      <SimpleName startLine="2" startCol="14" endLine="2" endCol="15" escaped="False">y</SimpleName>
+                    </SimpleNameExpression>
+                  </RangeCaseClause>
+                </CaseClauseCollection>
+              </CaseStatement>
+            </CaseBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="3" startCol="9" endLine="3" endCol="19" endType="Select">
+            <Select line="3" col="13" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>
+        Select Case x
+        ' This is an empty statement
+
+        Case y
+        End Select
+      </code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="9" endLine="5" endCol="19">
+          <Case line="1" col="16" />
+          <SimpleNameExpression startLine="1" startCol="21" endLine="1" endCol="22" isConstant="False">
+            <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="2" startCol="9" endLine="3" endCol="3">
+            <EmptyStatement startLine="2" startCol="9" endLine="2" endCol="37">
+              <Comment startLine="2" startCol="9" endLine="2" endCol="37" isRem="False"> This is an empty statement</Comment>
+            </EmptyStatement>
+          </StatementCollection>
+          <StatementCollection startLine="4" startCol="9" endLine="5" endCol="9">
+            <CaseBlockStatement startLine="4" startCol="9" endLine="5" endCol="9">
+              <CaseStatement startLine="4" startCol="9" endLine="4" endCol="15">
+                <CaseClauseCollection startLine="4" startCol="14" endLine="4" endCol="15">
+                  <RangeCaseClause startLine="4" startCol="14" endLine="4" endCol="15">
+                    <SimpleNameExpression startLine="4" startCol="14" endLine="4" endCol="15" isConstant="False">
+                      <SimpleName startLine="4" startCol="14" endLine="4" endCol="15" escaped="False">y</SimpleName>
+                    </SimpleNameExpression>
+                  </RangeCaseClause>
+                </CaseClauseCollection>
+              </CaseStatement>
+            </CaseBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="5" startCol="9" endLine="5" endCol="19" endType="Select">
+            <Select line="5" col="13" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Select Case x : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="27">
+          <Case line="1" col="8" />
+          <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="20">
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="17" endLine="1" endCol="27" endType="Select">
+            <Select line="1" col="21" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Select x : Case y : z : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="35">
+          <SimpleNameExpression startLine="1" startCol="8" endLine="1" endCol="10" isConstant="False">
+            <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="12" endLine="1" endCol="16">
+            <Colon line="1" col="10" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="12" endLine="1" endCol="25">
+            <CaseBlockStatement startLine="1" startCol="12" endLine="1" endCol="25">
+              <CaseStatement startLine="1" startCol="12" endLine="1" endCol="19">
+                <CaseClauseCollection startLine="1" startCol="17" endLine="1" endCol="19">
+                  <RangeCaseClause startLine="1" startCol="17" endLine="1" endCol="19">
+                    <SimpleNameExpression startLine="1" startCol="17" endLine="1" endCol="19" isConstant="False">
+                      <SimpleName startLine="1" startCol="17" endLine="1" endCol="18" escaped="False">y</SimpleName>
+                    </SimpleNameExpression>
+                  </RangeCaseClause>
+                </CaseClauseCollection>
+              </CaseStatement>
+              <StatementCollection startLine="1" startCol="21" endLine="1" endCol="24">
+                <Colon line="1" col="19" />
+                <CallStatement startLine="1" startCol="21" endLine="1" endCol="23">
+                  <SimpleNameExpression startLine="1" startCol="21" endLine="1" endCol="23" isConstant="False">
+                    <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">z</SimpleName>
+                  </SimpleNameExpression>
+                </CallStatement>
+                <Colon line="1" col="23" />
+              </StatementCollection>
+            </CaseBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="25" endLine="1" endCol="35" endType="Select">
+            <Select line="1" col="29" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Select Case y : Case y To z : a : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="45">
+          <Case line="1" col="8" />
+          <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="21">
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="35">
+            <CaseBlockStatement startLine="1" startCol="17" endLine="1" endCol="35">
+              <CaseStatement startLine="1" startCol="17" endLine="1" endCol="29">
+                <CaseClauseCollection startLine="1" startCol="22" endLine="1" endCol="29">
+                  <RangeCaseClause startLine="1" startCol="22" endLine="1" endCol="29">
+                    <BinaryOperatorExpression startLine="1" startCol="22" endLine="1" endCol="29" isConstant="False" operator="To">
+                      <SimpleNameExpression startLine="1" startCol="22" endLine="1" endCol="24" isConstant="False">
+                        <SimpleName startLine="1" startCol="22" endLine="1" endCol="23" escaped="False">y</SimpleName>
+                      </SimpleNameExpression>
+                      <To line="1" col="24" />
+                      <SimpleNameExpression startLine="1" startCol="27" endLine="1" endCol="29" isConstant="False">
+                        <SimpleName startLine="1" startCol="27" endLine="1" endCol="28" escaped="False">z</SimpleName>
+                      </SimpleNameExpression>
+                    </BinaryOperatorExpression>
+                  </RangeCaseClause>
+                </CaseClauseCollection>
+              </CaseStatement>
+              <StatementCollection startLine="1" startCol="31" endLine="1" endCol="34">
+                <Colon line="1" col="29" />
+                <CallStatement startLine="1" startCol="31" endLine="1" endCol="33">
+                  <SimpleNameExpression startLine="1" startCol="31" endLine="1" endCol="33" isConstant="False">
+                    <SimpleName startLine="1" startCol="31" endLine="1" endCol="32" escaped="False">a</SimpleName>
+                  </SimpleNameExpression>
+                </CallStatement>
+                <Colon line="1" col="33" />
+              </StatementCollection>
+            </CaseBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="35" endLine="1" endCol="45" endType="Select">
+            <Select line="1" col="39" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Select Case y : Case Is = 5, 10 To 20 : a : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="55">
+          <Case line="1" col="8" />
+          <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="21">
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="45">
+            <CaseBlockStatement startLine="1" startCol="17" endLine="1" endCol="45">
+              <CaseStatement startLine="1" startCol="17" endLine="1" endCol="39">
+                <CaseClauseCollection startLine="1" startCol="22" endLine="1" endCol="39">
+                  <ComparisonCaseClause startLine="1" startCol="22" endLine="1" endCol="28">
+                    <Is line="1" col="22" />
+                    <Equals line="1" col="25" />
+                    <IntegerLiteralExpression startLine="1" startCol="27" endLine="1" endCol="28" isConstant="True" base="Decimal">5</IntegerLiteralExpression>
+                  </ComparisonCaseClause>
+                  <Comma line="1" col="28" />
+                  <RangeCaseClause startLine="1" startCol="30" endLine="1" endCol="39">
+                    <BinaryOperatorExpression startLine="1" startCol="30" endLine="1" endCol="38" isConstant="True" operator="To">
+                      <IntegerLiteralExpression startLine="1" startCol="30" endLine="1" endCol="32" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+                      <To line="1" col="33" />
+                      <IntegerLiteralExpression startLine="1" startCol="36" endLine="1" endCol="38" isConstant="True" base="Decimal">20</IntegerLiteralExpression>
+                    </BinaryOperatorExpression>
+                  </RangeCaseClause>
+                </CaseClauseCollection>
+              </CaseStatement>
+              <StatementCollection startLine="1" startCol="41" endLine="1" endCol="44">
+                <Colon line="1" col="39" />
+                <CallStatement startLine="1" startCol="41" endLine="1" endCol="43">
+                  <SimpleNameExpression startLine="1" startCol="41" endLine="1" endCol="43" isConstant="False">
+                    <SimpleName startLine="1" startCol="41" endLine="1" endCol="42" escaped="False">a</SimpleName>
+                  </SimpleNameExpression>
+                </CallStatement>
+                <Colon line="1" col="43" />
+              </StatementCollection>
+            </CaseBlockStatement>
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="45" endLine="1" endCol="55" endType="Select">
+            <Select line="1" col="49" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>Select Case y : Case a : b : Case Else : c : End Select</code>
+      <result>
+        <SelectBlockStatement startLine="1" startCol="1" endLine="1" endCol="56">
+          <Case line="1" col="8" />
+          <SimpleNameExpression startLine="1" startCol="13" endLine="1" endCol="15" isConstant="False">
+            <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="21">
+            <Colon line="1" col="15" />
+          </StatementCollection>
+          <StatementCollection startLine="1" startCol="17" endLine="1" endCol="30">
+            <CaseBlockStatement startLine="1" startCol="17" endLine="1" endCol="30">
+              <CaseStatement startLine="1" startCol="17" endLine="1" endCol="24">
+                <CaseClauseCollection startLine="1" startCol="22" endLine="1" endCol="24">
+                  <RangeCaseClause startLine="1" startCol="22" endLine="1" endCol="24">
+                    <SimpleNameExpression startLine="1" startCol="22" endLine="1" endCol="24" isConstant="False">
+                      <SimpleName startLine="1" startCol="22" endLine="1" endCol="23" escaped="False">a</SimpleName>
+                    </SimpleNameExpression>
+                  </RangeCaseClause>
+                </CaseClauseCollection>
+              </CaseStatement>
+              <StatementCollection startLine="1" startCol="26" endLine="1" endCol="29">
+                <Colon line="1" col="24" />
+                <CallStatement startLine="1" startCol="26" endLine="1" endCol="28">
+                  <SimpleNameExpression startLine="1" startCol="26" endLine="1" endCol="28" isConstant="False">
+                    <SimpleName startLine="1" startCol="26" endLine="1" endCol="27" escaped="False">b</SimpleName>
+                  </SimpleNameExpression>
+                </CallStatement>
+                <Colon line="1" col="28" />
+              </StatementCollection>
+            </CaseBlockStatement>
+          </StatementCollection>
+          <CaseElseBlockStatement startLine="1" startCol="30" endLine="1" endCol="46">
+            <CaseElseStatement startLine="1" startCol="30" endLine="1" endCol="40">
+              <Else line="1" col="35" />
+            </CaseElseStatement>
+            <StatementCollection startLine="1" startCol="42" endLine="1" endCol="45">
+              <Colon line="1" col="40" />
+              <CallStatement startLine="1" startCol="42" endLine="1" endCol="44">
+                <SimpleNameExpression startLine="1" startCol="42" endLine="1" endCol="44" isConstant="False">
+                  <SimpleName startLine="1" startCol="42" endLine="1" endCol="43" escaped="False">c</SimpleName>
+                </SimpleNameExpression>
+              </CallStatement>
+              <Colon line="1" col="44" />
+            </StatementCollection>
+          </CaseElseBlockStatement>
+          <EndBlockStatement startLine="1" startCol="46" endLine="1" endCol="56" endType="Select">
+            <Select line="1" col="50" />
+          </EndBlockStatement>
+        </SelectBlockStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="EventHandlers" type="statement" description="10.5 Event Statements">
+  <invalid>
+    <test>
+      <code>RaiseEvent</code>
+      <result>
+        <RaiseEventStatement startLine="1" startCol="1" endLine="1" endCol="11">
+          <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" escaped="False" />
+        </RaiseEventStatement>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="11" endLine="1" endCol="11">error 23 (11,1) - (11,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>RaiseEvent x(</code>
+      <result>
+        <RaiseEventStatement startLine="1" startCol="1" endLine="1" endCol="14">
+          <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          <ArgumentCollection startLine="1" startCol="13" endLine="1" endCol="14">
+            <Argument startLine="1" startCol="14" endLine="1" endCol="14">
+              <SyntaxError isBad="True" startLine="1" startCol="14" endLine="1" endCol="14" />
+            </Argument>
+          </ArgumentCollection>
+        </RaiseEventStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="14" endLine="1" endCol="14">error 27 (14,1) - (14,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>RaiseEvent x)</code>
+      <result>
+        <RaiseEventStatement startLine="1" startCol="1" endLine="1" endCol="13">
+          <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+        </RaiseEventStatement>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="13" endLine="1" endCol="14">error 39 (13,1) - (14,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>RaiseEvent x()()</code>
+      <result>
+        <RaiseEventStatement startLine="1" startCol="1" endLine="1" endCol="15">
+          <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          <ArgumentCollection startLine="1" startCol="13" endLine="1" endCol="15">
+            <RightParenthesis line="1" col="14" />
+          </ArgumentCollection>
+        </RaiseEventStatement>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="15" endLine="1" endCol="16">error 39 (15,1) - (16,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>AddHandler</code>
+      <result>
+        <AddHandlerStatement startLine="1" startCol="1" endLine="1" endCol="11">
+          <SyntaxError isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" />
+          <SyntaxError isBad="True" startLine="1" startCol="11" endLine="1" endCol="11" />
+        </AddHandlerStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="11" endLine="1" endCol="11">error 27 (11,1) - (11,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>AddHandler x</code>
+      <result>
+        <AddHandlerStatement startLine="1" startCol="1" endLine="1" endCol="13">
+          <SimpleNameExpression startLine="1" startCol="12" endLine="1" endCol="13" isConstant="False">
+            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <SyntaxError isBad="True" startLine="1" startCol="13" endLine="1" endCol="13" />
+        </AddHandlerStatement>
+      </result>
+      <errors>
+        <ExpectedComma startLine="1" startCol="13" endLine="1" endCol="13">error 12 (13,1) - (13,1): Expected ','.</ExpectedComma>
+      </errors>
+    </test>
+    <test>
+      <code>AddHandler x,</code>
+      <result>
+        <AddHandlerStatement startLine="1" startCol="1" endLine="1" endCol="14">
+          <SimpleNameExpression startLine="1" startCol="12" endLine="1" endCol="13" isConstant="False">
+            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="13" />
+          <SyntaxError isBad="True" startLine="1" startCol="14" endLine="1" endCol="14" />
+        </AddHandlerStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="14" endLine="1" endCol="14">error 27 (14,1) - (14,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>RemoveHandler</code>
+      <result>
+        <RemoveHandlerStatement startLine="1" startCol="1" endLine="1" endCol="14">
+          <SyntaxError isBad="True" startLine="1" startCol="14" endLine="1" endCol="14" />
+          <SyntaxError isBad="True" startLine="1" startCol="14" endLine="1" endCol="14" />
+        </RemoveHandlerStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="14" endLine="1" endCol="14">error 27 (14,1) - (14,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>RemoveHandler x</code>
+      <result>
+        <RemoveHandlerStatement startLine="1" startCol="1" endLine="1" endCol="16">
+          <SimpleNameExpression startLine="1" startCol="15" endLine="1" endCol="16" isConstant="False">
+            <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <SyntaxError isBad="True" startLine="1" startCol="16" endLine="1" endCol="16" />
+        </RemoveHandlerStatement>
+      </result>
+      <errors>
+        <ExpectedComma startLine="1" startCol="16" endLine="1" endCol="16">error 12 (16,1) - (16,1): Expected ','.</ExpectedComma>
+      </errors>
+    </test>
+    <test>
+      <code>RemoveHandler x,</code>
+      <result>
+        <RemoveHandlerStatement startLine="1" startCol="1" endLine="1" endCol="17">
+          <SimpleNameExpression startLine="1" startCol="15" endLine="1" endCol="16" isConstant="False">
+            <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="16" />
+          <SyntaxError isBad="True" startLine="1" startCol="17" endLine="1" endCol="17" />
+        </RemoveHandlerStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="17" endLine="1" endCol="17">error 27 (17,1) - (17,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>RaiseEvent x</code>
+      <result>
+        <RaiseEventStatement startLine="1" startCol="1" endLine="1" endCol="13">
+          <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+        </RaiseEventStatement>
+      </result>
+    </test>
+    <test>
+      <code>RaiseEvent x()</code>
+      <result>
+        <RaiseEventStatement startLine="1" startCol="1" endLine="1" endCol="15">
+          <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          <ArgumentCollection startLine="1" startCol="13" endLine="1" endCol="15">
+            <RightParenthesis line="1" col="14" />
+          </ArgumentCollection>
+        </RaiseEventStatement>
+      </result>
+    </test>
+    <test>
+      <code>AddHandler x, y</code>
+      <result>
+        <AddHandlerStatement startLine="1" startCol="1" endLine="1" endCol="16">
+          <SimpleNameExpression startLine="1" startCol="12" endLine="1" endCol="13" isConstant="False">
+            <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="13" />
+          <SimpleNameExpression startLine="1" startCol="15" endLine="1" endCol="16" isConstant="False">
+            <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </AddHandlerStatement>
+      </result>
+    </test>
+    <test>
+      <code>RemoveHandler x, y</code>
+      <result>
+        <RemoveHandlerStatement startLine="1" startCol="1" endLine="1" endCol="19">
+          <SimpleNameExpression startLine="1" startCol="15" endLine="1" endCol="16" isConstant="False">
+            <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Comma line="1" col="16" />
+          <SimpleNameExpression startLine="1" startCol="18" endLine="1" endCol="19" isConstant="False">
+            <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+        </RemoveHandlerStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

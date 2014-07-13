@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="ConditionalCompilation" type="file" description="3.1.2 Conditional Compilation Directives">
+  <invalid>
+    <test>
+      <code>
+        #If
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="4" />
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="4" endLine="1" endCol="4">error 27 (4,1) - (4,1): Expected expression.</ExpectedExpression>
+        <ExpectedCCEndIf startLine="1" startCol="4" endLine="1" endCol="4">error 144 (4,1) - (4,1): '#If' must end with a matching '#End If'.</ExpectedCCEndIf>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #If x Then
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="11" />
+      </result>
+      <errors>
+        <ExpectedCCEndIf startLine="1" startCol="11" endLine="1" endCol="11">error 144 (11,1) - (11,1): '#If' must end with a matching '#End If'.</ExpectedCCEndIf>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #End
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="5" />
+      </result>
+      <errors>
+        <ExpectedEndKind startLine="1" startCol="5" endLine="1" endCol="5">error 134 (5,1) - (5,1): 'ExternalSource', 'Region' or 'If' expected.</ExpectedEndKind>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #End If
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+      <errors>
+        <CCEndIfWithoutCCIf startLine="1" startCol="1" endLine="1" endCol="8">error 145 (1,1) - (8,1): '#End If' must be preceded by a matching '#If'.</CCEndIfWithoutCCIf>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #ElseIf
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="8" endLine="1" endCol="8">error 27 (8,1) - (8,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #Else
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="6" />
+      </result>
+      <errors>
+        <CCElseWithoutCCIf startLine="1" startCol="1" endLine="1" endCol="6">error 149 (1,1) - (6,1): '#Else' must be preceded by a matching '#If'.</CCElseWithoutCCIf>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #If x Then
+        #Else
+        #Else
+        #End If
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="4" endCol="16" />
+      </result>
+      <errors>
+        <CCElseAfterCCElse startLine="3" startCol="9" endLine="3" endCol="14">error 148 (9,3) - (14,3): '#Else' can only appear once in an '#If' statement.</CCElseAfterCCElse>
+      </errors>
+    </test>
+    <test>
+      <code>
+        #If x Then
+        #Else
+        #ElseIf y Then
+        #End If
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="4" endCol="16" />
+      </result>
+      <errors>
+        <CCElseIfAfterCCElse startLine="3" startCol="9" endLine="3" endCol="23">error 146 (9,3) - (23,3): '#ElseIf' cannot appear after '#Else' within an '#If' statement.</CCElseIfAfterCCElse>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>
+        #Const x = True
+        #If x Then
+        Option Explicit
+        #Else
+        Option Strict
+        #End If
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="6" endCol="16">
+          <DeclarationCollection startLine="1" startCol="1" endLine="6" endCol="16">
+            <OptionDeclaration startLine="3" startCol="9" endLine="3" endCol="24" type="Explicit">
+              <Explicit line="3" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>
+        #Const x = False
+        #If x Then
+        Option Explicit
+        #Else
+        Option Strict
+        #End If
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="6" endCol="16">
+          <DeclarationCollection startLine="1" startCol="1" endLine="6" endCol="16">
+            <OptionDeclaration startLine="5" startCol="9" endLine="5" endCol="22" type="Strict">
+              <Strict line="5" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>
+        #Const x = False
+        #If x Then
+        Option Explicit
+        #ElseIf Not x Then
+        Option Strict
+        #End If
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="6" endCol="16">
+          <DeclarationCollection startLine="1" startCol="1" endLine="6" endCol="16">
+            <OptionDeclaration startLine="5" startCol="9" endLine="5" endCol="22" type="Strict">
+              <Strict line="5" col="16" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+    <test>
+      <code>
+        #Const x = 2
+        #If x = 0 Then
+        Option Explicit
+        #ElseIf x = 1 Then
+        Option Strict
+        #Else
+        Option Compare Text
+        #End If
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="8" endCol="16">
+          <DeclarationCollection startLine="1" startCol="1" endLine="8" endCol="16">
+            <OptionDeclaration startLine="7" startCol="9" endLine="7" endCol="28" type="CompareText">
+              <Compare line="7" col="16" />
+              <Text line="7" col="24" />
+            </OptionDeclaration>
+          </DeclarationCollection>
+        </File>
+      </result>
+    </test>
+  </valid>
+</scenario>

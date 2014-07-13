@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="ConditionalConstant" type="file" description="3.1.1 Conditional Constant Directives">
+  <invalid>
+    <test>
+      <code>#Const x</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="9" />
+      </result>
+      <errors>
+        <ExpectedEquals startLine="1" startCol="9" endLine="1" endCol="9">error 15 (9,1) - (9,1): Expected '='.</ExpectedEquals>
+      </errors>
+    </test>
+    <test>
+      <code>#Const x =</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="11" />
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="11" endLine="1" endCol="11">error 27 (11,1) - (11,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>#Const x = 5 +</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="15" />
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="15" endLine="1" endCol="15">error 27 (15,1) - (15,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>#Const x = CStr(5)</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="19" />
+      </result>
+      <errors>
+        <CantCastStringInCCExpression startLine="1" startCol="12" endLine="1" endCol="19">error 140 (12,1) - (19,1): Conversions to and from 'String' cannot occur in a conditional compilation expression.</CantCastStringInCCExpression>
+      </errors>
+    </test>
+    <test>
+      <code>#Const x = CInt("5")</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="21" />
+      </result>
+      <errors>
+        <CantCastStringInCCExpression startLine="1" startCol="12" endLine="1" endCol="21">error 140 (12,1) - (21,1): Conversions to and from 'String' cannot occur in a conditional compilation expression.</CantCastStringInCCExpression>
+      </errors>
+    </test>
+    <test>
+      <code>#Const x = CChar(5)</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="20" />
+      </result>
+      <errors>
+        <InvalidCCCast startLine="1" startCol="12" endLine="1" endCol="20">error 141 (12,1) - (20,1): Conversion is not valid in a conditional compilation expression.</InvalidCCCast>
+      </errors>
+    </test>
+    <test>
+      <code>#Const x = CInt("5"c)</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="22" />
+      </result>
+      <errors>
+        <InvalidCCCast startLine="1" startCol="12" endLine="1" endCol="22">error 141 (12,1) - (22,1): Conversion is not valid in a conditional compilation expression.</InvalidCCCast>
+      </errors>
+    </test>
+    <test>
+      <code>#Const x = CDate(1)</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="20" />
+      </result>
+      <errors>
+        <InvalidCCCast startLine="1" startCol="12" endLine="1" endCol="20">error 141 (12,1) - (20,1): Conversion is not valid in a conditional compilation expression.</InvalidCCCast>
+      </errors>
+    </test>
+    <test>
+      <code>#Const x = CInt(#10/10/1995#)</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="30" />
+      </result>
+      <errors>
+        <InvalidCCCast startLine="1" startCol="12" endLine="1" endCol="30">error 141 (12,1) - (30,1): Conversion is not valid in a conditional compilation expression.</InvalidCCCast>
+      </errors>
+    </test>
+    <test>
+      <code>#Const x = -"10"</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="17" />
+      </result>
+      <errors>
+        <InvalidCCOperator startLine="1" startCol="12" endLine="1" endCol="17">error 143 (12,1) - (17,1): Operator is not valid for these types in a conditional compilation expression.</InvalidCCOperator>
+      </errors>
+    </test>
+    <test>
+      <code>#Const x = -"1"c</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="17" />
+      </result>
+      <errors>
+        <InvalidCCOperator startLine="1" startCol="12" endLine="1" endCol="17">error 143 (12,1) - (17,1): Operator is not valid for these types in a conditional compilation expression.</InvalidCCOperator>
+      </errors>
+    </test>
+    <test>
+      <code>#Const x = -#10/10/1995#</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="25" />
+      </result>
+      <errors>
+        <InvalidCCOperator startLine="1" startCol="12" endLine="1" endCol="25">error 143 (12,1) - (25,1): Operator is not valid for these types in a conditional compilation expression.</InvalidCCOperator>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>#Const x = 5</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="13" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = 5.0</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="15" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = "a"c</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="16" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = 10D</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="15" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = True</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="16" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = "abc"</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="17" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = #10/10/1995#</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="24" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = CInt(10L)</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="21" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = CStr("abc")</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="23" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = CStr("a"c)</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="22" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = CChar("abc")</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="24" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = Nothing</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="19" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = y</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="13" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = +y</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="14" />
+      </result>
+    </test>
+    <test>
+      <code>#Const x = 5 + 10</code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="18" />
+      </result>
+    </test>
+  </valid>
+</scenario>

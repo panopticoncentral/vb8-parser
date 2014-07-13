@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="ExpressionBlocks" type="statement" description="10.3 With Statement &amp; 10.4 SyncLock Statement">
+  <invalid>
+    <test>
+      <code>With : End With</code>
+      <result>
+        <WithBlockStatement startLine="1" startCol="1" endLine="1" endCol="16">
+          <SyntaxError isBad="True" startLine="1" startCol="6" endLine="1" endCol="7" />
+          <StatementCollection startLine="1" startCol="8" endLine="1" endCol="11">
+            <Colon line="1" col="6" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="8" endLine="1" endCol="16" endType="With">
+            <With line="1" col="12" />
+          </EndBlockStatement>
+        </WithBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="6" endLine="1" endCol="7">error 27 (6,1) - (7,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>With x : End SyncLock</code>
+      <result>
+        <WithBlockStatement startLine="1" startCol="1" endLine="1" endCol="22">
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="10" endLine="1" endCol="22">
+            <Colon line="1" col="8" />
+            <EndBlockStatement startLine="1" startCol="10" endLine="1" endCol="22" endType="SyncLock">
+              <SyncLock line="1" col="14" />
+            </EndBlockStatement>
+          </StatementCollection>
+        </WithBlockStatement>
+      </result>
+      <errors>
+        <EndSyncLockWithoutSyncLock startLine="1" startCol="10" endLine="1" endCol="22">error 63 (10,1) - (22,1): 'End SyncLock' must be preceded by a matching 'SyncLock'.</EndSyncLockWithoutSyncLock>
+      </errors>
+    </test>
+    <test>
+      <code>SyncLock : End SyncLock</code>
+      <result>
+        <SyncLockBlockStatement startLine="1" startCol="1" endLine="1" endCol="24">
+          <SyntaxError isBad="True" startLine="1" startCol="10" endLine="1" endCol="11" />
+          <StatementCollection startLine="1" startCol="12" endLine="1" endCol="15">
+            <Colon line="1" col="10" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="12" endLine="1" endCol="24" endType="SyncLock">
+            <SyncLock line="1" col="16" />
+          </EndBlockStatement>
+        </SyncLockBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="10" endLine="1" endCol="11">error 27 (10,1) - (11,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>SyncLock : End With</code>
+      <result>
+        <SyncLockBlockStatement startLine="1" startCol="1" endLine="1" endCol="20">
+          <SyntaxError isBad="True" startLine="1" startCol="10" endLine="1" endCol="11" />
+          <StatementCollection startLine="1" startCol="12" endLine="1" endCol="20">
+            <Colon line="1" col="10" />
+            <EndBlockStatement startLine="1" startCol="12" endLine="1" endCol="20" endType="With">
+              <With line="1" col="16" />
+            </EndBlockStatement>
+          </StatementCollection>
+        </SyncLockBlockStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="10" endLine="1" endCol="11">error 27 (10,1) - (11,1): Expected expression.</ExpectedExpression>
+        <EndWithWithoutWith startLine="1" startCol="12" endLine="1" endCol="20">error 66 (12,1) - (20,1): 'End With' must be preceded by a matching 'With'.</EndWithWithoutWith>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Using x : End With</code>
+      <result>
+        <UsingBlockStatement startLine="1" startCol="1" endLine="1" endCol="19">
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="19">
+            <Colon line="1" col="9" />
+            <EndBlockStatement startLine="1" startCol="11" endLine="1" endCol="19" endType="With">
+              <With line="1" col="15" />
+            </EndBlockStatement>
+          </StatementCollection>
+        </UsingBlockStatement>
+      </result>
+      <errors>
+        <EndWithWithoutWith startLine="1" startCol="11" endLine="1" endCol="19">error 66 (11,1) - (19,1): 'End With' must be preceded by a matching 'With'.</EndWithWithoutWith>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Using x As : End Using</code>
+      <result>
+        <UsingBlockStatement startLine="1" startCol="1" endLine="1" endCol="23">
+          <VariableDeclaratorCollection startLine="1" startCol="7" endLine="1" endCol="12">
+            <VariableDeclarator startLine="1" startCol="7" endLine="1" endCol="12">
+              <VariableNameCollection startLine="1" startCol="7" endLine="1" endCol="9">
+                <VariableName startLine="1" startCol="7" endLine="1" endCol="9">
+                  <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="9" />
+              <NamedType isBad="True" startLine="1" startCol="12" endLine="1" endCol="12">
+                <SimpleName isBad="True" startLine="1" startCol="12" endLine="1" endCol="12" escaped="False" />
+              </NamedType>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+          <StatementCollection startLine="1" startCol="14" endLine="1" endCol="17">
+            <Colon line="1" col="12" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="14" endLine="1" endCol="23" endType="Using">
+            <Using line="1" col="18" />
+          </EndBlockStatement>
+        </UsingBlockStatement>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="12" endLine="1" endCol="13">error 22 (12,1) - (13,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Using x, y : End Using</code>
+      <result>
+        <UsingBlockStatement startLine="1" startCol="1" endLine="1" endCol="23">
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="14" endLine="1" endCol="17">
+            <Colon line="1" col="12" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="14" endLine="1" endCol="23" endType="Using">
+            <Using line="1" col="18" />
+          </EndBlockStatement>
+        </UsingBlockStatement>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="8" endLine="1" endCol="9">error 39 (8,1) - (9,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>With x : a() : End With</code>
+      <result>
+        <WithBlockStatement startLine="1" startCol="1" endLine="1" endCol="24">
+          <SimpleNameExpression startLine="1" startCol="6" endLine="1" endCol="8" isConstant="False">
+            <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="10" endLine="1" endCol="15">
+            <Colon line="1" col="8" />
+            <CallStatement startLine="1" startCol="10" endLine="1" endCol="14">
+              <SimpleNameExpression startLine="1" startCol="10" endLine="1" endCol="11" isConstant="False">
+                <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="1" startCol="11" endLine="1" endCol="14">
+                <RightParenthesis line="1" col="12" />
+              </ArgumentCollection>
+            </CallStatement>
+            <Colon line="1" col="14" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="16" endLine="1" endCol="24" endType="With">
+            <With line="1" col="20" />
+          </EndBlockStatement>
+        </WithBlockStatement>
+      </result>
+    </test>
+    <test>
+      <code>SyncLock y : a() : End SyncLock</code>
+      <result>
+        <SyncLockBlockStatement startLine="1" startCol="1" endLine="1" endCol="32">
+          <SimpleNameExpression startLine="1" startCol="10" endLine="1" endCol="12" isConstant="False">
+            <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">y</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="14" endLine="1" endCol="19">
+            <Colon line="1" col="12" />
+            <CallStatement startLine="1" startCol="14" endLine="1" endCol="18">
+              <SimpleNameExpression startLine="1" startCol="14" endLine="1" endCol="15" isConstant="False">
+                <SimpleName startLine="1" startCol="14" endLine="1" endCol="15" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+              <ArgumentCollection startLine="1" startCol="15" endLine="1" endCol="18">
+                <RightParenthesis line="1" col="16" />
+              </ArgumentCollection>
+            </CallStatement>
+            <Colon line="1" col="18" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="20" endLine="1" endCol="32" endType="SyncLock">
+            <SyncLock line="1" col="24" />
+          </EndBlockStatement>
+        </SyncLockBlockStatement>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Using x : End Using</code>
+      <result>
+        <UsingBlockStatement startLine="1" startCol="1" endLine="1" endCol="20">
+          <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="False">
+            <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <StatementCollection startLine="1" startCol="11" endLine="1" endCol="14">
+            <Colon line="1" col="9" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="11" endLine="1" endCol="20" endType="Using">
+            <Using line="1" col="15" />
+          </EndBlockStatement>
+        </UsingBlockStatement>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Using x As y : End Using</code>
+      <result>
+        <UsingBlockStatement startLine="1" startCol="1" endLine="1" endCol="25">
+          <VariableDeclaratorCollection startLine="1" startCol="7" endLine="1" endCol="14">
+            <VariableDeclarator startLine="1" startCol="7" endLine="1" endCol="14">
+              <VariableNameCollection startLine="1" startCol="7" endLine="1" endCol="9">
+                <VariableName startLine="1" startCol="7" endLine="1" endCol="9">
+                  <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="9" />
+              <NamedType startLine="1" startCol="12" endLine="1" endCol="13">
+                <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">y</SimpleName>
+              </NamedType>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+          <StatementCollection startLine="1" startCol="16" endLine="1" endCol="19">
+            <Colon line="1" col="14" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="16" endLine="1" endCol="25" endType="Using">
+            <Using line="1" col="20" />
+          </EndBlockStatement>
+        </UsingBlockStatement>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Using x As y = z : End Using</code>
+      <result>
+        <UsingBlockStatement startLine="1" startCol="1" endLine="1" endCol="29">
+          <VariableDeclaratorCollection startLine="1" startCol="7" endLine="1" endCol="18">
+            <VariableDeclarator startLine="1" startCol="7" endLine="1" endCol="18">
+              <VariableNameCollection startLine="1" startCol="7" endLine="1" endCol="9">
+                <VariableName startLine="1" startCol="7" endLine="1" endCol="9">
+                  <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="9" />
+              <NamedType startLine="1" startCol="12" endLine="1" endCol="13">
+                <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">y</SimpleName>
+              </NamedType>
+              <Equals line="1" col="14" />
+              <ExpressionInitializer startLine="1" startCol="16" endLine="1" endCol="18">
+                <SimpleNameExpression startLine="1" startCol="16" endLine="1" endCol="18" isConstant="False">
+                  <SimpleName startLine="1" startCol="16" endLine="1" endCol="17" escaped="False">z</SimpleName>
+                </SimpleNameExpression>
+              </ExpressionInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+          <StatementCollection startLine="1" startCol="20" endLine="1" endCol="23">
+            <Colon line="1" col="18" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="20" endLine="1" endCol="29" endType="Using">
+            <Using line="1" col="24" />
+          </EndBlockStatement>
+        </UsingBlockStatement>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Using x As y, z as t : End Using</code>
+      <result>
+        <UsingBlockStatement startLine="1" startCol="1" endLine="1" endCol="33">
+          <VariableDeclaratorCollection startLine="1" startCol="7" endLine="1" endCol="22">
+            <VariableDeclarator startLine="1" startCol="7" endLine="1" endCol="13">
+              <VariableNameCollection startLine="1" startCol="7" endLine="1" endCol="9">
+                <VariableName startLine="1" startCol="7" endLine="1" endCol="9">
+                  <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="9" />
+              <NamedType startLine="1" startCol="12" endLine="1" endCol="13">
+                <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">y</SimpleName>
+              </NamedType>
+            </VariableDeclarator>
+            <Comma line="1" col="13" />
+            <VariableDeclarator startLine="1" startCol="15" endLine="1" endCol="22">
+              <VariableNameCollection startLine="1" startCol="15" endLine="1" endCol="17">
+                <VariableName startLine="1" startCol="15" endLine="1" endCol="17">
+                  <SimpleName startLine="1" startCol="15" endLine="1" endCol="16" escaped="False">z</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="17" />
+              <NamedType startLine="1" startCol="20" endLine="1" endCol="21">
+                <SimpleName startLine="1" startCol="20" endLine="1" endCol="21" escaped="False">t</SimpleName>
+              </NamedType>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+          <StatementCollection startLine="1" startCol="24" endLine="1" endCol="27">
+            <Colon line="1" col="22" />
+          </StatementCollection>
+          <EndBlockStatement startLine="1" startCol="24" endLine="1" endCol="33" endType="Using">
+            <Using line="1" col="28" />
+          </EndBlockStatement>
+        </UsingBlockStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

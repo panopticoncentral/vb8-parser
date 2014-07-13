@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Attribute" type="declaration" description="5. Attributes">
+  <invalid>
+    <test>
+      <code>&lt;</code>
+      <result />
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="2" endLine="1" endCol="2">error 23 (2,1) - (2,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>&gt;</code>
+      <result />
+      <errors>
+        <SyntaxError startLine="1" startCol="1" endLine="1" endCol="2">error 11 (1,1) - (2,1): Syntax error.</SyntaxError>
+      </errors>
+    </test>
+    <test>
+      <code>&lt;a</code>
+      <result />
+      <errors>
+        <ExpectedGreaterThan startLine="1" startCol="3" endLine="1" endCol="3">error 21 (3,1) - (3,1): Expected '&gt;'.</ExpectedGreaterThan>
+      </errors>
+    </test>
+    <test>
+      <code>a&gt;</code>
+      <result>
+        <VariableListDeclaration startLine="1" startCol="1" endLine="1" endCol="3">
+          <VariableDeclaratorCollection startLine="1" startCol="1" endLine="1" endCol="3">
+            <VariableDeclarator startLine="1" startCol="1" endLine="1" endCol="3">
+              <VariableNameCollection startLine="1" startCol="1" endLine="1" endCol="3">
+                <VariableName startLine="1" startCol="1" endLine="1" endCol="2">
+                  <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </VariableListDeclaration>
+      </result>
+      <errors>
+        <ExpectedModifier startLine="1" startCol="1" endLine="1" endCol="2">error 38 (1,1) - (2,1): Expected one of 'Dim', 'Const', 'Public', 'Private', 'Protected', 'Friend', 'Shadows', 'ReadOnly' or 'Shared'.</ExpectedModifier>
+      </errors>
+    </test>
+    <test>
+      <code>&lt;a,,b&gt;</code>
+      <result />
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="4" endLine="1" endCol="5">error 23 (4,1) - (5,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>&lt;a,&gt;</code>
+      <result />
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="4" endLine="1" endCol="5">error 23 (4,1) - (5,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>&lt;foo:a&gt;</code>
+      <result />
+      <errors>
+        <ExpectedGreaterThan startLine="1" startCol="5" endLine="1" endCol="6">error 21 (5,1) - (6,1): Expected '&gt;'.</ExpectedGreaterThan>
+      </errors>
+    </test>
+    <test>
+      <code>&lt;:a&gt;</code>
+      <result />
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="2" endLine="1" endCol="3">error 23 (2,1) - (3,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>&lt;a&gt;</code>
+      <result />
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="4" endLine="1" endCol="4">error 23 (4,1) - (4,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>&lt;a(&gt;</code>
+      <result />
+      <errors>
+        <ExpectedExpression startLine="1" startCol="4" endLine="1" endCol="5">error 27 (4,1) - (5,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>&lt;a)&gt;</code>
+      <result />
+      <errors>
+        <ExpectedGreaterThan startLine="1" startCol="3" endLine="1" endCol="4">error 21 (3,1) - (4,1): Expected '&gt;'.</ExpectedGreaterThan>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>&lt;Global&gt;</code>
+      <result />
+      <errors>
+        <ExpectedPeriod startLine="1" startCol="8" endLine="1" endCol="9">error 18 (8,1) - (9,1): Expected '.'.</ExpectedPeriod>
+      </errors>
+    </test>
+    <test>
+      <code>&lt;Assembly:a, b, c&gt;</code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="1" endLine="1" endCol="19">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="19">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="19">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="12" type="Assembly">
+                <Colon line="1" col="10" />
+                <Assembly line="1" col="2" />
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">a</SimpleName>
+              </Attribute>
+              <Comma line="1" col="12" />
+              <Attribute startLine="1" startCol="14" endLine="1" endCol="15" type="Regular">
+                <SimpleName startLine="1" startCol="14" endLine="1" endCol="15" escaped="False">b</SimpleName>
+              </Attribute>
+              <Comma line="1" col="15" />
+              <Attribute startLine="1" startCol="17" endLine="1" endCol="18" type="Regular">
+                <SimpleName startLine="1" startCol="17" endLine="1" endCol="18" escaped="False">c</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="18" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+      <errors>
+        <IncorrectAttributeType startLine="1" startCol="14" endLine="1" endCol="15">error 92 (14,1) - (15,1): Attribute of this type is not allowed here.</IncorrectAttributeType>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>&lt;Assembly:a&gt;</code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="1" endLine="1" endCol="13">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="13">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="13">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="12" type="Assembly">
+                <Colon line="1" col="10" />
+                <Assembly line="1" col="2" />
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="12" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>&lt;Module:a&gt;</code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="1" endLine="1" endCol="11">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="11">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="11">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="10" type="Module">
+                <Module line="1" col="2" />
+                <Colon line="1" col="8" />
+                <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="10" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>&lt;Assembly:a, Module:b, Assembly:c&gt;</code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="1" endLine="1" endCol="35">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="35">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="35">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="12" type="Assembly">
+                <Colon line="1" col="10" />
+                <Assembly line="1" col="2" />
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">a</SimpleName>
+              </Attribute>
+              <Comma line="1" col="12" />
+              <Attribute startLine="1" startCol="14" endLine="1" endCol="22" type="Module">
+                <Module line="1" col="14" />
+                <Colon line="1" col="20" />
+                <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">b</SimpleName>
+              </Attribute>
+              <Comma line="1" col="22" />
+              <Attribute startLine="1" startCol="24" endLine="1" endCol="34" type="Assembly">
+                <Colon line="1" col="32" />
+                <Assembly line="1" col="24" />
+                <SimpleName startLine="1" startCol="33" endLine="1" endCol="34" escaped="False">c</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="34" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>&lt;Assembly:Global.a&gt;</code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="1" endLine="1" endCol="20">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="20">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="20">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="19" type="Assembly">
+                <Colon line="1" col="10" />
+                <Assembly line="1" col="2" />
+                <QualifiedName startLine="1" startCol="11" endLine="1" endCol="19">
+                  <GlobalNamespaceName startLine="1" startCol="11" endLine="1" endCol="17" />
+                  <Period line="1" col="17" />
+                  <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">a</SimpleName>
+                </QualifiedName>
+              </Attribute>
+              <GreaterThan line="1" col="19" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>&lt;Assembly:a&gt; &lt;Module:b&gt; &lt;Assembly:c&gt;</code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="1" endLine="1" endCol="37">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="37">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="14">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="12" type="Assembly">
+                <Colon line="1" col="10" />
+                <Assembly line="1" col="2" />
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="12" />
+            </AttributeCollection>
+            <AttributeCollection startLine="1" startCol="14" endLine="1" endCol="25">
+              <Attribute startLine="1" startCol="15" endLine="1" endCol="23" type="Module">
+                <Module line="1" col="15" />
+                <Colon line="1" col="21" />
+                <SimpleName startLine="1" startCol="22" endLine="1" endCol="23" escaped="False">b</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="23" />
+            </AttributeCollection>
+            <AttributeCollection startLine="1" startCol="25" endLine="1" endCol="37">
+              <Attribute startLine="1" startCol="26" endLine="1" endCol="36" type="Assembly">
+                <Colon line="1" col="34" />
+                <Assembly line="1" col="26" />
+                <SimpleName startLine="1" startCol="35" endLine="1" endCol="36" escaped="False">c</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="36" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

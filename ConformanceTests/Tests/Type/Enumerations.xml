@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Enumerations" type="declaration" description="7.4 Enumerations">
+  <invalid>
+    <test>
+      <code>Enum</code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="1" endCol="5">
+          <Enum line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="5" endLine="1" endCol="5" escaped="False" />
+        </EnumDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="5" endLine="1" endCol="5">error 23 (5,1) - (5,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Overridable Enum
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="2" endCol="17">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="13">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="13" type="Overridable" />
+          </ModifierCollection>
+          <Enum line="1" col="13" />
+          <SimpleName isBad="True" startLine="1" startCol="17" endLine="1" endCol="19" escaped="False" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="17" endType="Enum">
+            <Enum line="2" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="13">error 94 (1,1) - (13,1): Modifier is not valid on this declaration type.</InvalidModifier>
+        <EmptyEnum startLine="1" startCol="17" endLine="1" endCol="19">error 121 (17,1) - (19,1): Enum must contain at least one member.</EmptyEnum>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Enum Foo As
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="2" endCol="17">
+          <Enum line="1" col="1" />
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="9" escaped="False">Foo</SimpleName>
+          <As line="1" col="10" />
+          <NamedType isBad="True" startLine="1" startCol="12" endLine="1" endCol="12">
+            <SimpleName isBad="True" startLine="1" startCol="12" endLine="1" endCol="12" escaped="False" />
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="17" endType="Enum">
+            <Enum line="2" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="12" endLine="1" endCol="14">error 22 (12,1) - (14,1): Type expected.</ExpectedType>
+        <EmptyEnum startLine="1" startCol="6" endLine="1" endCol="9">error 121 (6,1) - (9,1): Enum must contain at least one member.</EmptyEnum>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Enum &lt;a&gt; Foo
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="2" endCol="17">
+          <Enum line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="6" endLine="1" endCol="7" escaped="False" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="17" endType="Enum">
+            <Enum line="2" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="6" endLine="1" endCol="7">error 23 (6,1) - (7,1): Expected identifier.</ExpectedIdentifier>
+        <EmptyEnum startLine="1" startCol="6" endLine="1" endCol="7">error 121 (6,1) - (7,1): Enum must contain at least one member.</EmptyEnum>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Enum Public Foo
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="2" endCol="17">
+          <Enum line="1" col="1" />
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="12" escaped="False">Public</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="17" endType="Enum">
+            <Enum line="2" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="6" endLine="1" endCol="12">error 24 (6,1) - (12,1): Invalid use of keyword.</InvalidUseOfKeyword>
+        <EmptyEnum startLine="1" startCol="6" endLine="1" endCol="12">error 121 (6,1) - (12,1): Enum must contain at least one member.</EmptyEnum>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Enum Foo
+        x =
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="3" endCol="17">
+          <Enum line="1" col="1" />
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="9" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="14">
+            <EnumValueDeclaration startLine="2" startCol="9" endLine="2" endCol="12">
+              <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">x</SimpleName>
+              <Equals line="2" col="11" />
+              <SyntaxError isBad="True" startLine="2" startCol="12" endLine="2" endCol="14" />
+            </EnumValueDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="17" endType="Enum">
+            <Enum line="3" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="2" startCol="12" endLine="2" endCol="14">error 27 (12,2) - (14,2): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Enum Foo
+        10
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="3" endCol="17">
+          <Enum line="1" col="1" />
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="9" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="13">
+            <EnumValueDeclaration startLine="2" startCol="9" endLine="2" endCol="11">
+              <SimpleName isBad="True" startLine="2" startCol="9" endLine="2" endCol="11" escaped="False" />
+            </EnumValueDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="17" endType="Enum">
+            <Enum line="3" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="2" startCol="9" endLine="2" endCol="11">error 23 (9,2) - (11,2): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Enum Foo
+        x + y
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="3" endCol="17">
+          <Enum line="1" col="1" />
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="9" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="16">
+            <EnumValueDeclaration startLine="2" startCol="9" endLine="2" endCol="11">
+              <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">x</SimpleName>
+            </EnumValueDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="17" endType="Enum">
+            <Enum line="3" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="2" startCol="11" endLine="2" endCol="12">error 39 (11,2) - (12,2): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Enum Foo
+        x &lt;a&gt;
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="3" endCol="17">
+          <Enum line="1" col="1" />
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="9" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="16">
+            <EnumValueDeclaration startLine="2" startCol="9" endLine="2" endCol="11">
+              <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">x</SimpleName>
+            </EnumValueDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="17" endType="Enum">
+            <Enum line="3" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="2" startCol="11" endLine="2" endCol="12">error 39 (11,2) - (12,2): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Enum Foo
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="2" endCol="17">
+          <Enum line="1" col="1" />
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="9" escaped="False">Foo</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="17" endType="Enum">
+            <Enum line="2" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+      <errors>
+        <EmptyEnum startLine="1" startCol="6" endLine="1" endCol="9">error 121 (6,1) - (9,1): Enum must contain at least one member.</EmptyEnum>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>
+        Public Private Protected Friend Shadows Enum Foo
+        a
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="3" endCol="17">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="41">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+            <Modifier startLine="1" startCol="8" endLine="1" endCol="16" type="Private" />
+            <Modifier startLine="1" startCol="16" endLine="1" endCol="26" type="Protected" />
+            <Modifier startLine="1" startCol="26" endLine="1" endCol="33" type="Friend" />
+            <Modifier startLine="1" startCol="33" endLine="1" endCol="41" type="Shadows" />
+          </ModifierCollection>
+          <Enum line="1" col="41" />
+          <SimpleName startLine="1" startCol="46" endLine="1" endCol="49" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="12">
+            <EnumValueDeclaration startLine="2" startCol="9" endLine="2" endCol="10">
+              <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">a</SimpleName>
+            </EnumValueDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="17" endType="Enum">
+            <Enum line="3" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Enum Foo As Integer
+        x
+        y = 10
+        z = y
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="5" endCol="17">
+          <Enum line="1" col="1" />
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="9" escaped="False">Foo</SimpleName>
+          <As line="1" col="10" />
+          <IntrinsicType startLine="1" startCol="13" endLine="1" endCol="20" intrinsicType="Integer" />
+          <DeclarationCollection startLine="2" startCol="9" endLine="4" endCol="16">
+            <EnumValueDeclaration startLine="2" startCol="9" endLine="2" endCol="10">
+              <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">x</SimpleName>
+            </EnumValueDeclaration>
+            <EnumValueDeclaration startLine="3" startCol="9" endLine="3" endCol="15">
+              <SimpleName startLine="3" startCol="9" endLine="3" endCol="10" escaped="False">y</SimpleName>
+              <Equals line="3" col="11" />
+              <IntegerLiteralExpression startLine="3" startCol="13" endLine="3" endCol="15" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+            </EnumValueDeclaration>
+            <EnumValueDeclaration startLine="4" startCol="9" endLine="4" endCol="14">
+              <SimpleName startLine="4" startCol="9" endLine="4" endCol="10" escaped="False">z</SimpleName>
+              <Equals line="4" col="11" />
+              <SimpleNameExpression startLine="4" startCol="13" endLine="4" endCol="14" isConstant="False">
+                <SimpleName startLine="4" startCol="13" endLine="4" endCol="14" escaped="False">y</SimpleName>
+              </SimpleNameExpression>
+            </EnumValueDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="5" startCol="9" endLine="5" endCol="17" endType="Enum">
+            <Enum line="5" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        &lt;a&gt; Enum Foo
+        &lt;b&gt; c
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="3" endCol="17">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="5">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="3" type="Regular">
+                <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="3" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <Enum line="1" col="5" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="16">
+            <EnumValueDeclaration startLine="2" startCol="9" endLine="2" endCol="14">
+              <AttributeBlockCollection startLine="2" startCol="9" endLine="2" endCol="13">
+                <AttributeCollection startLine="2" startCol="9" endLine="2" endCol="13">
+                  <Attribute startLine="2" startCol="10" endLine="2" endCol="11" type="Regular">
+                    <SimpleName startLine="2" startCol="10" endLine="2" endCol="11" escaped="False">b</SimpleName>
+                  </Attribute>
+                  <GreaterThan line="2" col="11" />
+                </AttributeCollection>
+              </AttributeBlockCollection>
+              <SimpleName startLine="2" startCol="13" endLine="2" endCol="14" escaped="False">c</SimpleName>
+            </EnumValueDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="17" endType="Enum">
+            <Enum line="3" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+    </test>
+    <!-- Technically, this is invalid in VB 2003, but isn't going to be enforced in the grammar -->
+    <test>
+      <code>
+        Enum Foo As Bar.Baz
+        x
+        End Enum
+      </code>
+      <result>
+        <EnumDeclaration startLine="1" startCol="1" endLine="3" endCol="17">
+          <Enum line="1" col="1" />
+          <SimpleName startLine="1" startCol="6" endLine="1" endCol="9" escaped="False">Foo</SimpleName>
+          <As line="1" col="10" />
+          <NamedType startLine="1" startCol="13" endLine="1" endCol="20">
+            <QualifiedName startLine="1" startCol="13" endLine="1" endCol="20">
+              <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">Bar</SimpleName>
+              <Period line="1" col="16" />
+              <SimpleName startLine="1" startCol="17" endLine="1" endCol="20" escaped="False">Baz</SimpleName>
+            </QualifiedName>
+          </NamedType>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="12">
+            <EnumValueDeclaration startLine="2" startCol="9" endLine="2" endCol="10">
+              <SimpleName startLine="2" startCol="9" endLine="2" endCol="10" escaped="False">x</SimpleName>
+            </EnumValueDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="17" endType="Enum">
+            <Enum line="3" col="13" />
+          </EndBlockDeclaration>
+        </EnumDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

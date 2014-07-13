@@ -1,0 +1,1179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Locals" type="statement" description="10.2 Local Declaration Statements">
+  <invalid>
+    <test>
+      <code>x As Integer</code>
+      <result>
+        <CallStatement startLine="1" startCol="1" endLine="1" endCol="3">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+        </CallStatement>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="3" endLine="1" endCol="5">error 39 (3,1) - (5,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>Dim As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="15">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="15">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="15">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="15">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="8">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="7" escaped="False">As</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="5" endLine="1" endCol="7">error 24 (5,1) - (7,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="9">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="9">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="9">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <NamedType isBad="True" startLine="1" startCol="9" endLine="1" endCol="9">
+                <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+              </NamedType>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="9" endLine="1" endCol="9">error 22 (9,1) - (9,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As New</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="13">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="13">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="13">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <New line="1" col="10" />
+              <NamedType isBad="True" startLine="1" startCol="13" endLine="1" endCol="13">
+                <SimpleName isBad="True" startLine="1" startCol="13" endLine="1" endCol="13" escaped="False" />
+              </NamedType>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="13" endLine="1" endCol="13">error 22 (13,1) - (13,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As New Integer(</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="22">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="22">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="22">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <New line="1" col="10" />
+              <IntrinsicType startLine="1" startCol="14" endLine="1" endCol="21" intrinsicType="Integer" />
+              <ArgumentCollection startLine="1" startCol="21" endLine="1" endCol="22">
+                <Argument startLine="1" startCol="22" endLine="1" endCol="22">
+                  <SyntaxError isBad="True" startLine="1" startCol="22" endLine="1" endCol="22" />
+                </Argument>
+              </ArgumentCollection>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="22" endLine="1" endCol="22">error 27 (22,1) - (22,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As New Integer)</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="21">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="21">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="21">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <New line="1" col="10" />
+              <IntrinsicType startLine="1" startCol="14" endLine="1" endCol="21" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="21" endLine="1" endCol="22">error 39 (21,1) - (22,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As Integer(</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="18">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="18">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="18">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <ArrayType startLine="1" startCol="10" endLine="1" endCol="18" rank="1">
+                <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+                <ArgumentCollection startLine="1" startCol="17" endLine="1" endCol="18">
+                  <Argument startLine="1" startCol="18" endLine="1" endCol="18">
+                    <SyntaxError isBad="True" startLine="1" startCol="18" endLine="1" endCol="18" />
+                  </Argument>
+                </ArgumentCollection>
+              </ArrayType>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <NoExplicitArraySizes startLine="1" startCol="18" endLine="1" endCol="18">error 26 (18,1) - (18,1): Array bounds cannot appear in type specifiers.</NoExplicitArraySizes>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As Integer)</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="17">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="17">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="17">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="17" endLine="1" endCol="18">error 39 (17,1) - (18,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x( As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="18">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="18">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="18">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="18">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="18">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                  <ArrayType startLine="1" startCol="6" endLine="1" endCol="18" rank="1">
+                    <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="18">
+                      <Argument startLine="1" startCol="8" endLine="1" endCol="8">
+                        <SyntaxError isBad="True" startLine="1" startCol="8" endLine="1" endCol="10" />
+                      </Argument>
+                    </ArgumentCollection>
+                  </ArrayType>
+                </VariableName>
+              </VariableNameCollection>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="8" endLine="1" endCol="10">error 27 (8,1) - (10,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x) As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="6">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="6">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="6">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="6">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="6">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="6" endLine="1" endCol="7">error 39 (6,1) - (7,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test version="7.1">
+      <code>Dim x(0 To 10) As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="26">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="26">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="26">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="16">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="16">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                  <ArrayType startLine="1" startCol="6" endLine="1" endCol="16" rank="1">
+                    <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="16">
+                      <Argument startLine="1" startCol="7" endLine="1" endCol="9">
+                        <IntegerLiteralExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="True" base="Decimal">0</IntegerLiteralExpression>
+                      </Argument>
+                      <RightParenthesis line="1" col="14" />
+                    </ArgumentCollection>
+                  </ArrayType>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="16" />
+              <IntrinsicType startLine="1" startCol="19" endLine="1" endCol="26" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ArgumentSyntax startLine="1" startCol="9" endLine="1" endCol="11">error 28 (9,1) - (11,1): Comma, ')', or a valid expression continuation expected.</ArgumentSyntax>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Dim x(0 To) As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="23">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="23">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="23">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="13">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="13">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                  <ArrayType startLine="1" startCol="6" endLine="1" endCol="13" rank="1">
+                    <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="13">
+                      <Argument startLine="1" startCol="7" endLine="1" endCol="11">
+                        <BinaryOperatorExpression startLine="1" startCol="7" endLine="1" endCol="12" isConstant="False" operator="To">
+                          <IntegerLiteralExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="True" base="Decimal">0</IntegerLiteralExpression>
+                          <To line="1" col="9" />
+                          <SyntaxError isBad="True" startLine="1" startCol="11" endLine="1" endCol="12" />
+                        </BinaryOperatorExpression>
+                      </Argument>
+                      <RightParenthesis line="1" col="11" />
+                    </ArgumentCollection>
+                  </ArrayType>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="13" />
+              <IntrinsicType startLine="1" startCol="16" endLine="1" endCol="23" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="11" endLine="1" endCol="12">error 27 (11,1) - (12,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As Integer =</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="19">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="19">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="19">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+              <Equals line="1" col="18" />
+              <ExpressionInitializer startLine="1" startCol="19" endLine="1" endCol="19">
+                <SyntaxError isBad="True" startLine="1" startCol="19" endLine="1" endCol="19" />
+              </ExpressionInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="19" endLine="1" endCol="19">error 27 (19,1) - (19,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x,,y As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="20">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="20">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="20">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="10">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="6">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+                <Comma line="1" col="6" />
+                <Comma line="1" col="7" />
+                <VariableName startLine="1" startCol="7" endLine="1" endCol="7">
+                  <SimpleName isBad="True" startLine="1" startCol="7" endLine="1" endCol="8" escaped="False" />
+                </VariableName>
+                <VariableName startLine="1" startCol="8" endLine="1" endCol="10">
+                  <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">y</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="10" />
+              <IntrinsicType startLine="1" startCol="13" endLine="1" endCol="20" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="7" endLine="1" endCol="8">error 23 (7,1) - (8,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As Integer,,y As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="31">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="31">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="17">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+            </VariableDeclarator>
+            <Comma line="1" col="17" />
+            <VariableDeclarator startLine="1" startCol="18" endLine="1" endCol="31">
+              <VariableNameCollection startLine="1" startCol="18" endLine="1" endCol="21">
+                <Comma line="1" col="18" />
+                <VariableName startLine="1" startCol="18" endLine="1" endCol="18">
+                  <SimpleName isBad="True" startLine="1" startCol="18" endLine="1" endCol="19" escaped="False" />
+                </VariableName>
+                <VariableName startLine="1" startCol="19" endLine="1" endCol="21">
+                  <SimpleName startLine="1" startCol="19" endLine="1" endCol="20" escaped="False">y</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="21" />
+              <IntrinsicType startLine="1" startCol="24" endLine="1" endCol="31" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="18" endLine="1" endCol="19">error 23 (18,1) - (19,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As Integer = {</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="21">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="21">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="21">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+              <Equals line="1" col="18" />
+              <AggregateInitializer startLine="1" startCol="20" endLine="1" endCol="21">
+                <InitializerCollection startLine="1" startCol="20" endLine="1" endCol="21">
+                  <ExpressionInitializer startLine="1" startCol="21" endLine="1" endCol="21">
+                    <SyntaxError isBad="True" startLine="1" startCol="21" endLine="1" endCol="21" />
+                  </ExpressionInitializer>
+                </InitializerCollection>
+              </AggregateInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="21" endLine="1" endCol="21">error 27 (21,1) - (21,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As Integer = }</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="21">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="21">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="21">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+              <Equals line="1" col="18" />
+              <ExpressionInitializer startLine="1" startCol="20" endLine="1" endCol="21">
+                <SyntaxError isBad="True" startLine="1" startCol="20" endLine="1" endCol="21" />
+              </ExpressionInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="20" endLine="1" endCol="21">error 27 (20,1) - (21,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As Integer = {,a,}</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="25">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="25">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="25">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+              <Equals line="1" col="18" />
+              <AggregateInitializer startLine="1" startCol="20" endLine="1" endCol="25">
+                <InitializerCollection startLine="1" startCol="20" endLine="1" endCol="25">
+                  <Comma line="1" col="21" />
+                  <ExpressionInitializer startLine="1" startCol="21" endLine="1" endCol="22">
+                    <SyntaxError isBad="True" startLine="1" startCol="21" endLine="1" endCol="22" />
+                  </ExpressionInitializer>
+                  <ExpressionInitializer startLine="1" startCol="22" endLine="1" endCol="23">
+                    <SimpleNameExpression startLine="1" startCol="22" endLine="1" endCol="23" isConstant="False">
+                      <SimpleName startLine="1" startCol="22" endLine="1" endCol="23" escaped="False">a</SimpleName>
+                    </SimpleNameExpression>
+                  </ExpressionInitializer>
+                  <Comma line="1" col="23" />
+                  <ExpressionInitializer startLine="1" startCol="24" endLine="1" endCol="25">
+                    <SyntaxError isBad="True" startLine="1" startCol="24" endLine="1" endCol="25" />
+                  </ExpressionInitializer>
+                  <RightCurlyBrace line="1" col="24" />
+                </InitializerCollection>
+              </AggregateInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="21" endLine="1" endCol="22">error 27 (21,1) - (22,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As Integer = {a,,b}</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="26">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="26">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="26">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+              <Equals line="1" col="18" />
+              <AggregateInitializer startLine="1" startCol="20" endLine="1" endCol="26">
+                <InitializerCollection startLine="1" startCol="20" endLine="1" endCol="26">
+                  <ExpressionInitializer startLine="1" startCol="21" endLine="1" endCol="22">
+                    <SimpleNameExpression startLine="1" startCol="21" endLine="1" endCol="22" isConstant="False">
+                      <SimpleName startLine="1" startCol="21" endLine="1" endCol="22" escaped="False">a</SimpleName>
+                    </SimpleNameExpression>
+                  </ExpressionInitializer>
+                  <Comma line="1" col="22" />
+                  <Comma line="1" col="23" />
+                  <ExpressionInitializer startLine="1" startCol="23" endLine="1" endCol="24">
+                    <SyntaxError isBad="True" startLine="1" startCol="23" endLine="1" endCol="24" />
+                  </ExpressionInitializer>
+                  <ExpressionInitializer startLine="1" startCol="24" endLine="1" endCol="25">
+                    <SimpleNameExpression startLine="1" startCol="24" endLine="1" endCol="25" isConstant="False">
+                      <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">b</SimpleName>
+                    </SimpleNameExpression>
+                  </ExpressionInitializer>
+                  <RightCurlyBrace line="1" col="25" />
+                </InitializerCollection>
+              </AggregateInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="23" endLine="1" endCol="24">error 27 (23,1) - (24,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As Integer = {{}</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="23">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="23">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="23">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+              <Equals line="1" col="18" />
+              <AggregateInitializer startLine="1" startCol="20" endLine="1" endCol="23">
+                <InitializerCollection startLine="1" startCol="20" endLine="1" endCol="23">
+                  <AggregateInitializer startLine="1" startCol="21" endLine="1" endCol="23">
+                    <InitializerCollection startLine="1" startCol="21" endLine="1" endCol="23">
+                      <RightCurlyBrace line="1" col="22" />
+                    </InitializerCollection>
+                  </AggregateInitializer>
+                </InitializerCollection>
+              </AggregateInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedRightCurlyBrace startLine="1" startCol="23" endLine="1" endCol="23">error 17 (23,1) - (23,1): Expected '}'.</ExpectedRightCurlyBrace>
+      </errors>
+    </test>
+    <test>
+      <code>Dim x As Integer = {}}</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="22">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="22">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="22">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+              <Equals line="1" col="18" />
+              <AggregateInitializer startLine="1" startCol="20" endLine="1" endCol="22">
+                <InitializerCollection startLine="1" startCol="20" endLine="1" endCol="22">
+                  <RightCurlyBrace line="1" col="21" />
+                </InitializerCollection>
+              </AggregateInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="22" endLine="1" endCol="23">error 39 (22,1) - (23,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <!-- The following isn't a valid local declaration -->
+    <test>
+      <code>x</code>
+      <result>
+        <CallStatement startLine="1" startCol="1" endLine="1" endCol="2">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+        </CallStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x, y = 10</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="14">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="14">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="14">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="10">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="6">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+                <Comma line="1" col="6" />
+                <VariableName startLine="1" startCol="8" endLine="1" endCol="10">
+                  <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">y</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <Equals line="1" col="10" />
+              <ExpressionInitializer startLine="1" startCol="12" endLine="1" endCol="14">
+                <IntegerLiteralExpression startLine="1" startCol="12" endLine="1" endCol="14" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </ExpressionInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x, y As Integer = 10</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="25">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="25">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="25">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="10">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="6">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+                <Comma line="1" col="6" />
+                <VariableName startLine="1" startCol="8" endLine="1" endCol="10">
+                  <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">y</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="10" />
+              <IntrinsicType startLine="1" startCol="13" endLine="1" endCol="20" intrinsicType="Integer" />
+              <Equals line="1" col="21" />
+              <ExpressionInitializer startLine="1" startCol="23" endLine="1" endCol="25">
+                <IntegerLiteralExpression startLine="1" startCol="23" endLine="1" endCol="25" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </ExpressionInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="17">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="17">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="17">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Static y As Integer = 10</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="25">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="8">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Static" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="8" endLine="1" endCol="25">
+            <VariableDeclarator startLine="1" startCol="8" endLine="1" endCol="25">
+              <VariableNameCollection startLine="1" startCol="8" endLine="1" endCol="10">
+                <VariableName startLine="1" startCol="8" endLine="1" endCol="10">
+                  <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">y</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="10" />
+              <IntrinsicType startLine="1" startCol="13" endLine="1" endCol="20" intrinsicType="Integer" />
+              <Equals line="1" col="21" />
+              <ExpressionInitializer startLine="1" startCol="23" endLine="1" endCol="25">
+                <IntegerLiteralExpression startLine="1" startCol="23" endLine="1" endCol="25" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </ExpressionInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Const z As Integer = 10</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="24">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="7">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="7" type="Const" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="7" endLine="1" endCol="24">
+            <VariableDeclarator startLine="1" startCol="7" endLine="1" endCol="24">
+              <VariableNameCollection startLine="1" startCol="7" endLine="1" endCol="9">
+                <VariableName startLine="1" startCol="7" endLine="1" endCol="9">
+                  <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">z</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="9" />
+              <IntrinsicType startLine="1" startCol="12" endLine="1" endCol="19" intrinsicType="Integer" />
+              <Equals line="1" col="20" />
+              <ExpressionInitializer startLine="1" startCol="22" endLine="1" endCol="24">
+                <IntegerLiteralExpression startLine="1" startCol="22" endLine="1" endCol="24" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </ExpressionInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="6">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="6">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="6">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="6">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="6">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x = 10</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="11">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="11">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="11">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <Equals line="1" col="7" />
+              <ExpressionInitializer startLine="1" startCol="9" endLine="1" endCol="11">
+                <IntegerLiteralExpression startLine="1" startCol="9" endLine="1" endCol="11" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </ExpressionInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="17">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="17">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="17">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x As Integer = 10</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="22">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="22">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="22">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+              <Equals line="1" col="18" />
+              <ExpressionInitializer startLine="1" startCol="20" endLine="1" endCol="22">
+                <IntegerLiteralExpression startLine="1" startCol="20" endLine="1" endCol="22" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </ExpressionInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x As New Integer(10)</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="25">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="25">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="25">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <New line="1" col="10" />
+              <IntrinsicType startLine="1" startCol="14" endLine="1" endCol="21" intrinsicType="Integer" />
+              <ArgumentCollection startLine="1" startCol="21" endLine="1" endCol="25">
+                <Argument startLine="1" startCol="22" endLine="1" endCol="24">
+                  <IntegerLiteralExpression startLine="1" startCol="22" endLine="1" endCol="24" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+                </Argument>
+                <RightParenthesis line="1" col="24" />
+              </ArgumentCollection>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x() As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="19">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="19">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="19">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="9">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="9">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                  <ArrayType startLine="1" startCol="6" endLine="1" endCol="9" rank="1">
+                    <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="9">
+                      <RightParenthesis line="1" col="7" />
+                    </ArgumentCollection>
+                  </ArrayType>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="9" />
+              <IntrinsicType startLine="1" startCol="12" endLine="1" endCol="19" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x(10) As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="21">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="21">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="21">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="11">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="11">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                  <ArrayType startLine="1" startCol="6" endLine="1" endCol="11" rank="1">
+                    <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="11">
+                      <Argument startLine="1" startCol="7" endLine="1" endCol="9">
+                        <IntegerLiteralExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+                      </Argument>
+                      <RightParenthesis line="1" col="9" />
+                    </ArgumentCollection>
+                  </ArrayType>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="11" />
+              <IntrinsicType startLine="1" startCol="14" endLine="1" endCol="21" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Dim x(0 To 10) As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="26">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="26">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="26">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="16">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="16">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                  <ArrayType startLine="1" startCol="6" endLine="1" endCol="16" rank="1">
+                    <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="16">
+                      <Argument startLine="1" startCol="7" endLine="1" endCol="14">
+                        <BinaryOperatorExpression startLine="1" startCol="7" endLine="1" endCol="14" isConstant="True" operator="To">
+                          <IntegerLiteralExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="True" base="Decimal">0</IntegerLiteralExpression>
+                          <To line="1" col="9" />
+                          <IntegerLiteralExpression startLine="1" startCol="12" endLine="1" endCol="14" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+                        </BinaryOperatorExpression>
+                      </Argument>
+                      <RightParenthesis line="1" col="14" />
+                    </ArgumentCollection>
+                  </ArrayType>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="16" />
+              <IntrinsicType startLine="1" startCol="19" endLine="1" endCol="26" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x, y</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="9">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="9">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="9">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="9">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="6">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+                <Comma line="1" col="6" />
+                <VariableName startLine="1" startCol="8" endLine="1" endCol="9">
+                  <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">y</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x, y As Integer</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="20">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="20">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="20">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="10">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="6">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+                <Comma line="1" col="6" />
+                <VariableName startLine="1" startCol="8" endLine="1" endCol="10">
+                  <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">y</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="10" />
+              <IntrinsicType startLine="1" startCol="13" endLine="1" endCol="20" intrinsicType="Integer" />
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x = 10, y = 20</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="19">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="19">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="11">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <Equals line="1" col="7" />
+              <ExpressionInitializer startLine="1" startCol="9" endLine="1" endCol="11">
+                <IntegerLiteralExpression startLine="1" startCol="9" endLine="1" endCol="11" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </ExpressionInitializer>
+            </VariableDeclarator>
+            <Comma line="1" col="11" />
+            <VariableDeclarator startLine="1" startCol="13" endLine="1" endCol="19">
+              <VariableNameCollection startLine="1" startCol="13" endLine="1" endCol="15">
+                <VariableName startLine="1" startCol="13" endLine="1" endCol="15">
+                  <SimpleName startLine="1" startCol="13" endLine="1" endCol="14" escaped="False">y</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <Equals line="1" col="15" />
+              <ExpressionInitializer startLine="1" startCol="17" endLine="1" endCol="19">
+                <IntegerLiteralExpression startLine="1" startCol="17" endLine="1" endCol="19" isConstant="True" base="Decimal">20</IntegerLiteralExpression>
+              </ExpressionInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x As Integer = 10, y As Integer = 20</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="41">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="41">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="22">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+              <Equals line="1" col="18" />
+              <ExpressionInitializer startLine="1" startCol="20" endLine="1" endCol="22">
+                <IntegerLiteralExpression startLine="1" startCol="20" endLine="1" endCol="22" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </ExpressionInitializer>
+            </VariableDeclarator>
+            <Comma line="1" col="22" />
+            <VariableDeclarator startLine="1" startCol="24" endLine="1" endCol="41">
+              <VariableNameCollection startLine="1" startCol="24" endLine="1" endCol="26">
+                <VariableName startLine="1" startCol="24" endLine="1" endCol="26">
+                  <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">y</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="26" />
+              <IntrinsicType startLine="1" startCol="29" endLine="1" endCol="36" intrinsicType="Integer" />
+              <Equals line="1" col="37" />
+              <ExpressionInitializer startLine="1" startCol="39" endLine="1" endCol="41">
+                <IntegerLiteralExpression startLine="1" startCol="39" endLine="1" endCol="41" isConstant="True" base="Decimal">20</IntegerLiteralExpression>
+              </ExpressionInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+    <test>
+      <code>Dim x As Integer = { a, { b, c }, d, {{{{e}}}}}</code>
+      <result>
+        <LocalDeclarationStatement startLine="1" startCol="1" endLine="1" endCol="48">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="5" type="Dim" />
+          </ModifierCollection>
+          <VariableDeclaratorCollection startLine="1" startCol="5" endLine="1" endCol="48">
+            <VariableDeclarator startLine="1" startCol="5" endLine="1" endCol="48">
+              <VariableNameCollection startLine="1" startCol="5" endLine="1" endCol="7">
+                <VariableName startLine="1" startCol="5" endLine="1" endCol="7">
+                  <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+                </VariableName>
+              </VariableNameCollection>
+              <As line="1" col="7" />
+              <IntrinsicType startLine="1" startCol="10" endLine="1" endCol="17" intrinsicType="Integer" />
+              <Equals line="1" col="18" />
+              <AggregateInitializer startLine="1" startCol="20" endLine="1" endCol="48">
+                <InitializerCollection startLine="1" startCol="20" endLine="1" endCol="48">
+                  <ExpressionInitializer startLine="1" startCol="22" endLine="1" endCol="23">
+                    <SimpleNameExpression startLine="1" startCol="22" endLine="1" endCol="23" isConstant="False">
+                      <SimpleName startLine="1" startCol="22" endLine="1" endCol="23" escaped="False">a</SimpleName>
+                    </SimpleNameExpression>
+                  </ExpressionInitializer>
+                  <Comma line="1" col="23" />
+                  <AggregateInitializer startLine="1" startCol="25" endLine="1" endCol="33">
+                    <InitializerCollection startLine="1" startCol="25" endLine="1" endCol="33">
+                      <ExpressionInitializer startLine="1" startCol="27" endLine="1" endCol="28">
+                        <SimpleNameExpression startLine="1" startCol="27" endLine="1" endCol="28" isConstant="False">
+                          <SimpleName startLine="1" startCol="27" endLine="1" endCol="28" escaped="False">b</SimpleName>
+                        </SimpleNameExpression>
+                      </ExpressionInitializer>
+                      <Comma line="1" col="28" />
+                      <ExpressionInitializer startLine="1" startCol="30" endLine="1" endCol="32">
+                        <SimpleNameExpression startLine="1" startCol="30" endLine="1" endCol="32" isConstant="False">
+                          <SimpleName startLine="1" startCol="30" endLine="1" endCol="31" escaped="False">c</SimpleName>
+                        </SimpleNameExpression>
+                      </ExpressionInitializer>
+                      <RightCurlyBrace line="1" col="32" />
+                    </InitializerCollection>
+                  </AggregateInitializer>
+                  <Comma line="1" col="33" />
+                  <ExpressionInitializer startLine="1" startCol="35" endLine="1" endCol="36">
+                    <SimpleNameExpression startLine="1" startCol="35" endLine="1" endCol="36" isConstant="False">
+                      <SimpleName startLine="1" startCol="35" endLine="1" endCol="36" escaped="False">d</SimpleName>
+                    </SimpleNameExpression>
+                  </ExpressionInitializer>
+                  <Comma line="1" col="36" />
+                  <AggregateInitializer startLine="1" startCol="38" endLine="1" endCol="47">
+                    <InitializerCollection startLine="1" startCol="38" endLine="1" endCol="47">
+                      <AggregateInitializer startLine="1" startCol="39" endLine="1" endCol="46">
+                        <InitializerCollection startLine="1" startCol="39" endLine="1" endCol="46">
+                          <AggregateInitializer startLine="1" startCol="40" endLine="1" endCol="45">
+                            <InitializerCollection startLine="1" startCol="40" endLine="1" endCol="45">
+                              <AggregateInitializer startLine="1" startCol="41" endLine="1" endCol="44">
+                                <InitializerCollection startLine="1" startCol="41" endLine="1" endCol="44">
+                                  <ExpressionInitializer startLine="1" startCol="42" endLine="1" endCol="43">
+                                    <SimpleNameExpression startLine="1" startCol="42" endLine="1" endCol="43" isConstant="False">
+                                      <SimpleName startLine="1" startCol="42" endLine="1" endCol="43" escaped="False">e</SimpleName>
+                                    </SimpleNameExpression>
+                                  </ExpressionInitializer>
+                                  <RightCurlyBrace line="1" col="43" />
+                                </InitializerCollection>
+                              </AggregateInitializer>
+                              <RightCurlyBrace line="1" col="44" />
+                            </InitializerCollection>
+                          </AggregateInitializer>
+                          <RightCurlyBrace line="1" col="45" />
+                        </InitializerCollection>
+                      </AggregateInitializer>
+                      <RightCurlyBrace line="1" col="46" />
+                    </InitializerCollection>
+                  </AggregateInitializer>
+                  <RightCurlyBrace line="1" col="47" />
+                </InitializerCollection>
+              </AggregateInitializer>
+            </VariableDeclarator>
+          </VariableDeclaratorCollection>
+        </LocalDeclarationStatement>
+      </result>
+    </test>
+  </valid>
+</scenario>

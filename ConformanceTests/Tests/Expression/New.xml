@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="New" type="expression" description="11.10 New Expressions">
+  <invalid>
+    <test>
+      <code>New x(</code>
+      <result>
+        <NewExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False">
+          <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="7">
+            <Argument startLine="1" startCol="7" endLine="1" endCol="7">
+              <SyntaxError isBad="True" startLine="1" startCol="7" endLine="1" endCol="7" />
+            </Argument>
+          </ArgumentCollection>
+        </NewExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="7" endLine="1" endCol="7">error 27 (7,1) - (7,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>New x() {</code>
+      <result>
+        <NewAggregateExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False">
+          <ArrayType startLine="1" startCol="5" endLine="1" endCol="9" rank="1">
+            <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+              <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+            </NamedType>
+            <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="9">
+              <RightParenthesis line="1" col="7" />
+            </ArgumentCollection>
+          </ArrayType>
+          <AggregateInitializer startLine="1" startCol="9" endLine="1" endCol="10">
+            <InitializerCollection startLine="1" startCol="9" endLine="1" endCol="10">
+              <ExpressionInitializer startLine="1" startCol="10" endLine="1" endCol="10">
+                <SyntaxError isBad="True" startLine="1" startCol="10" endLine="1" endCol="10" />
+              </ExpressionInitializer>
+            </InitializerCollection>
+          </AggregateInitializer>
+        </NewAggregateExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="10" endLine="1" endCol="10">error 27 (10,1) - (10,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>New x(10, ,10) {}</code>
+      <result>
+        <NewAggregateExpression startLine="1" startCol="1" endLine="1" endCol="18" isConstant="False">
+          <ArrayType startLine="1" startCol="5" endLine="1" endCol="16" rank="3">
+            <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+              <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+            </NamedType>
+            <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="16">
+              <Argument startLine="1" startCol="7" endLine="1" endCol="9">
+                <IntegerLiteralExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </Argument>
+              <Comma line="1" col="9" />
+              <Comma line="1" col="11" />
+              <Argument startLine="1" startCol="11" endLine="1" endCol="11">
+                <SyntaxError isBad="True" startLine="1" startCol="11" endLine="1" endCol="12" />
+              </Argument>
+              <Argument startLine="1" startCol="12" endLine="1" endCol="14">
+                <IntegerLiteralExpression startLine="1" startCol="12" endLine="1" endCol="14" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </Argument>
+              <RightParenthesis line="1" col="14" />
+            </ArgumentCollection>
+          </ArrayType>
+          <AggregateInitializer startLine="1" startCol="16" endLine="1" endCol="18">
+            <InitializerCollection startLine="1" startCol="16" endLine="1" endCol="18">
+              <RightCurlyBrace line="1" col="17" />
+            </InitializerCollection>
+          </AggregateInitializer>
+        </NewAggregateExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="11" endLine="1" endCol="12">error 27 (11,1) - (12,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <!-- The next three are bad but don't cause errors -->
+    <test>
+      <code>New x)</code>
+      <result>
+        <NewExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False">
+          <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </NamedType>
+        </NewExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x() }</code>
+      <result>
+        <NewExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="9">
+            <RightParenthesis line="1" col="7" />
+          </ArgumentCollection>
+        </NewExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x {}</code>
+      <result>
+        <NewExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False">
+          <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </NamedType>
+        </NewExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x</code>
+      <result>
+        <NewExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False">
+          <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </NamedType>
+        </NewExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x()</code>
+      <result>
+        <NewExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False">
+          <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="8">
+            <RightParenthesis line="1" col="7" />
+          </ArgumentCollection>
+        </NewExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x(10, 20, 30)</code>
+      <result>
+        <NewExpression startLine="1" startCol="1" endLine="1" endCol="18" isConstant="False">
+          <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="18">
+            <Argument startLine="1" startCol="7" endLine="1" endCol="9">
+              <IntegerLiteralExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+            </Argument>
+            <Comma line="1" col="9" />
+            <Argument startLine="1" startCol="11" endLine="1" endCol="13">
+              <IntegerLiteralExpression startLine="1" startCol="11" endLine="1" endCol="13" isConstant="True" base="Decimal">20</IntegerLiteralExpression>
+            </Argument>
+            <Comma line="1" col="13" />
+            <Argument startLine="1" startCol="15" endLine="1" endCol="17">
+              <IntegerLiteralExpression startLine="1" startCol="15" endLine="1" endCol="17" isConstant="True" base="Decimal">30</IntegerLiteralExpression>
+            </Argument>
+            <RightParenthesis line="1" col="17" />
+          </ArgumentCollection>
+        </NewExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x(a, b := 10)</code>
+      <result>
+        <NewExpression startLine="1" startCol="1" endLine="1" endCol="18" isConstant="False">
+          <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="18">
+            <Argument startLine="1" startCol="7" endLine="1" endCol="8">
+              <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+                <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+            </Argument>
+            <Comma line="1" col="8" />
+            <Argument startLine="1" startCol="10" endLine="1" endCol="17">
+              <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">b</SimpleName>
+              <ColonEquals line="1" col="12" />
+              <IntegerLiteralExpression startLine="1" startCol="15" endLine="1" endCol="17" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+            </Argument>
+            <RightParenthesis line="1" col="17" />
+          </ArgumentCollection>
+        </NewExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x(a, ,b)</code>
+      <result>
+        <NewExpression startLine="1" startCol="1" endLine="1" endCol="13" isConstant="False">
+          <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="13">
+            <Argument startLine="1" startCol="7" endLine="1" endCol="8">
+              <SimpleNameExpression startLine="1" startCol="7" endLine="1" endCol="8" isConstant="False">
+                <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">a</SimpleName>
+              </SimpleNameExpression>
+            </Argument>
+            <Comma line="1" col="8" />
+            <Comma line="1" col="10" />
+            <Argument startLine="1" startCol="11" endLine="1" endCol="12">
+              <SimpleNameExpression startLine="1" startCol="11" endLine="1" endCol="12" isConstant="False">
+                <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">b</SimpleName>
+              </SimpleNameExpression>
+            </Argument>
+            <RightParenthesis line="1" col="12" />
+          </ArgumentCollection>
+        </NewExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x(,,,)</code>
+      <result>
+        <NewExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="False">
+          <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+            <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+          </NamedType>
+          <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="11">
+            <Comma line="1" col="7" />
+            <Comma line="1" col="8" />
+            <Comma line="1" col="9" />
+            <RightParenthesis line="1" col="10" />
+          </ArgumentCollection>
+        </NewExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x() {}</code>
+      <result>
+        <NewAggregateExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="False">
+          <ArrayType startLine="1" startCol="5" endLine="1" endCol="9" rank="1">
+            <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+              <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+            </NamedType>
+            <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="9">
+              <RightParenthesis line="1" col="7" />
+            </ArgumentCollection>
+          </ArrayType>
+          <AggregateInitializer startLine="1" startCol="9" endLine="1" endCol="11">
+            <InitializerCollection startLine="1" startCol="9" endLine="1" endCol="11">
+              <RightCurlyBrace line="1" col="10" />
+            </InitializerCollection>
+          </AggregateInitializer>
+        </NewAggregateExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x(10) {}</code>
+      <result>
+        <NewAggregateExpression startLine="1" startCol="1" endLine="1" endCol="13" isConstant="False">
+          <ArrayType startLine="1" startCol="5" endLine="1" endCol="11" rank="1">
+            <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+              <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+            </NamedType>
+            <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="11">
+              <Argument startLine="1" startCol="7" endLine="1" endCol="9">
+                <IntegerLiteralExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </Argument>
+              <RightParenthesis line="1" col="9" />
+            </ArgumentCollection>
+          </ArrayType>
+          <AggregateInitializer startLine="1" startCol="11" endLine="1" endCol="13">
+            <InitializerCollection startLine="1" startCol="11" endLine="1" endCol="13">
+              <RightCurlyBrace line="1" col="12" />
+            </InitializerCollection>
+          </AggregateInitializer>
+        </NewAggregateExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x(10, 10, 10) {10, 20, 30}</code>
+      <result>
+        <NewAggregateExpression startLine="1" startCol="1" endLine="1" endCol="31" isConstant="False">
+          <ArrayType startLine="1" startCol="5" endLine="1" endCol="19" rank="3">
+            <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+              <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+            </NamedType>
+            <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="19">
+              <Argument startLine="1" startCol="7" endLine="1" endCol="9">
+                <IntegerLiteralExpression startLine="1" startCol="7" endLine="1" endCol="9" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </Argument>
+              <Comma line="1" col="9" />
+              <Argument startLine="1" startCol="11" endLine="1" endCol="13">
+                <IntegerLiteralExpression startLine="1" startCol="11" endLine="1" endCol="13" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </Argument>
+              <Comma line="1" col="13" />
+              <Argument startLine="1" startCol="15" endLine="1" endCol="17">
+                <IntegerLiteralExpression startLine="1" startCol="15" endLine="1" endCol="17" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </Argument>
+              <RightParenthesis line="1" col="17" />
+            </ArgumentCollection>
+          </ArrayType>
+          <AggregateInitializer startLine="1" startCol="19" endLine="1" endCol="31">
+            <InitializerCollection startLine="1" startCol="19" endLine="1" endCol="31">
+              <ExpressionInitializer startLine="1" startCol="20" endLine="1" endCol="22">
+                <IntegerLiteralExpression startLine="1" startCol="20" endLine="1" endCol="22" isConstant="True" base="Decimal">10</IntegerLiteralExpression>
+              </ExpressionInitializer>
+              <Comma line="1" col="22" />
+              <ExpressionInitializer startLine="1" startCol="24" endLine="1" endCol="26">
+                <IntegerLiteralExpression startLine="1" startCol="24" endLine="1" endCol="26" isConstant="True" base="Decimal">20</IntegerLiteralExpression>
+              </ExpressionInitializer>
+              <Comma line="1" col="26" />
+              <ExpressionInitializer startLine="1" startCol="28" endLine="1" endCol="30">
+                <IntegerLiteralExpression startLine="1" startCol="28" endLine="1" endCol="30" isConstant="True" base="Decimal">30</IntegerLiteralExpression>
+              </ExpressionInitializer>
+              <RightCurlyBrace line="1" col="30" />
+            </InitializerCollection>
+          </AggregateInitializer>
+        </NewAggregateExpression>
+      </result>
+    </test>
+    <test>
+      <code>New x(,,,) {}</code>
+      <result>
+        <NewAggregateExpression startLine="1" startCol="1" endLine="1" endCol="14" isConstant="False">
+          <ArrayType startLine="1" startCol="5" endLine="1" endCol="12" rank="4">
+            <NamedType startLine="1" startCol="5" endLine="1" endCol="6">
+              <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">x</SimpleName>
+            </NamedType>
+            <ArgumentCollection startLine="1" startCol="6" endLine="1" endCol="12">
+              <Comma line="1" col="7" />
+              <Comma line="1" col="8" />
+              <Comma line="1" col="9" />
+              <RightParenthesis line="1" col="10" />
+            </ArgumentCollection>
+          </ArrayType>
+          <AggregateInitializer startLine="1" startCol="12" endLine="1" endCol="14">
+            <InitializerCollection startLine="1" startCol="12" endLine="1" endCol="14">
+              <RightCurlyBrace line="1" col="13" />
+            </InitializerCollection>
+          </AggregateInitializer>
+        </NewAggregateExpression>
+      </result>
+    </test>
+  </valid>
+</scenario>

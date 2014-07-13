@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="ExternalChecksum" type="file" description="3.4 External Checksum Directives">
+  <invalid>
+    <test version="7.1">
+      <code>
+        #ExternalChecksum("a", "b", "c")
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="33" />
+      </result>
+      <errors>
+        <InvalidPreprocessorStatement startLine="1" startCol="1" endLine="1" endCol="33">error 131 (1,1) - (33,1): 'If', 'ElseIf', 'Else', 'End If', or 'Const' expected.</InvalidPreprocessorStatement>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        #ExternalChecksum
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="18" />
+      </result>
+      <errors>
+        <ExpectedLeftParenthesis startLine="1" startCol="18" endLine="1" endCol="18">error 13 (18,1) - (18,1): Expected '('.</ExpectedLeftParenthesis>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        #ExternalChecksum(
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="19" />
+      </result>
+      <errors>
+        <ExpectedStringLiteral startLine="1" startCol="19" endLine="1" endCol="19">error 105 (19,1) - (19,1): String constant expected.</ExpectedStringLiteral>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        #ExternalChecksum("foo"
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="24" />
+      </result>
+      <errors>
+        <ExpectedComma startLine="1" startCol="24" endLine="1" endCol="24">error 12 (24,1) - (24,1): Expected ','.</ExpectedComma>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        #ExternalChecksum("foo",
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="25" />
+      </result>
+      <errors>
+        <ExpectedStringLiteral startLine="1" startCol="25" endLine="1" endCol="25">error 105 (25,1) - (25,1): String constant expected.</ExpectedStringLiteral>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        #ExternalChecksum("foo", "bar"
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="31" />
+      </result>
+      <errors>
+        <ExpectedComma startLine="1" startCol="31" endLine="1" endCol="31">error 12 (31,1) - (31,1): Expected ','.</ExpectedComma>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        #ExternalChecksum("foo", "bar",
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="32" />
+      </result>
+      <errors>
+        <ExpectedStringLiteral startLine="1" startCol="32" endLine="1" endCol="32">error 105 (32,1) - (32,1): String constant expected.</ExpectedStringLiteral>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        #ExternalChecksum("foo", "bar", "baz"
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="38" />
+      </result>
+      <errors>
+        <ExpectedRightParenthesis startLine="1" startCol="38" endLine="1" endCol="38">error 14 (38,1) - (38,1): Expected ')'.</ExpectedRightParenthesis>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        #ExternalChecksum("foo", "bar", "baz") a
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="41" />
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="40" endLine="1" endCol="41">error 39 (40,1) - (41,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test version="8.0">
+      <code>
+        #ExternalChecksum("foo", "bar", "baz")
+      </code>
+      <result>
+        <File startLine="1" startCol="1" endLine="1" endCol="39" />
+      </result>
+    </test>
+  </valid>
+</scenario>

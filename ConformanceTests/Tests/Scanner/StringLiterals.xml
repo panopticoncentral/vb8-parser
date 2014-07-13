@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="StringLiterals" type="token" description="2.4.4 String Literals &amp; 2.4.5 Character Literals">
+  <invalid>
+    <test>
+      <code>"abc</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="5" errorNumber="6">error 6 (1,1) - (5,1): Invalid string literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>abc"</code>
+      <result>
+        <Identifier startLine="1" startCol="1" endLine="1" endCol="4" escaped="False">abc</Identifier>
+        <LexicalError startLine="1" startCol="4" endLine="1" endCol="5" errorNumber="6">error 6 (4,1) - (5,1): Invalid string literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>"abc"def"</code>
+      <result>
+        <StringLiteral startLine="1" startCol="1" endLine="1" endCol="6">abc</StringLiteral>
+        <Identifier startLine="1" startCol="6" endLine="1" endCol="9" escaped="False">def</Identifier>
+        <LexicalError startLine="1" startCol="9" endLine="1" endCol="10" errorNumber="6">error 6 (9,1) - (10,1): Invalid string literal.</LexicalError>
+      </result>
+    </test>
+    <!-- Bad characters -->
+    <test>
+      <code>""c</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="4" errorNumber="5">error 5 (1,1) - (4,1): Invalid character literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>"""c</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="5" errorNumber="6">error 6 (1,1) - (5,1): Invalid string literal.</LexicalError>
+      </result>
+    </test>
+  </invalid>
+  <valid>
+    <!-- Second string is left double-quote -->
+    <!-- Third string is right double-quote -->
+    <!-- Fourth string is left then right double-quote -->
+    <test>
+      <code>"abc"</code>
+      <result>
+        <StringLiteral startLine="1" startCol="1" endLine="1" endCol="6">abc</StringLiteral>
+      </result>
+    </test>
+    <test>
+      <code>“abc“</code>
+      <result>
+        <StringLiteral startLine="1" startCol="1" endLine="1" endCol="6">abc</StringLiteral>
+      </result>
+    </test>
+    <test>
+      <code>”abc”</code>
+      <result>
+        <StringLiteral startLine="1" startCol="1" endLine="1" endCol="6">abc</StringLiteral>
+      </result>
+    </test>
+    <test>
+      <code>“abc”</code>
+      <result>
+        <StringLiteral startLine="1" startCol="1" endLine="1" endCol="6">abc</StringLiteral>
+      </result>
+    </test>
+    <test>
+      <code>"abc""def"</code>
+      <result>
+        <StringLiteral startLine="1" startCol="1" endLine="1" endCol="11">abc"def</StringLiteral>
+      </result>
+    </test>
+    <!-- Good strings -->
+    <!-- Second string is left double-quote -->
+    <!-- Third string is right double-quote -->
+    <!-- Fourth string is left then right double-quote -->
+    <test>
+      <code>"a"c</code>
+      <result>
+        <CharacterLiteral startLine="1" startCol="1" endLine="1" endCol="5">a</CharacterLiteral>
+      </result>
+    </test>
+    <test>
+      <code>"a"C</code>
+      <result>
+        <CharacterLiteral startLine="1" startCol="1" endLine="1" endCol="5">a</CharacterLiteral>
+      </result>
+    </test>
+    <test>
+      <code>“a“c</code>
+      <result>
+        <CharacterLiteral startLine="1" startCol="1" endLine="1" endCol="5">a</CharacterLiteral>
+      </result>
+    </test>
+    <test>
+      <code>”a”c</code>
+      <result>
+        <CharacterLiteral startLine="1" startCol="1" endLine="1" endCol="5">a</CharacterLiteral>
+      </result>
+    </test>
+    <test>
+      <code>“a”c</code>
+      <result>
+        <CharacterLiteral startLine="1" startCol="1" endLine="1" endCol="5">a</CharacterLiteral>
+      </result>
+    </test>
+    <test>
+      <code>""""c</code>
+      <result>
+        <CharacterLiteral startLine="1" startCol="1" endLine="1" endCol="6">"</CharacterLiteral>
+      </result>
+    </test>
+  </valid>
+</scenario>

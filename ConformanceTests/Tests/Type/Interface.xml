@@ -1,0 +1,782 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Interface" type="declaration" description="7.8 Interfaces">
+  <invalid>
+    <test>
+      <code>Interface</code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="1" endCol="10">
+          <Interface line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="10" endLine="1" endCol="10" escaped="False" />
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="10" endLine="1" endCol="10">error 23 (10,1) - (10,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Overridable Interface
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="13">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="13" type="Overridable" />
+          </ModifierCollection>
+          <Interface line="1" col="13" />
+          <SimpleName isBad="True" startLine="1" startCol="22" endLine="1" endCol="24" escaped="False" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="13">error 94 (1,1) - (13,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Interface &lt;a&gt; Foo
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="11" endLine="1" endCol="12" escaped="False" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="11" endLine="1" endCol="12">error 23 (11,1) - (12,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Interface Public Foo
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="17" escaped="False">Public</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="11" endLine="1" endCol="17">error 24 (11,1) - (17,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Interface Foo
+        Inherits
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="3" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="19">
+            <InheritsDeclaration startLine="2" startCol="9" endLine="2" endCol="17">
+              <TypeNameCollection startLine="2" startCol="17" endLine="2" endCol="17">
+                <NamedType isBad="True" startLine="2" startCol="17" endLine="2" endCol="17">
+                  <SimpleName isBad="True" startLine="2" startCol="17" endLine="2" endCol="17" escaped="False" />
+                </NamedType>
+              </TypeNameCollection>
+            </InheritsDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="22" endType="Interface">
+            <Interface line="3" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="2" startCol="17" endLine="2" endCol="19">error 22 (17,2) - (19,2): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Interface Foo
+        Inherits x,,y
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="3" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="24">
+            <InheritsDeclaration startLine="2" startCol="9" endLine="2" endCol="22">
+              <TypeNameCollection startLine="2" startCol="18" endLine="2" endCol="22">
+                <NamedType startLine="2" startCol="18" endLine="2" endCol="19">
+                  <SimpleName startLine="2" startCol="18" endLine="2" endCol="19" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="2" col="19" />
+                <Comma line="2" col="20" />
+                <NamedType isBad="True" startLine="2" startCol="20" endLine="2" endCol="20">
+                  <SimpleName isBad="True" startLine="2" startCol="20" endLine="2" endCol="20" escaped="False" />
+                </NamedType>
+                <NamedType startLine="2" startCol="21" endLine="2" endCol="22">
+                  <SimpleName startLine="2" startCol="21" endLine="2" endCol="22" escaped="False">y</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </InheritsDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="22" endType="Interface">
+            <Interface line="3" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="2" startCol="20" endLine="2" endCol="21">error 22 (20,2) - (21,2): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Interface Foo
+        Implements x
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="3" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="23">
+            <ImplementsDeclaration startLine="2" startCol="9" endLine="2" endCol="21">
+              <TypeNameCollection startLine="2" startCol="20" endLine="2" endCol="21">
+                <NamedType startLine="2" startCol="20" endLine="2" endCol="21">
+                  <SimpleName startLine="2" startCol="20" endLine="2" endCol="21" escaped="False">x</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </ImplementsDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="22" endType="Interface">
+            <Interface line="3" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <InvalidInsideInterface startLine="2" startCol="9" endLine="2" endCol="21">error 111 (9,2) - (21,2): Declaration cannot appear within an Interface declaration.</InvalidInsideInterface>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Interface Foo
+        Module x
+        End Module
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="4" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="21">
+            <ModuleDeclaration startLine="2" startCol="9" endLine="3" endCol="19">
+              <Module line="2" col="9" />
+              <SimpleName startLine="2" startCol="16" endLine="2" endCol="17" escaped="False">x</SimpleName>
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="19" endType="Module">
+                <Module line="3" col="13" />
+              </EndBlockDeclaration>
+            </ModuleDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="22" endType="Interface">
+            <Interface line="4" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <InvalidInsideInterface startLine="2" startCol="9" endLine="3" endCol="19">error 111 (9,2) - (19,3): Declaration cannot appear within an Interface declaration.</InvalidInsideInterface>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Interface Foo
+        Dim g() As Integer
+
+        Sub New()
+        End Sub
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="6" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="5" endCol="18">
+            <VariableListDeclaration startLine="2" startCol="9" endLine="2" endCol="27">
+              <ModifierCollection startLine="2" startCol="9" endLine="2" endCol="13">
+                <Modifier startLine="2" startCol="9" endLine="2" endCol="13" type="Dim" />
+              </ModifierCollection>
+              <VariableDeclaratorCollection startLine="2" startCol="13" endLine="2" endCol="27">
+                <VariableDeclarator startLine="2" startCol="13" endLine="2" endCol="27">
+                  <VariableNameCollection startLine="2" startCol="13" endLine="2" endCol="17">
+                    <VariableName startLine="2" startCol="13" endLine="2" endCol="17">
+                      <SimpleName startLine="2" startCol="13" endLine="2" endCol="14" escaped="False">g</SimpleName>
+                      <ArrayType startLine="2" startCol="14" endLine="2" endCol="17" rank="1">
+                        <ArgumentCollection startLine="2" startCol="14" endLine="2" endCol="17">
+                          <RightParenthesis line="2" col="15" />
+                        </ArgumentCollection>
+                      </ArrayType>
+                    </VariableName>
+                  </VariableNameCollection>
+                  <As line="2" col="17" />
+                  <IntrinsicType startLine="2" startCol="20" endLine="2" endCol="27" intrinsicType="Integer" />
+                </VariableDeclarator>
+              </VariableDeclaratorCollection>
+            </VariableListDeclaration>
+            <ConstructorDeclaration startLine="4" startCol="9" endLine="4" endCol="18">
+              <New line="4" col="9" />
+              <SimpleName startLine="4" startCol="13" endLine="4" endCol="16" escaped="False">New</SimpleName>
+              <ParameterCollection startLine="4" startCol="16" endLine="4" endCol="18">
+                <RightParenthesis line="4" col="17" />
+              </ParameterCollection>
+            </ConstructorDeclaration>
+            <EndBlockDeclaration startLine="5" startCol="9" endLine="5" endCol="16" endType="Sub">
+              <Sub line="5" col="13" />
+            </EndBlockDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="6" startCol="9" endLine="6" endCol="22" endType="Interface">
+            <Interface line="6" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <InvalidInsideInterface startLine="2" startCol="9" endLine="2" endCol="27">error 111 (9,2) - (27,2): Declaration cannot appear within an Interface declaration.</InvalidInsideInterface>
+        <InvalidInsideInterface startLine="4" startCol="9" endLine="4" endCol="18">error 111 (9,4) - (18,4): Declaration cannot appear within an Interface declaration.</InvalidInsideInterface>
+        <EndSubWithoutSub startLine="5" startCol="9" endLine="5" endCol="16">error 75 (9,5) - (16,5): 'End Sub' must be preceded by a matching 'Sub'.</EndSubWithoutSub>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Interface Foo
+        Sub h()
+        End Sub
+
+        Function g() As Integer
+        End Function
+
+        Property h()
+        Get
+        End Get
+        End Property
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="12" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="11" endCol="23">
+            <SubDeclaration startLine="2" startCol="9" endLine="2" endCol="16">
+              <Sub line="2" col="9" />
+              <SimpleName startLine="2" startCol="13" endLine="2" endCol="14" escaped="False">h</SimpleName>
+              <ParameterCollection startLine="2" startCol="14" endLine="2" endCol="16">
+                <RightParenthesis line="2" col="15" />
+              </ParameterCollection>
+            </SubDeclaration>
+            <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="16" endType="Sub">
+              <Sub line="3" col="13" />
+            </EndBlockDeclaration>
+            <FunctionDeclaration startLine="5" startCol="9" endLine="5" endCol="32">
+              <Function line="5" col="9" />
+              <SimpleName startLine="5" startCol="18" endLine="5" endCol="19" escaped="False">g</SimpleName>
+              <ParameterCollection startLine="5" startCol="19" endLine="5" endCol="22">
+                <RightParenthesis line="5" col="20" />
+              </ParameterCollection>
+              <As line="5" col="22" />
+              <IntrinsicType startLine="5" startCol="25" endLine="5" endCol="32" intrinsicType="Integer" />
+            </FunctionDeclaration>
+            <EndBlockDeclaration startLine="6" startCol="9" endLine="6" endCol="21" endType="Function">
+              <Function line="6" col="13" />
+            </EndBlockDeclaration>
+            <PropertyDeclaration startLine="8" startCol="9" endLine="8" endCol="21">
+              <Event line="8" col="9" />
+              <SimpleName startLine="8" startCol="18" endLine="8" endCol="19" escaped="False">h</SimpleName>
+              <ParameterCollection startLine="8" startCol="19" endLine="8" endCol="21">
+                <RightParenthesis line="8" col="20" />
+              </ParameterCollection>
+            </PropertyDeclaration>
+            <GetAccessorDeclaration startLine="9" startCol="9" endLine="10" endCol="16">
+              <Get line="9" col="9" />
+              <EndBlockDeclaration startLine="10" startCol="9" endLine="10" endCol="16" endType="Get">
+                <Get line="10" col="13" />
+              </EndBlockDeclaration>
+            </GetAccessorDeclaration>
+            <EndBlockDeclaration startLine="11" startCol="9" endLine="11" endCol="21" endType="Property">
+              <Property line="11" col="13" />
+            </EndBlockDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="12" startCol="9" endLine="12" endCol="22" endType="Interface">
+            <Interface line="12" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <EndSubWithoutSub startLine="3" startCol="9" endLine="3" endCol="16">error 75 (9,3) - (16,3): 'End Sub' must be preceded by a matching 'Sub'.</EndSubWithoutSub>
+        <EndFunctionWithoutFunction startLine="6" startCol="9" endLine="6" endCol="21">error 76 (9,6) - (21,6): 'End Function' must be preceded by a matching 'Function'.</EndFunctionWithoutFunction>
+        <InvalidInsideInterface startLine="9" startCol="9" endLine="10" endCol="16">error 111 (9,9) - (16,10): Declaration cannot appear within an Interface declaration.</InvalidInsideInterface>
+        <EndPropertyWithoutProperty startLine="11" startCol="9" endLine="11" endCol="21">error 77 (9,11) - (21,11): 'End Property' must be preceded by a matching 'Property'.</EndPropertyWithoutProperty>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Interface Foo(Of
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="17">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="17" endLine="1" endCol="17">
+              <SimpleName isBad="True" startLine="1" startCol="17" endLine="1" endCol="19" escaped="False" />
+            </TypeParameter>
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="17" endLine="1" endCol="19">error 23 (17,1) - (19,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Interface Foo(Of)
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="18">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="17" endLine="1" endCol="17">
+              <SimpleName isBad="True" startLine="1" startCol="17" endLine="1" endCol="18" escaped="False" />
+            </TypeParameter>
+            <RightParenthesis line="1" col="17" />
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="17" endLine="1" endCol="18">error 23 (17,1) - (18,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Interface Foo(Of T As)
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="23">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="18" endLine="1" endCol="22">
+              <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">T</SimpleName>
+              <As line="1" col="20" />
+              <TypeConstraintCollection startLine="1" startCol="22" endLine="1" endCol="22">
+                <NamedType isBad="True" startLine="1" startCol="22" endLine="1" endCol="22">
+                  <SimpleName isBad="True" startLine="1" startCol="22" endLine="1" endCol="22" escaped="False" />
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+            <RightParenthesis line="1" col="22" />
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="22" endLine="1" endCol="23">error 22 (22,1) - (23,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Interface Foo(Of T As {)
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="25">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="18" endLine="1" endCol="25">
+              <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">T</SimpleName>
+              <As line="1" col="20" />
+              <TypeConstraintCollection startLine="1" startCol="23" endLine="1" endCol="25">
+                <NamedType isBad="True" startLine="1" startCol="24" endLine="1" endCol="24">
+                  <SimpleName isBad="True" startLine="1" startCol="24" endLine="1" endCol="24" escaped="False" />
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="24" endLine="1" endCol="25">error 22 (24,1) - (25,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Interface Foo(Of T As {x, )
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="28">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="18" endLine="1" endCol="28">
+              <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">T</SimpleName>
+              <As line="1" col="20" />
+              <TypeConstraintCollection startLine="1" startCol="23" endLine="1" endCol="28">
+                <NamedType startLine="1" startCol="24" endLine="1" endCol="25">
+                  <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="1" col="25" />
+                <NamedType isBad="True" startLine="1" startCol="27" endLine="1" endCol="27">
+                  <SimpleName isBad="True" startLine="1" startCol="27" endLine="1" endCol="27" escaped="False" />
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="27" endLine="1" endCol="28">error 22 (27,1) - (28,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Interface Foo(Of T As {x, y)
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="29">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="18" endLine="1" endCol="28">
+              <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">T</SimpleName>
+              <As line="1" col="20" />
+              <TypeConstraintCollection startLine="1" startCol="23" endLine="1" endCol="28">
+                <NamedType startLine="1" startCol="24" endLine="1" endCol="25">
+                  <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="1" col="25" />
+                <NamedType startLine="1" startCol="27" endLine="1" endCol="28">
+                  <SimpleName startLine="1" startCol="27" endLine="1" endCol="28" escaped="False">y</SimpleName>
+                </NamedType>
+              </TypeConstraintCollection>
+            </TypeParameter>
+            <RightParenthesis line="1" col="28" />
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <ExpectedRightCurlyBrace startLine="1" startCol="28" endLine="1" endCol="29">error 17 (28,1) - (29,1): Expected '}'.</ExpectedRightCurlyBrace>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Partial Interface Foo
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="9">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="9" type="Partial" />
+          </ModifierCollection>
+          <Interface line="1" col="9" />
+          <SimpleName startLine="1" startCol="19" endLine="1" endCol="22" escaped="False">Foo</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="9">error 94 (1,1) - (9,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Interface Foo
+        Operator +()
+        End Operator
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="4" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="23">
+            <OperatorDeclaration startLine="2" startCol="9" endLine="3" endCol="21">
+              <Operator line="2" col="9" />
+              <Plus line="2" col="18" />
+              <ParameterCollection startLine="2" startCol="19" endLine="2" endCol="21">
+                <RightParenthesis line="2" col="20" />
+              </ParameterCollection>
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="21" endType="Operator">
+                <Operator line="3" col="13" />
+              </EndBlockDeclaration>
+            </OperatorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="22" endType="Interface">
+            <Interface line="4" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+      <errors>
+        <InvalidInsideInterface startLine="2" startCol="9" endLine="3" endCol="21">error 111 (9,2) - (21,3): Declaration cannot appear within an Interface declaration.</InvalidInsideInterface>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>
+        Public Private Protected Friend Shadows Interface Foo
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="41">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+            <Modifier startLine="1" startCol="8" endLine="1" endCol="16" type="Private" />
+            <Modifier startLine="1" startCol="16" endLine="1" endCol="26" type="Protected" />
+            <Modifier startLine="1" startCol="26" endLine="1" endCol="33" type="Friend" />
+            <Modifier startLine="1" startCol="33" endLine="1" endCol="41" type="Shadows" />
+          </ModifierCollection>
+          <Interface line="1" col="41" />
+          <SimpleName startLine="1" startCol="51" endLine="1" endCol="54" escaped="False">Foo</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Interface Foo
+        Inherits x, y
+        Inherits z
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="4" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="21">
+            <InheritsDeclaration startLine="2" startCol="9" endLine="2" endCol="22">
+              <TypeNameCollection startLine="2" startCol="18" endLine="2" endCol="22">
+                <NamedType startLine="2" startCol="18" endLine="2" endCol="19">
+                  <SimpleName startLine="2" startCol="18" endLine="2" endCol="19" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="2" col="19" />
+                <NamedType startLine="2" startCol="21" endLine="2" endCol="22">
+                  <SimpleName startLine="2" startCol="21" endLine="2" endCol="22" escaped="False">y</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </InheritsDeclaration>
+            <InheritsDeclaration startLine="3" startCol="9" endLine="3" endCol="19">
+              <TypeNameCollection startLine="3" startCol="18" endLine="3" endCol="19">
+                <NamedType startLine="3" startCol="18" endLine="3" endCol="19">
+                  <SimpleName startLine="3" startCol="18" endLine="3" endCol="19" escaped="False">z</SimpleName>
+                </NamedType>
+              </TypeNameCollection>
+            </InheritsDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="22" endType="Interface">
+            <Interface line="4" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        &lt;a&gt; Interface Foo
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="5">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="3" type="Regular">
+                <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="3" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <Interface line="1" col="5" />
+          <SimpleName startLine="1" startCol="15" endLine="1" endCol="18" escaped="False">Foo</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Interface Foo
+        Class a
+        End Class
+
+        Enum b
+        a
+        End Enum
+
+        Structure c
+        End Structure
+
+        Interface d
+        End Interface
+
+        Delegate Sub e()
+
+        Event f()
+
+        Sub h()
+
+        Function g() As Integer
+
+        Property h()
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="24" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="23" endCol="23">
+            <ClassDeclaration startLine="2" startCol="9" endLine="3" endCol="18">
+              <Class line="2" col="9" />
+              <SimpleName startLine="2" startCol="15" endLine="2" endCol="16" escaped="False">a</SimpleName>
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="18" endType="Class">
+                <Class line="3" col="13" />
+              </EndBlockDeclaration>
+            </ClassDeclaration>
+            <EnumDeclaration startLine="5" startCol="9" endLine="7" endCol="17">
+              <Enum line="5" col="9" />
+              <SimpleName startLine="5" startCol="14" endLine="5" endCol="15" escaped="False">b</SimpleName>
+              <DeclarationCollection startLine="6" startCol="9" endLine="6" endCol="12">
+                <EnumValueDeclaration startLine="6" startCol="9" endLine="6" endCol="10">
+                  <SimpleName startLine="6" startCol="9" endLine="6" endCol="10" escaped="False">a</SimpleName>
+                </EnumValueDeclaration>
+              </DeclarationCollection>
+              <EndBlockDeclaration startLine="7" startCol="9" endLine="7" endCol="17" endType="Enum">
+                <Enum line="7" col="13" />
+              </EndBlockDeclaration>
+            </EnumDeclaration>
+            <StructureDeclaration startLine="9" startCol="9" endLine="10" endCol="22">
+              <Structure line="9" col="9" />
+              <SimpleName startLine="9" startCol="19" endLine="9" endCol="20" escaped="False">c</SimpleName>
+              <EndBlockDeclaration startLine="10" startCol="9" endLine="10" endCol="22" endType="Structure">
+                <Structure line="10" col="13" />
+              </EndBlockDeclaration>
+            </StructureDeclaration>
+            <InterfaceDeclaration startLine="12" startCol="9" endLine="13" endCol="22">
+              <Interface line="12" col="9" />
+              <SimpleName startLine="12" startCol="19" endLine="12" endCol="20" escaped="False">d</SimpleName>
+              <EndBlockDeclaration startLine="13" startCol="9" endLine="13" endCol="22" endType="Interface">
+                <Interface line="13" col="13" />
+              </EndBlockDeclaration>
+            </InterfaceDeclaration>
+            <DelegateSubDeclaration startLine="15" startCol="9" endLine="15" endCol="25">
+              <Delegate line="15" col="9" />
+              <Sub line="15" col="18" />
+              <SimpleName startLine="15" startCol="22" endLine="15" endCol="23" escaped="False">e</SimpleName>
+              <ParameterCollection startLine="15" startCol="23" endLine="15" endCol="25">
+                <RightParenthesis line="15" col="24" />
+              </ParameterCollection>
+            </DelegateSubDeclaration>
+            <EventDeclaration startLine="17" startCol="9" endLine="17" endCol="18">
+              <Event line="17" col="9" />
+              <SimpleName startLine="17" startCol="15" endLine="17" endCol="16" escaped="False">f</SimpleName>
+              <ParameterCollection startLine="17" startCol="16" endLine="17" endCol="18">
+                <RightParenthesis line="17" col="17" />
+              </ParameterCollection>
+            </EventDeclaration>
+            <SubDeclaration startLine="19" startCol="9" endLine="19" endCol="16">
+              <Sub line="19" col="9" />
+              <SimpleName startLine="19" startCol="13" endLine="19" endCol="14" escaped="False">h</SimpleName>
+              <ParameterCollection startLine="19" startCol="14" endLine="19" endCol="16">
+                <RightParenthesis line="19" col="15" />
+              </ParameterCollection>
+            </SubDeclaration>
+            <FunctionDeclaration startLine="21" startCol="9" endLine="21" endCol="32">
+              <Function line="21" col="9" />
+              <SimpleName startLine="21" startCol="18" endLine="21" endCol="19" escaped="False">g</SimpleName>
+              <ParameterCollection startLine="21" startCol="19" endLine="21" endCol="22">
+                <RightParenthesis line="21" col="20" />
+              </ParameterCollection>
+              <As line="21" col="22" />
+              <IntrinsicType startLine="21" startCol="25" endLine="21" endCol="32" intrinsicType="Integer" />
+            </FunctionDeclaration>
+            <PropertyDeclaration startLine="23" startCol="9" endLine="23" endCol="21">
+              <Event line="23" col="9" />
+              <SimpleName startLine="23" startCol="18" endLine="23" endCol="19" escaped="False">h</SimpleName>
+              <ParameterCollection startLine="23" startCol="19" endLine="23" endCol="21">
+                <RightParenthesis line="23" col="20" />
+              </ParameterCollection>
+            </PropertyDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="24" startCol="9" endLine="24" endCol="22" endType="Interface">
+            <Interface line="24" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Interface Foo(Of T As {x, y})
+        End Interface
+      </code>
+      <result>
+        <InterfaceDeclaration startLine="1" startCol="1" endLine="2" endCol="22">
+          <Interface line="1" col="1" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="14" escaped="False">Foo</SimpleName>
+          <TypeParameterCollection startLine="1" startCol="14" endLine="1" endCol="30">
+            <Of line="1" col="15" />
+            <TypeParameter startLine="1" startCol="18" endLine="1" endCol="29">
+              <SimpleName startLine="1" startCol="18" endLine="1" endCol="19" escaped="False">T</SimpleName>
+              <As line="1" col="20" />
+              <TypeConstraintCollection startLine="1" startCol="23" endLine="1" endCol="29">
+                <NamedType startLine="1" startCol="24" endLine="1" endCol="25">
+                  <SimpleName startLine="1" startCol="24" endLine="1" endCol="25" escaped="False">x</SimpleName>
+                </NamedType>
+                <Comma line="1" col="25" />
+                <NamedType startLine="1" startCol="27" endLine="1" endCol="28">
+                  <SimpleName startLine="1" startCol="27" endLine="1" endCol="28" escaped="False">y</SimpleName>
+                </NamedType>
+                <RightCurlyBrace line="1" col="28" />
+              </TypeConstraintCollection>
+            </TypeParameter>
+            <RightParenthesis line="1" col="29" />
+          </TypeParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="22" endType="Interface">
+            <Interface line="2" col="13" />
+          </EndBlockDeclaration>
+        </InterfaceDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

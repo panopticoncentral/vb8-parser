@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="ExternalMethods" type="declaration" description="9.2.2 External Method Declarations">
+  <invalid>
+    <test>
+      <code>Declare</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="8" />
+      </result>
+      <errors>
+        <ExpectedSubOrFunction startLine="1" startCol="8" endLine="1" endCol="8">error 104 (8,1) - (8,1): 'Sub' or 'Function' expected.</ExpectedSubOrFunction>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Sub</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="12">
+          <Declare line="1" col="1" />
+          <Sub line="1" col="9" />
+          <SimpleName isBad="True" startLine="1" startCol="12" endLine="1" endCol="12" escaped="False" />
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="12" endLine="1" endCol="12">error 23 (12,1) - (12,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Sub Foo</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="16">
+          <Declare line="1" col="1" />
+          <Sub line="1" col="9" />
+          <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">Foo</SimpleName>
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedLib startLine="1" startCol="16" endLine="1" endCol="16">error 106 (16,1) - (16,1): 'Lib' expected.</ExpectedLib>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Sub Foo Lib</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="20">
+          <Declare line="1" col="1" />
+          <Sub line="1" col="9" />
+          <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="17" />
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedStringLiteral startLine="1" startCol="20" endLine="1" endCol="20">error 105 (20,1) - (20,1): String constant expected.</ExpectedStringLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Sub Foo Lib "Bar" Alias</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="32">
+          <Declare line="1" col="1" />
+          <Sub line="1" col="9" />
+          <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="17" />
+          <StringLiteralExpression startLine="1" startCol="21" endLine="1" endCol="26" isConstant="True">Bar</StringLiteralExpression>
+          <Alias line="1" col="27" />
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedStringLiteral startLine="1" startCol="32" endLine="1" endCol="32">error 105 (32,1) - (32,1): String constant expected.</ExpectedStringLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>Public &lt;a&gt; Declare Sub foo Lib "Bar"</code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="8" endLine="1" endCol="12">
+          <AttributeBlockCollection startLine="1" startCol="8" endLine="1" endCol="12">
+            <AttributeCollection startLine="1" startCol="8" endLine="1" endCol="12">
+              <Attribute startLine="1" startCol="9" endLine="1" endCol="10" type="Regular">
+                <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="10" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+      <errors>
+        <IncorrectAttributeType startLine="1" startCol="9" endLine="1" endCol="10">error 92 (9,1) - (10,1): Attribute of this type is not allowed here.</IncorrectAttributeType>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Sub Foo Lib "Bar" (</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="28">
+          <Declare line="1" col="1" />
+          <Sub line="1" col="9" />
+          <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="17" />
+          <StringLiteralExpression startLine="1" startCol="21" endLine="1" endCol="26" isConstant="True">Bar</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="27" endLine="1" endCol="28">
+            <Parameter startLine="1" startCol="28" endLine="1" endCol="28">
+              <VariableName startLine="1" startCol="28" endLine="1" endCol="28">
+                <SimpleName isBad="True" startLine="1" startCol="28" endLine="1" endCol="28" escaped="False" />
+              </VariableName>
+            </Parameter>
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="28" endLine="1" endCol="28">error 23 (28,1) - (28,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Sub Foo Lib "Bar" )</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="27">
+          <Declare line="1" col="1" />
+          <Sub line="1" col="9" />
+          <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="17" />
+          <StringLiteralExpression startLine="1" startCol="21" endLine="1" endCol="26" isConstant="True">Bar</StringLiteralExpression>
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="27" endLine="1" endCol="28">error 39 (27,1) - (28,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Public Sub Foo Lib "Bar"</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="33" />
+      </result>
+      <errors>
+        <ExpectedSubOrFunction startLine="1" startCol="9" endLine="1" endCol="15">error 104 (9,1) - (15,1): 'Sub' or 'Function' expected.</ExpectedSubOrFunction>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Sub Foo Lib "Bar" As Integer</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="27">
+          <Declare line="1" col="1" />
+          <Sub line="1" col="9" />
+          <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="17" />
+          <StringLiteralExpression startLine="1" startCol="21" endLine="1" endCol="26" isConstant="True">Bar</StringLiteralExpression>
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="27" endLine="1" endCol="29">error 39 (27,1) - (29,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>Shared Declare Sub Foo() Lib "Bar"</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="26">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="8">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Shared" />
+          </ModifierCollection>
+          <Declare line="1" col="8" />
+          <Sub line="1" col="16" />
+          <SimpleName startLine="1" startCol="20" endLine="1" endCol="23" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="23" endLine="1" endCol="26">
+            <RightParenthesis line="1" col="24" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="8">error 94 (1,1) - (8,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>Overridable Declare Sub Foo() Lib "Bar"</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="31">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="13">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="13" type="Overridable" />
+          </ModifierCollection>
+          <Declare line="1" col="13" />
+          <Sub line="1" col="21" />
+          <SimpleName startLine="1" startCol="25" endLine="1" endCol="28" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="28" endLine="1" endCol="31">
+            <RightParenthesis line="1" col="29" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="13">error 94 (1,1) - (13,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>NotOverridable Declare Sub Foo() Lib "Bar"</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="34">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="16">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="16" type="NotOverridable" />
+          </ModifierCollection>
+          <Declare line="1" col="16" />
+          <Sub line="1" col="24" />
+          <SimpleName startLine="1" startCol="28" endLine="1" endCol="31" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="31" endLine="1" endCol="34">
+            <RightParenthesis line="1" col="32" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="16">error 94 (1,1) - (16,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>MustOverride Declare Sub Foo() Lib "Bar"</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="32">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="14">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="14" type="MustOverride" />
+          </ModifierCollection>
+          <Declare line="1" col="14" />
+          <Sub line="1" col="22" />
+          <SimpleName startLine="1" startCol="26" endLine="1" endCol="29" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="29" endLine="1" endCol="32">
+            <RightParenthesis line="1" col="30" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="14">error 94 (1,1) - (14,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>Overrides Declare Sub Foo() Lib "Bar"</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="29">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="11">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="11" type="Overrides" />
+          </ModifierCollection>
+          <Declare line="1" col="11" />
+          <Sub line="1" col="19" />
+          <SimpleName startLine="1" startCol="23" endLine="1" endCol="26" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="26" endLine="1" endCol="29">
+            <RightParenthesis line="1" col="27" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="11">error 94 (1,1) - (11,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Sub Foo() Lib "Bar"</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="19">
+          <Declare line="1" col="1" />
+          <Sub line="1" col="9" />
+          <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="16" endLine="1" endCol="19">
+            <RightParenthesis line="1" col="17" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+      <errors>
+        <ExpectedLib startLine="1" startCol="16" endLine="1" endCol="17">error 106 (16,1) - (17,1): 'Lib' expected.</ExpectedLib>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Function</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="17">
+          <Declare line="1" col="1" />
+          <Function line="1" col="9" />
+          <SimpleName isBad="True" startLine="1" startCol="17" endLine="1" endCol="17" escaped="False" />
+        </ExternalFunctionDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="17" endLine="1" endCol="17">error 23 (17,1) - (17,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Function Foo</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="21">
+          <Declare line="1" col="1" />
+          <Function line="1" col="9" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+        </ExternalFunctionDeclaration>
+      </result>
+      <errors>
+        <ExpectedLib startLine="1" startCol="21" endLine="1" endCol="21">error 106 (21,1) - (21,1): 'Lib' expected.</ExpectedLib>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Function Foo Lib</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="25">
+          <Declare line="1" col="1" />
+          <Function line="1" col="9" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="22" />
+        </ExternalFunctionDeclaration>
+      </result>
+      <errors>
+        <ExpectedStringLiteral startLine="1" startCol="25" endLine="1" endCol="25">error 105 (25,1) - (25,1): String constant expected.</ExpectedStringLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Function Foo Lib As</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="28">
+          <Declare line="1" col="1" />
+          <Function line="1" col="9" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="22" />
+        </ExternalFunctionDeclaration>
+      </result>
+      <errors>
+        <ExpectedStringLiteral startLine="1" startCol="26" endLine="1" endCol="28">error 105 (26,1) - (28,1): String constant expected.</ExpectedStringLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Function foo Lib "Bar" As Integer &lt;a&gt;</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="43">
+          <Declare line="1" col="1" />
+          <Function line="1" col="9" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">foo</SimpleName>
+          <Lib line="1" col="22" />
+          <StringLiteralExpression startLine="1" startCol="26" endLine="1" endCol="31" isConstant="True">Bar</StringLiteralExpression>
+          <As line="1" col="32" />
+          <IntrinsicType startLine="1" startCol="35" endLine="1" endCol="42" intrinsicType="Integer" />
+        </ExternalFunctionDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="43" endLine="1" endCol="44">error 39 (43,1) - (44,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Function Foo Lib "Bar" Alias</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="37">
+          <Declare line="1" col="1" />
+          <Function line="1" col="9" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="22" />
+          <StringLiteralExpression startLine="1" startCol="26" endLine="1" endCol="31" isConstant="True">Bar</StringLiteralExpression>
+          <Alias line="1" col="32" />
+        </ExternalFunctionDeclaration>
+      </result>
+      <errors>
+        <ExpectedStringLiteral startLine="1" startCol="37" endLine="1" endCol="37">error 105 (37,1) - (37,1): String constant expected.</ExpectedStringLiteral>
+      </errors>
+    </test>
+    <test>
+      <code>Public &lt;a&gt; Declare Function foo Lib "Bar"</code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="8" endLine="1" endCol="12">
+          <AttributeBlockCollection startLine="1" startCol="8" endLine="1" endCol="12">
+            <AttributeCollection startLine="1" startCol="8" endLine="1" endCol="12">
+              <Attribute startLine="1" startCol="9" endLine="1" endCol="10" type="Regular">
+                <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="10" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+      <errors>
+        <IncorrectAttributeType startLine="1" startCol="9" endLine="1" endCol="10">error 92 (9,1) - (10,1): Attribute of this type is not allowed here.</IncorrectAttributeType>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Function Foo Lib "Bar" (</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="33">
+          <Declare line="1" col="1" />
+          <Function line="1" col="9" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="22" />
+          <StringLiteralExpression startLine="1" startCol="26" endLine="1" endCol="31" isConstant="True">Bar</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="32" endLine="1" endCol="33">
+            <Parameter startLine="1" startCol="33" endLine="1" endCol="33">
+              <VariableName startLine="1" startCol="33" endLine="1" endCol="33">
+                <SimpleName isBad="True" startLine="1" startCol="33" endLine="1" endCol="33" escaped="False" />
+              </VariableName>
+            </Parameter>
+          </ParameterCollection>
+        </ExternalFunctionDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="33" endLine="1" endCol="33">error 23 (33,1) - (33,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Function Foo Lib "Bar" )</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="32">
+          <Declare line="1" col="1" />
+          <Function line="1" col="9" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="22" />
+          <StringLiteralExpression startLine="1" startCol="26" endLine="1" endCol="31" isConstant="True">Bar</StringLiteralExpression>
+        </ExternalFunctionDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="32" endLine="1" endCol="33">error 39 (32,1) - (33,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>Declare Public Function Foo Lib "Bar"</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="38" />
+      </result>
+      <errors>
+        <ExpectedSubOrFunction startLine="1" startCol="9" endLine="1" endCol="15">error 104 (9,1) - (15,1): 'Sub' or 'Function' expected.</ExpectedSubOrFunction>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <!-- The next two are syntatically valid -->
+    <test>
+      <code>Declare Sub Foo Lib "Bar" : End Sub</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="27">
+          <Declare line="1" col="1" />
+          <Sub line="1" col="9" />
+          <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="17" />
+          <StringLiteralExpression startLine="1" startCol="21" endLine="1" endCol="26" isConstant="True">Bar</StringLiteralExpression>
+        </ExternalSubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Declare Function Foo Lib "Bar" : End Function</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="32">
+          <Declare line="1" col="1" />
+          <Function line="1" col="9" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="22" />
+          <StringLiteralExpression startLine="1" startCol="26" endLine="1" endCol="31" isConstant="True">Bar</StringLiteralExpression>
+        </ExternalFunctionDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Declare Sub Foo Lib "Bar" ()</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="29">
+          <Declare line="1" col="1" />
+          <Sub line="1" col="9" />
+          <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="17" />
+          <StringLiteralExpression startLine="1" startCol="21" endLine="1" endCol="26" isConstant="True">Bar</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="27" endLine="1" endCol="29">
+            <RightParenthesis line="1" col="28" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Declare Sub Foo Lib "Bar" Alias "Baz" ()</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="41">
+          <Declare line="1" col="1" />
+          <Sub line="1" col="9" />
+          <SimpleName startLine="1" startCol="13" endLine="1" endCol="16" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="17" />
+          <StringLiteralExpression startLine="1" startCol="21" endLine="1" endCol="26" isConstant="True">Bar</StringLiteralExpression>
+          <Alias line="1" col="27" />
+          <StringLiteralExpression startLine="1" startCol="33" endLine="1" endCol="38" isConstant="True">Baz</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="39" endLine="1" endCol="41">
+            <RightParenthesis line="1" col="40" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Declare Ansi Sub Foo Lib "Bar" Alias "Baz" ()</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="46">
+          <Declare line="1" col="1" />
+          <Ansi line="1" col="9" />
+          <Sub line="1" col="14" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="22" />
+          <StringLiteralExpression startLine="1" startCol="26" endLine="1" endCol="31" isConstant="True">Bar</StringLiteralExpression>
+          <Alias line="1" col="32" />
+          <StringLiteralExpression startLine="1" startCol="38" endLine="1" endCol="43" isConstant="True">Baz</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="44" endLine="1" endCol="46">
+            <RightParenthesis line="1" col="45" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Declare Unicode Sub Foo Lib "Bar" Alias "Baz" ()</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="49">
+          <Declare line="1" col="1" />
+          <Unicode line="1" col="9" />
+          <Sub line="1" col="17" />
+          <SimpleName startLine="1" startCol="21" endLine="1" endCol="24" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="25" />
+          <StringLiteralExpression startLine="1" startCol="29" endLine="1" endCol="34" isConstant="True">Bar</StringLiteralExpression>
+          <Alias line="1" col="35" />
+          <StringLiteralExpression startLine="1" startCol="41" endLine="1" endCol="46" isConstant="True">Baz</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="47" endLine="1" endCol="49">
+            <RightParenthesis line="1" col="48" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Declare Auto Sub Foo Lib "Bar" Alias "Baz" ()</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="46">
+          <Declare line="1" col="1" />
+          <Auto line="1" col="9" />
+          <Sub line="1" col="14" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="22" />
+          <StringLiteralExpression startLine="1" startCol="26" endLine="1" endCol="31" isConstant="True">Bar</StringLiteralExpression>
+          <Alias line="1" col="32" />
+          <StringLiteralExpression startLine="1" startCol="38" endLine="1" endCol="43" isConstant="True">Baz</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="44" endLine="1" endCol="46">
+            <RightParenthesis line="1" col="45" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Public Private Protected Friend Shadows Overloads Declare Sub Foo Lib "Bar" ()</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="79">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="51">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+            <Modifier startLine="1" startCol="8" endLine="1" endCol="16" type="Private" />
+            <Modifier startLine="1" startCol="16" endLine="1" endCol="26" type="Protected" />
+            <Modifier startLine="1" startCol="26" endLine="1" endCol="33" type="Friend" />
+            <Modifier startLine="1" startCol="33" endLine="1" endCol="41" type="Shadows" />
+            <Modifier startLine="1" startCol="41" endLine="1" endCol="51" type="Overloads" />
+          </ModifierCollection>
+          <Declare line="1" col="51" />
+          <Sub line="1" col="59" />
+          <SimpleName startLine="1" startCol="63" endLine="1" endCol="66" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="67" />
+          <StringLiteralExpression startLine="1" startCol="71" endLine="1" endCol="76" isConstant="True">Bar</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="77" endLine="1" endCol="79">
+            <RightParenthesis line="1" col="78" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>&lt;a&gt; Declare Sub Foo Lib "Bar" ()</code>
+      <result>
+        <ExternalSubDeclaration startLine="1" startCol="1" endLine="1" endCol="33">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="5">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="3" type="Regular">
+                <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="3" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <Declare line="1" col="5" />
+          <Sub line="1" col="13" />
+          <SimpleName startLine="1" startCol="17" endLine="1" endCol="20" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="21" />
+          <StringLiteralExpression startLine="1" startCol="25" endLine="1" endCol="30" isConstant="True">Bar</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="31" endLine="1" endCol="33">
+            <RightParenthesis line="1" col="32" />
+          </ParameterCollection>
+        </ExternalSubDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Declare Function Foo Lib "Bar" () As Integer</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="45">
+          <Declare line="1" col="1" />
+          <Function line="1" col="9" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="22" />
+          <StringLiteralExpression startLine="1" startCol="26" endLine="1" endCol="31" isConstant="True">Bar</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="32" endLine="1" endCol="35">
+            <RightParenthesis line="1" col="33" />
+          </ParameterCollection>
+          <As line="1" col="35" />
+          <IntrinsicType startLine="1" startCol="38" endLine="1" endCol="45" intrinsicType="Integer" />
+        </ExternalFunctionDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Declare Function Foo Lib "Bar" () As &lt;a&gt; Integer</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="49">
+          <Declare line="1" col="1" />
+          <Function line="1" col="9" />
+          <SimpleName startLine="1" startCol="18" endLine="1" endCol="21" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="22" />
+          <StringLiteralExpression startLine="1" startCol="26" endLine="1" endCol="31" isConstant="True">Bar</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="32" endLine="1" endCol="35">
+            <RightParenthesis line="1" col="33" />
+          </ParameterCollection>
+          <As line="1" col="35" />
+          <AttributeBlockCollection startLine="1" startCol="38" endLine="1" endCol="42">
+            <AttributeCollection startLine="1" startCol="38" endLine="1" endCol="42">
+              <Attribute startLine="1" startCol="39" endLine="1" endCol="40" type="Regular">
+                <SimpleName startLine="1" startCol="39" endLine="1" endCol="40" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="40" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <IntrinsicType startLine="1" startCol="42" endLine="1" endCol="49" intrinsicType="Integer" />
+        </ExternalFunctionDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>Public Private Protected Friend Shadows Overloads Declare Function Foo Lib "Bar" ()</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="84">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="51">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+            <Modifier startLine="1" startCol="8" endLine="1" endCol="16" type="Private" />
+            <Modifier startLine="1" startCol="16" endLine="1" endCol="26" type="Protected" />
+            <Modifier startLine="1" startCol="26" endLine="1" endCol="33" type="Friend" />
+            <Modifier startLine="1" startCol="33" endLine="1" endCol="41" type="Shadows" />
+            <Modifier startLine="1" startCol="41" endLine="1" endCol="51" type="Overloads" />
+          </ModifierCollection>
+          <Declare line="1" col="51" />
+          <Function line="1" col="59" />
+          <SimpleName startLine="1" startCol="68" endLine="1" endCol="71" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="72" />
+          <StringLiteralExpression startLine="1" startCol="76" endLine="1" endCol="81" isConstant="True">Bar</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="82" endLine="1" endCol="84">
+            <RightParenthesis line="1" col="83" />
+          </ParameterCollection>
+        </ExternalFunctionDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>&lt;a&gt; Declare Function Foo Lib "Bar" ()</code>
+      <result>
+        <ExternalFunctionDeclaration startLine="1" startCol="1" endLine="1" endCol="38">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="5">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="3" type="Regular">
+                <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="3" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <Declare line="1" col="5" />
+          <Function line="1" col="13" />
+          <SimpleName startLine="1" startCol="22" endLine="1" endCol="25" escaped="False">Foo</SimpleName>
+          <Lib line="1" col="26" />
+          <StringLiteralExpression startLine="1" startCol="30" endLine="1" endCol="35" isConstant="True">Bar</StringLiteralExpression>
+          <ParameterCollection startLine="1" startCol="36" endLine="1" endCol="38">
+            <RightParenthesis line="1" col="37" />
+          </ParameterCollection>
+        </ExternalFunctionDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

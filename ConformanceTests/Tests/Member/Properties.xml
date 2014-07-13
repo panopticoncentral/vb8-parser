@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Properties" type="declaration" description="9.7 Properties">
+  <invalid>
+    <test>
+      <code>
+        Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="1" endCol="9">
+          <Event line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="9" endLine="1" endCol="9">error 23 (9,1) - (9,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="11" escaped="False" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Property">
+            <Property line="2" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="9" endLine="1" endCol="11">error 23 (9,1) - (11,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property Foo As
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <As line="1" col="14" />
+          <NamedType isBad="True" startLine="1" startCol="16" endLine="1" endCol="16">
+            <SimpleName isBad="True" startLine="1" startCol="16" endLine="1" endCol="16" escaped="False" />
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Property">
+            <Property line="2" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="16" endLine="1" endCol="18">error 22 (16,1) - (18,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Public &lt;a&gt; Property foo
+        End Property
+      </code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="8" endLine="1" endCol="12">
+          <AttributeBlockCollection startLine="1" startCol="8" endLine="1" endCol="12">
+            <AttributeCollection startLine="1" startCol="8" endLine="1" endCol="12">
+              <Attribute startLine="1" startCol="9" endLine="1" endCol="10" type="Regular">
+                <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="10" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+      <errors>
+        <IncorrectAttributeType startLine="1" startCol="9" endLine="1" endCol="10">error 92 (9,1) - (10,1): Attribute of this type is not allowed here.</IncorrectAttributeType>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Public Property Foo As Bar &lt;a&gt;
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="8">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+          </ModifierCollection>
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="17" endLine="1" endCol="20" escaped="False">Foo</SimpleName>
+          <As line="1" col="21" />
+          <NamedType startLine="1" startCol="24" endLine="1" endCol="27">
+            <SimpleName startLine="1" startCol="24" endLine="1" endCol="27" escaped="False">Bar</SimpleName>
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Property">
+            <Property line="2" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="28" endLine="1" endCol="29">error 39 (28,1) - (29,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property foo(
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="13" endLine="1" endCol="14">
+            <Parameter startLine="1" startCol="14" endLine="1" endCol="14">
+              <VariableName startLine="1" startCol="14" endLine="1" endCol="14">
+                <SimpleName isBad="True" startLine="1" startCol="14" endLine="1" endCol="16" escaped="False" />
+              </VariableName>
+            </Parameter>
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Property">
+            <Property line="2" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="14" endLine="1" endCol="16">error 23 (14,1) - (16,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property foo)
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">foo</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Property">
+            <Property line="2" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="13" endLine="1" endCol="14">error 39 (13,1) - (14,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property Public Foo
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="16" escaped="False">Public</SimpleName>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Property">
+            <Property line="2" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <InvalidUseOfKeyword startLine="1" startCol="10" endLine="1" endCol="16">error 24 (10,1) - (16,1): Invalid use of keyword.</InvalidUseOfKeyword>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property Foo
+        Get
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="3" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="14">
+            <GetAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="12">
+              <Get line="2" col="9" />
+            </GetAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="21" endType="Property">
+            <Property line="3" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndGet startLine="3" startCol="9" endLine="3" endCol="21">error 50 (9,3) - (21,3): 'Get' must end with a matching 'End Get'.</ExpectedEndGet>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property Foo
+        Get : End Get
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="3" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="24">
+            <GetAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="22">
+              <Get line="2" col="9" />
+              <StatementCollection startLine="2" startCol="15" endLine="2" endCol="18">
+                <Colon line="2" col="13" />
+              </StatementCollection>
+              <EndBlockDeclaration startLine="2" startCol="15" endLine="2" endCol="22" endType="Get">
+                <Get line="2" col="19" />
+              </EndBlockDeclaration>
+            </GetAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="21" endType="Property">
+            <Property line="3" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <MethodBodyNotAtLineStart startLine="2" startCol="13" endLine="2" endCol="14">error 99 (13,2) - (14,2): First statement of a method body cannot be on the same line as the method declaration.</MethodBodyNotAtLineStart>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property Foo
+        Get
+        End
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="4" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="14">
+            <GetAccessorDeclaration startLine="2" startCol="9" endLine="3" endCol="12">
+              <Get line="2" col="9" />
+              <StatementCollection startLine="3" startCol="9" endLine="3" endCol="14">
+                <EndStatement startLine="3" startCol="9" endLine="3" endCol="12" />
+              </StatementCollection>
+            </GetAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="21" endType="Property">
+            <Property line="4" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndGet startLine="4" startCol="9" endLine="4" endCol="21">error 50 (9,4) - (21,4): 'Get' must end with a matching 'End Get'.</ExpectedEndGet>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property Foo
+        Set
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="3" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="14">
+            <SetAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="12">
+              <Set line="2" col="9" />
+            </SetAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="21" endType="Property">
+            <Property line="3" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndSet startLine="3" startCol="9" endLine="3" endCol="21">error 51 (9,3) - (21,3): 'Set' must end with a matching 'End Set'.</ExpectedEndSet>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property Foo
+        Set : End Set
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="3" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="2" endCol="24">
+            <SetAccessorDeclaration startLine="2" startCol="9" endLine="2" endCol="22">
+              <Set line="2" col="9" />
+              <StatementCollection startLine="2" startCol="15" endLine="2" endCol="18">
+                <Colon line="2" col="13" />
+              </StatementCollection>
+              <EndBlockDeclaration startLine="2" startCol="15" endLine="2" endCol="22" endType="Set">
+                <Set line="2" col="19" />
+              </EndBlockDeclaration>
+            </SetAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="21" endType="Property">
+            <Property line="3" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <MethodBodyNotAtLineStart startLine="2" startCol="13" endLine="2" endCol="14">error 99 (13,2) - (14,2): First statement of a method body cannot be on the same line as the method declaration.</MethodBodyNotAtLineStart>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property Foo
+        Set
+        End
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="4" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="14">
+            <SetAccessorDeclaration startLine="2" startCol="9" endLine="3" endCol="12">
+              <Set line="2" col="9" />
+              <StatementCollection startLine="3" startCol="9" endLine="3" endCol="14">
+                <EndStatement startLine="3" startCol="9" endLine="3" endCol="12" />
+              </StatementCollection>
+            </SetAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="21" endType="Property">
+            <Property line="4" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndSet startLine="4" startCol="9" endLine="4" endCol="21">error 51 (9,4) - (21,4): 'Set' must end with a matching 'End Set'.</ExpectedEndSet>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property Foo
+        Set(
+        End Set
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="4" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="18">
+            <SetAccessorDeclaration startLine="2" startCol="9" endLine="3" endCol="16">
+              <Set line="2" col="9" />
+              <ParameterCollection startLine="2" startCol="12" endLine="2" endCol="13">
+                <Parameter startLine="2" startCol="13" endLine="2" endCol="13">
+                  <VariableName startLine="2" startCol="13" endLine="2" endCol="13">
+                    <SimpleName isBad="True" startLine="2" startCol="13" endLine="2" endCol="15" escaped="False" />
+                  </VariableName>
+                </Parameter>
+              </ParameterCollection>
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="16" endType="Set">
+                <Set line="3" col="13" />
+              </EndBlockDeclaration>
+            </SetAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="21" endType="Property">
+            <Property line="4" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="2" startCol="13" endLine="2" endCol="15">error 23 (13,2) - (15,2): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>
+        Property Foo
+        Set)
+        End Set
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="4" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="18">
+            <SetAccessorDeclaration startLine="2" startCol="9" endLine="3" endCol="16">
+              <Set line="2" col="9" />
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="16" endType="Set">
+                <Set line="3" col="13" />
+              </EndBlockDeclaration>
+            </SetAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="21" endType="Property">
+            <Property line="4" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="2" startCol="12" endLine="2" endCol="13">error 39 (12,2) - (13,2): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Property Foo(Of T)()
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="19" endLine="1" endCol="21">
+            <RightParenthesis line="1" col="20" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Property">
+            <Property line="2" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <PropertiesCantBeGeneric startLine="1" startCol="13" endLine="1" endCol="19">error 157 (13,1) - (19,1): Properties cannot be generic.</PropertiesCantBeGeneric>
+      </errors>
+    </test>
+    <test version="7.1">
+      <code>
+        Property Foo
+        Public Get
+        End Get
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="4" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="3" endCol="18">
+            <GetAccessorDeclaration startLine="2" startCol="9" endLine="3" endCol="16">
+              <ModifierCollection startLine="2" startCol="9" endLine="2" endCol="16">
+                <Modifier startLine="2" startCol="9" endLine="2" endCol="16" type="Public" />
+              </ModifierCollection>
+              <Get line="2" col="16" />
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="16" endType="Get">
+                <Get line="3" col="13" />
+              </EndBlockDeclaration>
+            </GetAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="4" startCol="9" endLine="4" endCol="21" endType="Property">
+            <Property line="4" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="2" startCol="9" endLine="2" endCol="16">error 94 (9,2) - (16,2): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>Property Foo : End Property</code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="1" endCol="28">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="1" startCol="16" endLine="1" endCol="19">
+            <Colon line="1" col="14" />
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="1" startCol="16" endLine="1" endCol="28" endType="Property">
+            <Property line="1" col="20" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Property Foo()
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="13" endLine="1" endCol="15">
+            <RightParenthesis line="1" col="14" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Property">
+            <Property line="2" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Public Private Protected Friend Shadows Shared Overridable NotOverridable MustOverride Overrides Overloads Default ReadOnly WriteOnly Property Foo()
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="1" endCol="149">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="135">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+            <Modifier startLine="1" startCol="8" endLine="1" endCol="16" type="Private" />
+            <Modifier startLine="1" startCol="16" endLine="1" endCol="26" type="Protected" />
+            <Modifier startLine="1" startCol="26" endLine="1" endCol="33" type="Friend" />
+            <Modifier startLine="1" startCol="33" endLine="1" endCol="41" type="Shadows" />
+            <Modifier startLine="1" startCol="41" endLine="1" endCol="48" type="Shared" />
+            <Modifier startLine="1" startCol="48" endLine="1" endCol="60" type="Overridable" />
+            <Modifier startLine="1" startCol="60" endLine="1" endCol="75" type="NotOverridable" />
+            <Modifier startLine="1" startCol="75" endLine="1" endCol="88" type="MustOverride" />
+            <Modifier startLine="1" startCol="88" endLine="1" endCol="98" type="Overrides" />
+            <Modifier startLine="1" startCol="98" endLine="1" endCol="108" type="Overloads" />
+            <Modifier startLine="1" startCol="108" endLine="1" endCol="116" type="Default" />
+            <Modifier startLine="1" startCol="116" endLine="1" endCol="125" type="ReadOnly" />
+            <Modifier startLine="1" startCol="125" endLine="1" endCol="135" type="WriteOnly" />
+          </ModifierCollection>
+          <Event line="1" col="135" />
+          <SimpleName startLine="1" startCol="144" endLine="1" endCol="147" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="147" endLine="1" endCol="149">
+            <RightParenthesis line="1" col="148" />
+          </ParameterCollection>
+        </PropertyDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        &lt;a&gt; Property Foo()
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="5">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="3" type="Regular">
+                <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="3" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <Event line="1" col="5" />
+          <SimpleName startLine="1" startCol="14" endLine="1" endCol="17" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="17" endLine="1" endCol="19">
+            <RightParenthesis line="1" col="18" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Property">
+            <Property line="2" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Property Foo() As Integer
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <ParameterCollection startLine="1" startCol="13" endLine="1" endCol="16">
+            <RightParenthesis line="1" col="14" />
+          </ParameterCollection>
+          <As line="1" col="16" />
+          <IntrinsicType startLine="1" startCol="19" endLine="1" endCol="26" intrinsicType="Integer" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Property">
+            <Property line="2" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Public Property Foo As &lt;a&gt; Bar
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="8">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+          </ModifierCollection>
+          <Event line="1" col="8" />
+          <SimpleName startLine="1" startCol="17" endLine="1" endCol="20" escaped="False">Foo</SimpleName>
+          <As line="1" col="21" />
+          <AttributeBlockCollection startLine="1" startCol="24" endLine="1" endCol="28">
+            <AttributeCollection startLine="1" startCol="24" endLine="1" endCol="28">
+              <Attribute startLine="1" startCol="25" endLine="1" endCol="26" type="Regular">
+                <SimpleName startLine="1" startCol="25" endLine="1" endCol="26" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="26" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <NamedType startLine="1" startCol="28" endLine="1" endCol="31">
+            <SimpleName startLine="1" startCol="28" endLine="1" endCol="31" escaped="False">Bar</SimpleName>
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Property">
+            <Property line="2" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+    </test>
+    <test>
+      <code>
+        Property Foo
+        Get
+        End Get
+        Set (Value As Integer)
+        End Set
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="6" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="5" endCol="18">
+            <GetAccessorDeclaration startLine="2" startCol="9" endLine="3" endCol="16">
+              <Get line="2" col="9" />
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="16" endType="Get">
+                <Get line="3" col="13" />
+              </EndBlockDeclaration>
+            </GetAccessorDeclaration>
+            <SetAccessorDeclaration startLine="4" startCol="9" endLine="5" endCol="16">
+              <Set line="4" col="9" />
+              <ParameterCollection startLine="4" startCol="13" endLine="4" endCol="31">
+                <Parameter startLine="4" startCol="14" endLine="4" endCol="30">
+                  <VariableName startLine="4" startCol="14" endLine="4" endCol="20">
+                    <SimpleName startLine="4" startCol="14" endLine="4" endCol="19" escaped="False">Value</SimpleName>
+                  </VariableName>
+                  <As line="4" col="20" />
+                  <IntrinsicType startLine="4" startCol="23" endLine="4" endCol="30" intrinsicType="Integer" />
+                </Parameter>
+                <RightParenthesis line="4" col="30" />
+              </ParameterCollection>
+              <EndBlockDeclaration startLine="5" startCol="9" endLine="5" endCol="16" endType="Set">
+                <Set line="5" col="13" />
+              </EndBlockDeclaration>
+            </SetAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="6" startCol="9" endLine="6" endCol="21" endType="Property">
+            <Property line="6" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Property Foo
+        Public Get
+        End Get
+        Private Set
+        End Set
+        End Property
+      </code>
+      <result>
+        <PropertyDeclaration startLine="1" startCol="1" endLine="6" endCol="21">
+          <Event line="1" col="1" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="13" escaped="False">Foo</SimpleName>
+          <DeclarationCollection startLine="2" startCol="9" endLine="5" endCol="18">
+            <GetAccessorDeclaration startLine="2" startCol="9" endLine="3" endCol="16">
+              <ModifierCollection startLine="2" startCol="9" endLine="2" endCol="16">
+                <Modifier startLine="2" startCol="9" endLine="2" endCol="16" type="Public" />
+              </ModifierCollection>
+              <Get line="2" col="16" />
+              <EndBlockDeclaration startLine="3" startCol="9" endLine="3" endCol="16" endType="Get">
+                <Get line="3" col="13" />
+              </EndBlockDeclaration>
+            </GetAccessorDeclaration>
+            <SetAccessorDeclaration startLine="4" startCol="9" endLine="5" endCol="16">
+              <ModifierCollection startLine="4" startCol="9" endLine="4" endCol="17">
+                <Modifier startLine="4" startCol="9" endLine="4" endCol="17" type="Private" />
+              </ModifierCollection>
+              <Set line="4" col="17" />
+              <EndBlockDeclaration startLine="5" startCol="9" endLine="5" endCol="16" endType="Set">
+                <Set line="5" col="13" />
+              </EndBlockDeclaration>
+            </SetAccessorDeclaration>
+          </DeclarationCollection>
+          <EndBlockDeclaration startLine="6" startCol="9" endLine="6" endCol="21" endType="Property">
+            <Property line="6" col="13" />
+          </EndBlockDeclaration>
+        </PropertyDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

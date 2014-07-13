@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="AddressOf" type="expression" description="11.4.4 AddressOf Expressions">
+  <invalid>
+    <test>
+      <code>AddressOf</code>
+      <result>
+        <AddressOfExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="10" endLine="1" endCol="10" />
+        </AddressOfExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="10" endLine="1" endCol="10">error 27 (10,1) - (10,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test>
+      <code>AddressOf #</code>
+      <result>
+        <AddressOfExpression startLine="1" startCol="1" endLine="1" endCol="12" isConstant="False">
+          <SyntaxError isBad="True" startLine="1" startCol="11" endLine="1" endCol="12" />
+        </AddressOfExpression>
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="11" endLine="1" endCol="12">error 27 (11,1) - (12,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>AddressOf x</code>
+      <result>
+        <AddressOfExpression startLine="1" startCol="1" endLine="1" endCol="12" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="11" endLine="1" endCol="12" isConstant="False">
+            <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+        </AddressOfExpression>
+      </result>
+    </test>
+  </valid>
+</scenario>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="FloatingPointLiterals" type="token" description="2.4.3 Floating-Point Literals">
+  <invalid>
+    <!-- Overflow -->
+    <test>
+      <code>99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999.0</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="350" errorNumber="8">error 8 (1,1) - (350,1): Invalid floating point literal.</LexicalError>
+      </result>
+    </test>
+    <test>
+      <code>99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999.0@</code>
+      <result>
+        <LexicalError startLine="1" startCol="1" endLine="1" endCol="351" errorNumber="10">error 10 (1,1) - (351,1): Invalid decimal literal.</LexicalError>
+      </result>
+    </test>
+  </invalid>
+  <valid>
+    <test>
+      <code>10@</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="4" typeChar="@">10</DecimalLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10#</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="4" typeChar="#">10</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10!</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="4" typeChar="!">10</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10F</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="4" typeChar="F">10</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10R</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="4" typeChar="R">10</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10D</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="4" typeChar="D">10</DecimalLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10f</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="4" typeChar="F">10</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10r</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="4" typeChar="R">10</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10d</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="4" typeChar="D">10</DecimalLiteral>
+      </result>
+    </test>
+    <!-- Digits on both sides of the point -->
+    <test>
+      <code>10.10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="6">10.1</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10E10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="9">101000000000</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10e10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="9">101000000000</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10E+10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="10">101000000000</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10E-10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="10">1.01E-09</FloatingPointLiteral>
+      </result>
+    </test>
+    <!-- No leading digits -->
+    <test>
+      <code>.10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="4">0.1</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>.10E10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="7">1000000000</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>.10e10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="7">1000000000</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>.10E+10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="8">1000000000</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>.10E-10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="8">1E-11</FloatingPointLiteral>
+      </result>
+    </test>
+    <!-- No trailing digits -->
+    <test>
+      <code>10E10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="6">100000000000</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10e10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="6">100000000000</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10E+10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="7">100000000000</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10E-10</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="7">1E-09</FloatingPointLiteral>
+      </result>
+    </test>
+    <!-- Type characters -->
+    <test>
+      <code>10.10@</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="7" typeChar="@">10.10</DecimalLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10#</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="7" typeChar="#">10.1</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10!</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="7" typeChar="!">10.1000003814697</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10F</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="7" typeChar="F">10.1000003814697</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10R</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="7" typeChar="R">10.1</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10D</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="7" typeChar="D">10.10</DecimalLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10f</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="7" typeChar="F">10.1000003814697</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10r</code>
+      <result>
+        <FloatingPointLiteral startLine="1" startCol="1" endLine="1" endCol="7" typeChar="R">10.1</FloatingPointLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10d</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="7" typeChar="D">10.10</DecimalLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10E10@</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="10" typeChar="@">101000000000</DecimalLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10E+10@</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="11" typeChar="@">101000000000</DecimalLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10E-10@</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="11" typeChar="@">0.000000001010</DecimalLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10E10D</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="10" typeChar="D">101000000000</DecimalLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10E+10D</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="11" typeChar="D">101000000000</DecimalLiteral>
+      </result>
+    </test>
+    <test>
+      <code>10.10E-10D</code>
+      <result>
+        <DecimalLiteral startLine="1" startCol="1" endLine="1" endCol="11" typeChar="D">0.000000001010</DecimalLiteral>
+      </result>
+    </test>
+  </valid>
+</scenario>

@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="MemberAccess" type="expression" description="11.6 &amp; 11.7 Member Access Expressions">
+  <invalid>
+    <test>
+      <code>.</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+          <Period line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="2" endLine="1" endCol="2" escaped="False" />
+        </QualifiedExpression>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="2" endLine="1" endCol="2">error 23 (2,1) - (2,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>!</code>
+      <result>
+        <DictionaryLookupExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+          <Exclamation line="1" col="1" />
+          <SimpleName isBad="True" startLine="1" startCol="2" endLine="1" endCol="2" escaped="False" />
+        </DictionaryLookupExpression>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="2" endLine="1" endCol="2">error 23 (2,1) - (2,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>..a</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="False">
+          <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <Period line="1" col="1" />
+            <SimpleName isBad="True" startLine="1" startCol="2" endLine="1" endCol="3" escaped="False" />
+          </QualifiedExpression>
+          <Period line="1" col="2" />
+          <SimpleName startLine="1" startCol="3" endLine="1" endCol="4" escaped="False">a</SimpleName>
+        </QualifiedExpression>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="2" endLine="1" endCol="3">error 23 (2,1) - (3,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>!!a</code>
+      <result>
+        <DictionaryLookupExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="False">
+          <DictionaryLookupExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <Exclamation line="1" col="1" />
+            <SimpleName isBad="True" startLine="1" startCol="2" endLine="1" endCol="3" escaped="False" />
+          </DictionaryLookupExpression>
+          <Exclamation line="1" col="2" />
+          <SimpleName startLine="1" startCol="3" endLine="1" endCol="4" escaped="False">a</SimpleName>
+        </DictionaryLookupExpression>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="2" endLine="1" endCol="3">error 23 (2,1) - (3,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>a.</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</SimpleName>
+          </SimpleNameExpression>
+          <Period line="1" col="2" />
+          <SimpleName isBad="True" startLine="1" startCol="3" endLine="1" endCol="3" escaped="False" />
+        </QualifiedExpression>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="3" endLine="1" endCol="3">error 23 (3,1) - (3,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>a.b.</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="False">
+          <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="False">
+            <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+              <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</SimpleName>
+            </SimpleNameExpression>
+            <Period line="1" col="2" />
+            <SimpleName startLine="1" startCol="3" endLine="1" endCol="4" escaped="False">b</SimpleName>
+          </QualifiedExpression>
+          <Period line="1" col="4" />
+          <SimpleName isBad="True" startLine="1" startCol="5" endLine="1" endCol="5" escaped="False" />
+        </QualifiedExpression>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="5" endLine="1" endCol="5">error 23 (5,1) - (5,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>MyBase</code>
+      <result>
+        <InstanceExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" type="MyBase" />
+      </result>
+      <errors>
+        <ExpectedPeriodAfterMyBase startLine="1" startCol="1" endLine="1" endCol="7">error 30 (1,1) - (7,1): MyBase must be followed by a '.'.</ExpectedPeriodAfterMyBase>
+      </errors>
+    </test>
+    <test>
+      <code>MyBase.</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False">
+          <InstanceExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" type="MyBase" />
+          <Period line="1" col="7" />
+          <SimpleName isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" escaped="False" />
+        </QualifiedExpression>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="8" endLine="1" endCol="8">error 23 (8,1) - (8,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>MyClass</code>
+      <result>
+        <InstanceExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" type="MyClass" />
+      </result>
+      <errors>
+        <ExpectedPeriodAfterMyClass startLine="1" startCol="1" endLine="1" endCol="8">error 31 (1,1) - (8,1): MyClass must be followed by a '.'.</ExpectedPeriodAfterMyClass>
+      </errors>
+    </test>
+    <test>
+      <code>MyClass.</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <InstanceExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" type="MyClass" />
+          <Period line="1" col="8" />
+          <SimpleName isBad="True" startLine="1" startCol="9" endLine="1" endCol="9" escaped="False" />
+        </QualifiedExpression>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="9" endLine="1" endCol="9">error 23 (9,1) - (9,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test>
+      <code>Option.x</code>
+      <result>
+        <SyntaxError isBad="True" startLine="1" startCol="1" endLine="1" endCol="7" />
+      </result>
+      <errors>
+        <ExpectedExpression startLine="1" startCol="1" endLine="1" endCol="7">error 27 (1,1) - (7,1): Expected expression.</ExpectedExpression>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Global</code>
+      <result>
+        <GlobalExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" />
+      </result>
+      <errors>
+        <ExpectedPeriodAfterGlobal startLine="1" startCol="1" endLine="1" endCol="7">error 160 (1,1) - (7,1): Global must be followed by a '.'.</ExpectedPeriodAfterGlobal>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Global.</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False">
+          <GlobalExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" />
+          <Period line="1" col="7" />
+          <SimpleName isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" escaped="False" />
+        </QualifiedExpression>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="8" endLine="1" endCol="8">error 23 (8,1) - (8,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>x(Of)</code>
+      <result>
+        <GenericQualifiedExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <TypeArgumentCollection startLine="1" startCol="2" endLine="1" endCol="6">
+            <Of line="1" col="3" />
+            <NamedType isBad="True" startLine="1" startCol="5" endLine="1" endCol="5">
+              <SimpleName isBad="True" startLine="1" startCol="5" endLine="1" endCol="5" escaped="False" />
+            </NamedType>
+            <RightParenthesis line="1" col="5" />
+          </TypeArgumentCollection>
+        </GenericQualifiedExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="5" endLine="1" endCol="6">error 22 (5,1) - (6,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>x(Of y,)</code>
+      <result>
+        <GenericQualifiedExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <TypeArgumentCollection startLine="1" startCol="2" endLine="1" endCol="9">
+            <Of line="1" col="3" />
+            <NamedType startLine="1" startCol="6" endLine="1" endCol="7">
+              <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+            </NamedType>
+            <Comma line="1" col="7" />
+            <NamedType isBad="True" startLine="1" startCol="8" endLine="1" endCol="8">
+              <SimpleName isBad="True" startLine="1" startCol="8" endLine="1" endCol="8" escaped="False" />
+            </NamedType>
+            <RightParenthesis line="1" col="8" />
+          </TypeArgumentCollection>
+        </GenericQualifiedExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="8" endLine="1" endCol="9">error 22 (8,1) - (9,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>x(Of ,z)</code>
+      <result>
+        <GenericQualifiedExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <TypeArgumentCollection startLine="1" startCol="2" endLine="1" endCol="9">
+            <Of line="1" col="3" />
+            <Comma line="1" col="6" />
+            <NamedType isBad="True" startLine="1" startCol="6" endLine="1" endCol="6">
+              <SimpleName isBad="True" startLine="1" startCol="6" endLine="1" endCol="6" escaped="False" />
+            </NamedType>
+            <NamedType startLine="1" startCol="7" endLine="1" endCol="8">
+              <SimpleName startLine="1" startCol="7" endLine="1" endCol="8" escaped="False">z</SimpleName>
+            </NamedType>
+            <RightParenthesis line="1" col="8" />
+          </TypeArgumentCollection>
+        </GenericQualifiedExpression>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="6" endLine="1" endCol="7">error 22 (6,1) - (7,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <!-- Invalid but doesn't cause error -->
+    <test>
+      <code>a!</code>
+      <result>
+        <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <SimpleName startLine="1" startCol="1" endLine="1" endCol="3" typeChar="!" escaped="False">a</SimpleName>
+        </SimpleNameExpression>
+      </result>
+    </test>
+    <test>
+      <code>x.MyBase.y</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="False">
+          <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+            <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+              <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+            </SimpleNameExpression>
+            <Period line="1" col="2" />
+            <SimpleName startLine="1" startCol="3" endLine="1" endCol="9" escaped="False">MyBase</SimpleName>
+          </QualifiedExpression>
+          <Period line="1" col="9" />
+          <SimpleName startLine="1" startCol="10" endLine="1" endCol="11" escaped="False">y</SimpleName>
+        </QualifiedExpression>
+      </result>
+    </test>
+    <test>
+      <code>x.MyClass.y</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="12" isConstant="False">
+          <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False">
+            <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+              <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+            </SimpleNameExpression>
+            <Period line="1" col="2" />
+            <SimpleName startLine="1" startCol="3" endLine="1" endCol="10" escaped="False">MyClass</SimpleName>
+          </QualifiedExpression>
+          <Period line="1" col="10" />
+          <SimpleName startLine="1" startCol="11" endLine="1" endCol="12" escaped="False">y</SimpleName>
+        </QualifiedExpression>
+      </result>
+    </test>
+    <!-- Verify Global is not reserved -->
+    <test version="7.1">
+      <code>Global.x</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="7" escaped="False">Global</SimpleName>
+          </SimpleNameExpression>
+          <Period line="1" col="7" />
+          <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+        </QualifiedExpression>
+      </result>
+    </test>
+    <test>
+      <code>a.b</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</SimpleName>
+          </SimpleNameExpression>
+          <Period line="1" col="2" />
+          <SimpleName startLine="1" startCol="3" endLine="1" endCol="4" escaped="False">b</SimpleName>
+        </QualifiedExpression>
+      </result>
+    </test>
+    <test>
+      <code>a.b.c</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False">
+          <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="False">
+            <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+              <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</SimpleName>
+            </SimpleNameExpression>
+            <Period line="1" col="2" />
+            <SimpleName startLine="1" startCol="3" endLine="1" endCol="4" escaped="False">b</SimpleName>
+          </QualifiedExpression>
+          <Period line="1" col="4" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">c</SimpleName>
+        </QualifiedExpression>
+      </result>
+    </test>
+    <test>
+      <code>.b</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <Period line="1" col="1" />
+          <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">b</SimpleName>
+        </QualifiedExpression>
+      </result>
+    </test>
+    <test>
+      <code>a!b</code>
+      <result>
+        <DictionaryLookupExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</SimpleName>
+          </SimpleNameExpression>
+          <Exclamation line="1" col="2" />
+          <SimpleName startLine="1" startCol="3" endLine="1" endCol="4" escaped="False">b</SimpleName>
+        </DictionaryLookupExpression>
+      </result>
+    </test>
+    <test>
+      <code>a!b!c</code>
+      <result>
+        <DictionaryLookupExpression startLine="1" startCol="1" endLine="1" endCol="6" isConstant="False">
+          <DictionaryLookupExpression startLine="1" startCol="1" endLine="1" endCol="4" isConstant="False">
+            <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+              <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</SimpleName>
+            </SimpleNameExpression>
+            <Exclamation line="1" col="2" />
+            <SimpleName startLine="1" startCol="3" endLine="1" endCol="4" escaped="False">b</SimpleName>
+          </DictionaryLookupExpression>
+          <Exclamation line="1" col="4" />
+          <SimpleName startLine="1" startCol="5" endLine="1" endCol="6" escaped="False">c</SimpleName>
+        </DictionaryLookupExpression>
+      </result>
+    </test>
+    <!-- This is a bang followed by an identifier -->
+    <test>
+      <code>a!b!</code>
+      <result>
+        <DictionaryLookupExpression startLine="1" startCol="1" endLine="1" endCol="5" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">a</SimpleName>
+          </SimpleNameExpression>
+          <Exclamation line="1" col="2" />
+          <SimpleName startLine="1" startCol="3" endLine="1" endCol="5" typeChar="!" escaped="False">b</SimpleName>
+        </DictionaryLookupExpression>
+      </result>
+    </test>
+    <test>
+      <code>!b</code>
+      <result>
+        <DictionaryLookupExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False">
+          <Exclamation line="1" col="1" />
+          <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">b</SimpleName>
+        </DictionaryLookupExpression>
+      </result>
+    </test>
+    <test>
+      <code>MyBase.x</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <InstanceExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" type="MyBase" />
+          <Period line="1" col="7" />
+          <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+        </QualifiedExpression>
+      </result>
+    </test>
+    <test>
+      <code>MyClass.y</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False">
+          <InstanceExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False" type="MyClass" />
+          <Period line="1" col="8" />
+          <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">y</SimpleName>
+        </QualifiedExpression>
+      </result>
+    </test>
+    <!-- Types are allowed befoer period -->
+    <test>
+      <code>Integer.ToString</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="17" isConstant="False">
+          <TypeReferenceExpression startLine="1" startCol="1" endLine="1" endCol="8" isConstant="False">
+            <IntrinsicType startLine="1" startCol="1" endLine="1" endCol="8" intrinsicType="Integer" />
+          </TypeReferenceExpression>
+          <Period line="1" col="8" />
+          <SimpleName startLine="1" startCol="9" endLine="1" endCol="17" escaped="False">ToString</SimpleName>
+        </QualifiedExpression>
+      </result>
+    </test>
+    <!-- Keywords are allowed after period -->
+    <test>
+      <code>x.Integer</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="10" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <Period line="1" col="2" />
+          <SimpleName startLine="1" startCol="3" endLine="1" endCol="10" escaped="False">Integer</SimpleName>
+        </QualifiedExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>Global.x</code>
+      <result>
+        <QualifiedExpression startLine="1" startCol="1" endLine="1" endCol="9" isConstant="False">
+          <GlobalExpression startLine="1" startCol="1" endLine="1" endCol="7" isConstant="False" />
+          <Period line="1" col="7" />
+          <SimpleName startLine="1" startCol="8" endLine="1" endCol="9" escaped="False">x</SimpleName>
+        </QualifiedExpression>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>x(Of y, z)</code>
+      <result>
+        <GenericQualifiedExpression startLine="1" startCol="1" endLine="1" endCol="11" isConstant="False">
+          <SimpleNameExpression startLine="1" startCol="1" endLine="1" endCol="2" isConstant="False">
+            <SimpleName startLine="1" startCol="1" endLine="1" endCol="2" escaped="False">x</SimpleName>
+          </SimpleNameExpression>
+          <TypeArgumentCollection startLine="1" startCol="2" endLine="1" endCol="11">
+            <Of line="1" col="3" />
+            <NamedType startLine="1" startCol="6" endLine="1" endCol="7">
+              <SimpleName startLine="1" startCol="6" endLine="1" endCol="7" escaped="False">y</SimpleName>
+            </NamedType>
+            <Comma line="1" col="7" />
+            <NamedType startLine="1" startCol="9" endLine="1" endCol="10">
+              <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">z</SimpleName>
+            </NamedType>
+            <RightParenthesis line="1" col="10" />
+          </TypeArgumentCollection>
+        </GenericQualifiedExpression>
+      </result>
+    </test>
+  </valid>
+</scenario>

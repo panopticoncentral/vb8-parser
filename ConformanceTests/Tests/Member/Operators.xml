@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Operators" type="declaration" description="9.8 Operators">
+  <invalid>
+    <test version="8.0">
+      <code>Operator</code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="1" endCol="9">
+          <Operator line="1" col="1" />
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <InvalidOperator startLine="1" startCol="9" endLine="1" endCol="9">error 153 (9,1) - (9,1): Operator declaration must be one of:  +, -, *, \, /, ^, &amp;, Like, Mod, And, Or, Xor, Not, &lt;&lt;, &gt;&gt;, =, &lt;&gt;, &lt;, &lt;=, &gt;, &gt;=, CType, IsTrue, IsFalse.</InvalidOperator>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Operator : End Operator</code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="1" endCol="24">
+          <Operator line="1" col="1" />
+          <StatementCollection startLine="1" startCol="12" endLine="1" endCol="15">
+            <Colon line="1" col="10" />
+          </StatementCollection>
+          <EndBlockDeclaration startLine="1" startCol="12" endLine="1" endCol="24" endType="Operator">
+            <Operator line="1" col="16" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <InvalidOperator startLine="1" startCol="10" endLine="1" endCol="11">error 153 (10,1) - (11,1): Operator declaration must be one of:  +, -, *, \, /, ^, &amp;, Like, Mod, And, Or, Xor, Not, &lt;&lt;, &gt;&gt;, =, &lt;&gt;, &lt;, &lt;=, &gt;, &gt;=, CType, IsTrue, IsFalse.</InvalidOperator>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>Operator + : End Operator</code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="1" endCol="26">
+          <Operator line="1" col="1" />
+          <Plus line="1" col="10" />
+          <StatementCollection startLine="1" startCol="14" endLine="1" endCol="17">
+            <Colon line="1" col="12" />
+          </StatementCollection>
+          <EndBlockDeclaration startLine="1" startCol="14" endLine="1" endCol="26" endType="Operator">
+            <Operator line="1" col="18" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <MethodBodyNotAtLineStart startLine="1" startCol="12" endLine="1" endCol="13">error 99 (12,1) - (13,1): First statement of a method body cannot be on the same line as the method declaration.</MethodBodyNotAtLineStart>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Public &lt;a&gt; Operator +
+        End Operator
+      </code>
+      <result>
+        <AttributeDeclaration startLine="1" startCol="8" endLine="1" endCol="12">
+          <AttributeBlockCollection startLine="1" startCol="8" endLine="1" endCol="12">
+            <AttributeCollection startLine="1" startCol="8" endLine="1" endCol="12">
+              <Attribute startLine="1" startCol="9" endLine="1" endCol="10" type="Regular">
+                <SimpleName startLine="1" startCol="9" endLine="1" endCol="10" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="10" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+        </AttributeDeclaration>
+      </result>
+      <errors>
+        <IncorrectAttributeType startLine="1" startCol="9" endLine="1" endCol="10">error 92 (9,1) - (10,1): Attribute of this type is not allowed here.</IncorrectAttributeType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator +(
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Plus line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="12">
+            <Parameter startLine="1" startCol="12" endLine="1" endCol="12">
+              <VariableName startLine="1" startCol="12" endLine="1" endCol="12">
+                <SimpleName isBad="True" startLine="1" startCol="12" endLine="1" endCol="14" escaped="False" />
+              </VariableName>
+            </Parameter>
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <ExpectedIdentifier startLine="1" startCol="12" endLine="1" endCol="14">error 23 (12,1) - (14,1): Expected identifier.</ExpectedIdentifier>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator +)
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Plus line="1" col="10" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="11" endLine="1" endCol="12">error 39 (11,1) - (12,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator Public +
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <InvalidOperator startLine="1" startCol="10" endLine="1" endCol="16">error 153 (10,1) - (16,1): Operator declaration must be one of:  +, -, *, \, /, ^, &amp;, Like, Mod, And, Or, Xor, Not, &lt;&lt;, &gt;&gt;, =, &lt;&gt;, &lt;, &lt;=, &gt;, &gt;=, CType, IsTrue, IsFalse.</InvalidOperator>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator + As
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Plus line="1" col="10" />
+          <As line="1" col="12" />
+          <NamedType isBad="True" startLine="1" startCol="14" endLine="1" endCol="14">
+            <SimpleName isBad="True" startLine="1" startCol="14" endLine="1" endCol="14" escaped="False" />
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <ExpectedType startLine="1" startCol="14" endLine="1" endCol="16">error 22 (14,1) - (16,1): Type expected.</ExpectedType>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Public Operator + As Bar &lt;a&gt;
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="8">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+          </ModifierCollection>
+          <Operator line="1" col="8" />
+          <Plus line="1" col="17" />
+          <As line="1" col="19" />
+          <NamedType startLine="1" startCol="22" endLine="1" endCol="25">
+            <SimpleName startLine="1" startCol="22" endLine="1" endCol="25" escaped="False">Bar</SimpleName>
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <ExpectedEndOfStatement startLine="1" startCol="26" endLine="1" endCol="27">error 39 (26,1) - (27,1): End of statement expected.</ExpectedEndOfStatement>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator Foo
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <InvalidOperator startLine="1" startCol="10" endLine="1" endCol="13">error 153 (10,1) - (13,1): Operator declaration must be one of:  +, -, *, \, /, ^, &amp;, Like, Mod, And, Or, Xor, Not, &lt;&lt;, &gt;&gt;, =, &lt;&gt;, &lt;, &lt;=, &gt;, &gt;=, CType, IsTrue, IsFalse.</InvalidOperator>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator +
+        End Function
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Plus line="1" col="10" />
+          <StatementCollection startLine="2" startCol="9" endLine="2" endCol="21">
+            <EndBlockStatement startLine="2" startCol="9" endLine="2" endCol="21" endType="Function">
+              <Function line="2" col="13" />
+            </EndBlockStatement>
+          </StatementCollection>
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <EndFunctionWithoutFunction startLine="2" startCol="9" endLine="2" endCol="21">error 76 (9,2) - (21,2): 'End Function' must be preceded by a matching 'Function'.</EndFunctionWithoutFunction>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator +(Of T)
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Plus line="1" col="10" />
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <OperatorsCantBeGeneric startLine="1" startCol="11" endLine="1" endCol="17">error 159 (11,1) - (17,1): Operators cannot be generic.</OperatorsCantBeGeneric>
+      </errors>
+    </test>
+    <test version="8.0">
+      <code>
+        Private Protected Friend Overridable NotOverridable MustOverride Overrides Operator +()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="76">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="9" type="Private" />
+            <Modifier startLine="1" startCol="9" endLine="1" endCol="19" type="Protected" />
+            <Modifier startLine="1" startCol="19" endLine="1" endCol="26" type="Friend" />
+            <Modifier startLine="1" startCol="26" endLine="1" endCol="38" type="Overridable" />
+            <Modifier startLine="1" startCol="38" endLine="1" endCol="53" type="NotOverridable" />
+            <Modifier startLine="1" startCol="53" endLine="1" endCol="66" type="MustOverride" />
+            <Modifier startLine="1" startCol="66" endLine="1" endCol="76" type="Overrides" />
+          </ModifierCollection>
+          <Operator line="1" col="76" />
+          <Plus line="1" col="85" />
+          <ParameterCollection startLine="1" startCol="86" endLine="1" endCol="88">
+            <RightParenthesis line="1" col="87" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+      <errors>
+        <InvalidModifier startLine="1" startCol="1" endLine="1" endCol="9">error 94 (1,1) - (9,1): Modifier is not valid on this declaration type.</InvalidModifier>
+      </errors>
+    </test>
+  </invalid>
+  <valid>
+    <test version="8.0">
+      <code>
+        Operator +()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Plus line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="13">
+            <RightParenthesis line="1" col="12" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator -()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Minus line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="13">
+            <RightParenthesis line="1" col="12" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator Not()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Not line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="13" endLine="1" endCol="15">
+            <RightParenthesis line="1" col="14" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator IsFalse()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Identifier line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="17" endLine="1" endCol="19">
+            <RightParenthesis line="1" col="18" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator IsTrue()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Identifier line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="16" endLine="1" endCol="18">
+            <RightParenthesis line="1" col="17" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator *()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Star line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="13">
+            <RightParenthesis line="1" col="12" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator \()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <BackwardSlash line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="13">
+            <RightParenthesis line="1" col="12" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator /()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <ForwardSlash line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="13">
+            <RightParenthesis line="1" col="12" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator ^()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Caret line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="13">
+            <RightParenthesis line="1" col="12" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator &amp;()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Ampersand line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="13">
+            <RightParenthesis line="1" col="12" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator Like()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Like line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="14" endLine="1" endCol="16">
+            <RightParenthesis line="1" col="15" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator Mod()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Mod line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="13" endLine="1" endCol="15">
+            <RightParenthesis line="1" col="14" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator And()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <And line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="13" endLine="1" endCol="15">
+            <RightParenthesis line="1" col="14" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator Or()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Or line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="12" endLine="1" endCol="14">
+            <RightParenthesis line="1" col="13" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator Xor()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Xor line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="13" endLine="1" endCol="15">
+            <RightParenthesis line="1" col="14" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator &lt;&lt;()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <LessThanLessThan line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="12" endLine="1" endCol="14">
+            <RightParenthesis line="1" col="13" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator &gt;&gt;()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <GreaterThanGreaterThan line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="12" endLine="1" endCol="14">
+            <RightParenthesis line="1" col="13" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator =()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Equals line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="13">
+            <RightParenthesis line="1" col="12" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator &lt;&gt;()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <NotEquals line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="12" endLine="1" endCol="14">
+            <RightParenthesis line="1" col="13" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator &gt;()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <GreaterThan line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="13">
+            <RightParenthesis line="1" col="12" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator &lt;()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <LessThan line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="13">
+            <RightParenthesis line="1" col="12" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator &gt;=()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <GreaterThanEquals line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="12" endLine="1" endCol="14">
+            <RightParenthesis line="1" col="13" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator &lt;=()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <LessThanEquals line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="12" endLine="1" endCol="14">
+            <RightParenthesis line="1" col="13" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Operator +(x As T, y As T) As T
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <Operator line="1" col="1" />
+          <Plus line="1" col="10" />
+          <ParameterCollection startLine="1" startCol="11" endLine="1" endCol="28">
+            <Parameter startLine="1" startCol="12" endLine="1" endCol="18">
+              <VariableName startLine="1" startCol="12" endLine="1" endCol="14">
+                <SimpleName startLine="1" startCol="12" endLine="1" endCol="13" escaped="False">x</SimpleName>
+              </VariableName>
+              <As line="1" col="14" />
+              <NamedType startLine="1" startCol="17" endLine="1" endCol="18">
+                <SimpleName startLine="1" startCol="17" endLine="1" endCol="18" escaped="False">T</SimpleName>
+              </NamedType>
+            </Parameter>
+            <Comma line="1" col="18" />
+            <Parameter startLine="1" startCol="20" endLine="1" endCol="26">
+              <VariableName startLine="1" startCol="20" endLine="1" endCol="22">
+                <SimpleName startLine="1" startCol="20" endLine="1" endCol="21" escaped="False">y</SimpleName>
+              </VariableName>
+              <As line="1" col="22" />
+              <NamedType startLine="1" startCol="25" endLine="1" endCol="26">
+                <SimpleName startLine="1" startCol="25" endLine="1" endCol="26" escaped="False">T</SimpleName>
+              </NamedType>
+            </Parameter>
+            <RightParenthesis line="1" col="26" />
+          </ParameterCollection>
+          <As line="1" col="28" />
+          <NamedType startLine="1" startCol="31" endLine="1" endCol="32">
+            <SimpleName startLine="1" startCol="31" endLine="1" endCol="32" escaped="False">T</SimpleName>
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Public Shadows Shared Overloads Widening Narrowing Operator +()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="52">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+            <Modifier startLine="1" startCol="8" endLine="1" endCol="16" type="Shadows" />
+            <Modifier startLine="1" startCol="16" endLine="1" endCol="23" type="Shared" />
+            <Modifier startLine="1" startCol="23" endLine="1" endCol="33" type="Overloads" />
+            <Modifier startLine="1" startCol="33" endLine="1" endCol="42" type="Widening" />
+            <Modifier startLine="1" startCol="42" endLine="1" endCol="52" type="Narrowing" />
+          </ModifierCollection>
+          <Operator line="1" col="52" />
+          <Plus line="1" col="61" />
+          <ParameterCollection startLine="1" startCol="62" endLine="1" endCol="64">
+            <RightParenthesis line="1" col="63" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        &lt;a&gt; Operator +()
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <AttributeBlockCollection startLine="1" startCol="1" endLine="1" endCol="5">
+            <AttributeCollection startLine="1" startCol="1" endLine="1" endCol="5">
+              <Attribute startLine="1" startCol="2" endLine="1" endCol="3" type="Regular">
+                <SimpleName startLine="1" startCol="2" endLine="1" endCol="3" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="3" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <Operator line="1" col="5" />
+          <Plus line="1" col="14" />
+          <ParameterCollection startLine="1" startCol="15" endLine="1" endCol="17">
+            <RightParenthesis line="1" col="16" />
+          </ParameterCollection>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Public Operator + As &lt;a&gt; Bar
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="8">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+          </ModifierCollection>
+          <Operator line="1" col="8" />
+          <Plus line="1" col="17" />
+          <As line="1" col="19" />
+          <AttributeBlockCollection startLine="1" startCol="22" endLine="1" endCol="26">
+            <AttributeCollection startLine="1" startCol="22" endLine="1" endCol="26">
+              <Attribute startLine="1" startCol="23" endLine="1" endCol="24" type="Regular">
+                <SimpleName startLine="1" startCol="23" endLine="1" endCol="24" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="24" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <NamedType startLine="1" startCol="26" endLine="1" endCol="29">
+            <SimpleName startLine="1" startCol="26" endLine="1" endCol="29" escaped="False">Bar</SimpleName>
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+    <test version="8.0">
+      <code>
+        Public Operator + As &lt;a&gt; &lt;b&gt; Bar
+        End Operator
+      </code>
+      <result>
+        <OperatorDeclaration startLine="1" startCol="1" endLine="2" endCol="21">
+          <ModifierCollection startLine="1" startCol="1" endLine="1" endCol="8">
+            <Modifier startLine="1" startCol="1" endLine="1" endCol="8" type="Public" />
+          </ModifierCollection>
+          <Operator line="1" col="8" />
+          <Plus line="1" col="17" />
+          <As line="1" col="19" />
+          <AttributeBlockCollection startLine="1" startCol="22" endLine="1" endCol="30">
+            <AttributeCollection startLine="1" startCol="22" endLine="1" endCol="26">
+              <Attribute startLine="1" startCol="23" endLine="1" endCol="24" type="Regular">
+                <SimpleName startLine="1" startCol="23" endLine="1" endCol="24" escaped="False">a</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="24" />
+            </AttributeCollection>
+            <AttributeCollection startLine="1" startCol="26" endLine="1" endCol="30">
+              <Attribute startLine="1" startCol="27" endLine="1" endCol="28" type="Regular">
+                <SimpleName startLine="1" startCol="27" endLine="1" endCol="28" escaped="False">b</SimpleName>
+              </Attribute>
+              <GreaterThan line="1" col="28" />
+            </AttributeCollection>
+          </AttributeBlockCollection>
+          <NamedType startLine="1" startCol="30" endLine="1" endCol="33">
+            <SimpleName startLine="1" startCol="30" endLine="1" endCol="33" escaped="False">Bar</SimpleName>
+          </NamedType>
+          <EndBlockDeclaration startLine="2" startCol="9" endLine="2" endCol="21" endType="Operator">
+            <Operator line="2" col="13" />
+          </EndBlockDeclaration>
+        </OperatorDeclaration>
+      </result>
+    </test>
+  </valid>
+</scenario>

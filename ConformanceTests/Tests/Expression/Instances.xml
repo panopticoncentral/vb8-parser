@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scenario name="Instances" type="expression" description="11.4.3 Instance Expressions">
+  <!-- NOTE: MyBase and MyClass are part of member access expressions, not standalone. -->
+  <valid>
+    <test>
+      <code>Me</code>
+      <result>
+        <InstanceExpression startLine="1" startCol="1" endLine="1" endCol="3" isConstant="False" type="Me" />
+      </result>
+    </test>
+  </valid>
+</scenario>
